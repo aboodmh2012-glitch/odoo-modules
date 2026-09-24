@@ -1,11 +1,9 @@
-# Extra Python deps not shipped by odoo:18.0 (do not upgrade core crypto/lxml/requests).
+# Extra Python deps not shipped by odoo:18.0.
+# Do NOT list cryptography / lxml / requests / PyPDF2 / reportlab / urllib3 —
+# upgrading those breaks the Debian pyOpenSSL stack in the official image.
 boto3~=1.40
-certifi~=2024.7
 cssselect~=1.2
 defusedxml~=0.7
 openpyxl~=3.1
-pywebpush~=2.0
-pyhanko~=0.35
-pyhanko-certvalidator~=0.26
 google-auth-oauthlib~=1.2
 google-api-python-client~=2.130
