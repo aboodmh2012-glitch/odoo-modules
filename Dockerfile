@@ -4,11 +4,12 @@ FROM odoo:18.0
 
 USER root
 
+# Avoid libpq-dev: the Odoo image already ships a newer libpq from PGDG and
+# Ubuntu's libpq-dev conflicts with it. Install only what we need for pip wheels.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         build-essential \
         gosu \
-        libpq-dev \
         python3-dev \
     && rm -rf /var/lib/apt/lists/*
 
