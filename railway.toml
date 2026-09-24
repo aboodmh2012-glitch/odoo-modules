@@ -1,0 +1,11 @@
+# Railway config for the Odoo service in project "smart".
+# Link this GitHub repo to the existing Odoo service (do not create a new project).
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+healthcheckPath = "/web/health"
+healthcheckTimeout = 300
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 5
