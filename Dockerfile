@@ -4,21 +4,17 @@ FROM odoo:18.0
 
 USER root
 
-# Avoid libpq-dev: the Odoo image already ships a newer libpq from PGDG and
-# Ubuntu's libpq-dev conflicts with it. Install only what we need for pip wheels.
+# Only install runtime helpers. Do NOT pip-upgrade cryptography/lxml/requests:
+# those are Debian-managed in the Odoo image and upgrading them breaks pyOpenSSL.
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        build-essential \
-        gosu \
-        python3-dev \
+    && apt-get install -y --no-install-recommends gosu \
     && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt /tmp/requirements.txt
-# --ignore-installed: Odoo image packages are Debian-managed (no RECORD) and
-# conflict with a plain pip upgrade of cryptography/requests/lxml/etc.
-RUN pip3 install --no-cache-dir --break-system-packages --ignore-installed \
-        -r /tmp/requirements.txt \
-    || pip3 install --no-cache-dir --ignore-installed -r /tmp/requirements.txt
+# Optional Python deps that are NOT shipped by the Odoo image.
+# Keep this list narrow; never list cryptography/PyPDF2/lxml/requests/reportlab here.
+COPY deploy/requirements-extra.txt /tmp/requirements-extra.txt
+RUN pip3 install --no-cache-dir --break-system-packages -r /tmp/requirements-extra.txt \
+    || pip3 install --no-cache-dir -r /tmp/requirements-extra.txt
 
 # Custom modules baked at build time (no git clone on restart).
 COPY --chown=odoo:odoo . /mnt/extra-addons/
