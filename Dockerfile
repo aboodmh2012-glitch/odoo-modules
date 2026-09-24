@@ -14,8 +14,11 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt /tmp/requirements.txt
-RUN pip3 install --no-cache-dir --break-system-packages -r /tmp/requirements.txt \
-    || pip3 install --no-cache-dir -r /tmp/requirements.txt
+# --ignore-installed: Odoo image packages are Debian-managed (no RECORD) and
+# conflict with a plain pip upgrade of cryptography/requests/lxml/etc.
+RUN pip3 install --no-cache-dir --break-system-packages --ignore-installed \
+        -r /tmp/requirements.txt \
+    || pip3 install --no-cache-dir --ignore-installed -r /tmp/requirements.txt
 
 # Custom modules baked at build time (no git clone on restart).
 COPY --chown=odoo:odoo . /mnt/extra-addons/
