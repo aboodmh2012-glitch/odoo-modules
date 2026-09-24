@@ -1,0 +1,23 @@
+.git
+.github
+.claude
+.cursor
+.agents
+**/.git
+**/__pycache__
+**/*.pyc
+**/*.pyo
+**/.ruff_cache
+**/*.mo
+**/*.po~
+.idea
+.vscode
+.env
+*.local
+ruff.toml
+SECURITY.md
+# Keep deploy/odoo.conf available for the Dockerfile COPY
+Dockerfile
+.dockerignore
+railway.toml
+.railway
