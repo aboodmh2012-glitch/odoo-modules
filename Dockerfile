@@ -13,8 +13,10 @@ RUN apt-get update \
 # Optional Python deps that are NOT shipped by the Odoo image.
 # Keep this list narrow; never list cryptography/PyPDF2/lxml/requests/reportlab here.
 COPY deploy/requirements-extra.txt /tmp/requirements-extra.txt
-RUN pip3 install --no-cache-dir --break-system-packages -r /tmp/requirements-extra.txt \
-    || pip3 install --no-cache-dir -r /tmp/requirements-extra.txt
+# Install extras without replacing Debian-managed packages from the Odoo image.
+# pywebpush 1.14.1 works with the image cryptography; --ignore-installed avoids
+# pip trying to uninstall Debian packages that have no pip RECORD metadata.
+RUN pip3 install --no-cache-dir --break-system-packages --ignore-installed -r /tmp/requirements-extra.txt
 
 # Custom modules baked at build time (no git clone on restart).
 COPY --chown=odoo:odoo . /mnt/extra-addons/
