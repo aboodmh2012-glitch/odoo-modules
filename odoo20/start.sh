@@ -9,7 +9,8 @@ COMMON_ARGS=(
   --db_user="${USER:?}"
   --db_password="${PASSWORD:?}"
 )
-echo "Installing all available Odoo 20 Community modules..."
-gosu odoo odoo "${COMMON_ARGS[@]}" -d odoo20 -i all --without-demo --stop-after-init
-echo "All-module installation pass completed; starting Odoo normally..."
+APPS="account,crm,sale_management,purchase,stock,point_of_sale,project,hr,hr_recruitment,hr_holidays,hr_attendance,hr_expense,website,website_sale,website_slides,website_event,mass_mailing,mass_mailing_sms,calendar,contacts,survey,fleet,maintenance,repair,mrp,lunch,im_livechat,project_todo"
+echo "Installing selected Odoo 20 Community applications..."
+gosu odoo odoo "${COMMON_ARGS[@]}" -d odoo20 -i "${APPS}" --without-demo --stop-after-init
+echo "Selected Odoo 20 applications installed; starting server..."
 exec gosu odoo odoo "${COMMON_ARGS[@]}"
