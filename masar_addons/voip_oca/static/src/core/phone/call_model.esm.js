@@ -1,6 +1,6 @@
 /* @odoo-module */
 
-import {Record} from "@mail/core/common/record";
+import {Record} from "@mail/model/export";
 import {deserializeDateTime} from "@web/core/l10n/dates";
 import {durationStr} from "../../utils/utils.esm";
 
