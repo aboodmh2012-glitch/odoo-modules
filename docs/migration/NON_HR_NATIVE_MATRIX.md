@@ -48,6 +48,8 @@ Enterprise apps (`industry_fsm`, EE `helpdesk`, EE `social`, EE `knowledge`, EE 
 
 **Deferred from accounting install (needs deeper Odoo 20 port):**
 - `account_chart_update` — references removed `account.group` model
+- `account_usability` — inherits removed `account.group`
+- `account_financial_report` — inherits removed `account.group` (trial balance grouping)
 
 ### Tier validation — COPY & MIGRATE
 
