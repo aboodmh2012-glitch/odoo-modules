@@ -1,3 +1,4 @@
+import base64
 import os
 from unittest.mock import patch
 from types import SimpleNamespace
@@ -35,7 +36,7 @@ class TestInstagram(TransactionCase):
             {
                 "name": "pic.jpg",
                 "type": "binary",
-                "datas": "iVBORw0KGgo=",
+                "raw": base64.b64decode("iVBORw0KGgo="),
                 "mimetype": "image/jpeg",
             }
         )
@@ -74,7 +75,7 @@ class TestInstagram(TransactionCase):
             {
                 "name": "pic.png",
                 "type": "binary",
-                "datas": "iVBORw0KGgo=",
+                "raw": base64.b64decode("iVBORw0KGgo="),
                 "mimetype": "image/png",
             }
         )

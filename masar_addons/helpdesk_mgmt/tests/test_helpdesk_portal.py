@@ -4,7 +4,7 @@
 from odoo import http
 from odoo.tests.common import new_test_user, tagged
 
-from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT, HttpCaseWithUserPortal
+from odoo.addons.base.tests.common import DISABLED_MAIL_CREATE_CONTEXT, HttpCaseWithUserPortal
 
 
 @tagged("post_install", "-at_install")
@@ -17,7 +17,7 @@ class TestHelpdeskPortalBase(HttpCaseWithUserPortal):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True, **DISABLED_MAIL_CREATE_CONTEXT))
         cls.new_ticket_title = "portal-new-submitted-ticket-subject"
         cls.new_ticket_desc_lines = (  # multiline description to check line breaks
             "portal-new-submitted-ticket-description-line-1",

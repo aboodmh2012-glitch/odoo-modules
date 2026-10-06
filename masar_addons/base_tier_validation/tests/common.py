@@ -9,6 +9,9 @@ from odoo.addons.base.tests.common import BaseCommon
 
 
 class CommonTierValidation(BaseCommon):
+    # Odoo 20 BaseCommon runs each test as a plain internal user;
+    # keep the superuser environment these tests were written for.
+    _test_user_groups = ()
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -159,14 +162,12 @@ class CommonTierValidation(BaseCommon):
         )
         for model in models:
             # Access record:
-            self.env["ir.model.access"].create(
+            self.env["ir.access"].create(
                 {
                     "name": f"access {model.name}",
                     "model_id": model.id,
-                    "perm_read": 1,
-                    "perm_write": 1,
-                    "perm_create": 1,
-                    "perm_unlink": 1,
+                    "group_id": self.env.ref("base.group_user").id,
+                    "operation": "crud",
                 }
             )
 

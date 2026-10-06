@@ -23,7 +23,7 @@ from datetime import datetime, timedelta
 from types import SimpleNamespace
 from unittest.mock import MagicMock, patch
 
-from odoo.http import _request_stack
+from odoo.http import request_var
 from odoo.tests import common, tagged
 
 from ..controllers import auth, rate_limiting, utils
@@ -252,8 +252,8 @@ class TestApiKeyScopeWizard(common.HttpCase):
             env=self.env,
             httprequest=SimpleNamespace(environ={"REMOTE_ADDR": "127.0.0.1"}),
         )
-        _request_stack.push(fake_req)
-        self.addCleanup(_request_stack.pop)
+        token = request_var.set(fake_req)
+        self.addCleanup(request_var.reset, token)
         wizard = (
             self.env["res.users.apikeys.description"]
             .with_user(self.wizard_user)

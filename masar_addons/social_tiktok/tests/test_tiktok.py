@@ -1,6 +1,5 @@
 # Copyright 2026 MASAR
 # License AGPL-3.0 or later.
-import base64
 import time
 from datetime import timedelta
 from unittest.mock import patch
@@ -43,7 +42,7 @@ class TestSocialTiktok(TransactionCase):
 
     def _video_post(self, mimetype="video/mp4"):
         att = self.env["ir.attachment"].create(
-            {"name": "v.mp4", "datas": base64.b64encode(b"clip").decode(), "mimetype": mimetype}
+            {"name": "v.mp4", "raw": b"clip", "mimetype": mimetype}
         )
         post = self.env["social.post"].create({"name": "Trend", "content": "caption"})
         post.attachment_ids = [(6, 0, att.ids)]

@@ -9,7 +9,8 @@ import psycopg2
 
 from odoo import SUPERUSER_ID, api, fields, tools
 from odoo.fields import Domain
-from odoo.modules.registry import DummyRLock, Registry
+from odoo.modules.registry import Registry
+from odoo.tests.common import DummyRLock
 from odoo.tests import Form, TransactionCase, tagged
 
 _logger = logging.getLogger(__name__)

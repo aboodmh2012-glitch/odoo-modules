@@ -9,6 +9,9 @@ from odoo.addons.base.tests.common import BaseCommon
 
 @tagged("-at_install", "post_install")
 class TestAccountChartUpdateCommon(BaseCommon):
+    # Odoo 20 BaseCommon runs each test as a plain internal user;
+    # keep the superuser environment these tests were written for.
+    _test_user_groups = ()
     def _get_model_data(self, record):
         return self.env["ir.model.data"].search(
             [("model", "=", record._name), ("res_id", "=", record.id)]

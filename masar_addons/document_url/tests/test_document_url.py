@@ -40,6 +40,6 @@ class TestDocumentUrl(common.TransactionCase):
         blob1 = b"blob1"
         blob1_b64 = base64.b64encode(blob1)
         attachment = self.env["ir.attachment"].create(
-            {"name": "a2", "datas": blob1_b64, "mimetype": "image/png"}
+            {"name": "a2", "raw": base64.b64decode(blob1_b64), "mimetype": "image/png"}
         )
         self.assertEqual(attachment.mimetype, "image/png")

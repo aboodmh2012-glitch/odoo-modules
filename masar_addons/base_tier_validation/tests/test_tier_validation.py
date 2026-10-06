@@ -648,7 +648,7 @@ class TierTierValidation(CommonTierValidation):
         )
 
     def test_16b_review_user_count_no_model_access(self):
-        """Reviewer without ir.model.access read on the validated model must
+        """Reviewer without ir.access read on the validated model must
         not crash the systray endpoint. Regression: the systray called
         Model.with_user(user).search(...) which raises AccessError when the
         user has no read access (e.g. tier definition on account.move for a
@@ -665,7 +665,7 @@ class TierTierValidation(CommonTierValidation):
         test_record.with_user(self.test_user_1).request_validation()
         self.assertTrue(self.test_user_2.review_ids)
         # Revoke read access on the validated model for non-superadmin users.
-        self.env["ir.model.access"].search(
+        self.env["ir.access"].search(
             Domain("model_id", "=", self.tester_model.id)
         ).unlink()
         # Sanity check: a direct search now raises AccessError.

@@ -1,6 +1,5 @@
 # Copyright 2026 MASAR
 # License AGPL-3.0 or later.
-import base64
 import time
 from datetime import timedelta
 from types import SimpleNamespace
@@ -49,7 +48,7 @@ class TestSocialYoutube(TransactionCase):
 
     def _video_post(self, mimetype="video/mp4"):
         att = self.env["ir.attachment"].create(
-            {"name": "v.mp4", "datas": base64.b64encode(b"video-bytes").decode(), "mimetype": mimetype}
+            {"name": "v.mp4", "raw": b"video-bytes", "mimetype": mimetype}
         )
         post = self.env["social.post"].create({"name": "My clip", "content": "desc"})
         post.attachment_ids = [(6, 0, att.ids)]

@@ -2,7 +2,6 @@
 # @author Pierre Verkest <pierreverkest84@gmail.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import base64
 
 from odoo import fields, models
 from odoo.orm.model_classes import add_to_registry
@@ -19,6 +18,9 @@ class TestAttachmentDownload(models.TransientModel):
 
 
 class TestIrAttachmentActionDownload(BaseCommon):
+    # Odoo 20 BaseCommon runs each test as a plain internal user;
+    # keep the superuser environment these tests were written for.
+    _test_user_groups = ()
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -49,7 +51,7 @@ class TestIrAttachmentActionDownload(BaseCommon):
                 "res_model": record._name,
                 "res_id": record.id,
                 "type": "binary",
-                "datas": base64.b64encode(b"Content"),
+                "raw": b"Content",
             }
         )
 

@@ -92,7 +92,7 @@ class TestSocialLinkedin(TransactionCase):
         )
         if attach:
             att = self.env["ir.attachment"].create(
-                {"name": "a.png", "datas": "aGk=", "mimetype": "image/png"}
+                {"name": "a.png", "raw": b"hi", "mimetype": "image/png"}
             )
             post.attachment_ids = [(6, 0, att.ids)]
         return post, target

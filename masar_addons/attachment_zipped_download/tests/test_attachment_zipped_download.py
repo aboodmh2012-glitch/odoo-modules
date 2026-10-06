@@ -1,6 +1,5 @@
 # Copyright 2022-2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-import base64
 
 from odoo.exceptions import AccessError
 from odoo.tests import HttpCase, new_test_user
@@ -9,6 +8,9 @@ from odoo.addons.base.tests.common import BaseCommon
 
 
 class TestAttachmentZippedDownloadBase(BaseCommon):
+    # Odoo 20 BaseCommon runs each test as a plain internal user;
+    # keep the superuser environment these tests were written for.
+    _test_user_groups = ()
     @classmethod
     def _create_attachment(cls, user, name, model=False, res_id=False):
         return (
@@ -17,7 +19,7 @@ class TestAttachmentZippedDownloadBase(BaseCommon):
             .create(
                 {
                     "name": name,
-                    "datas": base64.b64encode(b"\xff data"),
+                    "raw": b"\xff data",
                     "res_model": model,
                     "res_id": res_id,
                 }

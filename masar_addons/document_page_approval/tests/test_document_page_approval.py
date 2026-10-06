@@ -5,6 +5,9 @@ from odoo.addons.base.tests.common import BaseCommon
 
 
 class TestDocumentPageApproval(BaseCommon):
+    # Odoo 20 BaseCommon runs each test as a plain internal user;
+    # keep the superuser environment these tests were written for.
+    _test_user_groups = ()
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
