@@ -1,4 +1,4 @@
-import {Component, onWillStart, useState} from "@odoo/owl";
+import {Component, onWillStart, proxy} from "@odoo/owl";
 import {useBus, useService} from "@web/core/utils/hooks";
 import {SIZES} from "@web/core/ui/ui_utils";
 import {ViewButton} from "@web/views/view_button/view_button";
@@ -11,7 +11,7 @@ export class HelpdeskDashboard extends Component {
         this.action = useService("action");
         this.uiService = useService("ui");
         useBus(this.uiService.bus, "resize", this.updateGridTemplateColumns);
-        this.state = useState({
+        this.state = proxy({
             gridTemplateColumns: this._getGridTemplateColumns(),
         });
         onWillStart(async () => {

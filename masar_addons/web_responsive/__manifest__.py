@@ -31,11 +31,11 @@
  'depends': ['web', 'web_tour', 'mail'],
  'development_status': 'Production/Stable',
  'excludes': ['web_enterprise'],
- 'installable': True,
+ 'installable': False,
  'license': 'LGPL-3',
  'maintainers': ['Tardo', 'SplashS'],
  'name': 'Web Responsive',
  'sequence': 1,
- 'summary': 'Responsive web client, community-supported',
+ 'summary': 'Responsive web client (disabled on SMART: needs full Owl 3 port; useState removed in Odoo 20)',
  'version': '20.0.1.1.0',
  'website': 'https://github.com/OCA/web'}
