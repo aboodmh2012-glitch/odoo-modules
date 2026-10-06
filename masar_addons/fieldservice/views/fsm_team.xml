@@ -77,7 +77,7 @@
                                     <div class="o_kanban_card_header_title">
                                         <div class="o_primary">
                                             <span>
-                                                <t t-esc="record.name.value" />
+                                                <field name="name" />
                                             </span>
                                         </div>
                                     </div>
@@ -91,7 +91,7 @@
                                                 type="action"
                                                 context="{'search_default_todo': 1}"
                                             >
-                                                <t t-esc="record.order_count.value" />
+                                                <field name="order_count" />
                                                 To Do
                                             </button>
                                         </div>
@@ -110,9 +110,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="col-3">
-                                                    <t
-                                                        t-esc="record.order_need_assign_count.value"
-                                                    />
+                                                    <field name="order_need_assign_count" />
                                                 </div>
                                             </div>
                                             <div
@@ -129,9 +127,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="col-3">
-                                                    <t
-                                                        t-esc="record.order_need_schedule_count.value"
-                                                    />
+                                                    <field name="order_need_schedule_count" />
                                                 </div>
                                             </div>
                                         </div>
