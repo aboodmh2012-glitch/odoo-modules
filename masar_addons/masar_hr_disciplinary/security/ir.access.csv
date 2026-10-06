@@ -2,16 +2,15 @@ id,name,model_id,group_id/id,operation,domain
 access_offense_type_user,offense.type.user,hr.discipline.offense.type,base.group_user,r,
 access_offense_type_officer,offense.type.officer,hr.discipline.offense.type,masar_hr_disciplinary.group_disciplinary_hr_officer,cru,
 access_offense_type_manager,offense.type.manager,hr.discipline.offense.type,masar_hr_disciplinary.group_disciplinary_hr_manager,crud,
+rule_offense_company,Offense type multi-company,hr.discipline.offense.type,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
 access_sanction_type_user,sanction.type.user,hr.discipline.sanction.type,base.group_user,r,
 access_sanction_type_officer,sanction.type.officer,hr.discipline.sanction.type,masar_hr_disciplinary.group_disciplinary_hr_officer,cru,
 access_sanction_type_manager,sanction.type.manager,hr.discipline.sanction.type,masar_hr_disciplinary.group_disciplinary_hr_manager,crud,
-access_case_user_own,case.user.own,hr.disciplinary.case,base.group_user,ru,"[('employee_id', 'in', user.employee_ids.ids)]"
-access_case_line_manager,case.line.manager,hr.disciplinary.case,masar_hr_disciplinary.group_disciplinary_line_manager,cru,"['|', ('employee_id', 'in', user.employee_ids.ids), ('employee_id.parent_id.user_id', '=', user.id)]"
-access_case_investigator,case.investigator,hr.disciplinary.case,masar_hr_disciplinary.group_disciplinary_investigator,cru,"['|', ('investigator_id', '=', user.id), '&', ('investigator_id', '=', False), ('state', 'in', ['submitted', 'investigation', 'awaiting_statement'])]"
-access_case_officer,case.officer,hr.disciplinary.case,masar_hr_disciplinary.group_disciplinary_hr_officer,cru,
-access_case_manager,case.manager,hr.disciplinary.case,masar_hr_disciplinary.group_disciplinary_hr_manager,crud,
-access_case_approver,case.approver,hr.disciplinary.case,masar_hr_disciplinary.group_disciplinary_approver,crud,
-access_case_payroll,case.payroll,hr.disciplinary.case,masar_hr_disciplinary.group_disciplinary_payroll_officer,r,"[('payroll_ready', '=', True), ('state', 'in', ('decided', 'awaiting_appeal', 'appeal_review', 'closed'))]"
-rule_case_company,Disciplinary case multi-company,hr.disciplinary.case,,crud,"[('company_id', 'in', company_ids)]"
-rule_offense_company,Offense type multi-company,hr.discipline.offense.type,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
 rule_sanction_company,Sanction type multi-company,hr.discipline.sanction.type,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+rule_case_employee_own,Disciplinary case: employee own,hr.disciplinary.case,base.group_user,ru,"[('employee_id', 'in', user.employee_ids.ids)]"
+rule_case_payroll_financial,Disciplinary case: payroll financial only,hr.disciplinary.case,masar_hr_disciplinary.group_disciplinary_payroll_officer,r,"[('payroll_ready', '=', True), ('state', 'in', ('decided', 'awaiting_appeal', 'appeal_review', 'closed'))]"
+rule_case_line_manager,Disciplinary case: line manager team,hr.disciplinary.case,masar_hr_disciplinary.group_disciplinary_line_manager,cru,"['|', ('employee_id', 'in', user.employee_ids.ids), ('employee_id.parent_id.user_id', '=', user.id)]"
+rule_case_hr_all,Disciplinary case: HR all,hr.disciplinary.case,masar_hr_disciplinary.group_disciplinary_hr_officer,cru,
+rule_case_investigator_all,Disciplinary case: investigator assigned/open,hr.disciplinary.case,masar_hr_disciplinary.group_disciplinary_investigator,cru,"['|', ('investigator_id', '=', user.id), '&', ('investigator_id', '=', False), ('state', 'in', ['submitted', 'investigation', 'awaiting_statement'])]"
+rule_case_hr_all_1,Disciplinary case: HR all,hr.disciplinary.case,masar_hr_disciplinary.group_disciplinary_hr_manager,crud,
+rule_case_company,Disciplinary case multi-company,hr.disciplinary.case,,crud,"[('company_id', 'in', company_ids)]"

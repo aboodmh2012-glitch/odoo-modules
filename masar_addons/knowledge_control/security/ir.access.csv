@@ -1,7 +1,5 @@
 id,name,model_id,group_id/id,operation,domain
-access_kc_distribution_user,document.page.distribution user,document.page.distribution,knowledge_control.group_knowledge_control_user,ru,
-access_kc_distribution_manager,document.page.distribution manager,document.page.distribution,knowledge_control.group_knowledge_control_manager,crud,
-access_kc_distribute_wizard_user,document.page.distribute.wizard user,document.page.distribute.wizard,knowledge_control.group_knowledge_control_user,crud,
+rule_kc_distribution_own,KC distribution: own acknowledgments,document.page.distribution,knowledge_control.group_knowledge_control_user,ru,"['|', ('partner_id', '=', user.partner_id.id), ('user_id', '=', user.id)]"
+rule_kc_distribution_manager,KC distribution: manager all,document.page.distribution,knowledge_control.group_knowledge_control_manager,crud,
 rule_kc_distribution_company,KC distribution: company,document.page.distribution,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
-rule_kc_distribution_own_group_knowledge_control_user,KC distribution: own acknowledgments (group_knowledge_control_user),document.page.distribution,knowledge_control.group_knowledge_control_user,crud,"['|', ('partner_id', '=', user.partner_id.id), ('user_id', '=', user.id)]"
-rule_kc_distribution_manager_group_knowledge_control_manager,KC distribution: manager all (group_knowledge_control_manager),document.page.distribution,knowledge_control.group_knowledge_control_manager,crud,
+access_kc_distribute_wizard_user,document.page.distribute.wizard user,document.page.distribute.wizard,knowledge_control.group_knowledge_control_user,crud,

@@ -1,3 +1,2 @@
 id,name,model_id,group_id/id,operation,domain
-document_page_rule_document_knowledge_group_document_user,Document Page Access (document_knowledge.group_document_user),document.page,document_knowledge.group_document_user,crud,"['|', ('groups_id', 'in', [g.id for g in user.group_ids]), '|', ('user_ids', 'in', [user.id]), '&', ('groups_id', '=', False), ('user_ids', '=', False)]"
-document_page_rule_full_access_document_page_group_document_manager,Document Page Full Access (document_page.group_document_manager),document.page,document_page.group_document_manager,crud,
+document_page_access_restriction,Document Page Access (access groups),document.page,,crud,"['|', ('id', '!=', False) if (not user.has_group('document_knowledge.group_document_user') or user.has_group('document_page.group_document_manager')) else ('id', '=', False), '|', ('groups_id', 'in', user.group_ids.ids), '|', ('user_ids', 'in', [user.id]), '&', ('groups_id', '=', False), ('user_ids', '=', False)]"

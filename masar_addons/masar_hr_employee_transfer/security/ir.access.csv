@@ -1,4 +1,4 @@
 id,name,model_id,group_id/id,operation,domain
-access_transfer_hr,transfer.hr,hr.employee.transfer,hr.group_hr_user,r,
-access_transfer_manager,transfer.manager,hr.employee.transfer,hr.group_hr_manager,crud,
-rule_transfer_company,Employee transfer multi-company,hr.employee.transfer,,crud,"['|', '|', ('company_id', '=', False), ('company_id', 'in', company_ids), ('dest_company_id', 'in', company_ids)]"
+rule_transfer_hr,Employee transfer: HR,hr.employee.transfer,hr.group_hr_user,r,
+rule_transfer_hr_1,Employee transfer: HR,hr.employee.transfer,hr.group_hr_manager,crud,
+rule_transfer_company,Employee transfer multi-company (source or dest),hr.employee.transfer,,crud,"['|', '|', ('company_id', '=', False), ('company_id', 'in', company_ids), ('dest_company_id', 'in', company_ids)]"
