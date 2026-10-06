@@ -25,5 +25,5 @@
  'name': 'MASAR Website',
  'post_init_hook': 'post_init_hook',
  'summary': 'MASAR public website — bilingual marketing homepage, solutions, menus, and footer',
- 'version': '20.0.1.19.1',
+ 'version': '20.0.1.19.2',
  'website': 'https://masar.sa'}
