@@ -17,13 +17,13 @@
     <!-- After any stored head style, so MASAR Pay tokens win on the live site. -->
     <template id="masar_brand_fix_head" inherit_id="website.layout" name="MASAR Pay brand fix" priority="999">
         <xpath expr="//head" position="inside">
-            <link rel="stylesheet" type="text/css" href="/masar_website/static/src/css/masar_brand_fix.css?v=header-mobile-20261006"/>
-            <link rel="stylesheet" href="/masar_website/static/src/css/masar_ux.css?v=header-cta-20261006"/>
+            <link rel="stylesheet" type="text/css" href="/masar_website/static/src/css/masar_brand_fix.css?v=about-photo-20260929"/>
+            <link rel="stylesheet" href="/masar_website/static/src/css/masar_ux.css?v=cards-stack-20260927"/>
             <script defer="defer" src="/masar_website/static/src/js/masar_ux.js?v=sticky-header-20260928"/>
             <link t-if="request.httprequest.path in ('/', '/ar', '/en')" rel="preload" as="image" t-att-href="'/masar_website/static/src/img/hero-fintech-yemen-v2-rtl.webp?v=card-payment-20260928' if (request.env.lang or '').startswith('ar') else '/masar_website/static/src/img/hero-fintech-yemen-v2.webp?v=card-payment-20260928'" fetchpriority="high"/>
             <link rel="stylesheet" href="/masar_website/static/src/css/masar_homepage_polish.css?v=20260928-opportunity"/>
             <script defer="defer" src="/masar_website/static/src/js/masar_homepage_polish.js?v=20260928-1"/>
-            <link rel="stylesheet" href="/masar_website/static/src/css/masar_footer_polish.css?v=footer-social-svg-20261006"/>
+            <link rel="stylesheet" href="/masar_website/static/src/css/masar_footer_polish.css?v=footer-social-fa-20261001"/>
         </xpath>
     </template>
 </odoo>

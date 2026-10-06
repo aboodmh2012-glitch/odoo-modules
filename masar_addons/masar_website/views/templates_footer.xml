@@ -55,12 +55,10 @@
                     <div class="masar-social">
                         <t t-foreach="copy['footer']['social']" t-as="social">
                             <a t-if="social['href']" class="masar-social__link" t-att-href="social['href']" t-att-aria-label="social['label']" target="_blank" rel="noopener noreferrer">
-                                <t t-set="icon" t-value="social['id']"/>
-                                <t t-call="masar_website.masar_icon"/>
+                                <i t-att-class="social['icon']" aria-hidden="true"/>
                             </a>
                             <span t-else="" class="masar-social__link" role="img" t-att-aria-label="social['label']">
-                                <t t-set="icon" t-value="social['id']"/>
-                                <t t-call="masar_website.masar_icon"/>
+                                <i t-att-class="social['icon']" aria-hidden="true"/>
                             </span>
                         </t>
                     </div>

@@ -22,7 +22,6 @@ html body #wrapwrap .masar-site .masar-hero--page .masar-hero__title {font-size:
 html body #wrapwrap :is(.masar-site,.masar-header,.masar-footer) :is(a,button,input,select,textarea,summary):focus-visible {outline:3px solid var(--mp-navy)!important;outline-offset:4px!important;box-shadow:0 0 0 7px #fff!important}
 html body #wrapwrap :is(.masar-header,.masar-footer,.masar-band,.masar-hero) :is(a,button):focus-visible {outline-color:#fff!important;box-shadow:0 0 0 7px var(--mp-navy)!important}
 html body #wrapwrap :is(.masar-btn,.masar-nav__toggle,.masar-lang__toggle) {min-height:48px;min-width:44px;border-radius:var(--mp-radius);white-space:normal}
-html body #wrapwrap .masar-header :is(.masar-btn,.masar-nav__toggle,.masar-lang__toggle) {white-space:nowrap;overflow-wrap:normal;flex-shrink:0}
 html body #wrapwrap .masar-btn.masar-btn--primary,
 html body #wrapwrap .masar-site .masar-btn.masar-btn--primary,
 html body #wrapwrap .masar-pay>.masar-hero--home .masar-btn.masar-btn--primary {background:var(--mp-orange)!important;border-color:var(--mp-orange)!important;color:var(--mp-navy)!important;text-shadow:none!important}
