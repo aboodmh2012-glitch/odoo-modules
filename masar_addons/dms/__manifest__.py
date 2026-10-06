@@ -38,5 +38,5 @@
  'license': 'LGPL-3',
  'name': 'Document Management System',
  'summary': 'Document Management System for Odoo',
- 'version': '20.0.1.1.2',
+ 'version': '20.0.1.1.3',
  'website': 'https://github.com/OCA/dms'}

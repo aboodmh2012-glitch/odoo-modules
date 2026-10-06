@@ -63,8 +63,8 @@
             class="o_avatar rounded ms-2"
             t-att-src="this.getPartnerAvatarSrc(cell.partnerId)"
             alt="Contact"/>
-        <a t-if="cell.onClick" t-on-click="() => cell.onClick()" t-esc="cell.label" class="ms-1"/>
-        <span t-else="" t-esc="cell.label" class="ms-1"/>
+        <a t-if="cell.onClick" t-on-click="() => cell.onClick()" t-out="cell.label" class="ms-1"/>
+        <span t-else="" t-out="cell.label" class="ms-1"/>
         <a t-if="cell.partnerId"
             class="hover-button float-end"
             t-on-click="() => this.sendToPartner(cell.partnerId)">

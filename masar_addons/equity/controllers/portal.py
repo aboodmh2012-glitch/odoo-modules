@@ -10,15 +10,14 @@ from odoo.addons.portal.controllers.portal import CustomerPortal
 
 
 class PortalEquity(CustomerPortal):
-    def _prepare_home_portal_values(self, counters):
-        values = super()._prepare_home_portal_values(counters)
-        if 'transaction_count' in counters:
+    def _prepare_portal_counter_values(self, counter):
+        # Odoo 20: /my/counters reads (model, domain, access) — not a values dict.
+        if counter == 'transaction_count':
             holder_id = self._get_user_partner_id()
-            values['transaction_count'] = (
-                request.env['equity.transaction'].sudo().search_count(self._get_transactions_domain(holder_id), limit=1)
-                if holder_id else 0
-            )
-        return values
+            if not holder_id:
+                return 'equity.transaction', [('id', '=', False)], 'sudo'
+            return 'equity.transaction', self._get_transactions_domain(holder_id), 'sudo'
+        return super()._prepare_portal_counter_values(counter)
 
     def _get_user_partner_id(self, access_token=None, default_to_request_partner=True):
         partner_id, token = None, None

@@ -476,7 +476,10 @@ def get_authorization_server():
 # deployed behind (honours Odoo ``proxy_mode`` for the X-Forwarded-* headers).
 def _base_url():
     """Scheme+host root of the current request, without a trailing slash."""
-    return request.httprequest.url_root.rstrip("/")
+    url_root = getattr(request.httprequest, "url_root", None)
+    if not isinstance(url_root, str) or not url_root:
+        url_root = "http://localhost/"
+    return url_root.rstrip("/")
 
 
 def resource_url():

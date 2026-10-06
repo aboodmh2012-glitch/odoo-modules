@@ -28,5 +28,5 @@
  'license': 'AGPL-3',
  'name': 'Helpdesk Management',
  'summary': '\n        Helpdesk',
- 'version': '20.0.1.1.3',
+ 'version': '20.0.1.1.4',
  'website': 'https://github.com/OCA/helpdesk'}

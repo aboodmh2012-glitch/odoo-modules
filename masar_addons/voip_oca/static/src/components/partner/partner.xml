@@ -16,7 +16,7 @@
                     class="rounded-circle"
                     t-att-src="voip.imagePartner(props.partner.id)"
                 />
-                <span class="mt-2 fw-bolder" t-esc="props.partner.name" />
+                <span class="mt-2 fw-bolder" t-out="props.partner.name" />
             </t>
             <t t-else="">
                 <span class="fw-bolder">No contact info</span>
@@ -24,13 +24,13 @@
             <t t-if="phoneNumber">
                 <button class="btn text-success" t-on-click="onCall">
                     <i class="fa fa-phone" />
-                    <span class="mt-2 mx-2" t-esc="phoneNumber" />
+                    <span class="mt-2 mx-2" t-out="phoneNumber" />
                 </button>
             </t>
             <span class="mt-2 small text-muted" t-if="props.call">
                 <i class="px-2" t-att-class="props.call.iconTypeCall" />
-                <t t-esc="props.call.dateStr" />
-                <t t-if="props.call.duration"> • <t t-esc="props.call.durationStr" />
+                <t t-out="props.call.dateStr" />
+                <t t-if="props.call.duration"> • <t t-out="props.call.durationStr" />
                 </t>
             </span>
         </div>

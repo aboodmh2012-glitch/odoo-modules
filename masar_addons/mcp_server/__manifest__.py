@@ -68,5 +68,5 @@
  'name': 'MCP Server',
  'summary': 'Connect AI assistants to your Odoo instance via Model Context Protocol',
  'support': 'product@erp.muchconsulting.de',
- 'version': '20.0.2.1.0',
+ 'version': '20.0.2.1.1',
  'website': 'https://muchconsulting.com/'}

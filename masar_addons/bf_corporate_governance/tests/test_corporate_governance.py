@@ -14,6 +14,15 @@ from odoo.tests import TransactionCase, tagged
 
 class TestCorporateResolution(TransactionCase):
 
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.env.user.sudo().write({
+            "group_ids": [(4, cls.env.ref(
+                "bf_corporate_governance.group_corporate_manager"
+            ).id)],
+        })
+
     def _create(self, **kwargs):
         vals = {
             "name": "Test resolution",
@@ -278,6 +287,15 @@ class TestSignatoriesAndPdf(TransactionCase):
 class TestMinuteBookEvidence(TransactionCase):
     """Pages = navigation; frozen history = evidence."""
 
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.env.user.sudo().write({
+            "group_ids": [(4, cls.env.ref(
+                "bf_corporate_governance.group_corporate_manager"
+            ).id)],
+        })
+
     def test_reject_non_frozen_history_as_evidence(self):
         category = self.env["document.page"].create({
             "name": "MB Cat",
@@ -468,3 +486,8 @@ class TestCorporateSecurity(TransactionCase):
             "company_id": self.company_a.id,
         })
         self.assertTrue(rec.id)
+
+    def test_user_cannot_adopt_resolution(self):
+        self.res_a.action_propose()
+        with self.assertRaises((ValidationError, AccessError)):
+            self.res_a.with_user(self.user_a).action_adopt()

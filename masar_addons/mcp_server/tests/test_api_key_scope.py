@@ -250,7 +250,10 @@ class TestApiKeyScopeWizard(common.HttpCase):
         fake_req = SimpleNamespace(
             session={"identity-check-last": time.time()},
             env=self.env,
-            httprequest=SimpleNamespace(environ={"REMOTE_ADDR": "127.0.0.1"}),
+            httprequest=SimpleNamespace(
+                environ={"REMOTE_ADDR": "127.0.0.1"},
+                url_root="http://127.0.0.1/",
+            ),
         )
         token = request_var.set(fake_req)
         self.addCleanup(request_var.reset, token)

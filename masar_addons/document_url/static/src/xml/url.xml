@@ -47,7 +47,7 @@
                     >
                         <i class="fa fa-link fa-lg o_attachment_url_icon" />
                     </a>
-                    <span class="text-truncate ms-1" t-esc="attachment.name" />
+                    <span class="text-truncate ms-1" t-out="attachment.name" />
                 </div>
                 <i
                     t-if="attachment.isDeletable"

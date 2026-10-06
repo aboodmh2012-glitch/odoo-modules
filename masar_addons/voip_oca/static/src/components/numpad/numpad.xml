@@ -24,7 +24,7 @@
                 t-foreach="keys"
                 t-as="key"
                 t-key="key"
-                t-esc="key"
+                t-out="key"
                 t-on-click="() => this.onKeyClick(key)"
                 t-att-name="key"
                 class="o_numpad_button btn btn-light py-3 fw-normal fs-2 "

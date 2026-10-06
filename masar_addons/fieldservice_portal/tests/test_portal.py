@@ -116,12 +116,25 @@ class TestUsersHttp(HttpCase, TransactionCase):
         response = self.url_open("/my/home")
         self.assertEqual(response.status_code, 200)
         self.assertIn("FSM Orders", response.text)
+        self.assertIn("/my/fsm_orders", response.text)
 
     def test_fsm_orders_count(self):
         self.authenticate(self.user_portal.login, self.user_portal.password)
-        response = self.url_open(
-            "/my/counters",
-            data=json.dumps({"params": {"counters": "fsm_order_count"}}).encode(),
-            headers={"Content-Type": "application/json"},
-        ).json()
-        self.assertEqual(response["result"]["fsm_order_count"], 1)
+        payload = {"counters": {"fsm_order_count": "common_category"}}
+        if hasattr(self, "make_jsonrpc_request"):
+            result = self.make_jsonrpc_request("/my/counters", payload)
+        else:
+            response = self.url_open(
+                "/my/counters",
+                data=json.dumps(
+                    {
+                        "jsonrpc": "2.0",
+                        "method": "call",
+                        "id": None,
+                        "params": payload,
+                    }
+                ).encode(),
+                headers={"Content-Type": "application/json"},
+            ).json()
+            result = response["result"]
+        self.assertEqual(result["fsm_order_count"], 1)

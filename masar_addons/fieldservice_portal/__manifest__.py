@@ -14,5 +14,5 @@
  'maintainers': ['aleuffre', 'renda-dev'],
  'name': 'Field Service - Portal',
  'summary': '\n    Bridge module between fieldservice and portal.\n    ',
- 'version': '20.0.1.0.1',
+ 'version': '20.0.1.0.2',
  'website': 'https://github.com/OCA/field-service'}

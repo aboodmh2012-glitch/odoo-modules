@@ -546,19 +546,23 @@ Wave 0 left these as follow-ups. **This branch ports the ones that fit Odoo 20 A
 - **`helpdesk_mgmt_sla` tests:** attendance `name` removed.
 - **`fieldservice_repair` / stock.move tests:** UoM field is `uom_id` / `product_uom_id` depending on the model.
 - **`mcp_server` tests:** `generate_test_api_key` raises per-group `api_key_duration` (or clamps) so non-admin 30-day fixtures no longer 500.
+- **Portal counters (this follow-up):** `_prepare_home_portal_values` is gone in Odoo 20. `fieldservice_portal`, `helpdesk_mgmt`, `dms`, and `equity` now implement `_prepare_portal_counter_values` (model, domain, access). `/my/counters` tests send `{counter: category}` via jsonrpc.
+- **`bf_corporate_governance` tests:** adopt paths grant `group_corporate_manager`; a security test covers non-manager adopt.
+- **`mcp_server` `_base_url`:** tolerates request mocks without a string `url_root`.
+- **Owl templates:** remaining `t-esc` in `voip_oca`, `social`, `helpdesk_mgmt` dashboard, `equity` cap table, `document_url`, `dms` path widget → `t-out`.
+- **Dead `account.group` files removed** from `account_usability` and `account_financial_report` (already unloaded).
 
 ### 6.2 Still open (not a small API port)
 
 - `account_chart_update` group sync itself is gone with the model (parent-account chart sync not rewritten).
 - Trial-balance hierarchy is parent-account based; prefix-code `account.group` reports are not coming back.
 - Two-week `resource.calendar` rotations (`calendar_type='variable'` recurrency) were not reimplemented; planned-start follows the remaining attendance hours.
-- `mcp_server`: 2 SimpleNamespace request mocks may still lack `url_root`; `queue_job` 1 HTTP test still mocks a request without `host_id`; `bf_corporate_governance` 2 tests still assume Governance Manager on the superuser; `social_meta` tests still expect `social_facebook`.
+- Production log: an external client (Python-urllib) calls `website.search_read` with `social_facebook`; that field no longer exists on `website` in Odoo 20 (not a module test failure).
 - `web_responsive` stays `installable=False` (theme no longer depends on it).
 - Official OCA 20.0 module migrations are still empty; rebase when they land.
 - SMART root 18.0 `bf_*` modules remain undeployable (Dockerfile + series).
 - Empty helpdesk attachments already stored cannot be recovered (§7).
 - `masar_hr_org_chart` is still not in SMART (depends on `masar_theme`; evaluate native HR org chart first).
-- Production log: an external client (Python-urllib) calls `website.search_read` with `social_facebook`; that field no longer exists on `website` in Odoo 20.
 
 ## 7. Production rollout (not executed)
 
@@ -575,9 +579,9 @@ Wave 0 left these as follow-ups. **This branch ports the ones that fit Odoo 20 A
 - **Wave 2 — governance/approvals:** `bf_corporate_governance` tests/roles; decide root 18.0 Symbifox governance pieces (knowledge dashboard, project_document) — they need `project_knowledge_matrix` which is 18.0; port only missing functionality into the masar_addons copy.
 - **Wave 3 — HR:** `masar_hr_*` already installable; port `hr_appraisal_oca`, `hr_personal_equipment_*` (compare with CE `maintenance`/`hr_maintenance`); payroll (`payroll` + `masar_hr_payroll_yemen`) as its own phase; keep the native employee form (MASAR #166/#167/#169/#170).
 - **Wave 4 — accounting/assets (mostly done here):** `account_financial_report` / `account_usability` / `account_chart_update` no longer inherit `account.group`; TB hierarchy uses `parent_id`. Replace `account_lock_date_update` with native lock dates + lock exceptions still open.
-- **Wave 5 — helpdesk/CRM/FSM/ops (mostly done here):** stock UoM, route timezone, CRM xpath, timesheet SQL, portal.entry, SLA attendance fixtures. Helpdesk dashboard kanban Owl `t-esc` is deprecation-only.
+- **Wave 5 — helpdesk/CRM/FSM/ops (mostly done here):** stock UoM, route timezone, CRM xpath, timesheet SQL, portal.entry + `_prepare_portal_counter_values`, SLA attendance fixtures.
 - **Wave 6 — knowledge/training (partial):** `dms` portal + `raw` + `_access_domain` + archive actions; `document_page_project` card view. Still open: port `masar_hr_learning`; compare `masar_knowledge` with 18.0 `bf_training_*`.
-- **Wave 7 — rest:** `attachment_zipped_download` → native `/mail/attachment/zip`; sign stack (`sign_oca`, `fieldservice_sign`, `masar_hr_contract_sign`) only if e-signature is required; Owl `t-esc` deprecations in `voip_oca`, `social`, `dms` client templates.
+- **Wave 7 — rest:** `attachment_zipped_download` → native `/mail/attachment/zip`; sign stack (`sign_oca`, `fieldservice_sign`, `masar_hr_contract_sign`) only if e-signature is required. Owl `t-esc` in SMART client templates converted to `t-out`.
 
 ## 9. How this was measured (reproducible)
 

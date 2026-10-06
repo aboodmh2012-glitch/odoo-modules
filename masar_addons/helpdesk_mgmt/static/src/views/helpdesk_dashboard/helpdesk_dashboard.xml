@@ -20,10 +20,10 @@
                             <t t-set-slot="contents">
                                 <div class="o_field_widget o_stat_info">
                                     <span class="o_stat_value text-start">
-                                        <t t-esc="section.value" />
+                                        <t t-out="section.value" />
                                     </span>
                                     <span class="o_stat_text">
-                                        <t t-esc="section.name" />
+                                        <t t-out="section.name" />
                                     </span>
                                 </div>
                             </t>

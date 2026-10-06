@@ -67,7 +67,7 @@
                                     t-att-name="tab[0]"
                                     aria-current="page"
                                     href="#"
-                                    t-esc="tab[1].title"
+                                    t-out="tab[1].title"
                                     t-on-click="() =>this.onSelectTab(tab[0])"
                                 />
                             </li>

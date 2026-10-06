@@ -42,5 +42,5 @@
  'license': 'AGPL-3',
  'name': 'Corporate Governance',
  'summary': 'Resolutions, directors/officers, board committees, compliance, Minute Book',
- 'version': '20.0.1.3.0',
+ 'version': '20.0.1.3.1',
  'website': 'https://masar.sa'}

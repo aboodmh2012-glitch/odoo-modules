@@ -14,5 +14,5 @@
  'license': 'AGPL-3',
  'name': 'Social',
  'summary': 'Publishing, customer interactions and social identities',
- 'version': '20.0.2.1.0',
+ 'version': '20.0.2.1.1',
  'website': 'https://masar.sa'}

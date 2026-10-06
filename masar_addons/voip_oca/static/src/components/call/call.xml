@@ -12,22 +12,22 @@
                         class="rounded-circle"
                         t-att-src="voip.imagePartner(voip.partner.id)"
                     />
-                    <span class="mt-2 fw-bolder" t-esc="voip.partner.name" />
-                    <span class="mt-2" t-esc="voip.partner.display_name" />
+                    <span class="mt-2 fw-bolder" t-out="voip.partner.name" />
+                    <span class="mt-2" t-out="voip.partner.display_name" />
                 </t>
                 <t t-else="">
                     <span class="fw-bolder">No contact info</span>
                 </t>
                 <span class="mt-2">
                     <i class="fa fa-phone" />
-                    <span class="mt-2 mx-2" t-esc="voip.call.phoneNumber" />
+                    <span class="mt-2 mx-2" t-out="voip.call.phoneNumber" />
                 </span>
                 <span class="mt-2 small text-muted" t-if="voip.call">
                     <i class="px-2" t-att-class="voip.call.iconTypeCall" />
-                    <t t-esc="voip.call.dateStr" />
+                    <t t-out="voip.call.dateStr" />
                 </span>
                 <span class="mt-2 small">
-                    In call for: <t t-esc="duration" />
+                    In call for: <t t-out="duration" />
                 </span>
             </div>
             <div class="d-flex flex-column px-3 pt-2">
