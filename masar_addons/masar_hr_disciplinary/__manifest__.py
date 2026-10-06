@@ -9,7 +9,7 @@
     'license': 'AGPL-3',
     'category': 'Human Resources',
     'depends': ['hr', 'mail', 'document_page'],
-    'data': ['security/hr_disciplinary_security.xml', 'security/ir.access.csv', 'data/ir_sequence_data.xml', 'data/mail_activity_data.xml', 'views/hr_discipline_offense_type_views.xml', 'views/hr_discipline_sanction_type_views.xml', 'views/hr_disciplinary_case_views.xml', 'views/hr_employee_views.xml', 'views/menus.xml'],
+    'data': ['security/hr_disciplinary_security.xml', 'security/ir.access.csv', 'data/ir_sequence_data.xml', 'data/mail_activity_data.xml', 'views/hr_discipline_offense_type_views.xml', 'views/hr_discipline_sanction_type_views.xml', 'views/hr_disciplinary_case_views.xml', 'views/menus.xml'],
     'installable': True,
     'application': False,
     'demo': [],
