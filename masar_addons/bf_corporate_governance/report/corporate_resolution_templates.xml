@@ -54,13 +54,13 @@
                             font-family: "Georgia", "Times New Roman", serif;
                             font-size: 12pt;
                             line-height: 1.6;
-                            color: <t t-esc="brand_dark"/>;
+                            color: <t t-out="brand_dark"/>;
                             position: relative;
                             min-height: 270mm;
                         }
 
                         .res-banner {
-                            background: <t t-esc="brand_dark"/>;
+                            background: <t t-out="brand_dark"/>;
                             padding: 28pt 32pt 24pt 32pt;
                             display: table;
                             width: 100%;
@@ -84,7 +84,7 @@
                             font-weight: 600;
                             text-transform: uppercase;
                             letter-spacing: 2pt;
-                            color: <t t-esc="brand_primary"/>;
+                            color: <t t-out="brand_primary"/>;
                             margin: 0 0 4pt 0;
                         }
                         .res-banner h1 {
@@ -101,7 +101,7 @@
                         }
                         .res-accent-bar {
                             height: 4px;
-                            background: <t t-esc="brand_primary"/>;
+                            background: <t t-out="brand_primary"/>;
                             margin: 0 0 20pt 0;
                             width: 100%;
                         }
@@ -114,8 +114,8 @@
                         }
                         .res-ref span {
                             display: inline-block;
-                            border: 1.5px solid <t t-esc="brand_primary"/>;
-                            color: <t t-esc="brand_primary"/>;
+                            border: 1.5px solid <t t-out="brand_primary"/>;
+                            color: <t t-out="brand_primary"/>;
                             font-size: 10.5pt;
                             font-weight: 600;
                             padding: 4pt 14pt;
@@ -144,7 +144,7 @@
                         }
                         .res-meta td.ml {
                             font-weight: 600;
-                            color: <t t-esc="brand_dark"/>;
+                            color: <t t-out="brand_dark"/>;
                             width: 210px;
                             background: #f8f9fb;
                         }
@@ -168,10 +168,10 @@
                             font-weight: 600;
                             text-transform: uppercase;
                             letter-spacing: 1pt;
-                            color: <t t-esc="brand_primary"/>;
+                            color: <t t-out="brand_primary"/>;
                             margin-bottom: 16pt;
                             padding-bottom: 6pt;
-                            border-bottom: 2px solid <t t-esc="brand_primary"/>;
+                            border-bottom: 2px solid <t t-out="brand_primary"/>;
                             display: inline-block;
                         }
                         .res-sig-entry {
@@ -179,14 +179,14 @@
                             width: 280px;
                         }
                         .res-sig-line {
-                            border-bottom: 1.5px solid <t t-esc="brand_dark"/>;
+                            border-bottom: 1.5px solid <t t-out="brand_dark"/>;
                             height: 54pt;
                         }
                         .res-sig-name {
                             padding-top: 5pt;
                             font-size: 11pt;
                             font-weight: 600;
-                            color: <t t-esc="brand_dark"/>;
+                            color: <t t-out="brand_dark"/>;
                         }
                         .res-sig-role {
                             font-size: 10pt;
