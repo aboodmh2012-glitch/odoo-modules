@@ -21,7 +21,7 @@ Updated: 2026-10-06. User go-ahead to migrate HR after native-first review.
 | `masar_hr_employee_transfer` | Transfer without cloning employee | `ir.access.csv` |
 | `masar_hr_resignation` | Resignation + deferred archive | `ir.access.csv` |
 | `masar_hr_attendance_regularization` | Attendance correction requests | `ir.access.csv` |
-| `masar_hr_yemen` | Yemen labor seeds + light extensions | `ir.access.csv`; drop `report_file` |
+| `masar_hr_yemen` | Yemen labor seeds + light extensions | `ir.access.csv`; drop `report_file`; **omit** `hr.leave.type` seeds (Odoo 20 → `hr.time.rule`, use native Time Off) |
 
 Deps already on SMART: `document_page`, `helpdesk_mgmt`, `helpdesk_type`.
 
