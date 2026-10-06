@@ -40,28 +40,34 @@ Until those arrive, sections below mark **VERIFIED** vs **INFERRED** vs **BLOCKE
 
 ## 1. SMART Current Architecture
 
-### 1.1 Known Railway project baseline (from prior SMART Odoo 18 agent + PR #1)
+### 1.1 Railway project `smart` — LIVE (GraphQL 2026-10-06)
 
 | Item | Value | Confidence |
 |------|-------|------------|
-| Railway project | `smart` | VERIFIED (prior agent + `deploy/RAILWAY.md`) |
-| Project ID | `8a3a695d-b1e8-4f1a-8dfc-7c61cd9194a7` | VERIFIED (prior agent) |
-| Environment | `production` | VERIFIED (prior agent) |
-| Legacy Odoo 18 service | `odoo` | VERIFIED (prior agent) — may still exist |
-| Legacy Postgres | `Postgres` / `postgres:16` (16.15) | VERIFIED (prior agent) |
-| Legacy DB name | `smart` | VERIFIED (prior agent) |
-| Legacy volumes | `postgres-data` → `/var/lib/postgresql/data` (+ `PGDATA=.../pgdata`); `odoo-data` → `/var/lib/odoo` | VERIFIED (prior agent / PR #1) |
-| Legacy public URL | `https://odoo-production-3893.up.railway.app` | VERIFIED then; **now HTTP 404** (service removed or domain detached) |
+| Railway project | `smart` | VERIFIED API |
+| Project ID | `8a3a695d-b1e8-4f1a-8dfc-7c61cd9194a7` | VERIFIED API |
+| Environment | `production` (`159f18b4-887d-4cdc-b032-d28a1d90c87b`) | VERIFIED API |
 
-### 1.2 Odoo 20 services observed / reported
+### 1.2 Services (LIVE)
 
-| Service | Role (assessment) | Live public probe | Notes |
-|---------|-------------------|-------------------|-------|
-| **odoo20-fixed** | **Primary / active lab** | ✅ `https://odoo20-fixed-production.up.railway.app` → `/web/health` **pass** | Odoo **20.0-20260926**; DB selector shows only **`odoo20`**; website enabled (`data-website-id=1`); default site title “Home \| My Website” |
-| **odoo20** | Experimental / earlier iteration | `odoo20-production.up.railway.app` → **timeout** | Likely stale or unhealthy; do not delete yet |
-| **odoo20-module-installer** | Installer / one-shot style | public hostnames → **404** | Commit history shows start scripts that ran `-i base`, then `-i all`, then selected `-i` apps; user reports volume `odoo20-filestore` on this service at `/var/lib/odoo` |
-| **Postgres20** | Intended Odoo 20 DB | API BLOCKED | Target design: PostgreSQL **17** |
-| **Postgres** | Legacy Odoo 18 DB | API BLOCKED | Keep isolated from Odoo 20 |
+| Service | Role | Image / source | DB | Volume | Notes |
+|---------|------|----------------|----|--------|-------|
+| **odoo20-fixed** | **PRIMARY** | GitHub `aboodmh2012-glitch/odoo-modules` @ `odoo20-railway` (Dockerfile) | `HOST=postgres20…` USER `odoo20` | **`odoo20-filestore` → `/var/lib/odoo`** | Public: `odoo20-fixed-production.up.railway.app` |
+| **odoo20** | Experimental dual-writer | `odoo:20.0` | **same Postgres20 / odoo20** | none | Conflict risk; sleep requested |
+| **odoo20-module-installer** | Was `-i all` installer | `odoo:20.0` | **same DB** | none | **Parked** startCommand (no `-i all`) |
+| **Postgres20** | Odoo 20 DB | `postgres:17` | DB name `odoo20` | `postgres20-data` | Target architecture ✅ |
+| **Postgres** | Legacy Odoo 18 | `postgres:16` | `postgres` / user `odoo` | `postgres-data` | Keep isolated |
+
+### 1.2b MASAR (READ-ONLY snapshot)
+
+| Item | Value |
+|------|-------|
+| Project | `MASAR` (`9a291fdc-f842-4c4d-b6bc-946318d4879b`) |
+| Odoo service | `odoo` ← repo `smartexsoftorg/masar` @ `main` |
+| Domain | `msarpay.com` |
+| Volumes | `odoo-volume` `/var/lib/odoo`; `postgres-volume` |
+| Latest HR commit | PR **#170** employee-form remaining + native reset |
+| **Writes** | **NONE performed on MASAR** |
 
 ### 1.3 Live SMART Odoo 20 facts (VERIFIED via public HTTP)
 

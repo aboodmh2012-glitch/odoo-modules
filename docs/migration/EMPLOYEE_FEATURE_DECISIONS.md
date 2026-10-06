@@ -1,47 +1,80 @@
 # Employee feature decisions — MASAR → Odoo 20 (SMART)
 
-Goal: **do not blind-copy** MASAR employee customizations. For each feature,
-prefer Odoo 20 Community native behavior when it covers the requirement.
+Goal: **do not blind-copy** MASAR employee customizations. Prefer Odoo 20 Community native.
 
-Status: **framework ready — waiting for MASAR source** (`smartexsoftorg/masar`).
+Updated: 2026-10-06 via Railway read of MASAR production logs/commits (**no MASAR writes**).
 
 ## Decision legend
 
 | Decision | Meaning |
 |----------|---------|
 | NATIVE | Use Odoo 20 core; do not copy custom code |
-| ADAPT | Keep a thin SMART module that wraps/extends native |
-| COPY & MIGRATE | Feature is MASAR-specific; copy into `masar_addons/` and port to 20.0 |
+| ADAPT | Thin SMART module wrapping native |
+| COPY & MIGRATE | MASAR-specific; copy into `masar_addons/` and port to 20.0 |
 | DROP | No longer needed |
-| INVESTIGATE | Need to read MASAR code / confirm with stakeholder |
+| INVESTIGATE | Need source files (GitHub read) |
 
-## Odoo 20 Community — known native HR changes (baseline)
+## Critical finding from MASAR recent history
 
-| Topic | Odoo 20 native | Implication for MASAR custom |
-|-------|----------------|------------------------------|
-| Remote work / homeworking | Merged into `hr` (no `hr_homeworking`) | DROP dependency; use Work tab locations |
-| Working schedules | `calendar_type`: fixed / variable / undefined | Prefer native variable calendars before custom rotation code |
-| Employee directory | Broader multi-company visibility on `hr.employee.public` | Re-check any MASAR company-scoped directory rules — may be obsolete or need intentional domain |
-| Salary simulation button | Enterprise-only | If MASAR CE had custom simulation → INVESTIGATE / ADAPT, not “native CE” |
-| Recruitment website jobs | Core `/jobs` | Prefer theme/SEO ADAPT over duplicating job board logic |
-| Attendance / Time Off / Expenses | Core CE apps present on SMART lab | Extend only for MASAR-specific rules |
+MASAR already moved **toward native employee form** on Odoo 19:
 
-## Pending rows (fill after MASAR COPY)
+| PR | Message | Implication |
+|----|---------|-------------|
+| #167 | Restore native Odoo 19 employee form | Prefer NATIVE for form layout |
+| #169 | force employee form reset | Strip custom form chrome |
+| #170 | show remaining employee-form inherits + reset v3 | Keep only leftover inherits worth keeping |
 
-| Feature (from MASAR employees custom) | In Odoo 20 native? | Decision | SMART target module | Notes |
-|---------------------------------------|--------------------|----------|---------------------|-------|
-| *(awaiting MASAR module list)* | | INVESTIGATE | | |
+**Do not re-copy old heavy employee-form overlays.** Re-evaluate only what #170 still inherits.
 
-## Workflow once MASAR is readable
+## MASAR custom modules seen in production logs
 
-1. Inventory all modules that inherit `hr.employee`, `hr.department`, `hr.job`, recruitment, attendance, leave.
-2. For each inherited field/view/method: map to native Odoo 20 equivalent.
-3. Only COPY remnants that still add MASAR-specific value into `masar_addons/`.
-4. Set `__manifest__.py` `version` to `20.0.x.y.z`; fix XML/Python/JS; tighten ACL (no privilege expansion).
-5. Install on SMART with `SMART_INSTALL_MODULES=<one_module>` against DB `odoo20`.
+### Brand / website
+| Module | Likely role | Provisional action |
+|--------|-------------|--------------------|
+| `masar_website` | Website pack / content | COPY & MIGRATE (theme/content) |
+| `masar_theme` | Theme | COPY & MIGRATE |
+| `masar_brand` / `masar_brand_fix` | Branding | COPY & MIGRATE |
+| `masar_ux` | UX tweaks | INVESTIGATE — drop if superseded by native |
+| `masar_homepage_polish` | Homepage | COPY & MIGRATE or fold into theme |
+| `masar_footer_polish` | Footer | COPY & MIGRATE or fold into theme |
 
-## Safety
+### HR / employees (priority)
+| Module | Likely role | vs Odoo 20 native | Provisional action |
+|--------|-------------|-------------------|--------------------|
+| `masar_hr_yemen` | Yemen HR localization / contracts | Not in CE core | COPY & MIGRATE (after source read) |
+| `masar_hr_employee_documents` | Employee documents | Partial native attachments | INVESTIGATE — keep only MASAR document types/workflow |
+| `masar_hr_disciplinary` | Disciplinary | Not CE native | COPY & MIGRATE |
+| `masar_hr_contract_sign` | Contract signing | Sign is Enterprise | COPY & MIGRATE / ADAPT |
+| `masar_hr_payroll_yemen` | Yemen payroll rules | Payroll Enterprise | COPY & MIGRATE (CE custom) — note recent retire/revert PRs #164–#166 |
 
-- Never write to MASAR Production Railway / `smartexsoftorg/masar` main.
-- Never `-i all` / `-u all`.
-- No MASAR production DB clone in this phase.
+### OCA / third-party seen in logs
+| Module | Notes | Action |
+|--------|-------|--------|
+| `hr_appraisal_oca` | CE appraisal alternative | INVESTIGATE Odoo 20 branch |
+| `hr_personal_equipment` (+ request/stock) | Equipment requests | INVESTIGATE Odoo 20 |
+| `hr_homeworking` | **Merged into `hr` in Odoo 20** | **NATIVE / DROP module** |
+| `hr_org_chart` | Org chart | INVESTIGATE vs CE |
+
+## Odoo 20 Community native baselines
+
+| Topic | Native in 20 | MASAR implication |
+|-------|--------------|-------------------|
+| Remote work | Inside `hr` | Do not port `hr_homeworking` |
+| Employee directory multi-company | Broader public directory | Re-check custom company rules |
+| Variable working schedules | `calendar_type` | Prefer native before custom |
+| Employee form layout | Core form | Follow MASAR #167–#170: native-first |
+| Jobs website | `/jobs` | Prefer native + theme ADAPT |
+| Payroll / Sign / Appraisals (Enterprise) | Not in CE | Keep CE/OCA substitutes only if MASAR still needs them |
+
+## Still blocked for actual COPY
+
+Railway token works for SMART read/write and MASAR **read**.  
+GitHub `smartexsoftorg/masar` still **404** for this agent — cannot COPY module source into `masar_addons/` until repo read is granted.
+
+## Workflow when GitHub read arrives
+
+1. Clone MASAR read-only → inventory `custom_addons/`.
+2. Diff employee form inherits after PR #170 vs Odoo 20 `hr` views.
+3. COPY only modules decided COPY & MIGRATE into SMART `masar_addons/`.
+4. Port manifests to `20.0.*`; fix XML/Python/JS; tighten ACL.
+5. Install module-by-module on SMART via `SMART_INSTALL_MODULES=...` (never `-i all`).
