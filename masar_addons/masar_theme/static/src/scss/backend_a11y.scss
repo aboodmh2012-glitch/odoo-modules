@@ -33,7 +33,7 @@
 @media (pointer: coarse) {
     .o_web_client {
         .o_control_panel .btn,
-        .o_main_navbar .o_nav_entry,
+        .o_main_navbar .o_nav_entry:not(.o_mobile_menu_toggle),
         .o_kanban_record .btn,
         .modal-footer .btn {
             min-height: 2.75rem;

@@ -209,6 +209,42 @@ html[data-dir="rtl"] .o_main_navbar .o_navbar_apps_menu::after,
     box-shadow: 0 0 0 2px rgba(255, 106, 0, 0.45);
 }
 
+// Mobile account button: keep the 26px avatar on the navbar midline.
+// Odoo 20 DiscussAvatar uses overflow:visible plus a 25×15 IM-status
+// foreignObject, which drops the green pip below the 46px bar.
+.o_main_navbar .o_menu_systray {
+    align-items: center;
+}
+
+.o_main_navbar .o_mobile_menu_toggle {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    height: var(--o-navbar-height, 46px);
+    min-height: 0 !important;
+    max-height: var(--o-navbar-height, 46px);
+    padding: 0 0.4rem !important;
+    line-height: 0;
+    overflow: hidden;
+
+    .o-mail-DiscussAvatar {
+        display: block;
+        width: 26px !important;
+        height: 26px !important;
+        overflow: hidden !important;
+        flex: none;
+        vertical-align: middle;
+    }
+
+    .o-mail-ImStatus {
+        font-size: 8px !important;
+        width: 8px !important;
+        height: 8px !important;
+        line-height: 8px !important;
+    }
+}
+
 // Operational empty states stay quiet; artwork is reserved for login/apps.
 .o_home_menu,
 .o_action:empty,
