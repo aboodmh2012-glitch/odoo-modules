@@ -5,29 +5,26 @@ MASAR Production is never modified.
 
 Native-first decisions: [`docs/migration/NON_HR_NATIVE_MATRIX.md`](../docs/migration/NON_HR_NATIVE_MATRIX.md).
 
-## Priority (user request)
+## Priority
 
-1. **Non-HR modules first** (this tree) — website, accounting OCA, helpdesk, FSM, social, governance, etc.
-2. **HR / employee modules LAST** — wait for explicit go-ahead before installing/porting deeply.
+1. Non-HR modules (accounting, helpdesk, FSM, social, brand, …)
+2. **HR lifecycle (go-ahead)** — native-first; see [`docs/migration/EMPLOYEE_FEATURE_DECISIONS.md`](../docs/migration/EMPLOYEE_FEATURE_DECISIONS.md)
 
-## Deferred HR (do not install yet)
+## HR copied now (installable)
 
-- `fieldservice_sign`
-- `hr_appraisal_oca`
-- `hr_personal_equipment_request`
-- `hr_personal_equipment_stock`
-- `masar_hr_attendance_regularization`
-- `masar_hr_contract_sign`
-- `masar_hr_disciplinary`
 - `masar_hr_employee_documents`
+- `masar_hr_disciplinary`
 - `masar_hr_employee_transfer`
-- `masar_hr_learning`
-- `masar_hr_org_chart`
-- `masar_hr_payroll_yemen`
 - `masar_hr_resignation`
+- `masar_hr_attendance_regularization`
 - `masar_hr_yemen`
-- `payroll`
-- `sign_oca`
+
+## HR skipped (not essential yet)
+
+- `fieldservice_sign`, `sign_oca`, `masar_hr_contract_sign`
+- `payroll`, `masar_hr_payroll_yemen`
+- `hr_appraisal_oca`, `hr_personal_equipment_*`
+- `masar_hr_learning`, `masar_hr_org_chart`
 
 ## Copied now (100 modules)
 

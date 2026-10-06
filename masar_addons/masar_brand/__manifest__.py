@@ -26,5 +26,5 @@
  'post_init_hook': 'post_init_hook',
  'pre_init_hook': 'pre_init_hook',
  'summary': 'MASAR company branding, bilingual AR/EN defaults, and website readiness',
- 'version': '20.0.1.0.3',
+ 'version': '20.0.1.0.4',
  'website': 'https://masar.sa'}

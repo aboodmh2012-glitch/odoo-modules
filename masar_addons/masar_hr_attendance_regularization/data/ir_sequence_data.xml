@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="seq_attendance_regularization" model="ir.sequence">
+    <field name="name">Attendance Regularization</field>
+    <field name="code">hr.attendance.regularization</field>
+    <field name="prefix">AREG/%(year)s/</field>
+    <field name="padding">4</field>
+  </record>
+</odoo>

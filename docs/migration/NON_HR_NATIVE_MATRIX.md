@@ -29,7 +29,7 @@ Enterprise apps (`industry_fsm`, EE `helpdesk`, EE `social`, EE `knowledge`, EE 
 | Corporate governance (`bf_*`) | **COPY & MIGRATE** | Custom MASAR/BF domain |
 | Reporting helpers (`report_xlsx*`, `date_range*`) | **COPY & MIGRATE** | Shared deps for accounting/reports |
 | `queue_job`, `voip_oca`, `web_responsive` | **COPY & MIGRATE** | Infra used by Social / UX |
-| HR / payroll / sign / appraisal / PPE | **DEFER** | Wait for user before any install |
+| HR / payroll / sign / appraisal / PPE | **PARTIAL** | Core lifecycle COPY; payroll/sign/PPE/learning SKIP — see `EMPLOYEE_FEATURE_DECISIONS.md` |
 
 ## Module decisions (100 copied)
 
@@ -95,9 +95,10 @@ Do **not** replace the above with Enterprise modules on this SMART Community ima
 
 **Helpdesk note:** team dashboard kanban (`helpdesk_dashboard_views.xml`) temporarily omitted pending Odoo 20 kanban template port.
 
-## Deferred HR (do not install)
+## HR (go-ahead; native-first)
 
-See `masar_addons/README.md` — 16 modules including `masar_hr_*`, `payroll`, `sign_oca`, `hr_appraisal_oca`, PPE, `fieldservice_sign`.
+Core lifecycle modules are under `masar_addons/masar_hr_*` (documents, disciplinary, transfer, resignation, attendance regularization, yemen).  
+Skipped for now: payroll/sign/PPE/appraisal/learning/org_chart — see `EMPLOYEE_FEATURE_DECISIONS.md`.
 
 ## Recommended non-HR install batches
 

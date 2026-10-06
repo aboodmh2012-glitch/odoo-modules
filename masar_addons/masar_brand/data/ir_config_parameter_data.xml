@@ -2,17 +2,21 @@
 <odoo>
     <data noupdate="1">
 
-        <function model="ir.config_parameter"
-                  name="set_param"
-                  eval="('masar.brand', 'MASAR')"/>
+        <!-- Odoo 20: prefer <value> children over eval= on <function> -->
+        <function model="ir.config_parameter" name="set_param">
+            <value>masar.brand</value>
+            <value>MASAR</value>
+        </function>
 
-        <function model="ir.config_parameter"
-                  name="set_param"
-                  eval="('masar.company_name_ar', 'شركة مسار العالمية للأنظمة والحلول المالية')"/>
+        <function model="ir.config_parameter" name="set_param">
+            <value>masar.company_name_ar</value>
+            <value>شركة مسار العالمية للأنظمة والحلول المالية</value>
+        </function>
 
-        <function model="ir.config_parameter"
-                  name="set_param"
-                  eval="('masar.company_name_en', 'MASAR Global for Financial Systems &amp; Solutions')"/>
+        <function model="ir.config_parameter" name="set_param">
+            <value>masar.company_name_en</value>
+            <value>MASAR Global for Financial Systems &amp; Solutions</value>
+        </function>
 
     </data>
 </odoo>

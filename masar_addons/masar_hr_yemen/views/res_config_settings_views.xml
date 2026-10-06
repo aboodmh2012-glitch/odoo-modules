@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_masar_hr_yemen" model="ir.ui.view">
+        <field name="name">res.config.settings.masar.hr.yemen</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app string="MASAR HR (Yemen)" name="masar_hr_yemen" groups="hr.group_hr_manager">
+                    <block title="Discipline (Labor Law Art. 93–98)" name="masar_hr_discipline">
+                        <setting string="Discovery window (days)" help="Art. 94/97">
+                            <field name="masar_hr_discover_days"/>
+                        </setting>
+                        <setting string="Investigation window (days)" help="Art. 97">
+                            <field name="masar_hr_investigate_days"/>
+                        </setting>
+                        <setting string="Default appeal days" help="Art. 97(2)">
+                            <field name="masar_hr_appeal_days_default"/>
+                        </setting>
+                        <setting string="Max deduction % of basic" help="Art. 93(3)">
+                            <field name="masar_hr_max_deduction_pct"/>
+                        </setting>
+                        <setting string="Notice/warning age-out (days)" help="Art. 95">
+                            <field name="masar_hr_warning_age_days"/>
+                        </setting>
+                        <setting string="Oral suspension max (days)" help="Art. 98">
+                            <field name="masar_hr_suspension_oral_days"/>
+                        </setting>
+                        <setting string="Written suspension max (days)" help="Art. 98">
+                            <field name="masar_hr_suspension_written_days"/>
+                        </setting>
+                    </block>
+                    <block title="Contracts &amp; leave policy" name="masar_hr_leave_contract">
+                        <setting string="Probation max days" help="Art. 28">
+                            <field name="masar_hr_probation_max_days"/>
+                        </setting>
+                        <setting string="Probation reminder days">
+                            <field name="masar_hr_probation_warn_days"/>
+                        </setting>
+                        <setting string="Annual leave days / year" help="Art. 79">
+                            <field name="masar_hr_annual_leave_days"/>
+                        </setting>
+                        <setting string="Annual accrual per month" help="Art. 79">
+                            <field name="masar_hr_annual_leave_per_month"/>
+                        </setting>
+                        <setting string="Casual leave days" help="Art. 85">
+                            <field name="masar_hr_casual_leave_days"/>
+                        </setting>
+                        <setting string="Hajj leave days" help="Art. 84">
+                            <field name="masar_hr_hajj_leave_days"/>
+                        </setting>
+                        <setting string="Hajj min service years">
+                            <field name="masar_hr_hajj_min_service_years"/>
+                        </setting>
+                        <setting string="Maternity days" help="Art. 45 / Law 15/2008 (70 +20)">
+                            <field name="masar_hr_maternity_days"/>
+                        </setting>
+                        <setting string="Iddah paid days" help="Art. 87">
+                            <field name="masar_hr_iddah_days"/>
+                        </setting>
+                        <setting string="Strict exit checklist"
+                                 help="Default off: exit reminders only. On: block approve if checklist open.">
+                            <field name="masar_hr_exit_strict"/>
+                        </setting>
+                        <setting string="Auto-launch onboarding on hire"
+                                 help="Launch the onboarding plan automatically when a recruitment applicant becomes an employee.">
+                            <field name="masar_hr_auto_onboarding"/>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>

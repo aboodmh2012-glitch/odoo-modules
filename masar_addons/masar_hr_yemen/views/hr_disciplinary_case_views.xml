@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_disciplinary_case_form_yemen" model="ir.ui.view">
+        <field name="name">hr.disciplinary.case.form.yemen</field>
+        <field name="model">hr.disciplinary.case</field>
+        <field name="inherit_id" ref="masar_hr_disciplinary.view_hr_disciplinary_case_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='incident_date']" position="after">
+                <field name="discovery_date"/>
+                <field name="investigation_started_on" readonly="1"/>
+                <field name="sanction_aged" readonly="1"/>
+            </xpath>
+            <xpath expr="//sheet" position="inside">
+                <group string="Precautionary suspension (Art. 98 — not a sanction)" name="masar_suspension">
+                    <field name="suspension_notice_kind"/>
+                    <field name="suspension_start"/>
+                    <field name="suspension_end"/>
+                    <field name="suspension_authority_id" readonly="1"/>
+                    <field name="suspension_reason"/>
+                    <button name="action_set_precautionary_suspension" type="object"
+                            string="Record suspension"
+                            groups="masar_hr_disciplinary.group_disciplinary_hr_manager"
+                            class="btn-secondary"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
