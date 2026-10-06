@@ -1,6 +1,6 @@
 /** @odoo-module **/
 
-import { Component } from "@odoo/owl";
+import { Component, useProps } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 import { standardFieldProps } from "@web/views/fields/standard_field_props";
 
@@ -19,7 +19,7 @@ const PLATFORM_ICONS = {
 
 export class SocialInteractionField extends Component {
     static template = "social.InteractionField";
-    static props = { ...standardFieldProps };
+    props = useProps({ ...standardFieldProps });
 
     get record() {
         return this.props.record;

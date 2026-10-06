@@ -34,5 +34,5 @@
  'license': 'AGPL-3',
  'name': 'Account Financial Reports',
  'summary': 'OCA Financial Reports',
- 'version': '20.0.0.0.23',
+ 'version': '20.0.0.0.24',
  'website': 'https://github.com/OCA/account-financial-reporting'}

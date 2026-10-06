@@ -14,4 +14,5 @@ class TimesheetsAnalysisReport(models.Model):
 
     @api.model
     def _select(self):
-        return super()._select() + SQL(", A.fsm_order_id AS fsm_order_id")
+        # Odoo 20 _select() returns SQL(); concatenation with + is not supported.
+        return SQL("%s, A.fsm_order_id AS fsm_order_id", super()._select())

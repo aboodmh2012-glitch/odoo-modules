@@ -15,12 +15,15 @@ import {kanbanView} from "@web/views/kanban/kanban_view";
 import {patch} from "@web/core/utils/patch";
 import {registry} from "@web/core/registry";
 
+export class FileKanbanController extends KanbanController {}
+
 patch(FileKanbanRenderer.prototype, createFileDropZoneExtension());
-patch(KanbanController.prototype, createFileUploadExtension());
+patch(FileKanbanController.prototype, createFileUploadExtension());
 FileKanbanRenderer.template = "dms.KanbanRenderer";
 
 export const FileKanbanView = {
     ...kanbanView,
+    Controller: FileKanbanController,
     buttonTemplate: "dms.KanbanButtons",
     Renderer: FileKanbanRenderer,
 };

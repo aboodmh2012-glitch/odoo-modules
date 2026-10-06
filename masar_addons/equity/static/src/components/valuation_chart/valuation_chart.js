@@ -1,20 +1,20 @@
 /** @odoo-module **/
-import { Component, onWillUnmount, useEffect, useRef, onWillStart } from "@odoo/owl";
+import { Component, onWillUnmount, signal, t, useEffect, useProps, onWillStart } from "@odoo/owl";
 import { loadJS } from "@web/core/assets";
 import { registry } from "@web/core/registry";
 import { formatPercentage, formatMonetary } from "@web/views/fields/formatters";
 
 export class ValuationChart extends Component {
     static template = "equity.ValuationChart";
-    static props = {
-        labels: { type: Array },
-        data: { type: Object },
-        stats: { type: Object, optional: true },
-    };
+    props = useProps({
+        labels: t.array(),
+        data: t.object(),
+        stats: t.object().optional(),
+    });
 
     setup() {
         super.setup();
-        this.canvasRef = useRef("canvas");
+        this.canvasRef = signal.ref();
         onWillStart(() => loadJS("/web/static/lib/Chart/Chart.js"));
         useEffect(() => this.renderChart());
         onWillUnmount(this.destroyChart);
@@ -28,7 +28,11 @@ export class ValuationChart extends Component {
 
     renderChart() {
         this.destroyChart();
-        const ctx = this.canvasRef.el.getContext("2d");
+        const canvas = this.canvasRef();
+        if (!canvas) {
+            return;
+        }
+        const ctx = canvas.getContext("2d");
         this.chart = new Chart(ctx, this.getChartConfig());
     }
 

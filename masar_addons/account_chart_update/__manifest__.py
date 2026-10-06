@@ -8,5 +8,5 @@
  'license': 'AGPL-3',
  'name': 'Detect changes and update the Account Chart from a template',
  'summary': "Wizard to update a company's account chart from a template",
- 'version': '20.0.1.2.0',
+ 'version': '20.0.1.2.1',
  'website': 'https://github.com/OCA/account-financial-tools'}

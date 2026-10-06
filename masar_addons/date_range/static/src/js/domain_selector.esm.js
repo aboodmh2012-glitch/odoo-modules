@@ -1,6 +1,7 @@
 import {domainFromTreeDateRange, treeFromDomainDateRange} from "./condition_tree.esm";
 
-import {onWillStart, useChildSubEnv} from "@odoo/owl";
+import {onWillStart} from "@odoo/owl";
+import {useSubEnv} from "@web/owl2/utils";
 import {Domain} from "@web/core/domain";
 import {DomainSelector} from "@web/core/domain_selector/domain_selector";
 import {useService} from "@web/core/utils/hooks";
@@ -14,7 +15,7 @@ patch(DomainSelector.prototype, {
         this.orm = useService("orm");
         this.dateRanges = [];
         this.dateRangeTypes = [];
-        useChildSubEnv({domain: this});
+        useSubEnv({domain: this});
         onWillStart(async () => {
             this.dateRanges = await this.orm.call("date.range", "search_read", []);
             this.dateRangeTypes = await this.orm.call(

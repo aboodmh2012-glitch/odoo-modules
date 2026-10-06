@@ -2,7 +2,7 @@
 /* global vis */
 
 import {loadCSS, loadJS} from "@web/core/assets";
-import {Component, onWillStart, useEffect, useProps, useRef} from "@odoo/owl";
+import {Component, onWillStart, signal, useEffect, useProps} from "@odoo/owl";
 import {registry} from "@web/core/registry";
 import {standardFieldProps} from "@web/views/fields/standard_field_props";
 import {useService} from "@web/core/utils/hooks";
@@ -16,7 +16,7 @@ class JobDirectGraph extends Component {
     setup() {
         this.orm = useService("orm");
         this.action = useService("action");
-        this.rootRef = useRef("root_vis");
+        this.rootRef = signal.ref();
         this.network = null;
         this.forceRender = false;
         onWillStart(async () => {
@@ -28,10 +28,9 @@ class JobDirectGraph extends Component {
                 this.renderNetwork();
                 this._fitNetwork();
                 return () => {
-                    if (this.network) {
+                    if (this.network && this.$el) {
                         this.$el.innerHTML = "";
                     }
-                    return this.rootRef.el;
                 };
             },
             () => []
@@ -39,7 +38,7 @@ class JobDirectGraph extends Component {
     }
 
     get $el() {
-        return this.rootRef.el;
+        return this.rootRef();
     }
 
     get resId() {
@@ -61,6 +60,9 @@ class JobDirectGraph extends Component {
     }
 
     renderNetwork() {
+        if (!this.$el) {
+            return;
+        }
         if (this.network) {
             this.$el.innerHTML = "";
         }

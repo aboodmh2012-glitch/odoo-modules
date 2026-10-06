@@ -134,7 +134,7 @@ class HrEmployee(models.Model):
             hr_group = self.env.ref(
                 "hr.group_hr_user", raise_if_not_found=False
             )
-            hr_users = hr_group.users if hr_group else self.env["res.users"]
+            hr_users = hr_group.user_ids if hr_group else self.env["res.users"]
             for emp in employees:
                 existing = emp.activity_ids.filtered(
                     lambda a, t=ActivityType: a.activity_type_id == t

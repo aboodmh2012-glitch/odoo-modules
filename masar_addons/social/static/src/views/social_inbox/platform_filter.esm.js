@@ -1,17 +1,16 @@
 /** @odoo-module **/
 
-import { Component, onWillStart, useState } from "@odoo/owl";
+import { Component, onWillStart, proxy } from "@odoo/owl";
 import { useService } from "@web/core/utils/hooks";
 
 const PLATFORM_FALLBACK_ICON = "/web/static/img/smiling_face.svg";
 
 export class SocialPlatformFilter extends Component {
     static template = "social.PlatformFilter";
-    static props = {};
 
     setup() {
         this.orm = useService("orm");
-        this.state = useState({
+        this.state = proxy({
             platforms: [],
             active: "all",
         });

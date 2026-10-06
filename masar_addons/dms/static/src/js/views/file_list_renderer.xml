@@ -38,7 +38,7 @@
                 type="file"
                 name="ufile"
                 class="d-none"
-                t-ref="fileInput"
+                t-ref="this.fileInput"
                 multiple="1"
                 accept="*"
                 t-on-change="onChangeFileInput"

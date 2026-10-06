@@ -1,6 +1,6 @@
 /** @odoo-module **/
 
-import { Component } from "@odoo/owl";
+import { Component, useProps } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 import { standardFieldProps } from "@web/views/fields/standard_field_props";
 
@@ -12,7 +12,7 @@ const LABELS = {
 
 export class SocialPriorityField extends Component {
     static template = "social.PriorityField";
-    static props = { ...standardFieldProps };
+    props = useProps({ ...standardFieldProps });
 
     get value() {
         return this.props.record.data[this.props.name] || "0";

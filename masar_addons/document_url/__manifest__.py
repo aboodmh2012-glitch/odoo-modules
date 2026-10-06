@@ -8,5 +8,5 @@
  'installable': True,
  'license': 'AGPL-3',
  'name': 'URL attachment',
- 'version': '20.0.1.0.1',
+ 'version': '20.0.1.0.2',
  'website': 'https://github.com/OCA/knowledge'}

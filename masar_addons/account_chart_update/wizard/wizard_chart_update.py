@@ -202,10 +202,10 @@ class WizardUpdateChartsAccounts(models.TransientModel):
         comodel_name="ir.model.fields",
         relation="wizard_update_charts_account_group_fields_rel",
         string="Account groups fields",
-        domain=lambda self: [
-            ("id", "in", self._get_fields_per_model("account.group").ids)
-        ],
-        default=lambda self: self._default_account_group_field_ids(),
+        # account.group is gone in Odoo 20; keep the field empty so view
+        # validation does not look up a missing model.
+        domain=[("id", "=", False)],
+        default=lambda self: [],
     )
     fp_field_ids = fields.Many2many(
         comodel_name="ir.model.fields",
@@ -252,6 +252,8 @@ class WizardUpdateChartsAccounts(models.TransientModel):
         """Unified method that retrieves the elegible fields per each model. Used for
         filling the per field selection in the wizard.
         """
+        if model not in self.env:
+            return self.env["ir.model.fields"]
         domain = [
             ("model", "=", model),
             ("name", "not in", tuple(self.fields_to_ignore(model))),
@@ -1264,7 +1266,7 @@ class WizardUpdateChartsAccounts(models.TransientModel):
 
     def _load_data(self, model, data):
         """Process similar to the one in chart template _load() method."""
-        if not data:
+        if not data or model not in self.env:
             return
         template = self.env["account.chart.template"].with_context(
             default_company_id=self.company_id.id,

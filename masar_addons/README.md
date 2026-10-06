@@ -27,7 +27,7 @@ Odoo 20 compatibility audit, security fix and wave plan: [`docs/migration/ODOO20
 - `hr_appraisal_oca`, `hr_personal_equipment_*`
 - `masar_hr_learning`, `masar_hr_org_chart`
 
-## Copied now (100 modules)
+## Copied now (99 modules)
 
 - `account_asset_force_account`
 - `account_asset_management`
@@ -127,7 +127,6 @@ Odoo 20 compatibility audit, security fix and wave plan: [`docs/migration/ODOO20
 - `social_tiktok`
 - `social_youtube`
 - `stock_picking_tier_validation`
-- `voip_oca`
 - `web_responsive`
 
 ## Odoo 20 notes
