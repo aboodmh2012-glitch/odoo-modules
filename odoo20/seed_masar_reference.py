@@ -4,9 +4,9 @@
 Company = env["res.company"].sudo().browse(1)
 if Company.exists():
     vals = {
-        "name": "شركة مسار العالمية للأنظمة والحلول المالية - MASAR Pay",
-        "street": "شارع التسعين، جوار بنك السلام كابيتال",
-        "city": "عدن",
+        "name": "MASAR Global Financial Systems & Solutions Company",
+        "street": "90th Street, next to Al Salam Capital Bank",
+        "city": "Aden",
         "email": "info@msarpay.com",
         "website": "https://msarpay.com",
     }
