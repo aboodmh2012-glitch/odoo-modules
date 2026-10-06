@@ -2,7 +2,7 @@
 
 import {AttachmentList} from "@mail/core/common/attachment_list";
 import {ConfirmationDialog} from "@web/core/confirmation_dialog/confirmation_dialog";
-import {Chatter} from "@mail/chatter/web_portal/chatter";
+import {Chatter} from "@mail/chatter/web_portal_project/chatter";
 import {patch} from "@web/core/utils/patch";
 import {useService} from "@web/core/utils/hooks";
 import {url} from "@web/core/utils/urls";
