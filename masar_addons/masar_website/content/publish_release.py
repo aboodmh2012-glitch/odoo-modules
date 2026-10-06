@@ -97,7 +97,7 @@ def main():
         if prior:
             if json.loads(prior).get('source_sha256') != SOURCE_SHA256:
                 raise RuntimeError('Unexpected prior source')
-            website = env.ref('website.default_website')
+            website = env.ref('base.default_website')
         else:
             website, arabic, plan = inspect(env, source)
             apply(env, source, website, arabic, plan)

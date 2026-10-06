@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Show the (per-user) apps-menu preferences inside My Preferences,
-         instead of the floating systray drop. -->
-    <record id="view_users_form_simple_modif_apps_menu" model="ir.ui.view">
-        <field name="name">masar.res.users.preferences.apps.menu</field>
-        <field name="model">res.users</field>
-        <field name="inherit_id" ref="base.view_users_form_simple_modif"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='signature']" position="after">
-                <field name="apps_menu_search_type"/>
-                <field name="apps_menu_theme"/>
-            </xpath>
-        </field>
-    </record>
+    <!-- web_responsive preference fields removed; keep file for upgrade safety. -->
+    <function model="res.users" name="_masar_quiet_first_run"/>
 </odoo>

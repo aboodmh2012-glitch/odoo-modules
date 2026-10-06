@@ -11,6 +11,8 @@ $masar-login-bg: url("/masar_theme/static/src/img/masar-workspace-desktop.webp")
 html body:has(.oe_website_login_container) {
     min-height: 100vh;
     min-height: 100svh;
+    // Auth card stays LTR even after a public /ar visit.
+    direction: ltr #{'/*rtl:ignore*/'};
     background: $masar-navy !important;
 
     #wrapwrap {
@@ -176,9 +178,16 @@ html body:has(.oe_website_login_container) {
         .passkey_login_link,
         a.passkey_login_link,
         .masar-faceid-field-btn,
-        .masar-login-faceid-group .masar-faceid-field-btn {
+        .masar-login-faceid-group .masar-faceid-field-btn,
+        a[href*="/web/signup"] {
             display: none !important;
         }
+    }
+
+    // Signup leftover can sit beside the form, not inside oe_login_form.
+    a[href*="/web/signup"],
+    .oe_signup_form {
+        display: none !important;
     }
 }
 

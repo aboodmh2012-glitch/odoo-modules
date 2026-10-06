@@ -3,30 +3,18 @@
     <!-- Default browser tab title when none is set. -->
     <template id="masar_web_layout_title" inherit_id="web.layout" name="MASAR Default Title">
         <xpath expr="//title" position="replace">
-            <title t-esc="title or 'MASAR Pay'"/>
+            <title t-out="title or 'MASAR Pay'"/>
         </xpath>
     </template>
 
-    <!-- Login card "Powered by Odoo" link. -->
-    <template id="masar_login_powered_by" inherit_id="web.login_layout" name="MASAR Login Branding" priority="99">
-        <xpath expr="//a[contains(@href, 'www.odoo.com')]" position="replace">
-            <span class="text-muted">
-                <t t-set="ar" t-value="(request.env.lang or '').startswith('ar')"/>
-                <t t-if="ar">مسار Pay</t>
-                <t t-else="">MASAR Pay</t>
-            </span>
-        </xpath>
-    </template>
+    <!-- website.login_layout replaces web.login_layout's card (incl. Powered by Odoo).
+         Brand mark in login_templates.xml is the login identity; no powered-by xpath. -->
 
-    <!-- Offline / service-worker fallback page. -->
-    <template id="masar_webclient_offline" inherit_id="web.webclient_offline" name="MASAR Offline Branding" priority="99">
-        <xpath expr="//img" position="attributes">
-            <attribute name="alt">Masar logo</attribute>
-        </xpath>
+    <!-- Offline copy + button color (img replaced in webclient_templates.xml). -->
+    <template id="masar_webclient_offline" inherit_id="web.webclient_offline" name="MASAR Offline Branding" priority="100">
         <xpath expr="//p" position="replace">
             <p>Check your network connection and come back here. Masar will load as soon as you're back online.</p>
         </xpath>
-        <!-- Hard-coded Odoo purple (#714B67) on the offline retry button. -->
         <xpath expr="//style" position="replace">
             <style>
                 body {

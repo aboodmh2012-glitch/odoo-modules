@@ -2,14 +2,14 @@
 <odoo>
     <template id="masar_brand_promotion_message" inherit_id="web.brand_promotion_message" name="MASAR Brand Promotion Message" priority="99">
         <xpath expr="//t[@t-out]" position="replace">
-            <span class="masar-brand-promotion__label" t-out="request.env['website'].get_current_website().masar_public()['brand']['promotion']"/>
+            <span class="masar-brand-promotion__label" t-out="website.masar_public()['brand']['promotion']"/>
         </xpath>
     </template>
 
     <template id="masar_brand_promotion" inherit_id="web.brand_promotion" name="MASAR Brand Promotion" priority="99">
         <xpath expr="//div[hasclass('o_brand_promotion')]" position="replace">
             <div class="o_brand_promotion masar-brand-promotion">
-                <span class="masar-brand-promotion__label" t-out="request.env['website'].get_current_website().masar_public()['brand']['promotion']"/>
+                <span class="masar-brand-promotion__label" t-out="website.masar_public()['brand']['promotion']"/>
             </div>
         </xpath>
     </template>
@@ -38,7 +38,7 @@
         </xpath>
         <xpath expr="//p[1]" position="replace">
             <p class="masar-info__lead">
-                <span t-out="request.env['website'].get_current_website().masar_public()['brand']['meta_description']"/>
+                <span t-out="website.masar_public()['brand']['meta_description']"/>
             </p>
         </xpath>
     </template>

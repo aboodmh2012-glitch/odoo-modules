@@ -111,9 +111,13 @@ class HrJob(models.Model):
         url = self.masar_public_share_url()
         return "https://www.facebook.com/sharer/sharer.php?" + urlencode({"u": url})
 
+    def _masar_current_website(self):
+        """Odoo 20: use env.website (get_current_website was removed)."""
+        return self.env.website or self.env.ref("base.default_website")
+
     def masar_public_share_url(self):
         self.ensure_one()
-        website = self.env["website"].get_current_website()
+        website = self._masar_current_website()
         path = self.env["ir.http"]._url_for(self.website_url)
         # Copy an ASCII URL so mobile composers do not split a mixed RTL/LTR
         # slug. Normalize existing escapes before quoting to avoid %25 encoding.
@@ -132,14 +136,14 @@ class HrJob(models.Model):
         meta = super()._default_website_meta()
         self.ensure_one()
         description = self.masar_share_description()
-        image = self.env["website"].get_current_website().get_base_url().rstrip("/") + "/masar_website/static/src/img/careers-share-20261004.png"
+        image = self._masar_current_website().get_base_url().rstrip("/") + "/masar_website/static/src/img/careers-share-20261004.png"
         title = self.name + " | MASAR Pay"
         meta["default_opengraph"].update({"og:title": title, "og:description": description, "og:url": self.masar_public_share_url(), "og:image": image, "og:image:type": "image/png", "og:image:width": "1734", "og:image:height": "907", "og:image:alt": "وظيفة شاغرة | JOB VACANCY | MASAR Pay"})
         meta["default_twitter"].update({"twitter:title": title, "twitter:description": description, "twitter:image": image})
         # Reuse MASAR's real Meta application ID. Never substitute a Page ID,
         # app secret or placeholder just to suppress the debugger warning.
         app_id = (os.environ.get("SOCIAL_META_APP_ID") or "").strip() or (
-            self.env["ir.config_parameter"].sudo().get_param("social.meta_app_id") or ""
+            self.env["ir.config_parameter"].sudo().get_str("social.meta_app_id") or ""
         ).strip()
         if re.fullmatch(r"[0-9]+", app_id):
             meta["default_opengraph"]["fb:app_id"] = app_id
