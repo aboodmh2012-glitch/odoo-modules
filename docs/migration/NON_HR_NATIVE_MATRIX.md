@@ -88,6 +88,11 @@ Enterprise apps (`industry_fsm`, EE `helpdesk`, EE `social`, EE `knowledge`, EE 
 
 Do **not** replace the above with Enterprise modules on this SMART Community image. If SMART later moves to EE, re-run this matrix before uninstalling OCA copies.
 
+
+**Deferred from knowledge install (needs Odoo 20 portal view port):**
+- `dms` — portal inherit `portal_common_category` missing in Odoo 20
+- `document_page_project` — project kanban xpath `o_project_kanban_boxes` missing
+
 ## Deferred HR (do not install)
 
 See `masar_addons/README.md` — 16 modules including `masar_hr_*`, `payroll`, `sign_oca`, `hr_appraisal_oca`, PPE, `fieldservice_sign`.
