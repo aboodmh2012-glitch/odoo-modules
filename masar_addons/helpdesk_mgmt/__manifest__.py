@@ -7,6 +7,7 @@
            'Soluciones, Odoo Community Association (OCA)',
  'category': 'After-Sales',
  'data': ['data/helpdesk_data.xml',
+          'data/portal_entry_data.xml',
           'security/helpdesk_security.xml',
           'security/ir.access.csv',
           'views/res_partner_views.xml',

@@ -33,40 +33,7 @@
                 <i class="fa fa-plus" /> New</button>
         </form>
     </template>
-    <template
-        id="portal_docs_entry"
-        inherit_id="portal.portal_docs_entry"
-        primary="True"
-    >
-        <xpath expr="//t[@t-set='force_show']" position="attributes">
-            <attribute name="t-value">True</attribute>
-        </xpath>
-        <xpath expr="//span[@t-out='title']" position="after">
-            <t t-call="helpdesk_mgmt.portal_ticket_new_button">
-                <t t-set="_btn_classes" t-value="'btn-sm'" />
-            </t>
-        </xpath>
-    </template>
-    <template
-        id="portal_my_home"
-        name="Portal My Home : ticket entries"
-        inherit_id="portal.portal_my_home"
-        priority="40"
-        customize_show="True"
-    >
-        <div id="portal_common_category" position="inside">
-            <t t-call="helpdesk_mgmt.portal_docs_entry">
-                <t
-                    t-set="icon"
-                    t-value="'/helpdesk_mgmt/static/src/img/helpdesk_icon.svg'"
-                />
-                <t t-set="title">Tickets</t>
-                <t t-set="url" t-value="'/my/tickets'" />
-                <t t-set="text">Follow and comment your helpdesk tickets</t>
-                <t t-set="placeholder_count" t-value="'ticket_count'" />
-            </t>
-        </div>
-    </template>
+    <!-- Odoo 20 portal home uses portal.entry cards; see data/portal_entry_data.xml -->
     <template id="portal_searchbar" inherit_id="portal.portal_searchbar" primary="True">
         <xpath expr="//div[@t-if='searchbar_sortings']" position="before">
             <t t-call="helpdesk_mgmt.portal_ticket_new_button" />
