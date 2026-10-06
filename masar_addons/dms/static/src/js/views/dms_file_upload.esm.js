@@ -4,17 +4,16 @@
 //  **********************************************************************************/
 
 import {useBus, useService} from "@web/core/utils/hooks";
-import {useEffect, useRef, useState} from "@odoo/owl";
+import {proxy, signal, useEffect} from "@odoo/owl";
 import {_t} from "@web/core/l10n/translation";
 
 export function createFileDropZoneExtension() {
     return {
         setup() {
             super.setup(...arguments);
-            this.dragState = useState({
+            this.dragState = proxy({
                 showDragZone: false,
             });
-            this.root = useRef("root");
 
             useEffect(
                 (el) => {
@@ -67,16 +66,21 @@ export function createFileUploadExtension() {
             this.notification = useService("notification");
             this.orm = useService("orm");
             this.http = useService("http");
-            this.fileInput = useRef("fileInput");
+            this.actionService = useService("action");
+            this.fileInput = signal.ref();
 
             useBus(this.env.bus, "change_file_input", async (ev) => {
-                this.fileInput.el.files = ev.detail.files;
+                const input = this.fileInput();
+                if (!input) {
+                    return;
+                }
+                input.files = ev.detail.files;
                 await this.onChangeFileInput();
             });
         },
 
         uploadDocument() {
-            this.fileInput.el.click();
+            this.fileInput()?.click();
         },
 
         async onChangeFileInput() {
@@ -104,9 +108,13 @@ export function createFileUploadExtension() {
                 });
             }
 
+            const input = this.fileInput();
+            if (!input) {
+                return;
+            }
             const params = {
                 csrf_token: odoo.csrf_token,
-                ufile: [...this.fileInput.el.files],
+                ufile: [...input.files],
                 directory_id: directory_id,
             };
 
