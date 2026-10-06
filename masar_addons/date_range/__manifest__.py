@@ -12,5 +12,5 @@
  'maintainers': ['lmignon'],
  'name': 'Date Range',
  'summary': 'Manage all kind of date range',
- 'version': '20.0.1.0.0',
+ 'version': '20.0.1.0.1',
  'website': 'https://github.com/OCA/server-ux'}
