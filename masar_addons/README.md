@@ -19,11 +19,13 @@ Odoo 20 compatibility audit, security fix and wave plan: [`docs/migration/ODOO20
 - `masar_hr_resignation`
 - `masar_hr_attendance_regularization`
 - `masar_hr_yemen`
+- `payroll` (OCA, no Yemen overlay)
+- `payroll_account` (OCA payslip journal entries)
 
 ## HR skipped (not essential yet)
 
 - `fieldservice_sign`, `sign_oca`, `masar_hr_contract_sign`
-- `payroll`, `masar_hr_payroll_yemen`
+- `masar_hr_payroll_yemen`
 - `hr_appraisal_oca`, `hr_personal_equipment_*`
 - `masar_hr_learning`, `masar_hr_org_chart`
 
@@ -110,6 +112,8 @@ Odoo 20 compatibility audit, security fix and wave plan: [`docs/migration/ODOO20
 - `masar_website`
 - `mcp_server`
 - `partner_statement`
+- `payroll`
+- `payroll_account`
 - `purchase_tier_validation`
 - `queue_job`
 - `report_xlsx`
