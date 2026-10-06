@@ -1,0 +1,4 @@
+id,name,model_id,group_id/id,operation,domain
+access_social_youtube_oauth_admin,social.youtube.oauth admin,social.youtube.oauth,social.group_social_admin,crud,
+access_social_youtube_link_wizard_admin,social.youtube.link.wizard admin,social.youtube.link.wizard,social.group_social_admin,crud,
+access_social_youtube_link_wizard_line_admin,social.youtube.link.wizard.line admin,social.youtube.link.wizard.line,social.group_social_admin,crud,

@@ -1,6 +1,0 @@
-id,name,model_id,group_id/id,operation,domain
-access_reg_cat_user,reg.cat.user,hr.attendance.regularization.category,base.group_user,r,
-access_reg_cat_officer,reg.cat.officer,hr.attendance.regularization.category,hr_attendance.group_hr_attendance_officer,crud,
-access_reg_user_own,reg.user.own,hr.attendance.regularization,base.group_user,cru,"[('employee_id', 'in', user.employee_ids.ids)]"
-access_reg_officer,reg.officer,hr.attendance.regularization,hr_attendance.group_hr_attendance_officer,crud,
-rule_reg_company,Attendance regularization multi-company,hr.attendance.regularization,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"

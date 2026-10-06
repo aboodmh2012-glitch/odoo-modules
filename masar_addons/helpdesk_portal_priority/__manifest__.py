@@ -1,0 +1,11 @@
+{'application': False,
+ 'author': 'Lansana Barry Sow, APSL-Nagarro, Odoo Community Association (OCA)',
+ 'category': 'Helpdesk',
+ 'data': ['views/helpdesk_ticket_templates.xml'],
+ 'depends': ['helpdesk_mgmt'],
+ 'installable': True,
+ 'license': 'AGPL-3',
+ 'maintainers': ['lbarry-apsl'],
+ 'name': 'Helpdesk Portal Priority',
+ 'version': '20.0.1.0.0',
+ 'website': 'https://github.com/OCA/helpdesk'}

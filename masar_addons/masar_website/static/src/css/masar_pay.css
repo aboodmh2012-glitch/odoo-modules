@@ -1,0 +1,1226 @@
+/* MASAR Pay public site. Spacing, type, and color come from these tokens. */
+
+html:root {
+    --masar-font: Inter, "Noto Sans Arabic", "Segoe UI", sans-serif;
+    --masar-font-ar: "Noto Kufi Arabic", "Noto Sans Arabic", Inter, sans-serif;
+    --masar-weight-regular: 400;
+    --masar-weight-medium: 500;
+    --masar-weight-semibold: 600;
+    --masar-weight-bold: 700;
+    --masar-space-1: 0.5rem;
+    --masar-space-2: 0.75rem;
+    --masar-space-3: 1rem;
+    --masar-space-4: 1.5rem;
+    --masar-space-5: 2rem;
+    --masar-space-6: 3rem;
+    --masar-space-7: 4.5rem;
+    --masar-radius-sm: 0.8rem;
+    --masar-radius-md: 1.1rem;
+    --masar-radius-lg: 1.35rem;
+    --masar-page-width: 1180px;
+    --masar-header-height: 4.85rem;
+    --masar-shadow-card: 0 16px 40px rgba(7, 20, 40, 0.08);
+    --masar-hero-ink: #f7fbff;
+}
+
+html[lang^="ar"] .masar-header,
+html[lang^="ar"] .masar-site,
+html[lang^="ar"] .masar-footer {
+    font-family: var(--masar-font-ar);
+}
+
+.masar-header,
+.masar-site,
+.masar-footer {
+    font-family: var(--masar-font);
+}
+
+.masar-sprite {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.masar-icon {
+    display: block;
+    width: 1.35rem;
+    height: 1.35rem;
+}
+
+.masar-pay .masar-wrap,
+.masar-header .masar-wrap,
+.masar-footer .masar-wrap {
+    width: calc(100% - var(--masar-space-6));
+    max-width: var(--masar-page-width);
+}
+
+.masar-pay > section + section {
+    box-shadow: none;
+}
+
+.masar-pay .masar-section {
+    padding: 2.5rem 0;
+}
+
+/* ---------- Header ---------- */
+.masar-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: var(--masar-navy);
+    color: var(--masar-white);
+}
+
+.masar-header__bar {
+    display: flex;
+    align-items: center;
+    gap: var(--masar-space-3);
+    min-height: var(--masar-header-height);
+}
+
+.masar-header__brand {
+    display: inline-flex;
+    color: inherit;
+    text-decoration: none;
+}
+
+.masar-skip {
+    position: absolute;
+    inset-inline-start: var(--masar-space-3);
+    top: -4rem;
+    z-index: 5;
+    padding: 0.45rem 0.8rem;
+    background: var(--masar-white);
+    color: var(--masar-navy);
+    border-radius: var(--masar-radius-sm);
+}
+
+.masar-skip:focus {
+    top: 0.4rem;
+}
+
+.masar-lockup {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: inherit;
+}
+
+.masar-lockup__mark {
+    width: 2.15rem;
+    height: 2.15rem;
+    flex: 0 0 auto;
+}
+
+.masar-lockup__mark-blue,
+.masar-lockup__mark-orange {
+    fill: none;
+    stroke-width: 3.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.masar-lockup__mark-blue {
+    stroke: var(--masar-blue);
+}
+
+.masar-lockup__mark-orange {
+    stroke: var(--masar-orange);
+}
+
+.masar-lockup__name {
+    display: flex;
+    gap: 0.32rem;
+    font-size: 1.05rem;
+    font-weight: var(--masar-weight-bold);
+    letter-spacing: 0.06em;
+    line-height: 1;
+}
+
+.masar-lockup__product {
+    color: var(--masar-orange);
+}
+
+.masar-lockup__tagline {
+    display: block;
+    margin-top: 0.22rem;
+    font-size: 0.58rem;
+    font-weight: var(--masar-weight-semibold);
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    opacity: 0.78;
+}
+
+.masar-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.15rem;
+    margin-inline-start: auto;
+}
+
+.masar-nav__link {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: var(--masar-weight-semibold);
+    padding: 0.4rem 0.55rem;
+    border-radius: 0.4rem;
+}
+
+.masar-nav__link.is-active,
+.masar-nav__link:hover {
+    color: var(--masar-orange);
+}
+
+.masar-nav__toggle {
+    display: none;
+    margin-inline-start: auto;
+    align-items: center;
+    justify-content: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.7rem;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+}
+
+.masar-nav__toggle-bars,
+.masar-nav__toggle-bars::before,
+.masar-nav__toggle-bars::after {
+    display: block;
+    width: 1rem;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+    position: relative;
+}
+
+.masar-nav__toggle-bars::before,
+.masar-nav__toggle-bars::after {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+}
+
+.masar-nav__toggle-bars::before {
+    top: -6px;
+}
+
+.masar-nav__toggle-bars::after {
+    top: 6px;
+}
+
+.masar-nav__toggle-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+}
+
+.masar-header__tools {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.masar-lang {
+    position: relative;
+}
+
+.masar-lang__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.2rem;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-weight: var(--masar-weight-semibold);
+    cursor: pointer;
+}
+
+.masar-lang__toggle--static {
+    cursor: default;
+}
+
+.masar-lang__menu {
+    display: none;
+    position: absolute;
+    z-index: 3;
+    inset-inline-end: 0;
+    top: calc(100% + 0.35rem);
+    min-width: 11rem;
+    margin: 0;
+    padding: 0.35rem;
+    list-style: none;
+    background: var(--masar-white);
+    color: var(--masar-navy);
+    border-radius: var(--masar-radius-sm);
+    box-shadow: var(--masar-shadow-card);
+}
+
+.masar-lang.is-open .masar-lang__menu,
+.masar-lang:focus-within .masar-lang__menu {
+    display: block;
+}
+
+.masar-lang__option {
+    display: block;
+    padding: 0.45rem 0.6rem;
+    border-radius: 0.45rem;
+    color: var(--masar-navy);
+    text-decoration: none;
+    font-weight: var(--masar-weight-semibold);
+}
+
+.masar-lang__option.is-active,
+.masar-lang__option:hover {
+    color: var(--masar-orange);
+    background: var(--masar-surface-alt);
+}
+
+/* ---------- Buttons ---------- */
+.masar-btn--forward::after,
+.masar-textlink--forward::after {
+    content: "";
+    width: 0.42rem;
+    height: 0.42rem;
+    margin-inline-start: 0.45rem;
+    border-top: 2px solid currentColor;
+    border-inline-end: 2px solid currentColor;
+    transform: rotate(45deg);
+}
+
+[dir="rtl"] .masar-btn--forward::after,
+[dir="rtl"] .masar-textlink--forward::after {
+    transform: rotate(-135deg);
+}
+
+.masar-textlink {
+    display: inline-flex;
+    align-items: center;
+    margin-top: var(--masar-space-3);
+    color: var(--masar-orange);
+    font-weight: var(--masar-weight-bold);
+    text-decoration: none;
+}
+
+/* ---------- Home hero ---------- */
+.masar-hero.masar-hero--home {
+    display: block;
+    min-height: 0;
+    align-items: stretch;
+    padding: 2.2rem 0 0;
+    overflow: hidden;
+    color: var(--masar-hero-ink);
+    background:
+        radial-gradient(ellipse at 78% 72%, rgba(255, 122, 0, 0.42), transparent 24%),
+        radial-gradient(ellipse at 12% 0%, rgba(0, 140, 255, 0.28), transparent 34%),
+        linear-gradient(180deg, #071426 0%, #0c3d6e 48%, #e08a45 82%, #140e0c 100%);
+}
+
+.masar-sky {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    height: 58%;
+    pointer-events: none;
+}
+
+.masar-sky__svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.masar-sky__ridge {
+    fill: rgba(4, 14, 32, 0.45);
+}
+
+.masar-sky__city rect {
+    fill: rgba(3, 10, 22, 0.78);
+}
+
+.masar-hero__top {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--masar-space-5);
+}
+
+.masar-hero--home .masar-hero__title {
+    max-width: 12em;
+    margin: 0 0 var(--masar-space-3);
+    color: var(--masar-hero-ink);
+    font-size: 2.5rem;
+    font-weight: var(--masar-weight-bold);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+}
+
+.masar-hero__part--accent {
+    color: var(--masar-orange);
+}
+
+.masar-hero__part--break {
+    display: block;
+}
+
+.masar-hero__part + .masar-hero__part:not(.masar-hero__part--break) {
+    margin-inline-start: 0.28em;
+}
+
+.masar-hero--home .masar-hero__lead {
+    max-width: 36rem;
+    margin-bottom: var(--masar-space-4);
+    color: rgba(247, 251, 255, 0.86);
+    font-size: 1.02rem;
+    line-height: 1.7;
+}
+
+.masar-eyebrow {
+    margin: 0;
+    color: var(--masar-hero-ink);
+    font-weight: var(--masar-weight-semibold);
+    line-height: 1.35;
+    white-space: pre-line;
+}
+
+.masar-hero__badge {
+    flex: 0 0 auto;
+    max-width: 11rem;
+    text-align: end;
+    font-size: 1rem;
+}
+
+.masar-stage {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-top: 1.6rem;
+    padding-bottom: 1.4rem;
+}
+
+.masar-stage__arc {
+    position: absolute;
+    inset-inline: 6%;
+    bottom: 28%;
+    height: 7.5rem;
+    border: 3px solid rgba(255, 122, 0, 0.9);
+    border-bottom: 0;
+    border-radius: 50% 50% 0 0;
+    box-shadow: 0 0 18px rgba(255, 122, 0, 0.35);
+    pointer-events: none;
+}
+
+.masar-device {
+    position: relative;
+    z-index: 1;
+}
+
+.masar-device--phone { width: 16%; }
+.masar-device--laptop { width: 46%; }
+.masar-device--pos { width: 15%; }
+.masar-device--atm { width: 14%; }
+
+.masar-phone,
+.masar-pos,
+.masar-atm,
+.masar-dash {
+    background: #081424;
+    color: var(--masar-navy);
+    box-shadow: 0 22px 40px rgba(0, 0, 0, 0.35);
+}
+
+.masar-phone {
+    border-radius: 1.3rem;
+    padding: 0.45rem;
+    border: 2px solid rgba(255, 255, 255, 0.18);
+}
+
+.masar-phone__screen,
+.masar-dash,
+.masar-pos__screen,
+.masar-atm__screen {
+    background: #f5f8fc;
+    border-radius: 0.9rem;
+}
+
+.masar-phone__screen {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    min-height: 11.5rem;
+    padding: 0.55rem;
+}
+
+.masar-phone__apps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.35rem;
+}
+
+.masar-phone__app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+}
+
+.masar-phone__glyph {
+    width: 1.15rem;
+    height: 1.15rem;
+    border-radius: 0.35rem;
+    background: linear-gradient(180deg, var(--masar-blue), var(--masar-cyan));
+}
+
+.masar-phone__name,
+.masar-dash__label {
+    color: var(--masar-text-soft);
+    font-size: 0.55rem;
+    font-weight: var(--masar-weight-semibold);
+    line-height: 1.2;
+    text-align: center;
+}
+
+.masar-dash {
+    padding: 0.7rem 0.75rem 0.85rem;
+    border-radius: 0.85rem 0.85rem 0.35rem 0.35rem;
+    border-bottom: 0.7rem solid #07111f;
+}
+
+.masar-dash__top {
+    margin-bottom: 0.45rem;
+}
+
+.masar-dash__brand {
+    display: block;
+    color: var(--masar-navy);
+    font-size: 0.68rem;
+    font-weight: var(--masar-weight-bold);
+    letter-spacing: 0.04em;
+}
+
+.masar-dash__metrics {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.35rem;
+}
+
+.masar-dash__metric {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    padding: 0.35rem;
+    border-radius: 0.45rem;
+    background: var(--masar-white);
+}
+
+.masar-dash__value {
+    color: var(--masar-navy);
+    font-size: 0.78rem;
+    font-weight: var(--masar-weight-bold);
+    line-height: 1.1;
+}
+
+.masar-dash__chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.35rem;
+    height: 3.2rem;
+    margin-top: 0.55rem;
+    padding: 0.4rem;
+    border-radius: 0.5rem;
+    background: var(--masar-white);
+}
+
+.masar-dash__bar {
+    flex: 1;
+    border-radius: 0.25rem 0.25rem 0 0;
+    background: linear-gradient(180deg, var(--masar-cyan), var(--masar-blue));
+}
+
+.masar-dash__bar:nth-child(1) { height: 35%; }
+.masar-dash__bar:nth-child(2) { height: 55%; }
+.masar-dash__bar:nth-child(3) { height: 42%; }
+.masar-dash__bar:nth-child(4) { height: 70%; }
+.masar-dash__bar:nth-child(5) { height: 48%; }
+.masar-dash__bar:nth-child(6) { height: 86%; }
+.masar-dash__bar:nth-child(7) { height: 63%; }
+
+.masar-pos,
+.masar-atm {
+    border-radius: 0.8rem;
+    padding: 0.45rem;
+    border: 2px solid rgba(255, 255, 255, 0.16);
+}
+
+.masar-pos__screen,
+.masar-atm__screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3.2rem;
+    color: var(--masar-orange);
+    font-weight: var(--masar-weight-bold);
+}
+
+.masar-pos__keys,
+.masar-atm__slot {
+    display: block;
+    height: 2.4rem;
+    margin-top: 0.4rem;
+    border-radius: 0.35rem;
+    background:
+        radial-gradient(circle, rgba(255, 255, 255, 0.35) 1px, transparent 1.5px) 0 0 / 0.7rem 0.7rem,
+        #102033;
+}
+
+.masar-atm {
+    min-height: 12rem;
+}
+
+/* ---------- Trust, offers, audiences ---------- */
+.masar-trust {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--masar-space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.masar-trust__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.masar-trust__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    color: var(--masar-orange);
+    background: rgba(255, 122, 0, 0.1);
+}
+
+.masar-trust__copy {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.masar-trust__title,
+.masar-offer__name,
+.masar-audience__title,
+.masar-principle__title,
+.masar-card__title,
+.masar-footer__title,
+.masar-heading,
+.masar-faq__q-label {
+    font-weight: var(--masar-weight-bold);
+}
+
+.masar-trust__title {
+    color: var(--masar-navy);
+    font-size: 1rem;
+}
+
+.masar-trust__text,
+.masar-offer__text,
+.masar-principle__text,
+.masar-card__text,
+.masar-lede,
+.masar-faq__a {
+    color: var(--masar-text-soft);
+    line-height: 1.65;
+}
+
+.masar-offers {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 0.85rem;
+}
+
+.masar-offer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    min-height: 11.5rem;
+    padding: 1.15rem 1rem 1rem;
+    border: 1px solid var(--masar-line);
+    border-radius: var(--masar-radius-md);
+    background: var(--masar-white);
+    box-shadow: var(--masar-shadow-card);
+    text-decoration: none;
+}
+
+.masar-offer:hover {
+    transform: translateY(-3px);
+}
+
+.masar-offer__icon {
+    display: inline-flex;
+    color: var(--masar-blue);
+}
+
+.masar-offer__name {
+    color: var(--masar-navy);
+    font-size: 1rem;
+    line-height: 1.3;
+}
+
+.masar-offer__text {
+    margin: 0;
+    font-size: 0.92rem;
+}
+
+.masar-offer__go {
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-top: auto;
+    border-top: 2px solid var(--masar-blue);
+    border-inline-end: 2px solid var(--masar-blue);
+    transform: rotate(45deg);
+}
+
+[dir="rtl"] .masar-offer__go {
+    transform: rotate(-135deg);
+}
+
+.masar-audience {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--masar-space-4);
+}
+
+.masar-audience__card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+    min-height: 22rem;
+    padding: 1.8rem;
+    border-radius: var(--masar-radius-lg);
+    color: var(--masar-white);
+}
+
+.masar-audience__card--business {
+    background:
+        linear-gradient(to right, rgba(6, 18, 36, 0.92), rgba(6, 18, 36, 0.35)),
+        radial-gradient(circle at 85% 40%, #1d4e89, #071426 62%);
+}
+
+.masar-audience__card--personal {
+    background:
+        linear-gradient(to right, rgba(8, 40, 78, 0.88), rgba(8, 40, 78, 0.25)),
+        radial-gradient(circle at 85% 30%, #3d8fd4, #0d4f86 60%);
+}
+
+[dir="rtl"] .masar-audience__card--business {
+    background:
+        linear-gradient(to left, rgba(6, 18, 36, 0.92), rgba(6, 18, 36, 0.35)),
+        radial-gradient(circle at 15% 40%, #1d4e89, #071426 62%);
+}
+
+[dir="rtl"] .masar-audience__card--personal {
+    background:
+        linear-gradient(to left, rgba(8, 40, 78, 0.88), rgba(8, 40, 78, 0.25)),
+        radial-gradient(circle at 15% 30%, #3d8fd4, #0d4f86 60%);
+}
+
+.masar-audience__kicker {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: var(--masar-weight-semibold);
+}
+
+.masar-audience__title {
+    margin: 0;
+    max-width: 16em;
+    font-size: 1.7rem;
+    line-height: 1.25;
+}
+
+.masar-audience__card .masar-points__text {
+    color: var(--masar-white);
+}
+
+.masar-points {
+    display: grid;
+    gap: 0.45rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.masar-points__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+}
+
+.masar-points__mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.05rem;
+    height: 1.05rem;
+    margin-top: 0.15rem;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background: var(--masar-orange);
+}
+
+.masar-points__mark::after {
+    content: "";
+    width: 0.28rem;
+    height: 0.5rem;
+    border: solid var(--masar-white);
+    border-width: 0 2px 2px 0;
+    transform: translateY(-1px) rotate(45deg);
+}
+
+.masar-principles {
+    display: grid;
+    grid-template-columns: 0.75fr 0.95fr 0.95fr 1.45fr;
+    gap: var(--masar-space-5);
+}
+
+.masar-principle__title {
+    margin: 0 0 0.7rem;
+    color: var(--masar-navy);
+    font-size: 1.15rem;
+}
+
+.masar-principle__lines {
+    display: grid;
+    gap: 0.35rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.masar-principle__line {
+    color: var(--masar-text-soft);
+    font-weight: var(--masar-weight-medium);
+}
+
+.masar-principle__text,
+.masar-lede {
+    margin: 0;
+}
+
+.masar-lede + .masar-lede {
+    margin-top: 0.85rem;
+}
+
+.masar-band {
+    background:
+        radial-gradient(circle at 80% 20%, rgba(0, 160, 255, 0.18), transparent 18rem),
+        var(--masar-navy);
+    color: var(--masar-white);
+}
+
+.masar-opportunity {
+    padding: 3.2rem 0;
+}
+
+.masar-opportunity__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--masar-space-5);
+}
+
+.masar-opportunity__title,
+.masar-closing__title {
+    margin: 0;
+    color: var(--masar-white);
+    font-weight: var(--masar-weight-bold);
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    white-space: pre-line;
+}
+
+.masar-opportunity__title {
+    font-size: 2.5rem;
+}
+
+.masar-closing {
+    padding: 4.2rem 0;
+    text-align: center;
+}
+
+.masar-closing__title {
+    margin-inline: auto;
+    max-width: 16em;
+    font-size: 2.35rem;
+    white-space: normal;
+}
+
+.masar-closing__lead {
+    max-width: 40rem;
+    margin: 0.8rem auto 1.4rem;
+    color: rgba(255, 255, 255, 0.84);
+    line-height: 1.7;
+}
+
+.masar-closing__actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+/* ---------- Inner pages ---------- */
+.masar-hero.masar-hero--page {
+    display: block;
+    min-height: 0;
+    padding: 4.2rem 0 3.2rem;
+    color: var(--masar-hero-ink);
+    background:
+        radial-gradient(ellipse at 85% 100%, rgba(255, 122, 0, 0.35), transparent 28%),
+        linear-gradient(180deg, #071426 0%, #0c3a66 100%);
+}
+
+.masar-hero--page .masar-hero__title {
+    max-width: 16em;
+    margin: 0.4rem 0 0.8rem;
+    font-size: 2.8rem;
+    font-weight: var(--masar-weight-bold);
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+}
+
+.masar-hero--page .masar-eyebrow {
+    color: var(--masar-orange);
+}
+
+.masar-hero--page .masar-hero__lead {
+    max-width: 40rem;
+    color: rgba(247, 251, 255, 0.86);
+}
+
+.masar-heading {
+    margin: 0 0 0.75rem;
+    color: var(--masar-navy);
+    font-size: 1.85rem;
+    letter-spacing: -0.02em;
+}
+
+.masar-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15.5rem, 1fr));
+    gap: var(--masar-space-4);
+    margin-top: var(--masar-space-4);
+}
+
+.masar-card {
+    padding: 1.2rem 1.15rem 1.3rem;
+    border: 1px solid var(--masar-line);
+    border-radius: var(--masar-radius-md);
+    background: var(--masar-white);
+    box-shadow: var(--masar-shadow-card);
+}
+
+.masar-card__title {
+    margin: 0 0 0.4rem;
+    color: var(--masar-navy);
+    font-size: 1.1rem;
+}
+
+.masar-card__text {
+    margin: 0;
+}
+
+.masar-card .masar-points {
+    margin-top: 0.8rem;
+}
+
+.masar-faq {
+    display: grid;
+    gap: 0.7rem;
+    margin-top: var(--masar-space-4);
+}
+
+.masar-faq__item {
+    padding: 0.95rem 1.05rem;
+    border: 1px solid var(--masar-line);
+    border-radius: var(--masar-radius-sm);
+    background: var(--masar-white);
+}
+
+.masar-faq__q {
+    cursor: pointer;
+    color: var(--masar-navy);
+}
+
+.masar-faq__a {
+    margin: 0.75rem 0 0;
+}
+
+/* ---------- Footer ---------- */
+.masar-footer {
+    padding: 2.8rem 0 1.2rem;
+    color: var(--masar-white);
+}
+
+.masar-footer__top {
+    display: grid;
+    grid-template-columns: minmax(12rem, 15rem) minmax(0, 1fr);
+    gap: var(--masar-space-5);
+}
+
+.masar-footer__brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--masar-space-3);
+}
+
+.masar-social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+}
+
+.masar-social__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 50%;
+    color: var(--masar-white);
+    text-decoration: none;
+}
+
+.masar-footer__grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1rem 1.1rem;
+}
+
+.masar-footer__title,
+.masar-newsletter__label {
+    margin: 0 0 0.7rem;
+    color: var(--masar-white);
+    font-size: 0.98rem;
+}
+
+.masar-footer__links,
+.masar-footer__legal-links {
+    display: grid;
+    gap: 0.35rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.masar-footer__link,
+.masar-footer__legal-link {
+    color: rgba(255, 255, 255, 0.82);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.masar-footer__link:hover,
+.masar-footer__legal-link:hover {
+    color: var(--masar-orange);
+}
+
+.masar-newsletter__field-label,
+.masar-newsletter__hp {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+}
+
+.masar-newsletter {
+    position: relative;
+}
+
+.masar-newsletter__input {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    padding: 0.7rem 0.9rem;
+    border: 0;
+    border-radius: 999px;
+    color: var(--masar-navy);
+    font: inherit;
+}
+
+.masar-newsletter__status {
+    margin: 0 0 0.6rem;
+    color: var(--masar-green);
+    font-weight: var(--masar-weight-semibold);
+}
+
+.masar-newsletter__status--invalid {
+    color: #ffb4a2;
+}
+
+.masar-footer__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-top: var(--masar-space-5);
+    padding-top: var(--masar-space-4);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.masar-footer__legal {
+    display: flex;
+    gap: 0.4rem;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.88rem;
+}
+
+.masar-footer__year::before {
+    content: "© ";
+}
+
+.masar-footer__legal-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+}
+
+#bottom:has(.masar-footer) .o_footer_copyright {
+    display: none;
+}
+
+.masar-header a:focus-visible,
+.masar-site a:focus-visible,
+.masar-footer a:focus-visible,
+.masar-footer button:focus-visible,
+.masar-nav__toggle:focus-visible,
+.masar-lang__toggle:focus-visible,
+.masar-newsletter__input:focus-visible {
+    outline: 2px solid var(--masar-orange);
+    outline-offset: 3px;
+}
+
+@media (min-width: 900px) {
+    .masar-hero--home .masar-hero__title {
+        font-size: 3.55rem;
+    }
+
+    .masar-pay .masar-section {
+        padding: 3.4rem 0;
+    }
+}
+
+@media (min-width: 1200px) {
+    .masar-hero--home .masar-hero__title {
+        font-size: 4.05rem;
+    }
+}
+
+@media (max-width: 1100px) {
+    .masar-offers {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .masar-principles,
+    .masar-footer__top,
+    .masar-footer__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .masar-nav__toggle {
+        display: inline-flex;
+    }
+
+    .masar-nav {
+        display: none;
+        position: absolute;
+        inset-inline: 0;
+        top: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        margin: 0;
+        padding: 0.4rem 1rem 1rem;
+        background: var(--masar-navy);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .masar-header.is-open .masar-nav {
+        display: flex;
+    }
+
+    .masar-header {
+        position: sticky;
+    }
+
+    .masar-header__bar {
+        position: static;
+    }
+
+    .masar-header__tools .masar-btn {
+        padding-inline: 0.85rem;
+    }
+}
+
+@media (max-width: 760px) {
+    .masar-trust,
+    .masar-audience,
+    .masar-offers,
+    .masar-principles,
+    .masar-footer__grid,
+    .masar-footer__top {
+        grid-template-columns: 1fr;
+    }
+
+    .masar-hero__top,
+    .masar-opportunity__inner {
+        flex-direction: column;
+    }
+
+    .masar-hero__badge,
+    .masar-opportunity__title {
+        text-align: start;
+    }
+
+    .masar-device--atm,
+    .masar-device--pos {
+        display: none;
+    }
+
+    .masar-device--laptop { width: 68%; }
+    .masar-device--phone { width: 28%; }
+
+    .masar-hero--home .masar-hero__title,
+    .masar-hero--page .masar-hero__title,
+    .masar-opportunity__title,
+    .masar-closing__title {
+        font-size: 2.15rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .masar-offer {
+        transition: none;
+    }
+}

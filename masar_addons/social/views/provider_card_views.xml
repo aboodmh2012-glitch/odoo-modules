@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_social_provider_card_kanban" model="ir.ui.view">
+    <field name="name">social.provider.card.kanban</field>
+    <field name="model">social.provider.card</field>
+    <field name="arch" type="xml">
+      <kanban create="0" edit="0" delete="0" records_draggable="0" class="o_social_provider_cards">
+        <field name="name"/><field name="provider"/><field name="description"/><field name="image_url"/>
+        <field name="can_link"/><field name="account_count"/>
+        <templates>
+          <t t-name="card">
+            <div class="o_social_provider_card">
+              <div class="d-flex align-items-start gap-3">
+                <img t-att-src="record.image_url.raw_value" t-att-alt="record.name.value" class="o_social_provider_icon"/>
+                <div class="flex-grow-1 min-w-0">
+                  <div class="fs-3 fw-semibold"><field name="name"/></div>
+                  <div class="fs-5 mt-1 text-wrap"><field name="description"/></div>
+                </div>
+              </div>
+              <div class="d-flex gap-2 mt-3 flex-wrap">
+                <button name="action_link" type="object" string="Link account" class="btn btn-primary"
+                        invisible="not can_link"/>
+                <button name="action_link" type="object" string="Coming soon" class="btn btn-secondary"
+                        invisible="can_link"/>
+                <button name="action_accounts" type="object" string="View accounts" class="btn btn-secondary"
+                        invisible="account_count == 0"/>
+              </div>
+            </div>
+          </t>
+        </templates>
+      </kanban>
+    </field>
+  </record>
+  <record id="action_social_provider_cards" model="ir.actions.act_window">
+    <field name="name">Social Media</field>
+    <field name="res_model">social.provider.card</field>
+    <field name="view_mode">kanban</field>
+    <field name="context">{}</field>
+  </record>
+  <menuitem id="menu_social_provider_cards" name="Social Accounts" parent="menu_social_configuration"
+            action="action_social_provider_cards" sequence="5"
+            groups="social.group_social_admin,base.group_system"/>
+</odoo>

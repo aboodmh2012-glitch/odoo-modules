@@ -1,0 +1,3 @@
+id,name,model_id,group_id/id,operation,domain
+access_masar_knowledge_tag_user,masar.knowledge.tag user,masar.knowledge.tag,base.group_user,r,
+access_masar_knowledge_tag_manager,masar.knowledge.tag manager,masar.knowledge.tag,base.group_system,crud,

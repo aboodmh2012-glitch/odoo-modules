@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo noupdate="1">
-    <record id="helpdesk_type_grievance" model="helpdesk.ticket.type">
-        <field name="name">تظلم موظف (Grievance)</field>
-        <field name="show_in_portal" eval="False"/>
-    </record>
-</odoo>

@@ -1,0 +1,131 @@
+// MASAR Pay — shared UI components (modals, badges, alerts, progress, etc.)
+
+.modal-content,
+.o_dialog .modal-content {
+    border: 1px solid var(--masar-line);
+    border-radius: var(--masar-radius-lg);
+    box-shadow: var(--masar-shadow);
+    overflow: hidden;
+
+    .modal-header {
+        background: var(--masar-light);
+        border-bottom: 1px solid var(--masar-line);
+        color: var(--masar-navy);
+
+        .modal-title {
+            font-weight: 700;
+            color: var(--masar-navy);
+        }
+    }
+
+    .modal-footer {
+        border-top: 1px solid var(--masar-line);
+        background: var(--masar-surface-alt);
+    }
+}
+
+.dropdown-menu,
+.o-dropdown--menu {
+    border: 1px solid var(--masar-line);
+    border-radius: var(--masar-radius);
+    box-shadow: var(--masar-shadow);
+
+    .dropdown-item:hover,
+    .dropdown-item:focus,
+    .o-dropdown-item:hover {
+        background: rgba(7, 31, 61, 0.08);
+        color: var(--masar-navy);
+    }
+
+    .dropdown-item.active,
+    .o-dropdown-item.selected {
+        background: rgba(7, 31, 61, 0.14);
+        color: var(--masar-blue);
+        font-weight: 600;
+    }
+}
+
+.tooltip,
+.o_tooltip,
+.popover {
+    --bs-tooltip-bg: #{$masar-navy};
+    --bs-popover-border-color: var(--masar-line);
+    border-radius: var(--masar-radius-sm);
+}
+
+.badge {
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+.alert {
+    border-radius: var(--masar-radius);
+    border-width: 1px;
+}
+
+.progress {
+    height: 0.55rem;
+    border-radius: 999px;
+    background: rgba(7, 31, 61, 0.08);
+
+    .progress-bar {
+        background-color: var(--masar-navy);
+    }
+}
+
+.o_avatar,
+.o_m2o_avatar img,
+.o_field_many2one_avatar img {
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px var(--masar-line);
+}
+
+// Loading / skeleton
+.o_loading,
+.o_spinner,
+.o_blockUI {
+    color: var(--masar-blue);
+}
+
+.o_blockUI .o_spinner {
+    filter: none;
+}
+
+// Empty states already handled in shell; keep typography consistent
+.o_view_nocontent,
+.o_nocontent_help {
+    h2,
+    .o_nocontent_help_title {
+        color: var(--masar-navy);
+        font-weight: 700;
+    }
+
+    p {
+        color: var(--masar-text-soft);
+    }
+}
+
+// Settings / preference forms
+.o_base_settings {
+    .settings_tab {
+        background: var(--masar-white);
+        border-inline-end: 1px solid var(--masar-line);
+
+        .selected {
+            background: rgba(7, 31, 61, 0.1);
+            box-shadow: inset 3px 0 0 var(--masar-blue);
+            color: var(--masar-navy);
+            font-weight: 700;
+        }
+    }
+}
+
+// Discuss / messaging chrome
+.o-mail-Discuss {
+    background: var(--masar-workspace-bg);
+
+    .o-mail-DiscussSidebar {
+        background: var(--masar-white);
+        border-inline-end: 1px solid var(--masar-line);
+    }
+}

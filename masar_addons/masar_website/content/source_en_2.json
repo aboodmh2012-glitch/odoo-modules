@@ -1,0 +1,152 @@
+[
+  {
+    "slug": "/security-compliance",
+    "name": "Security and Trust",
+    "seo_title": "Security, Trust and Compliance | MASAR",
+    "meta_description": "Learn about MASAR's approach to data protection, access management, verification and oversight, and what to know before using financial services.",
+    "body": "# Trust starts with what you know about the service.\nWe are preparing MASAR's services with data protection, access management and operational oversight in mind, alongside clear customer information about each product and its provider.\n\n## Data protection and access\nOur design approach focuses on who needs data and why, limiting unnecessary access and considering information protection during collection, processing and sharing.\n\n## Verification appropriate to the service\nFinancial products may require verification of a customer's or business's identity and authority to use the service. Requirements and approved channels are explained before activation.\n\n## Risk management and follow-up\nPreparatory work includes organizing the review of unusual activity, limits and operational cases, and defining responsibilities and escalation procedures within the scope of approved services.\n\n## Reconciliation and records\nWe prioritize clear transaction references, reconciliation and follow-up in operational design, so that events can be reviewed and discrepancies addressed in an organized way.\n\n## Help protect your information\nDo not share passwords, PINs or verification codes with anyone contacting you by phone or message. Use officially published channels to ask about an unusual request.",
+    "cta": "Read security guidance → /help/stay-safe | Privacy notice → /privacy",
+    "publishing_gate": "Approve security statements against the controls actually implemented",
+    "editorial_notes": "Current wording describes a design approach, not an assurance certification. Do not claim PCI DSS, ISO, SOC, specific encryption or 100% security without evidence, scope and validity dates. Do not publish fraud-detection rules or sensitive infrastructure details."
+  },
+  {
+    "slug": "/pricing",
+    "name": "Fees and Limits",
+    "seo_title": "Service Fees and Limits | MASAR",
+    "meta_description": "Understand the information to review about MASAR's service fees, usage limits and settlement before entering an agreement or activating a product.",
+    "body": "# Understand the cost before you begin.\nProduct costs vary by service type, scope and usage. This page is intended to bring approved fee schedules and limits together in an accessible reference.\n\n## What does a fee schedule explain?\nSetup or subscription fees, if any; transaction fees; device costs where applicable; refund or dispute fees where applicable; and taxes or third-party charges that must be disclosed.\n\n## Fees are not the only consideration\nThe service offer also explains currencies and channels, limits, settlement frequency, cancellation and suspension terms, and the fee schedule's effective date.\n\n## During preparation\nApproved fees are announced as each service becomes available. You can contact us to discuss your needs, and approved commercial information is provided before any agreement or activation.",
+    "cta": "Ask about scope and pricing → /contactus",
+    "publishing_gate": "Replace the preparation-stage paragraph only when an approved fee table is available",
+    "editorial_notes": "Any editorial-version wording is replaced on the website with: Approved fees are announced as each service becomes available. No invented figures or unsupported free-of-charge or no-hidden-fees claims. Table fields: service, charging unit, amount, currency, tax, limit, exceptions and effective date."
+  },
+  {
+    "slug": "/help",
+    "name": "Help Center",
+    "seo_title": "Help Center | MASAR",
+    "meta_description": "Find service information, fees and eligibility requirements, read security guidance and learn about contact and complaint channels.",
+    "body": "# How can we help?\nStart with your question or choose the topic closest to your needs. We bring general information, approved product guides and contact guidance together in one place.\n\n## Explore the services\nAccounts and cards, point of sale, the payment gateway, bulk payments, bills, ATMs and cash services.\n\n## Before signing up\nAvailability, eligibility requirements, fees and limits, and relevant terms.\n\n## Help with transactions\nGuides for tracking transactions, refunds and settlements are added when the relevant products become operational, with a clear explanation of the reference you need when contacting support.\n\n## Security and complaints\nRead guidance on protecting your information and understand the difference between a service inquiry and a complaint requiring a documented review.\n\n## Still need an answer?\nSend your inquiry with a clear description of the issue. Do not attach sensitive information that is not needed for the request.",
+    "cta": "Frequently asked questions → /help/faq | Contact us → /contactus | Complaints → /complaints",
+    "publishing_gate": "Editorial and compliance review before publication",
+    "editorial_notes": "Help content is public and approved; do not expose the internal knowledge base or control manuals. Do not publish an operational article until its steps have been tested in the actual product."
+  },
+  {
+    "slug": "/help/faq",
+    "name": "Frequently Asked Questions",
+    "seo_title": "Frequently Asked Questions About MASAR",
+    "meta_description": "Answers about MASAR, the project's stage, planned services, fees, integration, activation requirements and support.",
+    "body": "# Clear questions. Direct answers.\n\n## What is MASAR?\nMASAR is a project to develop payment and digital financial solutions for individuals, merchants, companies and institutions, within the Masar Global for Financial Systems and Solutions company project.\n\n## Is MASAR a bank?\nThis website does not present MASAR as a bank. The nature of each product and the organization providing or issuing it are explained in its approved documentation.\n\n## Does preliminary approval authorize business operations?\nThe Central Bank of Yemen letter dated September 13, 2026 states that preliminary approval does not authorize the commencement of business and that final approval is subject to fulfillment of the specified requirements.\n\n## Are all the solutions shown available now?\nThe website presents areas of work under preparation. Each service's availability is announced after approval; appearing in the solutions section does not mean a service is open for activation.\n\n## What is the difference between point of sale and a payment gateway?\nPoint-of-sale solutions serve payments at a sales location, while a payment gateway serves payments on websites and apps. A business may need both channels.\n\n## Are bulk payments only for payroll?\nThe planned scope includes payroll, supplier payments, commissions and multi-recipient disbursement programs, subject to the approved service scope.\n\n## Which payment methods and currencies are supported?\nThese are defined in each product's documentation when it becomes available. Product information explains the payment methods and currencies that can actually be used.\n\n## Is there an ATM or service-point network I can use?\nRefer to the approved location directory when it is published. An introductory description of cash services does not establish that a network is operational.\n\n## What are the fees and settlement times?\nThey are announced in the service-specific fee schedule and terms. A single fee or timetable cannot be assumed for all products.\n\n## Which documents are required?\nRequirements vary by product and customer category. Your first inquiry does not require an ID document or bank statement; verification documents are requested later through designated channels when needed.\n\n## Does registering my details on the website activate a financial service?\nNo. Submitting an inquiry or expressing interest does not open a financial account, issue a card or activate a payment service.\n\n## Can we connect our system to MASAR?\nYou can discuss your requirements with us. Implementation depends on product and documentation availability, integration scope and required testing.\n\n## Where can I find API documentation?\nOfficial references for integrable services are published when approved. The introductory developer page is not a substitute for usable technical documentation.\n\n## How do I submit feedback or a complaint?\nUse the approved contact or complaints channel once activated. Keep your request reference, and do not send passwords, verification codes or full card details.",
+    "cta": "Help Center → /help | Contact us → /contactus",
+    "publishing_gate": "Editorial and compliance review before publication",
+    "editorial_notes": "Update availability, pricing and documentation answers from a central register as products go live. The complaints answer assumes only a real channel is displayed. The company name is rendered in working English, not asserted as a registered English legal name."
+  },
+  {
+    "slug": "/complaints",
+    "name": "Complaints and Customer Protection",
+    "seo_title": "Complaints and Customer Protection | MASAR",
+    "meta_description": "Learn how to submit feedback or a complaint to MASAR, what information supports follow-up and how review and escalation work once procedures are approved.",
+    "body": "# Your concern deserves a clear review.\nWe are preparing a complaints process distinct from commercial inquiries: describing what happened, reviewing the facts and providing a clear outcome that can be referred to later.\n\n## What helps the review?\nYour name and contact details, the relevant service, a description and date of the issue, and a transaction or request reference if available. Attach only necessary documents, after concealing information unrelated to the complaint.\n\n## How is a complaint reviewed?\nThe complaint is received and assigned a reference, then reviewed, with missing information requested where needed. The complainant is then informed of the outcome, action taken or appropriate explanation.\n\n## Reconsideration and escalation\nThe approved policy explains how to request a further review, who handles it, relevant timeframes and available escalation routes for the service type. These details are published before the product's complaints channel becomes operational.\n\n## Information we do not need in a complaint\nDo not send a password, PIN, verification code or a full image of your card. Sensitive attachments must go through an approved channel, not public comments.",
+    "cta": "Submit a complaint → Approved working form only",
+    "publishing_gate": "Operational draft; do not publish as a commitment before the process, channel and timeframes are approved",
+    "editorial_notes": "Approval needed: receiving channels, tracking reference, acknowledgment and resolution timeframes, exceptions, reopening and escalation, and attachment retention. References to a proposed process are internal and removed only after the process is approved."
+  },
+  {
+    "slug": "/help/stay-safe",
+    "name": "Stay Safe",
+    "seo_title": "Protect Your Information and Payments | MASAR",
+    "meta_description": "Practical guidance on suspicious messages and links, protecting passwords and verification codes, and handling unusual payment requests.",
+    "body": "# Pause before acting on a request about your money or data.\nA message may seem convincing or urgent, but verifying its source matters more than replying quickly.\n\n## Keep your security codes private\nDo not share a password, PIN or verification code with someone contacting you by phone or message. Enter verification details only through the official channel and after checking the transaction you are authorizing.\n\n## Open the official channel yourself\nIf you are unsure about a link, do not open it from the message. Go directly to the official website or app, then verify the request using the contact details published there.\n\n## Recipient details changed? Check first.\nConfirm directly with the person making the request through a trusted contact method you have used before, especially if you are asked to transfer money to a new account.\n\n## An image is not always confirmation\nWhen receiving a payment, check its status in your system or with the authorized provider. Do not rely solely on a screenshot of a message or an unverifiable receipt.\n\n## Found a suspicious request?\nStop interacting, keep the message and transaction reference if available, and contact the account or card provider through its official channels. Do not delete evidence before recording it.",
+    "cta": "Contact channels → /contactus",
+    "publishing_gate": "Editorial and compliance review before publication",
+    "editorial_notes": "General guidance source: Emirates NBD's fraud-awareness campaign. Do not promise payment reversal, recovery of funds or account freezing through this form. Do not say HTTPS alone proves a website is legitimate."
+  },
+  {
+    "slug": "/contactus",
+    "name": "Contact Us",
+    "seo_title": "Contact MASAR | Business, Integration and Partnerships",
+    "meta_description": "Send MASAR an inquiry about services, business needs, integration or partnerships, with a clear subject and suitable contact details.",
+    "body": "# Every need starts with a clear conversation.\nTell us how payment solutions could help your business, or share your question about MASAR. Choose the closest topic so your request reaches the right team.\n\n## Inquiry topic\nServices and business, technical integration, partnerships, media or a general inquiry. Complaints are directed to the approved complaints process once activated.\n\n## Contact form\nName; organization where applicable; an email address or telephone number for contact; request subject; and a short description of your needs.\n\n## Protect your privacy\nDo not attach full card or account details, passwords, verification codes or identity documents to a general inquiry. We ask only for the information needed to understand your request.\n\n## After submission\nWhen the request is successfully recorded: \"We have received your inquiry. Keep the displayed reference number to follow up.\"\nIf submission fails: \"Your request was not submitted. Check your connection and try again. Do not re-enter sensitive information.\"",
+    "cta": "Send inquiry",
+    "publishing_gate": "Test the form, privacy information and actual receipt before publication",
+    "editorial_notes": "Do not publish telephone numbers, email addresses, addresses or hours from demo data. Display a reference only after a real record is created. Acknowledgment of the privacy notice is separate from optional marketing consent."
+  },
+  {
+    "slug": "/news",
+    "name": "Newsroom",
+    "seo_title": "MASAR News and Announcements | Newsroom",
+    "meta_description": "Official announcements and approved updates about MASAR, project development and service availability when announced.",
+    "body": "# MASAR news, from the source.\nThis page brings together official announcements and approved project updates. Each item includes its publication date, subject and the team responsible for its content.\n\n## Company announcements\nCorporate updates cleared for publication, with wording that distinguishes preparatory milestones from an operational launch or an effective partnership.\n\n## Service updates\nChanges to service scope, availability and information customers need to know, with an effective date where applicable.\n\n## Media inquiries\nPlease use the contact form to send your request, media organization's name, inquiry topic and requested response date.\n\n## When no news has been approved\nOfficial MASAR announcements will appear here once approved for publication.",
+    "cta": "Media inquiry → /contactus",
+    "publishing_gate": "Real material only; do not automatically publish private licensing correspondence",
+    "editorial_notes": "News template: accurate headline, date, summary, what happened, what it does and does not mean, approved source and contact. No fabricated news or partner images or quotations without permission."
+  },
+  {
+    "slug": "/careers",
+    "name": "Careers",
+    "seo_title": "Careers at MASAR | Roles and Opportunities",
+    "meta_description": "Explore MASAR's areas of work and vacancies approved for publication, including each role's requirements and application process.",
+    "body": "# Help build a clearer financial experience.\nWe believe good services start with teams that understand their responsibility to customers, data and operations. The workplace we aim to build combines financial and technical knowledge with professional discipline.\n\n## Areas of work\nProject needs may include operations, customer service, technology, finance, risk, compliance and business development. Listing these areas does not mean current vacancies exist.\n\n## Specific opportunities. Clear requirements.\nApproved vacancies are published with role responsibilities, work location, requirements, application method and the receiving team.\n\n## When there are no vacancies\nThere are currently no opportunities advertised on this page. Vacancies are published once approved.",
+    "cta": "View approved vacancies when available",
+    "publishing_gate": "Publish real vacancies and connect applications to a working recruitment system",
+    "editorial_notes": "Do not advertise salaries, benefits or remote work without approval. Do not collect CVs without a purpose-specific privacy notice and retention information."
+  },
+  {
+    "slug": "/locations",
+    "name": "Service Locations",
+    "seo_title": "Service Locations and ATMs | MASAR",
+    "meta_description": "Approved service locations when available, including service type, address, operating hours and information to review before visiting.",
+    "body": "# Know where a service is available before you visit.\nThis page explains approved channel locations and the services actually available at each site, once network information is published.\n\n## Choose what you need\nFilter by city or area and service type: ATM, service point or approved cash channel, according to what is actually available.\n\n## Information for each location\nLocation name and operator, address, service type, operating hours where applicable and the source of the latest update.\n\n## When approved information is not yet available\nAn approved list of locations has not yet been published on the website. Please contact us with your inquiry and do not rely on unverified locations.",
+    "cta": "Ask about service locations → /contactus",
+    "publishing_gate": "Hide from public navigation until approved locations are available",
+    "editorial_notes": "No fictional map points or claims that a location is near a user without data. Do not use a user's location without consent. Actual service hours must not be replaced with an assumed 24/7 schedule."
+  },
+  {
+    "slug": "/status",
+    "name": "Service Status",
+    "seo_title": "Service Status and Operational Updates | MASAR",
+    "meta_description": "Service status, incident and maintenance updates once monitoring and approved operational reporting are enabled for each product.",
+    "body": "# Service status from a source you can refer to.\nThis page displays the status of operational products covered by monitoring, along with incident and maintenance updates once enabled.\n\n## What does each status mean?\n**Operational:** Approved monitoring confirms the availability of the functions being checked.\n**Partially affected:** There is a defined impact on some functions or users.\n**Unavailable:** The function covered by the update cannot be used.\n**Scheduled maintenance:** A planned change with an announced time and scope of impact.\n**Status unknown:** No reliable recent reading is available.\n\n## A clear record for each incident\nThe impact start time, affected service, known scope of the issue, latest update, action taken and verified recovery time.\n\n## Before monitoring is enabled\nThe operational status page for these products is not yet active. Please contact us to ask about availability.",
+    "cta": "Help Center → /help",
+    "publishing_gate": "Do not publish operational indicators before they are connected to real monitoring",
+    "editorial_notes": "Railway SUCCESS does not establish payment health or bank connectivity. No invented uptime percentages, response times or maintenance history. Name the scope of the checks and distinguish website availability from financial-product availability."
+  },
+  {
+    "slug": "/privacy",
+    "name": "Privacy Notice",
+    "seo_title": "Privacy Notice | MASAR Website",
+    "meta_description": "Learn how website and inquiry data is handled once the actual collection, purposes, retention and sharing details have been approved.",
+    "body": "# Your data deserves a clear explanation.\n**Draft website notice, not a final policy or a verified description of actual processing. Complete and approve the following fields before using this text.**\n\n## 1. Who is responsible for your data?\n[Registered legal entity and address] is responsible for processing data related to this website. For privacy inquiries: [approved privacy contact channel].\n\n## 2. Scope of this notice\nThis notice covers [website browsing, inquiry forms and newsletters/recruitment, according to what actually exists]. Financial products will have separate notices when operational, reflecting the product and participating organizations.\n\n## 3. Data collected\n[Actual fields in each form], [technical log data actually collected] and [cookie data following an inventory]. Do not add a data category simply because it is common on other websites.\n\n## 4. Why is it used?\n[Connect each data category to a specific purpose, such as answering inquiries, protecting the service, recruitment or optional marketing], with [the applicable legal basis identified following review].\n\n## 5. Sharing and processing locations\n[Processors, hosting or messaging providers, relevant countries, and the nature and reasons for sharing]. Website hosting does not by itself establish that all data stays in a particular country.\n\n## 6. Retention period\n[A period or retention criterion for each data category], and [deletion, anonymization or retention procedures for an applicable legal obligation].\n\n## 7. Privacy requests\nData-related requests may be sent to [approved channel]. The requester's rights, verification method, timeframes and exceptions are determined under [applicable legal framework].\n\n## 8. Marketing choices\n[Separate consent method if marketing is used, and the unsubscribe process once enabled]. A service request must not become blanket consent for every marketing use.\n\n## 9. Protection and updates\n[Accurate description of implemented controls without an absolute guarantee]. Effective date: [approved date]. Updates are published with an explanation of changes where required.",
+    "cta": "Privacy inquiries → Approved channel",
+    "publishing_gate": "Not suitable for publication until the data register is completed and legal review is finished",
+    "editorial_notes": "Do not assume GDPR, fixed periods or unverified rights apply. Connect the form to a completed notice before collecting data; a statement that privacy is respected is not sufficient."
+  },
+  {
+    "slug": "/terms",
+    "name": "Website Terms of Use",
+    "seo_title": "MASAR Website Terms of Use",
+    "meta_description": "Terms for browsing, using content and submitting inquiries on MASAR's website, separate from financial-product agreements when services become operational.",
+    "body": "# Website Terms of Use\n**Editorial draft requiring completed information and legal review. It does not replace account, card or payment-service agreements.**\n\n## 1. Website operator\nThis website is operated by [legal entity, address and approved registration details]. This version takes effect on [date].\n\n## 2. Purpose of the website\nThe website introduces MASAR, its solution areas and contact channels. Submitting an inquiry does not constitute a financial-service agreement, account opening or merchant approval.\n\n## 3. Service availability\nEach product's scope is defined in its approved documentation and agreements. Preparatory descriptions do not confirm availability or guarantee acceptance of an application.\n\n## 4. Acceptable use\nUsers must provide accurate information relevant to their request and must not use forms for abuse, share data they are not authorized to disclose, attempt to disrupt the website or gain unauthorized access.\n\n## 5. Content and intellectual property\n[Define rights in MASAR content, third-party materials and permitted use]. Mentioning a third party in an informational article does not establish a partnership.\n\n## 6. External links\nLinks may lead to organizations with their own terms and privacy practices. Reference links must be distinguished from approved channels for providing MASAR services.\n\n## 7. Liability and dispute resolution\n[Approved legal wording that does not exclude rights that cannot lawfully be excluded], and [applicable law and jurisdiction following review].\n\n## 8. Changes and contact\n[Process for updating terms and announcing effective dates], and [official inquiry channel].",
+    "cta": "Privacy → /privacy | Contact us → /contactus",
+    "publishing_gate": "Not suitable for publication before legal review",
+    "editorial_notes": "Do not copy governing laws, courts, indemnities or exclusions from foreign companies. Financial-service agreements are separate documents for each product."
+  },
+  {
+    "slug": "/cookies",
+    "name": "Cookies",
+    "seo_title": "Cookies and Privacy Preferences | MASAR",
+    "meta_description": "Learn about the cookies actually used on MASAR's website, their purposes, durations and preference controls once the inventory is approved.",
+    "body": "# Know what the website uses. Make informed choices.\n**This notice specification requires a technical inventory. Do not publish it as a complete description before reviewing the actual website.**\n\n## Cookies necessary for operation\n[Names of cookies actually used] to support [specific purposes, such as sessions or language preferences where implemented], for [actual duration].\n\n## Analytics and marketing\n[List only tools actually used, their purposes, providers and durations]. Do not state that there is no tracking, or that cookies are used only for analytics, without verification.\n\n## Managing choices\n[Describe the preference controls actually implemented]. Accept, reject and customize buttons must match the software's behavior, and optional tools must not load contrary to the approved choices.\n\n## Information for each cookie\nName, provider, purpose, category, duration and whether it is necessary for operation. Last reviewed: [date].",
+    "cta": "Manage cookie preferences → Working tool only",
+    "publishing_gate": "Not suitable for publication before a cookie and third-party inventory and testing of the preference tool",
+    "editorial_notes": "No fictional consent mechanism. Also review external fonts, analytics, chat and embedded media. The website does not need marketing tools simply because they are technically available."
+  },
+  {
+    "slug": "/accessibility",
+    "name": "Accessibility",
+    "seo_title": "Accessibility and Website Assistance | MASAR",
+    "meta_description": "Contact MASAR if you encounter a barrier to reading content or using forms, and learn about the scope of planned accessibility improvements.",
+    "body": "# A clearer, easier-to-use website.\nWe aim to provide readable content, clear navigation and an experience that considers mobile devices, keyboard use and assistive technologies.\n\n## What are we working to improve?\nClear headings and links, text enlargement, form-field labels, contrast, error messages and reduced unnecessary motion.\n\n## Encountered a barrier?\nTell us which page and step you could not complete, and your device or browser where helpful. Do not include sensitive information in the issue description.\n\n## Testing statement\nTest results, scope and dates are added after verification. This statement does not claim certification or a particular conformance level.",
+    "cta": "Report an accessibility barrier → /contactus",
+    "publishing_gate": "Approve the improvement objective and reporting channel; do not claim conformance without testing",
+    "editorial_notes": "No WCAG AA, accessibility percentage or universal compatibility claims without assessment. Do not offer an alternative support service, such as telephone assistance, unless the channel and resources exist."
+  }
+]

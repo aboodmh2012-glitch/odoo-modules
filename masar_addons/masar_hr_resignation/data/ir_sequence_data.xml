@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-  <record id="seq_hr_resignation" model="ir.sequence">
-    <field name="name">HR Resignation</field>
-    <field name="code">hr.resignation</field>
-    <field name="prefix">RES/%(year)s/</field>
-    <field name="padding">4</field>
-  </record>
-</odoo>

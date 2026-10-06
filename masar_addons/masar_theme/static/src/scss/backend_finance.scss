@@ -1,0 +1,70 @@
+// MASAR Fintech UX — amounts, IDs, status semantics (operational screens).
+
+.o_web_client {
+    // Tabular figures for money / rates / quantities
+    .o_list_number,
+    .o_field_monetary,
+    .o_list_float,
+    .o_field_float,
+    .o_field_integer,
+    .o_stat_value,
+    .o_kanban_record .o_field_monetary,
+    td.o_data_cell[name*="amount"],
+    td.o_data_cell[name*="balance"],
+    td.o_data_cell[name*="debit"],
+    td.o_data_cell[name*="credit"],
+    td.o_data_cell[name*="price"],
+    td.o_data_cell[name*="total"] {
+        font-variant-numeric: tabular-nums;
+        font-feature-settings: "tnum" 1;
+        font-weight: var(--masar-weight-medium);
+        letter-spacing: 0.01em;
+    }
+
+    // Reference / transaction style identifiers
+    .o_field_char[name*="name"] .o_input,
+    .o_field_char[name*="ref"],
+    .o_field_char[name*="reference"],
+    .o_field_char[name*="number"],
+    td.o_data_cell[name="name"],
+    td.o_data_cell[name="ref"],
+    td.o_data_cell[name="payment_reference"] {
+        font-variant-numeric: tabular-nums;
+        letter-spacing: 0.01em;
+    }
+
+    // Status badges — text + color (never color-only)
+    .o_field_badge,
+    .badge,
+    .o_statusbar_status .o_arrow_button {
+        font-weight: var(--masar-weight-medium);
+        letter-spacing: 0.01em;
+    }
+
+    // Semantic status helpers (opt-in classes for custom views)
+    .o_masar_status_success { color: var(--masar-green); }
+    .o_masar_status_warning { color: var(--masar-warning); }
+    .o_masar_status_danger { color: var(--masar-danger); }
+    .o_masar_status_info { color: var(--masar-info); }
+    .o_masar_status_pending { color: var(--masar-text-secondary); }
+
+    .o_masar_kpi {
+        font-size: var(--masar-font-size-kpi);
+        font-weight: var(--masar-weight-bold);
+        color: var(--masar-text-primary);
+        font-variant-numeric: tabular-nums;
+        line-height: var(--masar-line-tight);
+    }
+}
+
+// List density for financial tables
+.o_list_view .o_data_row {
+    min-height: var(--masar-density-row);
+}
+
+.o_list_view .o_list_table thead th {
+    font-size: var(--masar-font-size-small);
+    letter-spacing: 0.02em;
+    text-transform: none;
+}
+

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-  <record id="seq_hr_employee_transfer" model="ir.sequence">
-    <field name="name">Employee Transfer</field>
-    <field name="code">hr.employee.transfer</field>
-    <field name="prefix">TR/%(year)s/</field>
-    <field name="padding">4</field>
-  </record>
-</odoo>

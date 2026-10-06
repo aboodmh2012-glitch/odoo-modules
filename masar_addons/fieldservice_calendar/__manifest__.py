@@ -1,0 +1,12 @@
+{'author': 'Akretion, Odoo Community Association (OCA)',
+ 'category': 'Field Service',
+ 'data': ['views/fsm_order.xml', 'views/fsm_team.xml'],
+ 'depends': ['calendar', 'fieldservice'],
+ 'development_status': 'Beta',
+ 'installable': True,
+ 'license': 'AGPL-3',
+ 'maintainers': ['hparfr'],
+ 'name': 'Field Service - Calendar',
+ 'summary': 'Add calendar to FSM Orders',
+ 'version': '20.0.1.0.0',
+ 'website': 'https://github.com/OCA/field-service'}

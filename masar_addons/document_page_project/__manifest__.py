@@ -1,0 +1,11 @@
+{'author': 'ForgeFlow, Odoo Community Association (OCA)',
+ 'category': 'Project',
+ 'data': ['views/document_page_views.xml', 'views/project_project_views.xml'],
+ 'depends': ['project', 'document_page'],
+ 'installable': True,
+ 'license': 'AGPL-3',
+ 'maintainers': ['LoisRForgeFlow'],
+ 'name': 'Document Page Project',
+ 'summary': 'This module links document pages to projects',
+ 'version': '20.0.1.0.0',
+ 'website': 'https://github.com/OCA/knowledge'}

@@ -1,0 +1,10 @@
+{'application': False,
+ 'author': 'MASAR',
+ 'category': 'Sales/CRM',
+ 'data': ['views/crm_lead_views.xml'],
+ 'depends': ['crm', 'utm'],
+ 'installable': True,
+ 'license': 'LGPL-3',
+ 'name': 'MASAR CRM Services',
+ 'summary': 'Track requested MASAR services and acquisition channels in CRM',
+ 'version': '20.0.1.0.0'}

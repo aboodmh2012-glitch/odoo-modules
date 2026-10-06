@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="masar_header" inherit_id="website.layout" name="MASAR Header" priority="99">
+        <xpath expr="//header[@id='top']" position="replace">
+            <header id="top" t-if="not no_header" class="masar-header" data-anchor="true" data-name="Header">
+                <t t-set="copy" t-value="website.masar_public()"/>
+                <t t-call="masar_website.masar_sprite"/>
+                <a class="masar-skip" href="#wrap">
+                    <span t-out="copy['skip']"/>
+                </a>
+                <ul class="top_menu d-none" aria-hidden="true"/>
+                <div class="masar-header__bar masar-wrap">
+                    <a class="masar-header__brand" href="/">
+                        <t t-call="masar_website.masar_lockup"/>
+                    </a>
+                    <button type="button" class="masar-nav__toggle" aria-expanded="false" aria-controls="masar-nav">
+                        <span class="masar-nav__toggle-bars" aria-hidden="true"/>
+                        <span class="masar-nav__toggle-label" t-out="copy['nav_toggle']"/>
+                    </button>
+                    <nav id="masar-nav" class="masar-nav" t-att-aria-label="copy['nav_label']">
+                        <t t-foreach="copy['nav']" t-as="item">
+                            <a t-att-href="item['href']" t-att-aria-current="item['current'] and 'page' or None" t-attf-class="masar-nav__link #{item['current'] and 'is-active' or ''}">
+                                <span class="masar-nav__label" t-out="item['label']"/>
+                            </a>
+                        </t>
+                    </nav>
+                    <div class="masar-header__tools">
+                        <t t-call="masar_website.masar_lang"/>
+                        <a class="masar-btn masar-btn--primary masar-btn--forward" t-att-href="copy['actions']['get_started_href']">
+                            <span class="masar-btn__label" t-out="copy['actions']['get_started']"/>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </xpath>
+    </template>
+    <template id="masar_structured_data" inherit_id="website.layout" name="MASAR Structured Data" priority="110">
+        <xpath expr="//head" position="inside">
+            <meta t-if="not (main_object and main_object._name == 'hr.job')" property="og:image" content="https://msarpay.com/web/image/website/1/logo"/>
+            <meta t-if="not (main_object and main_object._name == 'hr.job')" name="twitter:card" content="summary_large_image"/>
+            <meta t-if="not (main_object and main_object._name == 'hr.job')" name="twitter:image" content="https://msarpay.com/web/image/website/1/logo"/>
+            <script type="application/ld+json">
+                {
+                  "@context": "https://schema.org",
+                  "@type": "Organization",
+                  "name": "MASAR Pay",
+                  "alternateName": "مسار باي",
+                  "url": "https://msarpay.com",
+                  "logo": "https://msarpay.com/web/image/website/1/logo",
+                  "description": "A unified payment platform connecting people and businesses in Yemen.",
+                  "areaServed": "YE"
+                }
+            </script>
+            <script type="application/ld+json">
+                {
+                  "@context": "https://schema.org",
+                  "@type": "WebSite",
+                  "name": "MASAR Pay",
+                  "url": "https://msarpay.com",
+                  "inLanguage": ["ar", "en"]
+                }
+            </script>
+        </xpath>
+    </template>
+</odoo>

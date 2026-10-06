@@ -1,9 +1,0 @@
-id,name,model_id,group_id/id,operation,domain
-access_doc_type_user,doc.type.user,hr.employee.document.type,base.group_user,r,
-access_doc_type_hr,doc.type.hr,hr.employee.document.type,hr.group_hr_user,cru,
-access_doc_type_manager,doc.type.manager,hr.employee.document.type,hr.group_hr_manager,crud,
-access_doc_user_own,doc.user.own,hr.employee.document,base.group_user,r,"[('employee_id', 'in', user.employee_ids.ids), ('is_confidential', '=', False)]"
-access_doc_hr,doc.hr,hr.employee.document,hr.group_hr_user,cru,
-access_doc_manager,doc.manager,hr.employee.document,hr.group_hr_manager,crud,
-rule_document_company,Employee document multi-company,hr.employee.document,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
-rule_document_type_company,Document type multi-company,hr.employee.document.type,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"

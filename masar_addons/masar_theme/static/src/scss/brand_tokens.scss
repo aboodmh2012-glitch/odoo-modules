@@ -1,0 +1,167 @@
+// =============================================================================
+// MASAR Pay Design System — token layers (backend)
+// Inspired by Monodoo/Pantalytics token architecture; MASAR brand values only.
+// Components should prefer semantic/component tokens over primitives.
+// =============================================================================
+
+// --- A. Primitive SCSS (compile-time; keep primary_variables aligned) ----------
+$masar-navy: #071F3D;
+$masar-navy-deep: #04162C;
+$masar-blue: #071F3D;
+$masar-blue-hover: #04162C;
+$masar-cyan: #FF6A00;
+$masar-orange: #FF6A00;
+$masar-orange-deep: #E85E00;
+$masar-light: #F3F5F8;
+$masar-white: #FFFFFF;
+$masar-gray-100: #F4F8FC;
+$masar-gray-200: #E6EEF7;
+$masar-gray-400: #61738A;
+$masar-gray-600: #41536A;
+$masar-gray-800: #1B2B40;
+$masar-green: #22C55E;
+$masar-danger: #DC3545;
+$masar-warning: #F0AD4E;
+$masar-info: #0EA5E9;
+
+$masar-radius: 0.75rem;
+$masar-radius-sm: 0.5rem;
+$masar-radius-lg: 1.1rem;
+
+$masar-shadow: 0 8px 24px rgba(7, 31, 61, 0.08);
+$masar-shadow-sm: 0 2px 8px rgba(7, 31, 61, 0.06);
+
+// Blue/cyan names remain compatibility aliases; UI palette is navy/orange/white.
+// Legacy aliases used by existing SCSS files
+$masar-surface: $masar-white;
+$masar-surface-alt: $masar-gray-100;
+$masar-text: $masar-navy;
+$masar-text-soft: $masar-gray-600;
+
+:root {
+    // --- A. Primitives --------------------------------------------------------
+    --masar-navy: #{$masar-navy};
+    --masar-navy-deep: #{$masar-navy-deep};
+    --masar-blue: #{$masar-blue};
+    --masar-blue-hover: #{$masar-blue-hover};
+    --masar-cyan: #{$masar-cyan};
+    --masar-orange: #{$masar-orange};
+    --masar-orange-deep: #{$masar-orange-deep};
+    --masar-light: #{$masar-light};
+    --masar-white: #{$masar-white};
+    --masar-green: #{$masar-green};
+    --masar-danger: #{$masar-danger};
+    --masar-warning: #{$masar-warning};
+    --masar-info: #{$masar-info};
+
+    // --- B. Semantic ----------------------------------------------------------
+    --masar-surface-primary: #{$masar-white};
+    --masar-surface-secondary: #{$masar-light};
+    --masar-surface-raised: #{$masar-white};
+    --masar-surface-sunken: #{$masar-gray-100};
+
+    --masar-text-primary: #{$masar-navy};
+    --masar-text-secondary: #{$masar-gray-600};
+    --masar-text-muted: #{$masar-gray-400};
+    --masar-text-inverse: #{$masar-white};
+
+    --masar-border-default: rgba(7, 31, 61, 0.12);
+    --masar-border-strong: rgba(7, 31, 61, 0.22);
+
+    --masar-action-primary: #{$masar-blue};
+    --masar-action-primary-hover: #{$masar-blue-hover};
+    --masar-action-primary-active: #{$masar-navy};
+    --masar-action-accent: #{$masar-orange};
+    --masar-action-accent-hover: #{$masar-orange-deep};
+
+    --masar-focus: #{$masar-blue};
+    --masar-focus-ring: 0 0 0 0.2rem rgba(7, 31, 61, 0.18);
+    --masar-disabled: rgba(7, 31, 61, 0.38);
+
+    // Legacy bridge (existing files)
+    --masar-surface: var(--masar-surface-primary);
+    --masar-surface-alt: var(--masar-surface-sunken);
+    --masar-text: var(--masar-text-primary);
+    --masar-text-soft: var(--masar-text-secondary);
+    --masar-line: var(--masar-border-default);
+    --masar-workspace-bg: var(--masar-surface-secondary);
+
+    // --- C. Component ---------------------------------------------------------
+    --masar-navbar-bg: #{$masar-navy};
+    --masar-navbar-text: #{$masar-white};
+    --masar-sidebar-bg: #{$masar-navy};
+    --masar-sidebar-item: rgba(255, 255, 255, 0.92);
+    --masar-sidebar-item-hover: rgba(255, 255, 255, 0.1);
+    --masar-sidebar-item-active: rgba(255, 106, 0, 0.18);
+    --masar-card-bg: var(--masar-surface-raised);
+    --masar-button-bg: var(--masar-action-accent);
+    --masar-input-border: var(--masar-border-default);
+    --masar-dialog-shadow: #{$masar-shadow};
+
+    // --- D. State -------------------------------------------------------------
+    --masar-state-hover: rgba(7, 31, 61, 0.06);
+    --masar-state-active: rgba(7, 31, 61, 0.12);
+    --masar-state-selected: rgba(255, 106, 0, 0.14);
+    --masar-state-focus: var(--masar-focus-ring);
+
+    // --- Spacing (4px scale) --------------------------------------------------
+    --masar-space-1: 0.25rem;  // 4
+    --masar-space-2: 0.5rem;   // 8
+    --masar-space-3: 0.75rem;  // 12
+    --masar-space-4: 1rem;     // 16
+    --masar-space-5: 1.5rem;   // 24
+    --masar-space-6: 2rem;     // 32
+    --masar-space-7: 3rem;     // 48
+    --masar-space-8: 4rem;     // 64
+
+    // --- Radius ---------------------------------------------------------------
+    --masar-radius-sm: 0.5rem;
+    --masar-radius-md: 0.75rem;
+    --masar-radius-lg: 1.1rem;
+    --masar-radius-xl: 1.5rem;
+    --masar-radius-pill: 999px;
+    --masar-radius: var(--masar-radius-md);
+
+    // --- Elevation ------------------------------------------------------------
+    --masar-elev-0: none;
+    --masar-elev-1: 0 2px 8px rgba(7, 31, 61, 0.06);
+    --masar-elev-2: 0 8px 24px rgba(7, 31, 61, 0.1);
+    --masar-elev-3: 0 16px 40px rgba(7, 31, 61, 0.16);
+    --masar-elev-4: 0 24px 64px rgba(7, 31, 61, 0.22);
+    --masar-shadow: var(--masar-elev-2);
+    --masar-shadow-sm: var(--masar-elev-1);
+
+    // --- Typography -----------------------------------------------------------
+    --masar-font-size-display: 1.75rem;
+    --masar-font-size-h1: 1.5rem;
+    --masar-font-size-h2: 1.25rem;
+    --masar-font-size-h3: 1.125rem;
+    --masar-font-size-h4: 1rem;
+    --masar-font-size-body: 0.9375rem;
+    --masar-font-size-small: 0.8125rem;
+    --masar-font-size-label: 0.8125rem;
+    --masar-font-size-caption: 0.75rem;
+    --masar-font-size-kpi: 1.5rem;
+    --masar-line-body: 1.5;
+    --masar-line-tight: 1.25;
+    --masar-weight-regular: 400;
+    --masar-weight-medium: 600;
+    --masar-weight-bold: 700;
+
+    // --- Density --------------------------------------------------------------
+    --masar-density-row: 2.5rem;
+    --masar-density-control: 2.25rem;
+
+    // Gradients (brand moments only — login/apps, not operational sheets)
+    --masar-navy-gradient: linear-gradient(160deg, #{$masar-navy} 0%, #{$masar-navy-deep} 100%);
+    --masar-signal-gradient: linear-gradient(100deg, #{$masar-navy} 0%, #{$masar-navy-deep} 100%);
+    --masar-accent-gradient: linear-gradient(100deg, #{$masar-orange} 0%, #{$masar-orange-deep} 100%);
+}
+
+// Compact density opt-in (settings / power users can toggle class on body later)
+.o_masar_density_compact {
+    --masar-density-row: 2.1rem;
+    --masar-density-control: 2rem;
+    --masar-font-size-body: 0.875rem;
+}
+

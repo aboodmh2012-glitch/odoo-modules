@@ -1,0 +1,12 @@
+{'author': 'Akretion,Odoo Community Association (OCA)',
+ 'auto_install': True,
+ 'category': 'Accounting',
+ 'data': ['views/date_range.xml', 'security/ir.access.csv'],
+ 'depends': ['account', 'date_range'],
+ 'installable': True,
+ 'license': 'AGPL-3',
+ 'maintainers': ['alexis-via'],
+ 'name': 'Date Range Account',
+ 'summary': 'Add Date Range menu entry in Invoicing app',
+ 'version': '20.0.1.0.0',
+ 'website': 'https://github.com/OCA/server-ux'}

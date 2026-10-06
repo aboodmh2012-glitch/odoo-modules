@@ -1,0 +1,12 @@
+{'author': 'ACSONE SA/NV, Tecnativa, Odoo Community Association (OCA)',
+ 'data': ['security/ir.access.csv',
+          'views/account_journal.xml',
+          'wizards/update_journal_lock_dates_views.xml'],
+ 'demo': [],
+ 'depends': ['account'],
+ 'installable': True,
+ 'license': 'AGPL-3',
+ 'name': 'Account Journal Lock Date',
+ 'summary': 'Lock each journal independently',
+ 'version': '20.0.1.0.0',
+ 'website': 'https://github.com/OCA/account-financial-tools'}

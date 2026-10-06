@@ -1,0 +1,94 @@
+// MASAR Pay — list / table readability without heavy chrome.
+
+.o_list_view {
+    .o_list_renderer {
+        background: var(--masar-white);
+        border: 1px solid var(--masar-line);
+        border-radius: var(--masar-radius);
+        box-shadow: var(--masar-shadow-sm);
+        overflow-x: auto;
+    }
+
+    .o_list_table {
+        color: var(--masar-text);
+        thead th,
+        .o_list_table thead th {
+            background: var(--masar-light) !important;
+            color: var(--masar-navy) !important;
+            font-weight: 700;
+            border-bottom: 1px solid var(--masar-line) !important;
+            white-space: nowrap;
+        }
+
+        tbody tr:hover {
+            background: rgba(7, 31, 61, 0.045) !important;
+        }
+
+        tbody tr.o_data_row.o_selected_row,
+        tbody tr.table-info,
+        tbody tr.o_row_selected {
+            background: rgba(255, 106, 0, 0.12) !important;
+            border-inline-start: 3px solid var(--masar-orange);
+        }
+
+        td,
+        th {
+            border-color: rgba(7, 31, 61, 0.08);
+        }
+
+        // Keep financial figures crisp
+        .o_list_number,
+        .o_field_monetary,
+        .o_list_float {
+            font-variant-numeric: tabular-nums;
+            font-feature-settings: "tnum";
+            letter-spacing: 0.01em;
+        }
+    }
+
+    .o_optional_columns_dropdown,
+    .o_list_selection_box {
+        color: var(--masar-text-soft);
+    }
+}
+
+.o_cp_pager,
+.o_pager {
+    .o_pager_counter,
+    .btn {
+        border-radius: var(--masar-radius-sm);
+    }
+
+    .btn-primary {
+        background: var(--masar-orange);
+        border-color: var(--masar-orange);
+        color: var(--masar-navy);
+    }
+}
+
+.o_search_panel {
+    background: var(--masar-white);
+    border-inline-end: 1px solid var(--masar-line);
+
+    .o_search_panel_section_header {
+        color: var(--masar-navy);
+        font-weight: 700;
+    }
+
+    .o_search_panel_label:hover,
+    .o_search_panel_filter_value:hover {
+        background: rgba(7, 31, 61, 0.06);
+    }
+
+    .active,
+    .o_search_panel_filter_value.active {
+        color: var(--masar-blue);
+        font-weight: 600;
+    }
+}
+
+.o_group_header {
+    background: rgba(243, 245, 248, 0.85) !important;
+    color: var(--masar-navy) !important;
+    font-weight: 700;
+}

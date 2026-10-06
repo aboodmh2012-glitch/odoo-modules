@@ -1,0 +1,11 @@
+{'application': False,
+ 'author': 'Bernat Obrador (APSL-Nagarro), Odoo Community Association (OCA)',
+ 'category': 'Accounting & Finance',
+ 'data': ['views/account_asset.xml'],
+ 'depends': ['account_asset_management'],
+ 'installable': True,
+ 'license': 'AGPL-3',
+ 'maintainers': ['BernatObrador'],
+ 'name': 'Asset Force Account',
+ 'version': '20.0.1.0.0',
+ 'website': 'https://github.com/OCA/account-financial-tools'}

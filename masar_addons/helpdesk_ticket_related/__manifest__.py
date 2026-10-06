@@ -1,0 +1,12 @@
+{'application': False,
+ 'author': 'Antoni Marroig, APSL-Nagarro, Odoo Community Association (OCA)',
+ 'category': 'Helpdesk',
+ 'data': ['views/helpdesk_ticket_views.xml'],
+ 'depends': ['helpdesk_mgmt'],
+ 'installable': True,
+ 'license': 'AGPL-3',
+ 'maintainers': ['peluko00'],
+ 'name': 'Helpdesk Ticket Related',
+ 'summary': 'Link tickets to each other',
+ 'version': '20.0.1.0.0',
+ 'website': 'https://github.com/OCA/helpdesk'}

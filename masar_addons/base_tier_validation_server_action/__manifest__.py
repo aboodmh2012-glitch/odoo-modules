@@ -1,0 +1,13 @@
+{'application': False,
+ 'author': 'Ecosoft, Odoo Community Association (OCA)',
+ 'category': 'Tools',
+ 'data': ['data/cron_data.xml', 'views/tier_definition_view.xml'],
+ 'depends': ['base_tier_validation'],
+ 'development_status': 'Beta',
+ 'installable': True,
+ 'license': 'AGPL-3',
+ 'maintainers': ['kittiu'],
+ 'name': 'Base Tier Validation - Server Action',
+ 'summary': 'Add option to call server action when a tier is validated',
+ 'version': '20.0.1.0.0',
+ 'website': 'https://github.com/OCA/tier-validation'}

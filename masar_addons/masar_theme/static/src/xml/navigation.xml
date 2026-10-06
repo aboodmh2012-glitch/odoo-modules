@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-inherit="web_responsive.AppsMenu" t-inherit-mode="extension">
+        <xpath expr="//button[hasclass('o_grid_apps_menu__button')]" position="attributes">
+            <attribute name="t-ref">masarNavigationButton</attribute>
+            <attribute name="title"/>
+            <attribute name="t-att-title">navigationLabel</attribute>
+            <attribute name="t-att-aria-label">navigationLabel</attribute>
+            <attribute name="t-att-aria-expanded">state.open || state.sectionsOpen ? 'true' : 'false'</attribute>
+            <attribute name="t-att-aria-controls">ui.isSmall &amp;&amp; !state.open ? 'masar-sections-menu' : 'masar-apps-launcher'</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('app-menu-container')]" position="attributes">
+            <attribute name="t-ref">masarLauncher</attribute>
+            <attribute name="id">masar-apps-launcher</attribute>
+            <attribute name="role">region</attribute>
+            <attribute name="aria-label">All applications</attribute>
+        </xpath>
+    </t>
+    <t t-inherit="web.NavBar.AppsMenu.Sidebar" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('o_app_menu_sidebar')]" position="attributes">
+            <attribute name="class">o_app_menu_sidebar position-fixed top-0 bottom-0 end-100 d-flex flex-column flex-nowrap</attribute>
+            <attribute name="t-ref">masarSectionsDrawer</attribute>
+            <attribute name="id">masar-sections-menu</attribute>
+            <attribute name="role">dialog</attribute>
+            <attribute name="aria-modal">true</attribute>
+            <attribute name="aria-label">Application menu</attribute>
+        </xpath>
+    </t>
+    <t t-inherit="web.SectionMenu" t-inherit-mode="extension">
+        <xpath expr="//li[@t-on-click]" position="attributes">
+            <attribute name="tabindex">0</attribute>
+            <attribute name="role">button</attribute>
+            <attribute name="t-on-keydown">ev =&gt; this._onSectionKeydown(ev, section)</attribute>
+        </xpath>
+    </t>
+    <t t-inherit="web.BurgerMenu" t-inherit-mode="extension">
+        <!-- The existing apps button is the only sections trigger. -->
+        <xpath expr="//button[@t-on-click.prevent='_openAppMenuSidebarMobile']" position="replace"/>
+        <xpath expr="//button[@t-on-click='_openBurger']" position="attributes">
+            <attribute name="t-ref">masarAccountButton</attribute>
+            <attribute name="title">User menu</attribute>
+            <attribute name="aria-label">User menu</attribute>
+            <attribute name="t-att-aria-expanded">state.isBurgerOpened ? 'true' : 'false'</attribute>
+            <attribute name="aria-controls">masar-account-menu</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('o_burger_menu')]" position="attributes">
+            <attribute name="t-ref">masarAccountDrawer</attribute>
+            <attribute name="id">masar-account-menu</attribute>
+            <attribute name="role">dialog</attribute>
+            <attribute name="aria-modal">true</attribute>
+            <attribute name="aria-label">User menu</attribute>
+        </xpath>
+    </t>
+</templates>

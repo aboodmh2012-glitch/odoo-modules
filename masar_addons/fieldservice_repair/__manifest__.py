@@ -1,0 +1,12 @@
+{'author': 'Gray Matter Logic, Open Source Integrators, Odoo Community Association (OCA)',
+ 'category': 'Field Service',
+ 'data': ['data/fsm_order_type.xml', 'views/fsm_order_view.xml'],
+ 'depends': ['repair', 'fieldservice_equipment_stock'],
+ 'development_status': 'Beta',
+ 'installable': True,
+ 'license': 'AGPL-3',
+ 'maintainers': ['smangukiya', 'max3903'],
+ 'name': 'Field Service - Repair',
+ 'summary': 'Integrate Field Service orders with MRP repair orders',
+ 'version': '20.0.1.0.0',
+ 'website': 'https://github.com/OCA/field-service'}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="mail_activity_kc_review" model="mail.activity.type">
+    <field name="name">Document review due</field>
+    <field name="icon">fa-book</field>
+  </record>
+  <record id="mail_activity_kc_acknowledge" model="mail.activity.type">
+    <field name="name">Acknowledge controlled document</field>
+    <field name="icon">fa-check-square-o</field>
+  </record>
+</odoo>

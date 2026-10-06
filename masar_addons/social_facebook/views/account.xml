@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- No unconditional placeholder overrides — they race with other connectors. -->
+    <record id="view_account_facebook" model="ir.ui.view">
+        <field name="name">social.account.facebook</field>
+        <field name="model">social.account</field>
+        <field name="inherit_id" ref="social.view_social_account_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='external_account_id']" position="after">
+                <div class="alert alert-info mb-0" role="alert"
+                     invisible="platform != 'facebook' or connection_status == 'connected'">
+                    Use <b>Configuration → Social Accounts → Facebook → Link account</b>.
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-  <menuitem id="menu_hr_resignation"
-            name="Resignations"
-            parent="hr.menu_hr_root"
-            action="action_hr_resignation"
-            sequence="42"/>
-</odoo>

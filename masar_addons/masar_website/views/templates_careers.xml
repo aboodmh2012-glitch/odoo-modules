@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="masar_job_facebook_share" name="MASAR job sharing actions">
+        <div t-if="job.website_published and job.active" class="masar-job-share-actions" role="group" t-att-aria-label="job.name">
+            <a class="masar-job-share" t-att-href="job.masar_facebook_share_url()" target="_blank" rel="noopener noreferrer"
+               t-att-title="career['share_facebook']" t-att-aria-label="career['share_facebook'] + ': ' + job.name">
+                <span class="fa fa-facebook" aria-hidden="true"/>
+            </a>
+            <button type="button" class="masar-job-copy" t-att-data-copy-url="job.masar_public_share_url()"
+                    t-att-title="career['copy_link']" t-att-aria-label="career['copy_link'] + ': ' + job.name"
+                    t-att-data-copied="career['copied']" t-att-data-copy-failed="career['copy_failed']">
+                <span class="fa fa-link" aria-hidden="true"/>
+            </button>
+            <span class="masar-job-share-status" role="status" aria-live="polite" aria-atomic="true"/>
+            <input class="masar-job-copy-fallback" type="text" readonly="readonly" hidden="hidden"
+                   t-att-aria-label="career['copy_link']" t-att-value="job.masar_public_share_url()"/>
+        </div>
+    </template>
+
+    <template id="masar_job_meta" name="MASAR role metadata">
+        <dl class="masar-job-meta">
+            <div><dt t-out="career['location']"/><dd><span t-if="job.address_id" t-field="job.address_id" t-options="{'widget': 'contact', 'fields': ['city', 'country_id'], 'no_marker': True, 'no_tag_br': True}"/><span t-else="" t-out="career['remote']"/></dd></div>
+            <div t-if="job.department_id"><dt t-out="career['department']"/><dd><span t-field="job.department_id.name"/></dd></div>
+            <div t-if="job.contract_type_id"><dt t-out="career['type']"/><dd><span t-out="job.masar_public_contract_type_name()"/></dd></div>
+        </dl>
+    </template>
+
+    <template id="masar_jobs" name="MASAR published opportunities">
+        <t t-call="website.layout">
+            <t t-set="career" t-value="website.masar_careers_copy()"/>
+            <t t-set="additional_title" t-value="career['eyebrow']"/>
+            <div id="wrap" class="masar-site masar-pay masar-careers">
+                <t t-set="hero" t-value="{'eyebrow': career['eyebrow'], 'title': career['title'], 'lead': career['lead']}"/>
+                <t t-call="masar_website.masar_inner_hero"/>
+                <section class="masar-section">
+                    <div class="masar-wrap">
+                        <div class="masar-careers-toolbar">
+                            <h2 t-out="career['opportunities']"/>
+                            <form class="masar-job-search" action="/careers" method="get" role="search">
+                                <label class="visually-hidden" for="masar-job-query" t-out="career['search']"/>
+                                <input id="masar-job-query" name="search" type="search" t-att-value="search or ''" t-att-placeholder="career['search_placeholder']"/>
+                                <button class="masar-btn masar-btn--primary" type="submit" t-out="career['search']"/>
+                            </form>
+                        </div>
+                        <div t-if="jobs" class="masar-jobs-grid">
+                            <article t-foreach="jobs" t-as="job" class="masar-job-card">
+                                <h3><a t-att-href="job.website_url" t-field="job.name"/></h3>
+                                <t t-call="masar_website.masar_job_meta"/>
+                                <a class="masar-textlink masar-job-link" t-att-href="job.website_url"><span t-out="career['details']"/><span aria-hidden="true">&#8594;</span></a>
+                                <t t-call="masar_website.masar_job_facebook_share"/>
+                            </article>
+                        </div>
+                        <div t-else="" class="masar-jobs-empty" role="status">
+                            <span class="masar-jobs-empty__icon fa fa-briefcase" aria-hidden="true"/>
+                            <h3 t-out="career['no_results'] if search else career['empty_title']"/>
+                            <p t-if="not search" t-out="career['empty']"/>
+                            <a t-if="search" class="masar-btn masar-btn--primary" href="/careers" t-out="career['reset']"/>
+                        </div>
+                        <div t-if="pager['page_count'] &gt; 1" class="masar-jobs-pager"><t t-call="website.pager"/></div>
+                    </div>
+                </section>
+                <section class="masar-section masar-careers-process">
+                    <div class="masar-wrap"><h2 t-out="career['process_title']"/><p t-out="career['process']"/></div>
+                </section>
+            </div>
+        </t>
+    </template>
+
+    <template id="masar_job_detail" name="MASAR job detail" track="1">
+        <t t-call="website.layout">
+            <t t-set="career" t-value="website.masar_careers_copy()"/>
+            <t t-set="additional_title" t-value="job.name"/>
+            <t t-set="requirements" t-value="job.masar_public_requirements()"/>
+            <div id="wrap" class="masar-site masar-pay masar-careers">
+                <section class="masar-hero masar-hero--page masar-role-hero"><div class="masar-wrap masar-hero__copy">
+                    <a class="masar-job-back" href="/careers" t-out="career['back']"/>
+                    <p class="masar-eyebrow" t-out="career['vacancy']"/>
+                    <h1 class="masar-hero__title" t-field="job.name"/>
+                    <a class="masar-btn masar-btn--primary" t-attf-href="/jobs/apply/#{slug(job)}" t-out="career['apply']"/>
+                    <a class="masar-role-explore" href="#role-overview" t-out="career['review_role']"/>
+                </div></section>
+                <section class="masar-section"><div class="masar-wrap masar-job-layout">
+                    <article class="masar-job-description" id="role-overview">
+                        <p t-if="not job.website_published" class="alert alert-warning" t-out="career['draft']"/>
+                        <section class="masar-role-panel">
+                            <h2 t-out="career['description']"/>
+                            <div class="masar-role-copy" t-if="job.description" t-field="job.description"/>
+                            <div class="masar-role-copy" t-elif="job.masar_has_website_description()" t-field="job.website_description"/>
+                            <t t-else=""><p t-out="career['description_pending']"/><a href="/contactus" class="masar-textlink" t-out="career['contact']"/></t>
+                        </section>
+                        <section t-if="requirements['degree'] or requirements['groups']" class="masar-role-panel masar-role-requirements" id="role-requirements">
+                            <p class="masar-role-kicker" t-out="career['skills']"/>
+                            <h2 t-out="career['requirements']"/>
+                            <p class="masar-role-muted" t-out="career['requirements_note']"/>
+                            <div t-if="requirements['degree']" class="masar-role-degree"><span class="fa fa-graduation-cap" aria-hidden="true"/><div><h3 t-out="career['degree']"/><p t-out="requirements['degree']"/></div></div>
+                            <section t-foreach="requirements['groups']" t-as="group" class="masar-skill-group">
+                                <h3 t-out="group['name']"/>
+                                <ul class="masar-role-skills">
+                                    <li t-foreach="group['skills']" t-as="skill"><span t-out="skill['name']"/><span class="masar-skill-level"><span class="visually-hidden" t-out="career['level'] + ': '"/><span t-out="skill['level']"/></span></li>
+                                </ul>
+                            </section>
+                        </section>
+                    </article>
+                    <aside class="masar-job-summary"><p class="masar-role-kicker">MASAR Pay</p><h2 t-out="career['role_facts']"/><t t-call="masar_website.masar_job_meta"/><div class="masar-role-apply"><h2 t-out="career['process_title']"/><p t-out="career['process']"/><p class="masar-role-muted" t-out="career['apply_note']"/><a class="masar-btn masar-btn--primary" t-attf-href="/jobs/apply/#{slug(job)}" t-out="career['apply']"/></div><t t-call="masar_website.masar_job_facebook_share"/></aside>
+                </div></section>
+            </div>
+        </t>
+    </template>
+
+    <template id="masar_job_confirmation" name="MASAR application confirmation">
+        <t t-call="website.layout">
+            <t t-set="career" t-value="website.masar_careers_copy()"/>
+            <t t-set="additional_title" t-value="career['form_title']"/>
+            <div id="wrap" class="masar-site masar-pay masar-careers">
+                <section class="masar-section"><div class="masar-wrap"><div class="masar-jobs-empty">
+                    <span class="masar-jobs-empty__icon fa fa-check-circle" t-if="application_received" aria-hidden="true"/>
+                    <h1 t-out="career['received'] if application_received else career['form_title']"/>
+                    <p t-out="career['thanks'] if application_received else career['process']"/>
+                    <a class="masar-btn masar-btn--primary mt-4" href="/careers" t-out="career['back']"/>
+                </div></div></section>
+            </div>
+        </t>
+    </template>
+
+    <!-- Retain the native form contract, validation, upload handling and success URL. -->
+    <template id="masar_job_apply" inherit_id="website_hr_recruitment.apply" name="MASAR application form" priority="100">
+        <xpath expr="//t[@t-call='website.layout']" position="inside"><t t-set="career" t-value="website.masar_careers_copy()"/></xpath>
+        <xpath expr="//div[@id='wrap']" position="attributes"><attribute name="class" add="masar-careers-apply" separator=" "/></xpath>
+        <xpath expr="//div[@id='wrap']/h1" position="replace"><h1 class="mb-3" t-out="website.masar_careers_copy()['form_title']"/></xpath>
+        <xpath expr="//div[@id='wrap']/h1" position="after"><p class="masar-application-intro" t-out="website.masar_careers_copy()['form_note']"/><p t-if="not job.website_published" class="alert alert-warning" t-out="website.masar_careers_copy()['draft']"/></xpath>
+        <xpath expr="//a[@id='apply-btn']" position="replace"><a href="#" role="button" class="btn btn-primary btn-lg s_website_form_send" id="apply-btn" t-out="website.masar_careers_copy()['submit']"/></xpath>
+        <xpath expr="//div[@t-field='job.job_details']" position="replace"><div t-if="job.masar_has_process_details()" t-field="job.job_details"/><p t-else="" class="masar-process-note" t-out="website.masar_careers_copy()['process_note']"/></xpath>
+        <xpath expr="//hr[@t-if='job.job_details']" position="attributes"><attribute name="t-if">job.masar_has_process_details()</attribute></xpath>
+        <xpath expr="//nav//a[@href='/jobs']" position="attributes"><attribute name="href">/careers</attribute></xpath>
+    </template>
+</odoo>
