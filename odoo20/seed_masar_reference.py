@@ -83,6 +83,5 @@ for title, department_name in JOBS:
     else:
         job.write(vals)
 
-env["ir.config_parameter"].sudo().set_param("masar.smart.reference_seed", "2026-10-06-v1")
 env.cr.commit()
 print("MASAR_SMART_REFERENCE_SEED_OK")
