@@ -3,7 +3,7 @@
 {
     'name': 'MASAR HR Yemen Configuration',
     'summary': 'Yemen Labor Law-oriented seeds, company HR policy settings, and light extensions on existing MASAR HR modules',
-    'version': '20.0.1.2.1',
+    'version': '20.0.1.2.2',
     'author': 'MASAR',
     'website': 'https://msarpay.com',
     'license': 'AGPL-3',
