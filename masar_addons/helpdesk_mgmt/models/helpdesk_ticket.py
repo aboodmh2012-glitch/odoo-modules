@@ -10,9 +10,9 @@ class HelpdeskTicket(models.Model):
     _order = "priority desc, sequence, number desc, id desc"
     _mail_post_access = "read"
     _inherit = [
-        "mail.thread",
         "mail.activity.mixin",
         "portal.mixin",
+        # duration mixin already inherits mail.thread (do not list mail.thread again)
         "mail.tracking.duration.mixin",
     ]
     _track_duration_field = "stage_id"
