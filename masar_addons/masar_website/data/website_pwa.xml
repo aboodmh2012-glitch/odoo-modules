@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Home-screen / PWA icon (favicon). noupdate=0 so icon revisions apply
-         on module upgrade. -->
-    <data noupdate="0">
-        <record id="base.default_website" model="website">
-            <field name="favicon" type="base64" file="masar_website/static/src/img/app_icon.png"/>
-        </record>
-    </data>
+    <!-- Favicon binary write is handled in post_init_hook (Odoo 20 website._handle_favicon
+         rejects base64 strings from XML type="base64" file=). Head icons below remain. -->
 
     <!-- Replace website's default apple-touch-icon (serves an ICO favicon that
          iOS rejects, then falls back to purple Odoo). Do not append extra icons
