@@ -80,6 +80,15 @@
     flex-shrink: 0;
     padding-inline-end: 0.5rem;
 
+    .o_masar_navbar_mark {
+        width: 28px;
+        height: 28px;
+        margin-inline-start: 0.45rem;
+        border-radius: 6px;
+        object-fit: contain;
+        background: #fff;
+    }
+
     &::after {
         content: "MASAR Pay";
         display: inline-flex;
@@ -102,7 +111,8 @@ html[data-dir="rtl"] .o_main_navbar .o_navbar_apps_menu::after,
 }
 
 @media (max-width: 767.98px) {
-    .o_main_navbar .o_navbar_apps_menu::after {
+    .o_main_navbar .o_navbar_apps_menu::after,
+    .o_main_navbar .o_masar_navbar_mark {
         display: none;
     }
 }
@@ -243,6 +253,17 @@ html[data-dir="rtl"] .o_main_navbar .o_navbar_apps_menu::after,
 .o_web_client .o_main_navbar button:focus-visible,
 .o_web_client .o_main_navbar a:focus-visible {
     outline: 2px solid var(--masar-orange);
+}
+
+// Empty CRM/HR boards: hide faded sample records; keep a quiet empty state.
+.o_view_sample .o_kanban_record,
+.o_view_sample .o_data_row {
+    visibility: hidden !important;
+}
+.o_onboarding,
+.o_onboarding_container,
+.o_onboarding_wrapper {
+    display: none !important;
 }
 
 // Hide current-app navigation on home, while keeping the user menu available.

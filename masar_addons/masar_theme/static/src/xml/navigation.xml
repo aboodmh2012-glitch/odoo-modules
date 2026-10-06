@@ -21,6 +21,13 @@
             >
                 <i class="oi" data-icon="apps"/>
             </button>
+            <img
+                class="o_masar_navbar_mark"
+                src="/masar_theme/static/src/img/masar-icon-192.png?v=20261004"
+                alt="MASAR Pay"
+                width="28"
+                height="28"
+            />
         </xpath>
     </t>
 

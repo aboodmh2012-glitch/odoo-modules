@@ -1,35 +1,56 @@
-/* eslint no-undef: 0 */
+/** @odoo-module **/
+
+/**
+ * Helpdesk portal attachment size check.
+ * Odoo 20 dropped @web/legacy/js/public/public_widget — keep this as a
+ * frontend asset without that missing import (it crashed the module loader).
+ */
 import {_t} from "@web/core/l10n/translation";
 import {humanNumber} from "@web/core/utils/numbers";
-import publicWidget from "@web/legacy/js/public/public_widget";
 
-publicWidget.registry.NewTicket = publicWidget.Widget.extend({
-    selector: "form[action='/submitted/ticket']",
-    events: {
-        'change input[name="attachment"]': "_onChangeAttachment",
-    },
-    _onChangeAttachment(ev) {
+function bindNewTicketForm(root) {
+    const form = root.querySelector("form[action='/submitted/ticket']");
+    if (!form || form.dataset.masarTicketBound) {
+        return;
+    }
+    form.dataset.masarTicketBound = "1";
+    form.addEventListener("change", (ev) => {
+        if (!ev.target || ev.target.getAttribute("name") !== "attachment") {
+            return;
+        }
         ev.preventDefault();
-        const attachment_input = document.getElementById("attachment");
-        const information_input = document.getElementById("attachment_information");
-        information_input.style.display = "none";
-        const max_upload_size = parseInt(
-            attachment_input.getAttribute("max_upload_size"),
-            10
-        );
+        const attachmentInput = form.querySelector("#attachment") || document.getElementById("attachment");
+        const informationInput =
+            form.querySelector("#attachment_information") ||
+            document.getElementById("attachment_information");
+        if (!attachmentInput || !informationInput) {
+            return;
+        }
+        informationInput.style.display = "none";
+        const maxUploadSize = parseInt(attachmentInput.getAttribute("max_upload_size"), 10);
         const dt = new DataTransfer();
-        for (const file of attachment_input.files) {
-            if (file.size > max_upload_size) {
-                information_input.textContent = _t(
+        for (const file of attachmentInput.files) {
+            if (file.size > maxUploadSize) {
+                informationInput.textContent = _t(
                     "The selected file (%sB) is over the maximum allowed file size (%sB).",
                     humanNumber(file.size),
-                    humanNumber(max_upload_size)
+                    humanNumber(maxUploadSize)
                 );
-                information_input.style.display = "";
+                informationInput.style.display = "";
             } else {
                 dt.items.add(file);
             }
         }
-        attachment_input.files = dt.files;
-    },
-});
+        attachmentInput.files = dt.files;
+    });
+}
+
+function start() {
+    bindNewTicketForm(document);
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", start);
+} else {
+    start();
+}

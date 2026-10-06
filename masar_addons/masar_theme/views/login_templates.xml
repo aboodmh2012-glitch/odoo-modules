@@ -25,6 +25,11 @@
         </xpath>
     </template>
 
+    <!-- Password-only: hide Odoo public signup leftover. -->
+    <template id="masar_hide_login_signup" inherit_id="auth_signup.login" name="MASAR Hide Login Signup" priority="99">
+        <xpath expr="//a[contains(@t-attf-href, '/web/signup')]" position="replace"/>
+    </template>
+
     <!-- Brand mark above the login fields (inside oe_website_login_container). -->
     <template id="masar_login_brand_mark" inherit_id="web.login" name="MASAR Login Brand Mark" priority="40">
         <xpath expr="//div[@id='oe_structure_login_top']" position="after">

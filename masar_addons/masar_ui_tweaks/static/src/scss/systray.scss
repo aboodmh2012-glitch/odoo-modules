@@ -4,3 +4,17 @@
 .o_menu_systray .o-dropdown:has(i.fa-tint) {
     display: none !important;
 }
+
+// Long legal company name overflows the navy topbar — keep MASAR Pay readable.
+.o_menu_systray .o_switch_company_menu {
+    max-width: 9.5rem;
+
+    .dropdown-toggle,
+    button {
+        max-width: 9.5rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+

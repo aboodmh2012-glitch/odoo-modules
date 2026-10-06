@@ -1,8 +1,18 @@
 # Copyright 2026 MASAR
 # License LGPL-3.0 or later.
-# Intentionally empty — preferences fields lived on web_responsive and are gone.
-from odoo import models
+from odoo import api, models
 
 
 class ResUsers(models.Model):
     _inherit = "res.users"
+
+    @api.model
+    def _masar_quiet_first_run(self):
+        """Disable first-run tours and public signup leftover."""
+        self.sudo().search([("share", "=", False), ("tour_enabled", "=", True)]).write(
+            {"tour_enabled": False}
+        )
+        params = self.env["ir.config_parameter"].sudo()
+        if params.get_param("auth_signup.invitation_scope") == "b2c":
+            params.set_param("auth_signup.invitation_scope", "b2b")
+
