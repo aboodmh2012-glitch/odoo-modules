@@ -21,7 +21,7 @@
         <dl class="masar-job-meta">
             <div><dt t-out="career['location']"/><dd><span t-if="job.address_id" t-field="job.address_id" t-options="{'widget': 'contact', 'fields': ['city', 'country_id'], 'no_marker': True, 'no_tag_br': True}"/><span t-else="" t-out="career['remote']"/></dd></div>
             <div t-if="job.department_id"><dt t-out="career['department']"/><dd><span t-field="job.department_id.name"/></dd></div>
-            <div t-if="job.contract_type_id"><dt t-out="career['type']"/><dd><span t-out="job.masar_public_contract_type_name()"/></dd></div>
+            <div t-if="job.masar_public_contract_type_name()"><dt t-out="career['type']"/><dd><span t-out="job.masar_public_contract_type_name()"/></dd></div>
         </dl>
     </template>
 

@@ -68,14 +68,24 @@ class HrJob(models.Model):
     def masar_public_contract_type_name(self):
         self.ensure_one()
         self.check_access("read")
-        contract_type = self.contract_type_id
-        if not contract_type:
+        # Odoo 20 renamed hr.job.contract_type_id to employee_type_id.
+        # Never getattr a missing field: QWeb t-if would 500 the careers page.
+        fields_map = getattr(self, "_fields", None)
+        names = ("employee_type_id", "contract_type_id")
+        if fields_map is not None:
+            names = tuple(name for name in names if name in fields_map)
+        employment_type = False
+        for name in names:
+            employment_type = getattr(self, name, False)
+            if employment_type:
+                break
+        if not employment_type:
             return ""
         # Only a published role's selected catalogue label is public. Keep the
         # job, other HR records and all write access under their native ACLs.
         if self.website_published and self.active:
-            return contract_type.sudo().name
-        return contract_type.name
+            return employment_type.sudo().name
+        return employment_type.name
 
     @api.model
     def _search_get_detail(self, website, order, options):

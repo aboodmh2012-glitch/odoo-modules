@@ -67,6 +67,15 @@ class PublicJobs(unittest.TestCase):
         item = job(); item.contract_type_id = False
         self.assertEqual(ns["masar_public_contract_type_name"](item), "")
 
+    def test_odoo20_employee_type_without_contract_type_field(self):
+        item = job()
+        catalogue = item.contract_type_id
+        item._fields = {"employee_type_id": object()}
+        item.employee_type_id = catalogue
+        delattr(item, "contract_type_id")
+        self.assertEqual(ns["masar_public_contract_type_name"](item), "دائم | Permanent")
+        self.assertEqual(catalogue.elevations, 1)
+
     def test_actual_bilingual_titles_have_english_slugs(self):
         for name, ident, expected in [
             ("مدير التدقيق الداخلي | Head of Internal Audit", 1, "head-of-internal-audit-1"),
@@ -111,7 +120,7 @@ class PublicJobs(unittest.TestCase):
         root = ElementTree.parse(ROOT / "views/templates_careers.xml")
         labels = [n for n in root.iter() if n.attrib.get("t-out") == "job.masar_public_contract_type_name()"]
         self.assertEqual(len(labels), 1)
-        self.assertFalse(any(n.attrib.get("t-field") == "job.contract_type_id.name" for n in root.iter()))
+        self.assertFalse(any("contract_type_id" in "".join(n.attrib.values()) for n in root.iter()))
         self.assertEqual(sum(n.attrib.get("t-attf-href") == "/jobs/apply/#{slug(job)}" for n in root.iter()), 2)
 
 
