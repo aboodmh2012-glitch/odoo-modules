@@ -1,5 +1,0 @@
-id,name,model_id,group_id/id,operation,domain
-access_social_meta_oauth_admin,social.meta.oauth admin,social.meta.oauth,social.group_social_admin,crud,
-access_social_meta_link_wizard_admin,social.meta.link.wizard admin,social.meta.link.wizard,social.group_social_admin,crud,
-access_social_meta_link_wizard_line_admin,social.meta.link.wizard.line admin,social.meta.link.wizard.line,social.group_social_admin,crud,
-access_social_meta_app_config_admin,social.meta.app.config admin,social.meta.app.config,social.group_social_admin,crud,

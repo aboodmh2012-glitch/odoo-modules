@@ -8,7 +8,7 @@ Odoo 20 compatibility audit, security fix and wave plan: [`docs/migration/ODOO20
 
 ## Priority
 
-1. Non-HR modules (accounting, helpdesk, FSM, social, brand, …)
+1. Non-HR modules (accounting, helpdesk, FSM, brand, …)
 2. **HR lifecycle (go-ahead)** — native-first; see [`docs/migration/EMPLOYEE_FEATURE_DECISIONS.md`](../docs/migration/EMPLOYEE_FEATURE_DECISIONS.md)
 
 ## HR copied now (installable)
@@ -19,11 +19,13 @@ Odoo 20 compatibility audit, security fix and wave plan: [`docs/migration/ODOO20
 - `masar_hr_resignation`
 - `masar_hr_attendance_regularization`
 - `masar_hr_yemen`
+- `payroll` (OCA, no Yemen overlay)
+- `payroll_account` (OCA payslip journal entries)
 
 ## HR skipped (not essential yet)
 
 - `fieldservice_sign`, `sign_oca`, `masar_hr_contract_sign`
-- `payroll`, `masar_hr_payroll_yemen`
+- `masar_hr_payroll_yemen`
 - `hr_appraisal_oca`, `hr_personal_equipment_*`
 - `masar_hr_learning`, `masar_hr_org_chart`
 
@@ -110,22 +112,13 @@ Odoo 20 compatibility audit, security fix and wave plan: [`docs/migration/ODOO20
 - `masar_website`
 - `mcp_server`
 - `partner_statement`
+- `payroll`
+- `payroll_account`
 - `purchase_tier_validation`
 - `queue_job`
 - `report_xlsx`
 - `report_xlsx_helper`
 - `sale_tier_validation`
-- `social`
-- `social_crm`
-- `social_facebook`
-- `social_helpdesk`
-- `social_instagram`
-- `social_linkedin`
-- `social_mcp`
-- `social_meta`
-- `social_telegram`
-- `social_tiktok`
-- `social_youtube`
 - `stock_picking_tier_validation`
 - `voip_oca`
 - `web_responsive`

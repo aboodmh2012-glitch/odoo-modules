@@ -1,3 +1,0 @@
-# Official Meta Facebook Business SDK (Graph API v26).
-# https://github.com/facebook/facebook-python-business-sdk
-facebook-business==26.0.0
