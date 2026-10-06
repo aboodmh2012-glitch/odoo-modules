@@ -39,6 +39,9 @@ class CustomerPortal(CustomerPortal):
         values = {
             "page_name": "fsm_order",
             "fsm_order": fsm_order,
+            "object": fsm_order,
+            "res_model": "fsm.order",
+            "res_id": fsm_order.id,
         }
 
         if kwargs.get("error"):

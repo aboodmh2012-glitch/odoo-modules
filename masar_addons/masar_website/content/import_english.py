@@ -48,7 +48,7 @@ def inventory(env, source):
         raise RuntimeError('Expected enabled English and Arabic languages')
     if website.homepage_url not in ('', '/', False):
         raise RuntimeError('Unexpected homepage destination')
-    prior = json.loads(env['ir.config_parameter'].get_param(MARKER_KEY) or '{}')
+    prior = json.loads(env['ir.config_parameter'].get_str(MARKER_KEY) or '{}')
     if prior.get('source_sha256') != SOURCE_SHA256 or prior.get('website_id') != website.id:
         raise RuntimeError('Approved Arabic release is missing or different')
     managed = {r['intended_url']: r for r in prior.get('results', [])}
@@ -102,8 +102,8 @@ def apply(env, source, expected):
     if os.environ.get('MASAR_CONTENT_EN_APPLY') != EN_VERSION:
         raise RuntimeError('Explicit English apply guard is not enabled')
     params = env['ir.config_parameter']
-    if params.get_param(EN_MARKER):
-        existing = json.loads(params.get_param(EN_MARKER))
+    if params.get_str(EN_MARKER):
+        existing = json.loads(params.get_str(EN_MARKER))
         if existing.get('source_hash') != digest(source):
             raise RuntimeError('Different English source already applied')
         log('already_applied', version=EN_VERSION)
@@ -144,9 +144,9 @@ def apply(env, source, expected):
             menu.with_context(lang='en_US').write({'name': row['replacement']})
             if menu.with_context(lang='ar_001').name != row['names']['ar_001']:
                 raise RuntimeError('Arabic menu label changed')
-    params.set_param(EN_MARKER + '.backup', json.dumps(backup, ensure_ascii=False))
-    params.set_param(EN_MARKER + '.editorial_register', json.dumps(source, ensure_ascii=False))
-    params.set_param(EN_MARKER, json.dumps({'version': EN_VERSION, 'source_hash': digest(source),
+    params.set_str(EN_MARKER + '.backup', json.dumps(backup, ensure_ascii=False))
+    params.set_str(EN_MARKER + '.editorial_register', json.dumps(source, ensure_ascii=False))
+    params.set_str(EN_MARKER, json.dumps({'version': EN_VERSION, 'source_hash': digest(source),
         'based_on_sha256': SOURCE_SHA256, 'website_id': website.id, 'page_count': 31,
         'public_count': 17, 'private_count': 14, 'plan_hash': plan_hash}))
     env.flush_all()
@@ -158,8 +158,8 @@ def rollback(env):
     if os.environ.get('MASAR_CONTENT_EN_ROLLBACK') != EN_VERSION:
         raise RuntimeError('Explicit English rollback guard required')
     params = env['ir.config_parameter']
-    backup = json.loads(params.get_param(EN_MARKER + '.backup') or '{}')
-    if not params.get_param(EN_MARKER) or backup.get('version') != EN_VERSION:
+    backup = json.loads(params.get_str(EN_MARKER + '.backup') or '{}')
+    if not params.get_str(EN_MARKER) or backup.get('version') != EN_VERSION:
         raise RuntimeError('No matching applied English backup')
     for row in backup['pages']:
         page = env['website.page'].browse(row['state']['page_id'])
@@ -176,7 +176,7 @@ def rollback(env):
                 raise RuntimeError('Menu edited since translation')
             for lang, name in row['names'].items():
                 menu.with_context(lang=lang).write({'name': name})
-    params.set_param(EN_MARKER + '.rolled_back', datetime.now(timezone.utc).isoformat())
+    params.set_str(EN_MARKER + '.rolled_back', datetime.now(timezone.utc).isoformat())
     params.search([('key', '=', EN_MARKER)]).unlink()
     log('rollback_validated', restored_pages=len(backup['pages']))
 

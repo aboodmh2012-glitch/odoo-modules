@@ -113,7 +113,7 @@ def apply(env, source, website, arabic, plan):
     if os.environ.get("MASAR_CONTENT_APPLY") != VERSION:
         raise RuntimeError("Explicit content-apply guard is not enabled")
     Params = env["ir.config_parameter"]
-    if Params.get_param(MARKER_KEY):
+    if Params.get_str(MARKER_KEY):
         log("already_applied", version=VERSION)
         return
     if env["ir.ui.view"].search_count([("key", "=", STYLE_KEY)]):
@@ -132,7 +132,7 @@ def apply(env, source, website, arabic, plan):
                 "website_indexed": existing.website_indexed,
                 "view": snapshot_view(existing.view_id, languages),
             })
-    Params.set_param(MARKER_KEY + ".editorial_register", json.dumps(source, ensure_ascii=False))
+    Params.set_str(MARKER_KEY + ".editorial_register", json.dumps(source, ensure_ascii=False))
     Style = env["ir.ui.view"].create({
         "name": "MASAR Arabic editorial shared styles", "key": STYLE_KEY,
         "type": "qweb", "arch_db": style_arch(), "website_id": website.id,
@@ -224,8 +224,8 @@ def apply(env, source, website, arabic, plan):
             raise RuntimeError("A private draft must not be indexed")
         if select_page(env, website, row["url"]).id != p.id:
             raise RuntimeError("Another page shadows the imported destination")
-    Params.set_param(MARKER_KEY + ".backup", json.dumps(backup, ensure_ascii=False))
-    Params.set_param(MARKER_KEY, json.dumps({"version": VERSION, "source_sha256": SOURCE_SHA256,
+    Params.set_str(MARKER_KEY + ".backup", json.dumps(backup, ensure_ascii=False))
+    Params.set_str(MARKER_KEY, json.dumps({"version": VERSION, "source_sha256": SOURCE_SHA256,
                      "website_id": website.id, "ar_url_code": arabic.url_code, "results": results}, ensure_ascii=False))
     env.flush_all()
     log("validated", pages=len(results), public=sum(r["published"] for r in results),
@@ -246,7 +246,7 @@ def main():
         cr.execute("SELECT pg_try_advisory_xact_lock(%s)", [2026092031])
         if not cr.fetchone()[0]:
             raise RuntimeError("Another content import is in progress")
-        prior = env["ir.config_parameter"].get_param(MARKER_KEY)
+        prior = env["ir.config_parameter"].get_str(MARKER_KEY)
         if prior:
             report = json.loads(prior)
             if report.get("source_sha256") != SOURCE_SHA256:

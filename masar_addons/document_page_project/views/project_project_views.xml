@@ -2,24 +2,20 @@
 <odoo>
     <record id="view_project_kanban" model="ir.ui.view">
         <field name="model">project.project</field>
-        <field name="inherit_id" ref="project.view_project_kanban" />
+        <!-- Odoo 20: project kanban records render through the card view. -->
+        <field name="inherit_id" ref="project.view_project_card" />
         <field name="arch" type="xml">
-            <xpath expr="//div[hasclass('o_project_kanban_boxes')]" position="inside">
+            <xpath expr="//div[@name='action_view_tasks']" position="after">
                 <a
-                    class="o_project_kanban_box"
+                    class="d-flex gap-2 align-items-baseline text-muted text-truncate"
                     name="%(action_document_page_projects)d"
                     type="action"
                 >
-                    <div>
-                        <b>
-                            <field
-                                name="document_page_count"
-                                nolabel="1"
-                                class="o_value"
-                            />
-                        </b>
-                        <span class="o_label">Wiki Pages</span>
-                    </div>
+                    <i class="fa fa-book" title="Wiki Pages" />
+                    <span>
+                        <field name="document_page_count" class="o_value" />
+                        <span class="ms-1">Wiki Pages</span>
+                    </span>
                 </a>
             </xpath>
         </field>

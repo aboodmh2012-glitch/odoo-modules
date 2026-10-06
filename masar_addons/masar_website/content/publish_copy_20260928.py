@@ -53,7 +53,7 @@ def main():
         website=env.ref('base.default_website')
         if 'MASAR' not in website.name.upper(): raise RuntimeError('Unexpected target website')
         params=env['ir.config_parameter'].sudo()
-        if args.apply and params.get_param(MARKER):
+        if args.apply and params.get_str(MARKER):
             print('[masar-copy] Already applied; no changes.', flush=True)
             return
         contact=select_page(env, website, '/contactus')
@@ -71,8 +71,8 @@ def main():
         backup={'contact_view_id':view.id,'arches':{lang:view.with_context(lang=lang).arch_db for lang in langs},'seo':{}}
         for url,p in pages.items():
             backup['seo'][url]={'id':p.id,'values':{lang:p.with_context(lang=lang).read(['website_meta_title','website_meta_description'])[0] for lang in langs}}
-        if params.get_param(BACKUP): raise RuntimeError('Backup already exists without marker; review before applying')
-        params.set_param(BACKUP,json.dumps(backup,ensure_ascii=False))
+        if params.get_str(BACKUP): raise RuntimeError('Backup already exists without marker; review before applying')
+        params.set_str(BACKUP,json.dumps(backup,ensure_ascii=False))
         for lang in langs:
             catalog=website.with_context(lang=lang).masar_public()
             for url,key in PAGE_KEYS.items():
@@ -80,7 +80,7 @@ def main():
                 pages[url].with_context(lang=lang).write({'website_meta_title':doc['seo_title'],'website_meta_description':doc['seo_description']})
             view.with_context(lang=lang).write({'arch_db':arches[lang]})
         view._check_xml()
-        params.set_param(MARKER,'1')
+        params.set_str(MARKER,'1')
         cr.commit()
         print('[masar-copy] Published SEO and contact text; layout and module state untouched.',flush=True)
 

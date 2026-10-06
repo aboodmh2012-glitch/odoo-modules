@@ -26,17 +26,17 @@ def main():
             raise RuntimeError('Unexpected website')
         params = env['ir.config_parameter'].sudo()
         key = 'masar_website.hero_mobile_fit_20260928'
-        if params.get_param(key + '.applied'):
+        if params.get_str(key + '.applied'):
             print('[masar-hero] Already applied', flush=True)
             return
         langs = [x.code for x in website.language_ids]
         originals = {lang: view.with_context(lang=lang).arch_db for lang in langs}
         updated = {lang: update_arch(arch) for lang, arch in originals.items()}
-        params.set_param(key + '.backup', json.dumps({'view_id': view.id, 'arches': originals}))
+        params.set_str(key + '.backup', json.dumps({'view_id': view.id, 'arches': originals}))
         for lang, arch in updated.items():
             view.with_context(lang=lang).write({'arch_db': arch})
         view._check_xml()
-        params.set_param(key + '.applied', '1')
+        params.set_str(key + '.applied', '1')
         cr.commit()
         print('[masar-hero] Homepage image and stylesheet cache versions published', flush=True)
 

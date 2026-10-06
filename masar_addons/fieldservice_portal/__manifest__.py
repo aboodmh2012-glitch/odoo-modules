@@ -3,6 +3,7 @@
  'author': 'PyTech SRL, Odoo Community Association (OCA)',
  'category': 'Field Service',
  'data': ['security/ir.access.csv',
+          'data/portal_entry_data.xml',
           'views/fsm_order_template.xml',
           'views/portal_template.xml',
           'views/fsm_stage.xml'],
@@ -13,5 +14,5 @@
  'maintainers': ['aleuffre', 'renda-dev'],
  'name': 'Field Service - Portal',
  'summary': '\n    Bridge module between fieldservice and portal.\n    ',
- 'version': '20.0.1.0.0',
+ 'version': '20.0.1.0.1',
  'website': 'https://github.com/OCA/field-service'}

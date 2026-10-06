@@ -280,11 +280,15 @@ class DmsSecurityMixin(models.AbstractModel):
         behavior: check if you do not really have access to any of the records
         in to avoid performing the corresponding create/write/unlink action."""
         if any(self._ids) and not self.env.su:
-            Rule = self.env["ir.rule"]
-            domain = Rule._compute_domain(self._name, operation)
+            domain = self._access_domain(operation)
             items = self.with_context(active_test=False).search(domain)
             if any(x_id not in items.ids for x_id in self.ids):
-                raise Rule._make_access_error(operation, (self - items))
+                raise AccessError(
+                    self.env._(
+                        "You are not allowed to %(operation)s these documents.",
+                        operation=operation,
+                    )
+                )
 
     @api.model_create_multi
     def create(self, vals_list):

@@ -34,16 +34,16 @@ def main():
         view = env.ref('masar_website.masar_brand_fix_head')
         params = env['ir.config_parameter'].sudo()
         key = 'masar_website.homepage_polish_20260928'
-        if params.get_param(key + '.applied'):
+        if params.get_str(key + '.applied'):
             print('[masar-home] Already applied', flush=True)
             return
         originals = {lang.code:view.with_context(lang=lang.code).arch_db for lang in website.language_ids}
         updated = {lang:update_arch(arch) for lang,arch in originals.items()}
-        params.set_param(key + '.backup', json.dumps({'view_id':view.id,'arches':originals}))
+        params.set_str(key + '.backup', json.dumps({'view_id':view.id,'arches':originals}))
         for lang, arch in updated.items():
             view.with_context(lang=lang).write({'arch_db':arch})
         view._check_xml()
-        params.set_param(key + '.applied', '1')
+        params.set_str(key + '.applied', '1')
         cr.commit()
         print('[masar-home] Homepage refinement assets published; copy and other views preserved', flush=True)
 

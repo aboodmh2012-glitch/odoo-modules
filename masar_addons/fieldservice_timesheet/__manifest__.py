@@ -8,5 +8,5 @@
  'maintainers': ['max3903'],
  'name': 'Field Service - Timesheet',
  'summary': 'Timesheet on Field Service Orders',
- 'version': '20.0.1.0.0',
+ 'version': '20.0.1.0.1',
  'website': 'https://github.com/OCA/field-service'}

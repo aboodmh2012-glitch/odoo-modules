@@ -19,8 +19,8 @@ def main():
         if not cr.fetchone()[0]:
             raise RuntimeError('Another content operation is in progress')
         params = env['ir.config_parameter']
-        saved = params.get_param(MARKER_KEY + '.backup')
-        report = params.get_param(MARKER_KEY)
+        saved = params.get_str(MARKER_KEY + '.backup')
+        report = params.get_str(MARKER_KEY)
         if not saved or not report:
             raise RuntimeError('No committed import with a backup was found')
         backup = json.loads(saved)
@@ -45,8 +45,8 @@ def main():
         env['website.menu'].browse(backup['new_menu_ids']).exists().unlink()
         env['website.page'].browse(backup['new_page_ids']).exists().write({'website_published': False, 'website_indexed': False})
         env['ir.ui.view'].browse(backup['new_view_ids']).exists().write({'active': False})
-        params.set_param(MARKER_KEY + '.rollback', json.dumps({'at': datetime.now(timezone.utc).isoformat(), 'report': json.loads(report)}))
-        params.set_param(MARKER_KEY, False)
+        params.set_str(MARKER_KEY + '.rollback', json.dumps({'at': datetime.now(timezone.utc).isoformat(), 'report': json.loads(report)}))
+        params.set_str(MARKER_KEY, False)
         cr.commit()
         log('rolled_back', version=VERSION, source_and_imported_content_retained=True)
 

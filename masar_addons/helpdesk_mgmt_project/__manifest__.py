@@ -11,5 +11,5 @@
  'license': 'AGPL-3',
  'name': 'Helpdesk Project',
  'summary': 'Add the option to select project in the tickets.',
- 'version': '20.0.1.0.0',
+ 'version': '20.0.1.0.1',
  'website': 'https://github.com/OCA/helpdesk'}

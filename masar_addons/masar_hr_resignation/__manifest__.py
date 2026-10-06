@@ -3,7 +3,7 @@
 {
     'name': 'MASAR HR Resignation',
     'summary': 'Employee resignation / termination workflow with deferred archive',
-    'version': '20.0.1.0.1',
+    'version': '20.0.1.0.2',
     'author': 'MASAR',
     'website': 'https://masar.sa',
     'license': 'AGPL-3',

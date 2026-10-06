@@ -10,9 +10,9 @@ from import_content import connect, inspect, apply, select_page, log
 
 def finish_navigation(env, website):
     params = env['ir.config_parameter']
-    if params.get_param(MARKER_KEY + '.navigation'):
+    if params.get_str(MARKER_KEY + '.navigation'):
         return
-    backup = json.loads(params.get_param(MARKER_KEY + '.backup'))
+    backup = json.loads(params.get_str(MARKER_KEY + '.backup'))
     Menu = env['website.menu']
     root = website.menu_id
     languages = website.language_ids.mapped('code')
@@ -77,8 +77,8 @@ def finish_navigation(env, website):
     if len(about) == 1:
         child(about, 'عن مسار', 'About MASAR', '/about', 1)
         child(about, 'الشراكات', 'Partnerships', '/partners', 2)
-    params.set_param(MARKER_KEY + '.backup', json.dumps(backup, ensure_ascii=False))
-    params.set_param(MARKER_KEY + '.navigation', VERSION)
+    params.set_str(MARKER_KEY + '.backup', json.dumps(backup, ensure_ascii=False))
+    params.set_str(MARKER_KEY + '.navigation', VERSION)
     log('navigation_prepared', top_level=[{'id': m.id, 'name': m.name, 'url': m.url}
         for m in Menu.search([('website_id', '=', website.id), ('parent_id', '=', root.id)], order='sequence,id')])
 
@@ -93,7 +93,7 @@ def main():
         cr.execute('SELECT pg_try_advisory_xact_lock(%s)', [2026092031])
         if not cr.fetchone()[0]:
             raise RuntimeError('Another content import is in progress')
-        prior = env['ir.config_parameter'].get_param(MARKER_KEY)
+        prior = env['ir.config_parameter'].get_str(MARKER_KEY)
         if prior:
             if json.loads(prior).get('source_sha256') != SOURCE_SHA256:
                 raise RuntimeError('Unexpected prior source')

@@ -35,16 +35,7 @@
                     />
                 </button>
             </xpath>
-            <xpath
-                expr="//group[@name='lead_partner']/field[@name='partner_id']"
-                position="after"
-            >
-                <field name="fsm_location_id" groups="fieldservice.group_fsm_user" />
-            </xpath>
-            <xpath
-                expr="//group[@name='opportunity_partner']/field[@name='partner_id']"
-                position="after"
-            >
+            <xpath expr="//field[@name='partner_id']" position="after">
                 <field name="fsm_location_id" groups="fieldservice.group_fsm_user" />
             </xpath>
         </field>

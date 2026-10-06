@@ -39,7 +39,8 @@ class ProjectProject(models.Model):
             record.todo_ticket_count = counts_todo.get(record.id, 0)
 
     def _get_stat_buttons(self):
-        buttons = super()._get_stat_buttons()
+        parent = super()
+        buttons = parent._get_stat_buttons() if hasattr(parent, "_get_stat_buttons") else []
         if self.env.user.has_group("helpdesk_mgmt.group_helpdesk_user_own"):
             buttons.append(
                 {

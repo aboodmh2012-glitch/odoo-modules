@@ -252,8 +252,9 @@ class HrResignation(models.Model):
                         is_current = ver.contract_date_start <= last_day
                     if is_current:
                         ver.contract_date_end = last_day
-            if "departure_date" in ver._fields and not ver.departure_date:
-                ver.departure_date = last_day
+            if "departure_date" in ver._fields and not ver._fields["departure_date"].related:
+                if not ver.departure_date:
+                    ver.departure_date = last_day
 
     def _process_archive(self):
         """Archive employee safely without cloning or unlinking users by default."""
@@ -272,7 +273,10 @@ class HrResignation(models.Model):
             last_day = rec.approved_last_day
             # Native departure fields on employee when present
             emp_vals = {}
-            if "departure_date" in employee._fields:
+            if (
+                "departure_date" in employee._fields
+                and not employee._fields["departure_date"].related
+            ):
                 emp_vals["departure_date"] = last_day
             if emp_vals:
                 employee.write(emp_vals)

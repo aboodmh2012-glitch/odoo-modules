@@ -14,6 +14,7 @@
           'security/ir.access.csv',
           'actions/file.xml',
           'template/portal.xml',
+          'data/portal_entry_data.xml',
           'data/onboarding_data.xml',
           'views/dms_tag.xml',
           'views/dms_category.xml',
@@ -37,5 +38,5 @@
  'license': 'LGPL-3',
  'name': 'Document Management System',
  'summary': 'Document Management System for Odoo',
- 'version': '20.0.1.1.1',
+ 'version': '20.0.1.1.2',
  'website': 'https://github.com/OCA/dms'}

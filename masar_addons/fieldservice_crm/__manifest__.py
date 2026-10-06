@@ -11,5 +11,5 @@
  'maintainers': ['patrickrwilson'],
  'name': 'Field Service - CRM',
  'summary': 'Create Field Service orders from the CRM',
- 'version': '20.0.1.0.0',
+ 'version': '20.0.1.0.1',
  'website': 'https://github.com/OCA/field-service'}

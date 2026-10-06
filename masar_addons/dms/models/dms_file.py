@@ -467,8 +467,12 @@ class DMSFile(models.Model):
                     else base64.b64encode(record.content_binary)
                 )
             elif record.attachment_id:
-                context = {"human_size": True} if bin_size else {"base64": True}
-                record.content = record.with_context(**context).attachment_id.datas
+                raw = record.attachment_id.raw or b""
+                record.content = (
+                    record.attachment_id.file_size
+                    if bin_size
+                    else base64.b64encode(raw)
+                )
 
     @api.depends("content_binary", "content_file")
     def _compute_save_type(self):
