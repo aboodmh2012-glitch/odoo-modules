@@ -20,5 +20,5 @@
  'maintainers': ['guewen', 'sbidoul'],
  'name': 'Job Queue',
  'post_init_hook': 'post_init_hook',
- 'version': '20.0.2.1.3',
+ 'version': '20.0.2.1.4',
  'website': 'https://github.com/OCA/queue'}

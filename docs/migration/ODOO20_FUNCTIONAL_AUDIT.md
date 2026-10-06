@@ -549,6 +549,7 @@ Wave 0 left these as follow-ups. **This branch ports the ones that fit Odoo 20 A
 - **Portal counters (this follow-up):** `_prepare_home_portal_values` is gone in Odoo 20. `fieldservice_portal`, `helpdesk_mgmt`, `dms`, and `equity` now implement `_prepare_portal_counter_values` (model, domain, access). `/my/counters` tests send `{counter: category}` via jsonrpc.
 - **`bf_corporate_governance` tests:** adopt paths grant `group_corporate_manager`; a security test covers non-manager adopt.
 - **`mcp_server` `_base_url`:** tolerates request mocks without a string `url_root`.
+- **`queue_job`:** `odoo.service.db.list_dbs` is gone; the runner lists loaded registries / `odoo.http.db_list`.
 - **Owl templates:** remaining `t-esc` in `voip_oca`, `social`, `helpdesk_mgmt` dashboard, `equity` cap table, `document_url`, `dms` path widget → `t-out`.
 - **Dead `account.group` files removed** from `account_usability` and `account_financial_report` (already unloaded).
 

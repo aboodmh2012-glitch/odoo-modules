@@ -382,7 +382,19 @@ class QueueJobRunner:
         db_names = config["db_name"]
         if db_names:
             return db_names
-        return odoo.service.db.list_dbs(True)
+        # Odoo 20 removed odoo.service.db; prefer loaded registries, then db_list.
+        try:
+            names = list(odoo.modules.registry.Registry.registries)
+            if names:
+                return names
+        except Exception:
+            pass
+        try:
+            from odoo.http import db_list
+
+            return db_list(force=True)
+        except Exception:
+            return []
 
     def close_databases(self, remove_jobs=True):
         for db_name, db in self.db_by_name.items():
