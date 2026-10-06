@@ -1,5 +1,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
+from odoo import models
+
 from .common import TestHelpdeskTicketBase
 
 EMAIL_TPL = """Return-Path: <whatever-2a840@postmaster.twitter.com>
@@ -54,9 +56,14 @@ class TestHelpdeskFetchmail(TestHelpdeskTicketBase):
             save_original=False,
             strip_attachments=True,
         )
-        ticket_number = self.env["helpdesk.ticket"].browse(res_id).number
-        self.assertEqual(ticket_number[:2], "HT")
-        self.assertGreater(res_id, 0)
+        # Odoo 20: message_process returns the thread record (was its id)
+        ticket = (
+            res_id
+            if isinstance(res_id, models.BaseModel)
+            else self.env["helpdesk.ticket"].browse(res_id)
+        )
+        self.assertEqual(ticket.number[:2], "HT")
+        self.assertGreater(ticket.id, 0)
 
     def test_message_process(self):
         # keep a list of existing tickets
