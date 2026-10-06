@@ -9,9 +9,9 @@ class TestSocialMetaOauth(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.admin = new_test_user(cls.env, login="social-meta-admin", groups="social.group_social_admin")
-        cls.env["ir.config_parameter"].sudo().set_param("social.meta_app_id", "123456789")
-        cls.env["ir.config_parameter"].sudo().set_param("social.meta_app_secret", "test-secret")
-        cls.env["ir.config_parameter"].sudo().set_param("web.base.url", "https://example.test")
+        cls.env["ir.config_parameter"].sudo().set_str("social.meta_app_id", "123456789")
+        cls.env["ir.config_parameter"].sudo().set_str("social.meta_app_secret", "test-secret")
+        cls.env["ir.config_parameter"].sudo().set_str("web.base.url", "https://example.test")
 
     def test_link_account_opens_facebook(self):
         action = self.env["social.meta.oauth"].with_user(self.admin).action_start("facebook")
@@ -23,8 +23,8 @@ class TestSocialMetaOauth(TransactionCase):
         self.assertIn("pages_messaging", action["url"])
 
     def test_missing_app_credentials_opens_setup(self):
-        self.env["ir.config_parameter"].sudo().set_param("social.meta_app_id", False)
-        self.env["ir.config_parameter"].sudo().set_param("social.meta_app_secret", False)
+        self.env["ir.config_parameter"].sudo().set_str("social.meta_app_id", False)
+        self.env["ir.config_parameter"].sudo().set_str("social.meta_app_secret", False)
         with patch.dict("os.environ", {"SOCIAL_META_APP_ID": "", "SOCIAL_META_APP_SECRET": ""}, clear=False):
             action = self.env["social.meta.oauth"].with_user(self.admin).action_start("facebook")
         self.assertEqual(action["type"], "ir.actions.act_window")
@@ -105,7 +105,7 @@ class TestSocialMetaOauth(TransactionCase):
         self.assertEqual(action["type"], "ir.actions.act_url")
         self.assertIn("client_id=123456789012", action["url"])
         self.assertEqual(
-            self.env["ir.config_parameter"].sudo().get_param("social.meta_app_id"),
+            self.env["ir.config_parameter"].sudo().get_str("social.meta_app_id"),
             "123456789012",
         )
 

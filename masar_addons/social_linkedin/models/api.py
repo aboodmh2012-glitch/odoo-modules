@@ -41,7 +41,7 @@ SCOPES = "w_organization_social r_organization_social rw_organization_admin"
 def api_version(env):
     return (
         (os.environ.get("SOCIAL_LINKEDIN_VERSION") or "").strip()
-        or (env["ir.config_parameter"].sudo().get_param("social.linkedin_version") or "").strip()
+        or (env["ir.config_parameter"].sudo().get_str("social.linkedin_version") or "").strip()
         or DEFAULT_VERSION
     )
 

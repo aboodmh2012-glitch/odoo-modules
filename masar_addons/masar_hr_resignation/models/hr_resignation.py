@@ -260,8 +260,7 @@ class HrResignation(models.Model):
         deactivate_user = (
             self.env["ir.config_parameter"]
             .sudo()
-            .get_param("masar_hr_resignation.deactivate_user", "False")
-            == "True"
+            .get_bool("masar_hr_resignation.deactivate_user")
         )
         for rec in self:
             employee = rec.employee_id

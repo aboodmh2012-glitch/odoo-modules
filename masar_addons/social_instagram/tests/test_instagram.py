@@ -39,7 +39,7 @@ class TestInstagram(TransactionCase):
                 "mimetype": "image/jpeg",
             }
         )
-        self.env["ir.config_parameter"].sudo().set_param("web.base.url", "https://example.test")
+        self.env["ir.config_parameter"].sudo().set_str("web.base.url", "https://example.test")
         post = self.env["social.post"].create(
             {
                 "name": "IG post",

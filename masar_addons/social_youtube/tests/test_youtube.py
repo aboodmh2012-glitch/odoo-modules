@@ -29,9 +29,9 @@ class TestSocialYoutube(TransactionCase):
             (4, cls.env.ref("social.group_social_publisher").id),
         ]
         ICP = cls.env["ir.config_parameter"].sudo()
-        ICP.set_param("social.youtube_client_id", "client-123")
-        ICP.set_param("social.youtube_client_secret", "sekret")
-        ICP.set_param("web.base.url", "https://example.test")
+        ICP.set_str("social.youtube_client_id", "client-123")
+        ICP.set_str("social.youtube_client_secret", "sekret")
+        ICP.set_str("web.base.url", "https://example.test")
         cls.oauth = cls.env["social.youtube.oauth"]
         cls.account = cls.env["social.account"].create(
             {

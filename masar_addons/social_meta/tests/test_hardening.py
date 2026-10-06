@@ -46,8 +46,8 @@ class TestSocialMetaHardening(TransactionCase):
     # ---- token re-validation cron -------------------------------------------
     def test_cron_flags_invalid_token(self):
         ICP = self.env["ir.config_parameter"].sudo()
-        ICP.set_param("social.meta_app_id", "1234567890")
-        ICP.set_param("social.meta_app_secret", "secret")
+        ICP.set_str("social.meta_app_id", "1234567890")
+        ICP.set_str("social.meta_app_secret", "secret")
         account = self.env["social.account"].create(
             {
                 "name": "FB Page",
@@ -70,8 +70,8 @@ class TestSocialMetaHardening(TransactionCase):
 
     def test_cron_keeps_valid_token(self):
         ICP = self.env["ir.config_parameter"].sudo()
-        ICP.set_param("social.meta_app_id", "1234567890")
-        ICP.set_param("social.meta_app_secret", "secret")
+        ICP.set_str("social.meta_app_id", "1234567890")
+        ICP.set_str("social.meta_app_secret", "secret")
         account = self.env["social.account"].create(
             {
                 "name": "FB Page 2",

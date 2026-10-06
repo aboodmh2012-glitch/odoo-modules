@@ -26,10 +26,10 @@ class SocialTiktokOauth(models.TransientModel):
     def _app_credentials(self):
         ICP = self.env["ir.config_parameter"].sudo()
         client_key = (os.environ.get("SOCIAL_TIKTOK_CLIENT_KEY") or "").strip() or (
-            ICP.get_param("social.tiktok_client_key") or ""
+            ICP.get_str("social.tiktok_client_key") or ""
         ).strip()
         client_secret = (os.environ.get("SOCIAL_TIKTOK_CLIENT_SECRET") or "").strip() or (
-            ICP.get_param("social.tiktok_client_secret") or ""
+            ICP.get_str("social.tiktok_client_secret") or ""
         ).strip()
         if not client_key or not client_secret:
             raise UserError(
@@ -53,7 +53,7 @@ class SocialTiktokOauth(models.TransientModel):
 
     @api.model
     def _redirect_uri(self):
-        base = self.env["ir.config_parameter"].sudo().get_param("web.base.url")
+        base = self.env["ir.config_parameter"].sudo().get_str("web.base.url")
         if not base:
             raise UserError(_("Set web.base.url before linking TikTok accounts."))
         return base.rstrip("/") + "/social/tiktok/oauth/callback"

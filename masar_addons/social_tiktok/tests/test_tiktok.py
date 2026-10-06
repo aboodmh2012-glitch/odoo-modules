@@ -24,9 +24,9 @@ class TestSocialTiktok(TransactionCase):
             (4, cls.env.ref("social.group_social_publisher").id),
         ]
         ICP = cls.env["ir.config_parameter"].sudo()
-        ICP.set_param("social.tiktok_client_key", "key-123")
-        ICP.set_param("social.tiktok_client_secret", "sekret")
-        ICP.set_param("web.base.url", "https://example.test")
+        ICP.set_str("social.tiktok_client_key", "key-123")
+        ICP.set_str("social.tiktok_client_secret", "sekret")
+        ICP.set_str("web.base.url", "https://example.test")
         cls.oauth = cls.env["social.tiktok.oauth"]
         cls.account = cls.env["social.account"].create(
             {

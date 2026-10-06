@@ -64,10 +64,10 @@ class SocialMetaOauth(models.TransientModel):
 
         ICP = self.env["ir.config_parameter"].sudo()
         app_id = normalize_meta_app_id(os.environ.get("SOCIAL_META_APP_ID") or "") or normalize_meta_app_id(
-            ICP.get_param("social.meta_app_id") or ""
+            ICP.get_str("social.meta_app_id") or ""
         )
         app_secret = (os.environ.get("SOCIAL_META_APP_SECRET") or "").strip() or (
-            ICP.get_param("social.meta_app_secret") or ""
+            ICP.get_str("social.meta_app_secret") or ""
         ).strip()
         if not app_id or not app_secret:
             raise UserError(
@@ -89,7 +89,7 @@ class SocialMetaOauth(models.TransientModel):
 
     @api.model
     def _redirect_uri(self):
-        base = self.env["ir.config_parameter"].sudo().get_param("web.base.url")
+        base = self.env["ir.config_parameter"].sudo().get_str("web.base.url")
         if not base:
             raise UserError(_("Set web.base.url before linking Meta accounts."))
         return base.rstrip("/") + "/social/meta/oauth/callback"
@@ -143,7 +143,7 @@ class SocialMetaOauth(models.TransientModel):
 
         ICP = self.env["ir.config_parameter"].sudo()
         config_id = (os.environ.get("SOCIAL_META_CONFIG_ID") or "").strip() or (
-            ICP.get_param("social.meta_config_id") or ""
+            ICP.get_str("social.meta_config_id") or ""
         ).strip()
         scopes = INSTAGRAM_SCOPES if media_type == "instagram" else FACEBOOK_SCOPES
         params = facebook_login_params(

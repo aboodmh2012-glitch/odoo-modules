@@ -32,10 +32,10 @@ class SocialAccount(models.Model):
     def _tiktok_app_credentials(self):
         ICP = self.env["ir.config_parameter"].sudo()
         client_key = (os.environ.get("SOCIAL_TIKTOK_CLIENT_KEY") or "").strip() or (
-            ICP.get_param("social.tiktok_client_key") or ""
+            ICP.get_str("social.tiktok_client_key") or ""
         ).strip()
         client_secret = (os.environ.get("SOCIAL_TIKTOK_CLIENT_SECRET") or "").strip() or (
-            ICP.get_param("social.tiktok_client_secret") or ""
+            ICP.get_str("social.tiktok_client_secret") or ""
         ).strip()
         return client_key, client_secret
 

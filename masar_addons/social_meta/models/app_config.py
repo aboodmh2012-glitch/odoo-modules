@@ -40,13 +40,13 @@ class SocialMetaAppConfig(models.TransientModel):
         res = super().default_get(fields_list)
         ICP = self.env["ir.config_parameter"].sudo()
         res["app_id"] = normalize_meta_app_id(
-            ICP.get_param("social.meta_app_id") or os.environ.get("SOCIAL_META_APP_ID") or ""
+            ICP.get_str("social.meta_app_id") or os.environ.get("SOCIAL_META_APP_ID") or ""
         )
-        res["app_secret"] = (ICP.get_param("social.meta_app_secret") or "").strip()
+        res["app_secret"] = (ICP.get_str("social.meta_app_secret") or "").strip()
         res["config_id"] = (
-            ICP.get_param("social.meta_config_id") or os.environ.get("SOCIAL_META_CONFIG_ID") or ""
+            ICP.get_str("social.meta_config_id") or os.environ.get("SOCIAL_META_CONFIG_ID") or ""
         ).strip()
-        base = (ICP.get_param("web.base.url") or "").rstrip("/")
+        base = (ICP.get_str("web.base.url") or "").rstrip("/")
         res["redirect_uri"] = f"{base}/social/meta/oauth/callback" if base else ""
         if not res.get("media_type"):
             res["media_type"] = "facebook"
@@ -71,9 +71,9 @@ class SocialMetaAppConfig(models.TransientModel):
             raise UserError(_("Set web.base.url first (Settings → System Parameters)."))
         self.app_id = app_id
         ICP = self.env["ir.config_parameter"].sudo()
-        ICP.set_param("social.meta_app_id", app_id)
-        ICP.set_param("social.meta_app_secret", secret)
-        ICP.set_param("social.meta_config_id", (self.config_id or "").strip())
+        ICP.set_str("social.meta_app_id", app_id)
+        ICP.set_str("social.meta_app_secret", secret)
+        ICP.set_str("social.meta_config_id", (self.config_id or "").strip())
 
     def action_save_and_link(self):
         """Single CTA: save credentials → open Facebook Login."""

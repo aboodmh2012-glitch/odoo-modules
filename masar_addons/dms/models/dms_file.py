@@ -234,13 +234,13 @@ class DMSFile(models.Model):
         return int(
             self.env["ir.config_parameter"]
             .sudo()
-            .get_param("dms.binary_max_size", default=25)
+            .get_int("dms.binary_max_size", default=25)
         )
 
     @api.model
     def _get_forbidden_extensions(self):
-        get_param = self.env["ir.config_parameter"].sudo().get_param
-        extensions = get_param("dms.forbidden_extensions", default="")
+        get_str = self.env["ir.config_parameter"].sudo().get_str
+        extensions = get_str("dms.forbidden_extensions", default="")
         return [extension.strip() for extension in extensions.split(",")]
 
     def _get_icon_placeholder_name(self):

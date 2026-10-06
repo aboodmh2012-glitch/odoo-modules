@@ -32,7 +32,7 @@ class SocialAccount(models.Model):
 
     def _public_media_url(self, attachment):
         """Instagram Content Publishing requires a publicly reachable image URL."""
-        base = self.env["ir.config_parameter"].sudo().get_param("web.base.url")
+        base = self.env["ir.config_parameter"].sudo().get_str("web.base.url")
         if not base:
             raise DeliveryPermanent()
         attachment.generate_access_token()

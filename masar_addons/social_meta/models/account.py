@@ -74,10 +74,10 @@ class SocialAccount(models.Model):
 
         ICP = self.env["ir.config_parameter"].sudo()
         app_id = (os.environ.get("SOCIAL_META_APP_ID") or "").strip() or (
-            ICP.get_param("social.meta_app_id") or ""
+            ICP.get_str("social.meta_app_id") or ""
         ).strip()
         app_secret = (os.environ.get("SOCIAL_META_APP_SECRET") or "").strip() or (
-            ICP.get_param("social.meta_app_secret") or ""
+            ICP.get_str("social.meta_app_secret") or ""
         ).strip()
         return app_id, app_secret
 

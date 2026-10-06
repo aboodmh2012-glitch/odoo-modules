@@ -34,10 +34,10 @@ class SocialAccount(models.Model):
     def _google_app_credentials(self):
         ICP = self.env["ir.config_parameter"].sudo()
         client_id = (os.environ.get("SOCIAL_YOUTUBE_CLIENT_ID") or "").strip() or (
-            ICP.get_param("social.youtube_client_id") or ""
+            ICP.get_str("social.youtube_client_id") or ""
         ).strip()
         client_secret = (os.environ.get("SOCIAL_YOUTUBE_CLIENT_SECRET") or "").strip() or (
-            ICP.get_param("social.youtube_client_secret") or ""
+            ICP.get_str("social.youtube_client_secret") or ""
         ).strip()
         return client_id, client_secret
 

@@ -31,9 +31,9 @@ class TestSocialLinkedin(TransactionCase):
         ]
         # Server-owned app credentials via ICP (env vars are not set in CI).
         ICP = cls.env["ir.config_parameter"].sudo()
-        ICP.set_param("social.linkedin_client_id", "1234567890")
-        ICP.set_param("social.linkedin_client_secret", "top-secret-value")
-        ICP.set_param("web.base.url", "https://example.test")
+        ICP.set_str("social.linkedin_client_id", "1234567890")
+        ICP.set_str("social.linkedin_client_secret", "top-secret-value")
+        ICP.set_str("web.base.url", "https://example.test")
         cls.oauth = cls.env["social.linkedin.oauth"]
         cls.account = cls.env["social.account"].create(
             {
@@ -69,8 +69,8 @@ class TestSocialLinkedin(TransactionCase):
 
     def test_missing_credentials_raises(self):
         ICP = self.env["ir.config_parameter"].sudo()
-        ICP.set_param("social.linkedin_client_id", "")
-        ICP.set_param("social.linkedin_client_secret", "")
+        ICP.set_str("social.linkedin_client_id", "")
+        ICP.set_str("social.linkedin_client_secret", "")
         with patch.dict("os.environ", {}, clear=False) as _env:
             import os
             os.environ.pop("SOCIAL_LINKEDIN_CLIENT_ID", None)
