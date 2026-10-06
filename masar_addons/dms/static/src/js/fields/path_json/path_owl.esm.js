@@ -2,13 +2,17 @@
 //     Copyright 2024 Subteno - Timothée Vannier (https://www.subteno.com).
 //     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 //  **********************************************************************************/
-import {Component, useEffect} from "@odoo/owl";
+import {Component, useEffect, useProps} from "@odoo/owl";
 import {_t} from "@web/core/l10n/translation";
 import {registry} from "@web/core/registry";
 import {standardFieldProps} from "@web/views/fields/standard_field_props";
 import {useService} from "@web/core/utils/hooks";
 
 class DmsPathField extends Component {
+    static template = "dms.DmsPathField";
+    props = useProps({
+        ...standardFieldProps,
+    });
     setup() {
         super.setup();
         this.action = useService("action");
@@ -39,11 +43,6 @@ class DmsPathField extends Component {
         });
     }
 }
-
-DmsPathField.template = "dms.DmsPathField";
-DmsPathField.props = {
-    ...standardFieldProps,
-};
 
 const dmsPathField = {
     component: DmsPathField,
