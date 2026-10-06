@@ -114,6 +114,11 @@ mcp_server,social,social_meta,social_facebook,social_instagram,social_telegram,s
 masar_brand,masar_theme,masar_ui_tweaks,masar_website,masar_crm_services,bf_corporate_governance
 ```
 
+## Python extras (image)
+
+Baked via `odoo20/requirements-extra.txt` in the SMART Dockerfile:
+`openupgradelib`, `xlsxwriter`, `xlrd`, `defusedxml`, `packaging`, `authlib`, `facebook_business`.
+
 ## Safety
 
 - MASAR: read/copy only

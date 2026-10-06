@@ -1,0 +1,10 @@
+# Extra Python deps for SMART Odoo 20 MASAR addons.
+# Avoid upgrading cryptography / lxml / requests / PyPDF2 / reportlab / urllib3 —
+# those can break the Debian pyOpenSSL stack in official odoo images.
+openupgradelib
+xlsxwriter
+xlrd
+defusedxml
+packaging
+authlib>=1.6.12,<1.7.0
+facebook_business
