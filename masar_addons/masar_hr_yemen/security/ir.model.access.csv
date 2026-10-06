@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_leave_alloc_preview_hr,masar.leave.allocation.preview hr,model_masar_leave_allocation_preview,hr.group_hr_user,1,1,1,1
+access_leave_alloc_preview_line_hr,masar.leave.allocation.preview.line hr,model_masar_leave_allocation_preview_line,hr.group_hr_user,1,1,1,1
+access_leave_alloc_preview_manager,masar.leave.allocation.preview manager,model_masar_leave_allocation_preview,hr.group_hr_manager,1,1,1,1
+access_leave_alloc_preview_line_manager,masar.leave.allocation.preview.line manager,model_masar_leave_allocation_preview_line,hr.group_hr_manager,1,1,1,1

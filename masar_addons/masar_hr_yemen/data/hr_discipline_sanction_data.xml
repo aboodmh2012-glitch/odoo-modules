@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="sanction_ye_notice" model="hr.discipline.sanction.type">
+        <field name="name">لفت نظر كتابي</field>
+        <field name="code">YE_NOTICE</field>
+        <field name="sequence">10</field>
+        <field name="sanction_kind">notice</field>
+        <field name="requires_investigation" eval="False"/>
+        <field name="has_financial_impact" eval="False"/>
+        <field name="requires_approval_level">officer</field>
+        <field name="description">قانون العمل مادة (93) بند 1 — لا يستوجب تحقيقاً إدارياً (مادة 94).</field>
+    </record>
+    <record id="sanction_ye_warning" model="hr.discipline.sanction.type">
+        <field name="name">إنذار كتابي</field>
+        <field name="code">YE_WARNING</field>
+        <field name="sequence">20</field>
+        <field name="sanction_kind">warning</field>
+        <field name="requires_investigation" eval="False"/>
+        <field name="has_financial_impact" eval="False"/>
+        <field name="requires_approval_level">manager</field>
+        <field name="description">قانون العمل مادة (93) بند 2 — يسقط أثره بعد سنة (مادة 95).</field>
+    </record>
+    <record id="sanction_ye_deduction" model="hr.discipline.sanction.type">
+        <field name="name">خصم من الأجر (حد أقصى وفق إعدادات الشركة)</field>
+        <field name="code">YE_DEDUCTION</field>
+        <field name="sequence">30</field>
+        <field name="sanction_kind">deduction</field>
+        <field name="requires_investigation" eval="True"/>
+        <field name="has_financial_impact" eval="True"/>
+        <field name="requires_approval_level">approver</field>
+        <field name="description">قانون العمل مادة (93) بند 3 — لا يزيد على 20% من الأجر الأساسي؛ يلزم تحقيق (مواد 94 و96).</field>
+    </record>
+    <record id="sanction_ye_dismissal" model="hr.discipline.sanction.type">
+        <field name="name">فصل من العمل</field>
+        <field name="code">YE_DISMISSAL</field>
+        <field name="sequence">40</field>
+        <field name="sanction_kind">dismissal</field>
+        <field name="requires_investigation" eval="True"/>
+        <field name="has_financial_impact" eval="False"/>
+        <field name="requires_approval_level">approver</field>
+        <field name="description">قانون العمل مادة (93) بند 4 مع الاحتفاظ بالمستحقات القانونية؛ يلزم تحقيق (مواد 94 و96). الإيقاف الاحترازي ليس عقوبة (مادة 98).</field>
+    </record>
+</odoo>

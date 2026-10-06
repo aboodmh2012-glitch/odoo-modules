@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- Employee: own cases only -->
+  <record id="rule_case_employee_own" model="ir.rule">
+    <field name="name">Disciplinary case: employee own</field>
+    <field name="model_id" ref="model_hr_disciplinary_case"/>
+    <field name="domain_force">[('employee_id', 'in', user.employee_ids.ids)]</field>
+    <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+
+  <!-- Line manager: own + subordinates -->
+  <record id="rule_case_line_manager" model="ir.rule">
+    <field name="name">Disciplinary case: line manager team</field>
+    <field name="model_id" ref="model_hr_disciplinary_case"/>
+    <field name="domain_force">['|', ('employee_id', 'in', user.employee_ids.ids), ('employee_id.parent_id.user_id', '=', user.id)]</field>
+    <field name="groups" eval="[(4, ref('group_disciplinary_line_manager'))]"/>
+  </record>
+
+  <!-- Investigator (pure role): only own assigned cases, plus unassigned open
+       cases available to pick up. HR officers/managers keep full visibility via
+       rule_case_hr_all (record rules OR across a user's groups), so this only
+       restricts users who hold ONLY the investigator group. Privacy: an
+       investigator must not browse every employee's disciplinary history. -->
+  <record id="rule_case_investigator_all" model="ir.rule">
+    <field name="name">Disciplinary case: investigator assigned/open</field>
+    <field name="model_id" ref="model_hr_disciplinary_case"/>
+    <field name="domain_force">['|', ('investigator_id', '=', user.id), '&amp;', ('investigator_id', '=', False), ('state', 'in', ['submitted', 'investigation', 'awaiting_statement'])]</field>
+    <field name="groups" eval="[(4, ref('group_disciplinary_investigator'))]"/>
+  </record>
+
+  <!-- HR / Approver: all in allowed companies -->
+  <record id="rule_case_hr_all" model="ir.rule">
+    <field name="name">Disciplinary case: HR all</field>
+    <field name="model_id" ref="model_hr_disciplinary_case"/>
+    <field name="domain_force">[(1, '=', 1)]</field>
+    <field name="groups" eval="[(4, ref('group_disciplinary_hr_officer'))]"/>
+  </record>
+
+  <!-- Payroll: only decided/closed cases with payroll_ready (financial impact) -->
+  <record id="rule_case_payroll_financial" model="ir.rule">
+    <field name="name">Disciplinary case: payroll financial only</field>
+    <field name="model_id" ref="model_hr_disciplinary_case"/>
+    <field name="domain_force">[('payroll_ready', '=', True), ('state', 'in', ('decided', 'awaiting_appeal', 'appeal_review', 'closed'))]</field>
+    <field name="groups" eval="[(4, ref('group_disciplinary_payroll_officer'))]"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+
+  <!-- Multi-company -->
+  <record id="rule_case_company" model="ir.rule">
+    <field name="name">Disciplinary case multi-company</field>
+    <field name="model_id" ref="model_hr_disciplinary_case"/>
+    <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    <field name="global" eval="True"/>
+  </record>
+  <record id="rule_offense_company" model="ir.rule">
+    <field name="name">Offense type multi-company</field>
+    <field name="model_id" ref="model_hr_discipline_offense_type"/>
+    <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    <field name="global" eval="True"/>
+  </record>
+  <record id="rule_sanction_company" model="ir.rule">
+    <field name="name">Sanction type multi-company</field>
+    <field name="model_id" ref="model_hr_discipline_sanction_type"/>
+    <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    <field name="global" eval="True"/>
+  </record>
+</odoo>

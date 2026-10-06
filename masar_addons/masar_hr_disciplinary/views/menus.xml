@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <menuitem id="menu_hr_disciplinary_root"
+            name="Disciplinary"
+            parent="hr.menu_hr_root"
+            sequence="45"
+            groups="base.group_user"/>
+  <menuitem id="menu_hr_disciplinary_cases"
+            name="Cases"
+            parent="menu_hr_disciplinary_root"
+            action="action_hr_disciplinary_case"
+            sequence="10"/>
+  <menuitem id="menu_hr_disciplinary_config"
+            name="Configuration"
+            parent="menu_hr_disciplinary_root"
+            sequence="90"
+            groups="masar_hr_disciplinary.group_disciplinary_hr_officer"/>
+  <menuitem id="menu_hr_discipline_offense_type"
+            name="Offense Types"
+            parent="menu_hr_disciplinary_config"
+            action="action_hr_discipline_offense_type"
+            sequence="10"/>
+  <menuitem id="menu_hr_discipline_sanction_type"
+            name="Sanction Types"
+            parent="menu_hr_disciplinary_config"
+            action="action_hr_discipline_sanction_type"
+            sequence="20"/>
+</odoo>

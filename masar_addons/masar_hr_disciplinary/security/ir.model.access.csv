@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_offense_type_user,offense.type.user,model_hr_discipline_offense_type,base.group_user,1,0,0,0
+access_offense_type_officer,offense.type.officer,model_hr_discipline_offense_type,group_disciplinary_hr_officer,1,1,1,0
+access_offense_type_manager,offense.type.manager,model_hr_discipline_offense_type,group_disciplinary_hr_manager,1,1,1,1
+access_sanction_type_user,sanction.type.user,model_hr_discipline_sanction_type,base.group_user,1,0,0,0
+access_sanction_type_officer,sanction.type.officer,model_hr_discipline_sanction_type,group_disciplinary_hr_officer,1,1,1,0
+access_sanction_type_manager,sanction.type.manager,model_hr_discipline_sanction_type,group_disciplinary_hr_manager,1,1,1,1
+access_case_user,case.user,model_hr_disciplinary_case,base.group_user,1,1,0,0
+access_case_line_manager,case.line.manager,model_hr_disciplinary_case,group_disciplinary_line_manager,1,1,1,0
+access_case_officer,case.officer,model_hr_disciplinary_case,group_disciplinary_hr_officer,1,1,1,0
+access_case_investigator,case.investigator,model_hr_disciplinary_case,group_disciplinary_investigator,1,1,1,0
+access_case_manager,case.manager,model_hr_disciplinary_case,group_disciplinary_hr_manager,1,1,1,1
+access_case_approver,case.approver,model_hr_disciplinary_case,group_disciplinary_approver,1,1,1,1
+access_case_payroll,case.payroll,model_hr_disciplinary_case,group_disciplinary_payroll_officer,1,0,0,0
