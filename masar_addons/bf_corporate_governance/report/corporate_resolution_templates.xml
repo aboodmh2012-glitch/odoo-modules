@@ -25,7 +25,6 @@
         <field name="model">corporate.resolution</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">bf_corporate_governance.report_corporate_resolution</field>
-        <field name="report_file">bf_corporate_governance.report_corporate_resolution</field>
         <field name="print_report_name">'%s_%s' % (object.sequence, object.name)</field>
         <field name="binding_model_id" ref="model_corporate_resolution"/>
         <field name="binding_type">report</field>

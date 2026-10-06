@@ -141,7 +141,6 @@
         <field name="binding_view_types">form</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">equity.equity_ubo_report</field>
-        <field name="report_file">equity.equity_ubo_report</field>
         <field name="domain" eval="[('is_company', '=', True)]"/>
         <field name="print_report_name">(object._get_ubo_report_filename())</field>
         <field name="group_ids" eval="[Command.link(ref('equity.group_equity_viewer'))]"/>
