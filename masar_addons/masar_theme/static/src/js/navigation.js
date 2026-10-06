@@ -242,6 +242,13 @@ patch(NavBar.prototype, {
         this.onNavBarDropdownItemSelection(app);
     },
 
+    onMasarAppKeydown(ev, app) {
+        if (ev.key === "Enter" || ev.key === " ") {
+            ev.preventDefault();
+            this.onMasarAppSelected(app);
+        }
+    },
+
     onMasarSearchInput(ev) {
         this.state.masarSearch = ev.target.value || "";
     },

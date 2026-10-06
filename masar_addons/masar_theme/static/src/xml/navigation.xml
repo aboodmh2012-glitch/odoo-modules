@@ -71,12 +71,7 @@
                             t-att-data-section="app.id"
                             tabindex="0"
                             t-on-click.prevent="() => this.onMasarAppSelected(app)"
-                            t-on-keydown="(ev) => {
-                                if (ev.key === 'Enter' || ev.key === ' ') {
-                                    ev.preventDefault();
-                                    this.onMasarAppSelected(app);
-                                }
-                            }"
+                            t-on-keydown="(ev) => this.onMasarAppKeydown(ev, app)"
                         >
                             <img
                                 t-if="app.webIconData"
