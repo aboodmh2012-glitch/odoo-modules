@@ -1,4 +1,4 @@
-import {Component, proxy} from "@odoo/owl";
+import {Component} from "@odoo/owl";
 import {Dropdown} from "@web/core/dropdown/dropdown";
 import {registry} from "@web/core/registry";
 import {useDiscussSystray} from "@mail/utils/common/hooks";
@@ -11,11 +11,17 @@ export class TierReviewMenu extends Component {
 
     setup() {
         super.setup();
-        this.discussSystray = useDiscussSystray();
         this.orm = useService("orm");
-        this.store = proxy(useService("mail.store"));
+        this.store = useService("mail.store");
         this.action = useService("action");
         this.dropdown = useDropdownState();
+        this.discussSystray = useDiscussSystray(this.dropdown);
+        if (this.store.tierReviewCounter === undefined) {
+            this.store.tierReviewCounter = 0;
+        }
+        if (!this.store.tierReviewGroups) {
+            this.store.tierReviewGroups = [];
+        }
         this.fetchSystrayReviewer();
     }
 
