@@ -46,6 +46,9 @@ Enterprise apps (`industry_fsm`, EE `helpdesk`, EE `social`, EE `knowledge`, EE 
 | `date_range`, `date_range_account`, `report_xlsx`, `report_xlsx_helper` | Shared reporting deps |
 | `equity` | Cap-table / securities — not in CE |
 
+**Deferred from accounting install (needs deeper Odoo 20 port):**
+- `account_chart_update` — references removed `account.group` model
+
 ### Tier validation — COPY & MIGRATE
 
 `base_tier_validation`, `base_tier_validation_confirm_auth`, `base_tier_validation_formula`, `base_tier_validation_forward`, `base_tier_validation_server_action`, `purchase_tier_validation`, `sale_tier_validation`, `stock_picking_tier_validation`
