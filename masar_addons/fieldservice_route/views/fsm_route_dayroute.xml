@@ -127,7 +127,6 @@
             <calendar
                 string="Day Routes"
                 date_start="date_start_planned"
-                date_delay="max_allow_time"
                 color="route_id"
             >
                 <field name="name" />
