@@ -6,7 +6,7 @@ import logging
 import re
 from collections import namedtuple
 
-from odoo import api, exceptions, fields, models, tools
+from odoo import api, exceptions, fields, models
 
 from ..fields import JobSerialized
 
@@ -187,7 +187,7 @@ class QueueJobFunction(models.Model):
             retry_pattern = {}
         return retry_pattern
 
-    @tools.ormcache("name")
+    @api.ormcache("name")
     def job_config(self, name):
         config = self.search([("name", "=", name)], limit=1)
         if not config:
