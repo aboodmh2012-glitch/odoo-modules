@@ -10,12 +10,15 @@ class HelpdeskTicket(models.Model):
     _order = "priority desc, sequence, number desc, id desc"
     _mail_post_access = "read"
     _inherit = [
-        "mail.thread.cc",
+        "mail.thread",
         "mail.activity.mixin",
         "portal.mixin",
         "mail.tracking.duration.mixin",
     ]
     _track_duration_field = "stage_id"
+
+    # Odoo 20 removed mail.thread.cc; keep CC field on the ticket itself.
+    email_cc = fields.Char(string="Email cc")
 
     @api.depends("team_id")
     def _compute_stage_id(self):
