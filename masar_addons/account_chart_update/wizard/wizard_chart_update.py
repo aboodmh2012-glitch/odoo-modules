@@ -475,7 +475,7 @@ class WizardUpdateChartsAccounts(models.TransientModel):
 
     def action_find_records(self):
         """Searchs for records to update/create and shows them."""
-        self.env.registry.clear_cache()
+        self.env.transaction.invalidate_ormcache()
         t_data = self._get_chart_template_data()
         # Search for, and load, the records to create/update.
         if self.update_account_group:

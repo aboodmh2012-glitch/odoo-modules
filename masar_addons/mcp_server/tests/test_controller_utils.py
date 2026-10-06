@@ -341,7 +341,7 @@ class TestMcpUtils(common.TransactionCase):
             params.set_param("mcp_server.enabled", "True")
             params.set_param("mcp_server.enable_oauth", "True")
             params.set_param("mcp_server.allowed_origins", "https://a.example.com")
-            self.env.registry.clear_cache()
+            self.env.transaction.invalidate_ormcache()
             self.assertTrue(utils.is_mcp_enabled())
             self.assertTrue(utils.is_oauth_enabled(self.env))
             self.assertEqual(
@@ -352,7 +352,7 @@ class TestMcpUtils(common.TransactionCase):
             params.set_param("mcp_server.enabled", "False")
             params.set_param("mcp_server.enable_oauth", "False")
             params.set_param("mcp_server.allowed_origins", "https://b.example.com")
-            self.env.registry.clear_cache()
+            self.env.transaction.invalidate_ormcache()
             self.assertFalse(utils.is_mcp_enabled())
             self.assertFalse(utils.is_oauth_enabled(self.env))
             self.assertEqual(

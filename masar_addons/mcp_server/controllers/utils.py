@@ -34,11 +34,16 @@ def clear_mcp_caches() -> None:
     what that write-side invalidation already does.
     """
     try:
-        request.env.registry.clear_cache()
+        request.env.transaction.invalidate_ormcache()
     except Exception:  # noqa: BLE001 - no bound request (e.g. test setUp)
         pass
     for registry in list(Registry.registries.values()):
-        registry.clear_cache()
+        # Odoo 20 removed Registry.clear_cache; clear local cache layers.
+        for _seq, cache in getattr(registry, "registry_caches__", {}).values():
+            try:
+                cache.clear()
+            except Exception:  # noqa: BLE001
+                pass
 
 
 def sanitize_model_name(model_name: str) -> str:

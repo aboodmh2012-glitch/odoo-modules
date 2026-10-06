@@ -140,6 +140,6 @@ class ResConfigSettings(models.TransientModel):
         # takes effect immediately. registry.clear_cache() also signals the other
         # workers via DB signaling, so the change propagates cross-worker on their
         # next request rather than after a TTL.
-        self.env.registry.clear_cache()
+        self.env.transaction.invalidate_ormcache()
 
         return result

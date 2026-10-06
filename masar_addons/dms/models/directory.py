@@ -671,7 +671,7 @@ class DmsDirectory(models.Model):
         # Hack to prevent error related to mail_message parent not exists in some cases
         ctx = dict(self.env.context).copy()
         ctx.update({"default_parent_id": False})
-        self.env.registry.clear_cache()
+        self.env.transaction.invalidate_ormcache()
         res = super(DmsDirectory, self.with_context(**ctx)).create(vals_list)
         return res
 

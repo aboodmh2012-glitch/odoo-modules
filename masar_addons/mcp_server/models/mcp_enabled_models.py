@@ -109,7 +109,7 @@ class McpEnabledModel(models.Model):
         A disabled model (or a flipped master switch) stops being served
         everywhere on the next request, not after a TTL.
         """
-        self.env.registry.clear_cache()
+        self.env.transaction.invalidate_ormcache()
 
     # ------------------------------------------------------------------
     # Global on/off switches (@ormcache-d, cross-worker-invalidated)
