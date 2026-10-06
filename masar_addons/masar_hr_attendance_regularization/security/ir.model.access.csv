@@ -1,5 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_reg_cat_user,reg.cat.user,model_hr_attendance_regularization_category,base.group_user,1,0,0,0
-access_reg_cat_officer,reg.cat.officer,model_hr_attendance_regularization_category,hr_attendance.group_hr_attendance_officer,1,1,1,1
-access_reg_user,reg.user,model_hr_attendance_regularization,base.group_user,1,1,1,0
-access_reg_officer,reg.officer,model_hr_attendance_regularization,hr_attendance.group_hr_attendance_officer,1,1,1,1

@@ -28,3 +28,10 @@ MASAR Production is never modified here.
 | `masar_hr_learning` | Needs `hr_skills_*` stack — investigate CE availability |
 
 Install on SMART only via `SMART_INSTALL_MODULES=...` (never `-i all`).
+
+## Odoo 20 security note
+
+Odoo 20 removed `ir.rule` / classic `ir.model.access.csv`. Phase-1a HR modules
+were converted to `security/ir.access.csv`. Remaining deps (`document_*`,
+`helpdesk_*`, `masar_hr_disciplinary`, `masar_hr_yemen`) still need the same
+conversion before install.
