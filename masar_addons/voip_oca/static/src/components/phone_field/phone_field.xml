@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!-- Copyright 2025 Dixmit
-     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
-<templates xml:space="preserve">
-    <!-- Odoo 20 dropped web.FormPhoneField; PhoneField handles form and list. -->
-</templates>

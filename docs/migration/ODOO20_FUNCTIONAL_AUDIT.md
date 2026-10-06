@@ -247,7 +247,7 @@ Install columns = fresh install on Odoo 20.0 (SMART HEAD `21823ad` → this bran
 | Module | MASAR | SMART | In SMART | Upstream 20 | MASAR deps | Install HEAD → branch | Breaking API hits | Decision | Notes |
 |---|---|---|---|---|---|---|---|---|---|
 | `mcp_server` | 19.0.2.1.0 | 20.0.2.1.0 | yes | — | base, base_setup, mail, rpc, web | uninstalled → installed | 181 → 51 | **KEEP SMART** | Wave 0: Dispatcher import, _auth_method signature (every /mcp call 500), odoo.service.db removed, get_str, ormcache. 53 tests still red: fixtures mint 30-day API keys as non-admin (20 enforces api_key_duration) |
-| `voip_oca` | 19.0.1.0.1 | 20.0.1.0.1 | yes | OCA 20.0 not migrated | mail | installed → installed | 0 → 0 | **KEEP SMART** | Installs; Owl t-esc deprecations only |
+| `voip_oca` | 19.0.1.0.1 | — | removed | — | mail | installed → **uninstalled** | — | **DROP** | Owl 3 systray/softphone crashed `/odoo` (white page). Uninstalled on SMART and deleted from `masar_addons/` — not required |
 
 ### Knowledge
 
@@ -399,7 +399,6 @@ flowchart LR
   end
   subgraph Comms_Integration["Comms/Integration"]
     mcp_server
-    voip_oca
   end
   subgraph Knowledge["Knowledge"]
     dms
@@ -550,7 +549,7 @@ Wave 0 left these as follow-ups. **This branch ports the ones that fit Odoo 20 A
 - **`bf_corporate_governance` tests:** adopt paths grant `group_corporate_manager`; a security test covers non-manager adopt.
 - **`mcp_server` `_base_url`:** tolerates request mocks without a string `url_root`.
 - **`queue_job`:** `odoo.service.db.list_dbs` is gone; the runner lists loaded registries / `odoo.http.db_list`.
-- **Owl templates:** remaining `t-esc` in `voip_oca`, `social`, `helpdesk_mgmt` dashboard, `equity` cap table, `document_url`, `dms` path widget → `t-out`.
+- **Owl templates:** remaining `t-esc` in `social`, `helpdesk_mgmt` dashboard, `equity` cap table, `document_url`, `dms` path widget → `t-out`. `voip_oca` was uninstalled and removed (white-page crash).
 - **Dead `account.group` files removed** from `account_usability` and `account_financial_report` (already unloaded).
 
 ### 6.2 Still open (not a small API port)
