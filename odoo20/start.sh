@@ -1,7 +1,10 @@
 #!/bin/bash
+# SMART Odoo 20 — primary runtime.
+# Avoid -i all / unconditional bulk -i on every boot.
 set -euo pipefail
-mkdir -p /var/lib/odoo /var/lib/odoo/sessions
-chown -R odoo:odoo /var/lib/odoo
+mkdir -p /var/lib/odoo /var/lib/odoo/sessions /mnt/extra-addons
+chown -R odoo:odoo /var/lib/odoo || true
+
 COMMON_ARGS=(
   -c /etc/odoo/odoo.conf
   --db_host="${HOST:?}"
@@ -9,10 +12,23 @@ COMMON_ARGS=(
   --db_user="${USER:?}"
   --db_password="${PASSWORD:?}"
 )
-APPS="account,crm,sale_management,purchase,stock,point_of_sale,project,hr,hr_recruitment,hr_holidays,hr_attendance,hr_expense,website,website_sale,website_slides,website_event,mass_mailing,mass_mailing_sms,calendar,contacts,survey,fleet,maintenance,repair,mrp,lunch,im_livechat,project_todo"
-echo "Installing selected Odoo 20 Community applications..."
-gosu odoo odoo "${COMMON_ARGS[@]}" -d odoo20 -i "${APPS}" --without-demo --stop-after-init
-echo "Seeding MASAR reference data into SMART only..."
-gosu odoo odoo shell "${COMMON_ARGS[@]}" -d odoo20 --no-http < /opt/masar/seed_masar_reference.py
-echo "MASAR SMART reference seed completed; starting server..."
+DB_NAME="${SMART_DB_NAME:-odoo20}"
+
+# Optional one-shot installs (comma-separated). Never use "all".
+if [[ -n "${SMART_INSTALL_MODULES:-}" ]]; then
+  if [[ "${SMART_INSTALL_MODULES}" == "all" ]]; then
+    echo "Refusing SMART_INSTALL_MODULES=all"
+    exit 1
+  fi
+  echo "One-shot install: ${SMART_INSTALL_MODULES}"
+  gosu odoo odoo "${COMMON_ARGS[@]}" -d "${DB_NAME}" -i "${SMART_INSTALL_MODULES}" --without-demo --stop-after-init
+fi
+
+# Optional MASAR->SMART reference seed (departments/jobs). Idempotent.
+if [[ "${SMART_SEED_MASAR_REFERENCE:-1}" == "1" ]] && [[ -f /opt/masar/seed_masar_reference.py ]]; then
+  echo "Seeding MASAR reference data into SMART only..."
+  gosu odoo odoo shell "${COMMON_ARGS[@]}" -d "${DB_NAME}" --no-http < /opt/masar/seed_masar_reference.py
+fi
+
+echo "Starting Odoo 20..."
 exec gosu odoo odoo "${COMMON_ARGS[@]}"
