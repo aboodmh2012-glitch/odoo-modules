@@ -15,7 +15,7 @@ class TestHelpdeskTicket(TestHelpdeskTicketBase):
         cls.partner_model = cls.env["ir.model"]._get("res.partner")
         cls.test_partner = cls.env["res.partner"].create({"name": "Test Partner"})
         cls.activity_type_meeting = cls.env.ref("mail.mail_activity_data_meeting")
-        cls.env["ir.config_parameter"].sudo().set_param(
+        cls.env["ir.config_parameter"].sudo().set_str(
             "helpdesk_mgmt_activity.helpdesk_available_model_ids", cls.partner_model.ids
         )
 
@@ -91,7 +91,7 @@ class TestHelpdeskTicket(TestHelpdeskTicketBase):
         self.assertEqual(
             values.get("helpdesk_available_model_ids"), self.partner_model.ids
         )
-        self.env["ir.config_parameter"].sudo().set_param(
+        self.env["ir.config_parameter"].sudo().set_str(
             "helpdesk_mgmt_activity.helpdesk_available_model_ids", False
         )
         values = settings.get_values()

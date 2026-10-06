@@ -101,7 +101,7 @@ class CustomerPortalHelpdesk(CustomerPortal):
         domain = Domain.AND(
             [
                 domain,
-                request.env["ir.rule"]._compute_domain(HelpdeskTicket._name, "read"),
+                HelpdeskTicket._access_domain("read"),
             ]
         )
 

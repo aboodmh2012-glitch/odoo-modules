@@ -19,7 +19,7 @@ class ResConfigSettings(models.TransientModel):
     def set_values(self):
         super().set_values()
         ICPSudo = self.env["ir.config_parameter"].sudo()
-        ICPSudo.set_param(
+        ICPSudo.set_str(
             "helpdesk_mgmt_activity.helpdesk_available_model_ids",
             str(self.helpdesk_available_model_ids.ids),
         )
@@ -29,8 +29,8 @@ class ResConfigSettings(models.TransientModel):
     def get_values(self):
         res = super().get_values()
         ICPSudo = self.env["ir.config_parameter"].sudo()
-        helpdesk_available_model_ids = ICPSudo.get_param(
-            "helpdesk_mgmt_activity.helpdesk_available_model_ids", False
+        helpdesk_available_model_ids = ICPSudo.get_str(
+            "helpdesk_mgmt_activity.helpdesk_available_model_ids"
         )
         if helpdesk_available_model_ids:
             res.update(
