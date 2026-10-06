@@ -6,7 +6,8 @@ from typing import Optional  # noqa # pylint: disable=unused-import
 
 from odoo import http
 from odoo.fields import Domain
-from odoo.http import content_disposition, request
+from odoo.http import request
+from odoo.http.stream import content_disposition
 
 from odoo.addons.portal.controllers.portal import CustomerPortal
 from odoo.addons.web.controllers.utils import ensure_db

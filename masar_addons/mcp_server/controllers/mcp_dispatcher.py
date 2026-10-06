@@ -16,7 +16,8 @@ import werkzeug.exceptions
 from werkzeug.exceptions import HTTPException
 
 from odoo import http
-from odoo.http import CORS_MAX_AGE, Response
+from odoo.http import Response
+from odoo.http.dispatcher import CORS_MAX_AGE
 
 from . import jsonrpc, utils
 from .error_sanitizer import GENERIC_ERROR_MESSAGE
