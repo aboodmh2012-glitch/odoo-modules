@@ -5,7 +5,6 @@ import {ViewButton} from "@web/views/view_button/view_button";
 
 export class HelpdeskDashboard extends Component {
     static template = "helpdesk_mgmt.HelpdeskDashboard";
-    static props = {};
     static components = {ViewButton};
     setup() {
         this.orm = useService("orm");

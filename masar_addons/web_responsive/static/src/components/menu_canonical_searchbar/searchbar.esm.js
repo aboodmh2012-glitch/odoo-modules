@@ -232,5 +232,4 @@ export class AppsMenuCanonicalSearchBar extends Component {
     }
 }
 
-AppsMenuCanonicalSearchBar.props = {};
 AppsMenuCanonicalSearchBar.template = "web_responsive.AppsMenuCanonicalSearchBar";

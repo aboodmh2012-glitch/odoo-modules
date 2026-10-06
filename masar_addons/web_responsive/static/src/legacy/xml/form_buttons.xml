@@ -147,7 +147,7 @@
     </t>
     <t
         t-name="web_responsive.ListView.Buttons"
-        t-inherit="web.ListView.EditableButtons"
+        t-inherit="web.ListView.Buttons"
         t-inherit-mode="extension"
     >
         <!-- Add responsive icons to buttons -->

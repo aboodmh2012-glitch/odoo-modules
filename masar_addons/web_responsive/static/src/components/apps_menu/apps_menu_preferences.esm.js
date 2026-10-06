@@ -7,7 +7,6 @@ import {useService} from "@web/core/utils/hooks";
 import {user} from "@web/core/user";
 
 class AppsMenuPreferences extends Component {
-    static props = {};
     setup() {
         this.action = useService("action");
         this.user = user;

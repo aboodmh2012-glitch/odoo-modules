@@ -178,15 +178,7 @@ patch(NavBar.prototype, {
     },
 });
 
-Object.assign(AppsMenu, {
-    template: "web_responsive.AppsMenu",
-    props: {
-        slots: {
-            type: Object,
-            optional: true,
-        },
-    },
-});
+AppsMenu.template = "web_responsive.AppsMenu";
 
 Object.assign(NavBar.components, {AppsMenu, AppMenuItem, AppsMenuSearchBar});
 

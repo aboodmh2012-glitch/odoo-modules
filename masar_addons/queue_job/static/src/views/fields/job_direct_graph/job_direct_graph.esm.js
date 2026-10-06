@@ -2,17 +2,16 @@
 /* global vis */
 
 import {loadCSS, loadJS} from "@web/core/assets";
+import {Component, onWillStart, useEffect, useProps, useRef} from "@odoo/owl";
 import {registry} from "@web/core/registry";
 import {standardFieldProps} from "@web/views/fields/standard_field_props";
 import {useService} from "@web/core/utils/hooks";
 
-const {Component, onWillStart, useEffect, useRef} = owl;
-
 const {document} = globalThis;
 
 class JobDirectGraph extends Component {
-    static props = {...standardFieldProps};
     static template = "queue.JobDirectGraph";
+    props = useProps({...standardFieldProps});
 
     setup() {
         this.orm = useService("orm");
