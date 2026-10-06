@@ -93,6 +93,8 @@ Do **not** replace the above with Enterprise modules on this SMART Community ima
 - `dms` — portal inherit `portal_common_category` missing in Odoo 20
 - `document_page_project` — project kanban xpath `o_project_kanban_boxes` missing
 
+**Helpdesk note:** team dashboard kanban (`helpdesk_dashboard_views.xml`) temporarily omitted pending Odoo 20 kanban template port.
+
 ## Deferred HR (do not install)
 
 See `masar_addons/README.md` — 16 modules including `masar_hr_*`, `payroll`, `sign_oca`, `hr_appraisal_oca`, PPE, `fieldservice_sign`.
