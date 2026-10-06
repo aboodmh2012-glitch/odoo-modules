@@ -21,6 +21,11 @@ class FsmModelMixin(models.AbstractModel):
     )
     hide = fields.Boolean()
 
+    def _valid_field_parameter(self, field, name):
+        # ``tracking`` is honoured on the concrete models, which all inherit
+        # mail.thread; the abstract mixin itself does not.
+        return name == "tracking" or super()._valid_field_parameter(field, name)
+
     @api.model
     def _read_group_stage_ids(self, stages, domain):
         return self.env["fsm.stage"].search(Domain("stage_type", "=", self._stage_type))
