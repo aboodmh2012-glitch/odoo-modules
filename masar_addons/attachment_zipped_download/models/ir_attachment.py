@@ -31,7 +31,8 @@ class IrAttachment(models.Model):
                 attachment.check_access("read")
                 zip_file.writestr(
                     attachment._compute_zip_file_name(),
-                    attachment.raw,
+                    # Odoo 20: raw is a BinaryValue, not bytes
+                    attachment.raw.content if attachment.raw else b"",
                 )
             zip_buffer.seek(0)
             zip_file.close()

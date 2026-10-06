@@ -42,7 +42,7 @@ class IrHttp(models.AbstractModel):
     _inherit = "ir.http"
 
     @classmethod
-    def _auth_method_mcp(cls):
+    def _auth_method_mcp(cls, routing: dict):
         """Authenticate an MCP request via ``Authorization: Bearer <token>``.
 
         The ``Bearer `` scheme may be omitted (``Authorization: <token>``) as a
