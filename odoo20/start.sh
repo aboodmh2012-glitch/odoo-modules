@@ -12,5 +12,7 @@ COMMON_ARGS=(
 APPS="account,crm,sale_management,purchase,stock,point_of_sale,project,hr,hr_recruitment,hr_holidays,hr_attendance,hr_expense,website,website_sale,website_slides,website_event,mass_mailing,mass_mailing_sms,calendar,contacts,survey,fleet,maintenance,repair,mrp,lunch,im_livechat,project_todo"
 echo "Installing selected Odoo 20 Community applications..."
 gosu odoo odoo "${COMMON_ARGS[@]}" -d odoo20 -i "${APPS}" --without-demo --stop-after-init
-echo "Selected Odoo 20 applications installed; starting server..."
+echo "Seeding MASAR reference data into SMART only..."
+gosu odoo odoo shell "${COMMON_ARGS[@]}" -d odoo20 --no-http < /opt/masar/seed_masar_reference.py
+echo "MASAR SMART reference seed completed; starting server..."
 exec gosu odoo odoo "${COMMON_ARGS[@]}"
