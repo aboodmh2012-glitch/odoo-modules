@@ -16,4 +16,9 @@ class ResUsers(models.Model):
         # Odoo 20: set_param/get_param were removed; use typed setters.
         if params.get_str("auth_signup.invitation_scope") == "b2c":
             params.set_str("auth_signup.invitation_scope", "b2b")
+        Website = self.env["website"].sudo()
+        if "auth_signup_uninvited" in Website._fields:
+            Website.search([("auth_signup_uninvited", "=", "b2c")]).write(
+                {"auth_signup_uninvited": "b2b"}
+            )
 
