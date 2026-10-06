@@ -17,7 +17,7 @@ from werkzeug.exceptions import HTTPException
 
 from odoo import http
 from odoo.http import Response
-from odoo.http.dispatcher import CORS_MAX_AGE
+from odoo.http.dispatcher import CORS_MAX_AGE, Dispatcher
 
 from . import jsonrpc, utils
 from .error_sanitizer import GENERIC_ERROR_MESSAGE
@@ -25,7 +25,7 @@ from .error_sanitizer import GENERIC_ERROR_MESSAGE
 _logger = logging.getLogger(__name__)
 
 
-class MCPDispatcher(http.Dispatcher):
+class MCPDispatcher(Dispatcher):
     """Serve ``@mcp_route`` endpoints (plain JSON-RPC 2.0 over HTTP POST)."""
 
     routing_type = "mcp"
