@@ -14,7 +14,12 @@
                             list. </div>
                     </group>
                     <group>
-                        <field name="model_ids" widget="many2many" />
+                        <field name="model_ids_domain" invisible="1" />
+                        <field
+                            name="model_ids"
+                            widget="many2many"
+                            domain="model_ids_domain"
+                        />
                     </group>
                     <group string="Access Settings">
                         <field name="allow_read" />

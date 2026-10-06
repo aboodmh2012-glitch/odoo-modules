@@ -124,6 +124,49 @@ class TestModelSelectionUI(HttpCase):
         self.assertFalse(enabled_user.allow_write)
         self.assertFalse(enabled_user.allow_unlink)
 
+    def test_wizard_create_accepts_already_enabled_models(self):
+        """Odoo 20 rejects Many2many links outside the field domain.
+
+        The picker hides already-enabled models, but a lambda ``id not in``
+        domain is not sent to the web client, so those ids can still arrive on
+        create. Linking them must not raise ``Cannot link inaccessible records``.
+        """
+        partner_model = self.env["ir.model"].search(
+            [("model", "=", "res.partner")], limit=1
+        )
+        self.assertTrue(partner_model)
+        existing = self.env["mcp.enabled.model"].search(
+            [("model_id", "=", partner_model.id)]
+        )
+        if not existing:
+            self.env["mcp.enabled.model"].create(
+                {"model_id": partner_model.id, "allow_read": True}
+            )
+        wizard = self.env["mcp.model.selection.wizard"].create(
+            {
+                "model_ids": [(6, 0, [partner_model.id])],
+                "allow_read": True,
+            }
+        )
+        self.assertEqual(wizard.model_ids, partner_model)
+        result = wizard.action_enable_models()
+        self.assertEqual(result["type"], "ir.actions.act_window_close")
+        self.assertTrue(
+            self.env["mcp.enabled.model"].search(
+                [("model_id", "=", partner_model.id), ("active", "=", True)]
+            )
+        )
+
+    def test_wizard_create_rejects_internal_models(self):
+        from odoo.exceptions import UserError
+
+        ir_model = self.env["ir.model"].search([("model", "=", "ir.model")], limit=1)
+        self.assertTrue(ir_model)
+        with self.assertRaises(UserError):
+            self.env["mcp.model.selection.wizard"].create(
+                {"model_ids": [(6, 0, [ir_model.id])], "allow_read": True}
+            )
+
     def test_toggle_model_access(self):
         """Test enabling and disabling models."""
         # Login as admin which should have MCP admin rights
