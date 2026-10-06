@@ -3,7 +3,7 @@
     <!-- Default browser tab title when none is set. -->
     <template id="masar_web_layout_title" inherit_id="web.layout" name="MASAR Default Title">
         <xpath expr="//title" position="replace">
-            <title t-esc="title or 'MASAR Pay'"/>
+            <title t-out="title or 'MASAR Pay'"/>
         </xpath>
     </template>
 

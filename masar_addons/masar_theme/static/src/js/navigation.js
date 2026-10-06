@@ -1,191 +1,217 @@
 /** @odoo-module **/
 
-import {onMounted, useEffect, useExternalListener, useRef, useState} from "@odoo/owl";
+/**
+ * MASAR Apps Home for Odoo 20.
+ *
+ * Built on native NavBar / BurgerMenu (Owl 3). No web_responsive dependency.
+ * Home is a full-viewport workspace overlay; sections/account drawers stay
+ * mutually exclusive with Home.
+ */
+
+import {onMounted, signal, useEffect, useListener} from "@odoo/owl";
 import {patch} from "@web/core/utils/patch";
-import {useBus, useService} from "@web/core/utils/hooks";
+import {useBus} from "@web/core/utils/hooks";
 import {useHotkey} from "@web/core/hotkeys/hotkey_hook";
 import {_t} from "@web/core/l10n/translation";
-import {AppsMenu} from "@web_responsive/components/apps_menu/apps_menu.esm";
-import {AppsMenuCanonicalSearchBar} from "@web_responsive/components/menu_canonical_searchbar/searchbar.esm";
 import {NavBar} from "@web/webclient/navbar/navbar";
 import {BurgerMenu} from "@web/webclient/burger_menu/burger_menu";
 
-// Home is a workspace; a drawer is a separate, mutually exclusive surface.
 const OVERLAY_CHANGED = "MASAR_NAVIGATION:OVERLAY_CHANGED";
-const CLOSE_HOME = "MASAR_NAVIGATION:CLOSE_HOME";
-const FOCUSABLE = 'button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+const FOCUSABLE =
+    'button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 function focusable(root) {
-    return root ? [...root.querySelectorAll(FOCUSABLE)].filter(el => el.getClientRects().length) : [];
+    return root
+        ? [...root.querySelectorAll(FOCUSABLE)].filter((el) => el.getClientRects().length)
+        : [];
 }
 
 function hasNestedOverlay(root) {
-    return [...document.querySelectorAll(".o-overlay-container .o_popover, .o-overlay-container .o_dialog, .o-overlay-container .o-dropdown--menu")]
-        .some(el => el.getClientRects().length && !root?.contains(el));
+    return [
+        ...document.querySelectorAll(
+            ".o-overlay-container .o_popover, .o-overlay-container .o_dialog, .o-overlay-container .o-dropdown--menu"
+        ),
+    ].some((el) => el.getClientRects().length && !root?.contains(el));
 }
 
-function setupDrawer(component, name, root, isOpen, close) {
-    useEffect(() => {
-        if (isOpen()) {
-            focusable(root.el)[0]?.focus();
-        }
-    }, () => [isOpen()]);
+function setupDrawer(component, name, rootRef, isOpen, close) {
+    useEffect(
+        () => {
+            if (isOpen()) {
+                focusable(rootRef())[0]?.focus();
+            }
+        },
+        () => [isOpen()]
+    );
     useHotkey("Escape", () => close(), {
-        area: () => root.el,
-        isAvailable: () => isOpen() && component.masarOverlay === name && !hasNestedOverlay(root.el),
+        area: () => rootRef(),
+        isAvailable: () =>
+            isOpen() && component.masarOverlay === name && !hasNestedOverlay(rootRef()),
         bypassEditableProtection: true,
     });
-    useExternalListener(window, "keydown", ev => {
-        if (ev.key !== "Tab" || !isOpen() || component.masarOverlay !== name || hasNestedOverlay(root.el)) {
+    useListener(window, "keydown", (ev) => {
+        if (
+            ev.key !== "Tab" ||
+            !isOpen() ||
+            component.masarOverlay !== name ||
+            hasNestedOverlay(rootRef())
+        ) {
             return;
         }
-        const items = focusable(root.el);
+        const items = focusable(rootRef());
         if (!items.length) {
             return;
         }
         const index = items.indexOf(document.activeElement);
-        if (index === -1 || (ev.shiftKey && index === 0) || (!ev.shiftKey && index === items.length - 1)) {
+        if (
+            index === -1 ||
+            (ev.shiftKey && index === 0) ||
+            (!ev.shiftKey && index === items.length - 1)
+        ) {
             ev.preventDefault();
             (ev.shiftKey ? items[items.length - 1] : items[0]).focus();
         }
     });
 }
 
-patch(AppsMenu.prototype, {
+patch(NavBar.prototype, {
     setup() {
         super.setup();
-        this.ui = useState(useService("ui"));
-        this.state.sectionsOpen = false;
-        this.state.overlay = null;
-        this.restoreLauncherFocus = false;
-        useBus(this.env.bus, "APP_MENU:OPEN_APP_MENU", () => this.setOpenState(true));
-        useBus(this.env.bus, CLOSE_HOME, () => this._closeLauncher());
-        useBus(this.env.bus, OVERLAY_CHANGED, ({detail}) => {
-            this.state.overlay = detail;
-            this.state.sectionsOpen = detail === "sections";
+        Object.assign(this.state, {
+            masarHomeOpen: false,
+            masarSearch: "",
+            masarSectionsOpen: false,
         });
-        // Synchronize the navbar even when home was selected before it mounted.
-        onMounted(() => this.env.bus.trigger("APPS_MENU:STATE_CHANGED", this.state.open));
-        useEffect(() => {
-            if (this.state.open) {
-                this.restoreLauncherFocus = false;
-                this.launcher.el?.querySelector("input")?.focus();
-            } else if (this.restoreLauncherFocus) {
-                this.restoreLauncherFocus = false;
-                this.navigationButton.el?.focus();
+        this.masarOverlay = null;
+        this.masarRestoreHomeFocus = false;
+        this.masarHome = signal.ref();
+        this.masarNavButton = signal.ref();
+        this.masarSearchInput = signal.ref();
+        this.masarSectionsDrawer = signal.ref();
+
+        useBus(this.env.bus, OVERLAY_CHANGED, ({detail}) => {
+            this.masarOverlay = detail;
+            this.state.masarSectionsOpen = detail === "sections";
+            if (detail && detail !== "sections" && this.state.isAppMenuSidebarOpened) {
+                this._closeAppMenuSidebar();
             }
-        }, () => [this.state.open]);
-    },
+        });
 
-    setOpenState(open) {
-        if (open) {
-            this.env.bus.trigger(OVERLAY_CHANGED, null);
+        setupDrawer(
+            this,
+            "sections",
+            () => this.masarSectionsDrawer(),
+            () => this.state.isAppMenuSidebarOpened,
+            () => this._closeAppMenuSidebar()
+        );
+
+        useHotkey(
+            "Escape",
+            () => this.closeMasarHome({restoreFocus: true}),
+            {
+                area: () => this.masarHome(),
+                isAvailable: () =>
+                    this.state.masarHomeOpen &&
+                    !this.masarOverlay &&
+                    !!this.menuService.getCurrentApp(),
+                bypassEditableProtection: true,
+            }
+        );
+
+        for (const key of ["ArrowRight", "ArrowLeft", "ArrowDown", "ArrowUp"]) {
+            useHotkey(
+                key,
+                () => {
+                    const rtl = document.documentElement.dir === "rtl";
+                    const previous =
+                        key === "ArrowUp" || key === (rtl ? "ArrowRight" : "ArrowLeft");
+                    this._masarMoveAppFocus(previous ? "prev" : "next");
+                },
+                {
+                    area: () => this.masarHome(),
+                    isAvailable: () => this.state.masarHomeOpen && !this.masarOverlay,
+                    allowRepeat: true,
+                }
+            );
         }
-        super.setOpenState(open);
+
+        useEffect(
+            () => {
+                document.body.classList.toggle("o_masar_home_opened", this.state.masarHomeOpen);
+                if (this.state.masarHomeOpen) {
+                    this.masarRestoreHomeFocus = false;
+                    queueMicrotask(() => this.masarSearchInput()?.focus());
+                } else if (this.masarRestoreHomeFocus) {
+                    this.masarRestoreHomeFocus = false;
+                    this.masarNavButton()?.focus();
+                }
+                if (!this.state.masarHomeOpen && !this.ui.isSmall) {
+                    this.adapt();
+                }
+            },
+            () => [this.state.masarHomeOpen, this.ui.isSmall]
+        );
+
+        onMounted(() => {
+            if (this.state.masarHomeOpen) {
+                document.body.classList.add("o_masar_home_opened");
+            }
+        });
     },
 
-    get navigationLabel() {
-        if (this.state.open) {
-            return this.menuService.getCurrentApp() ? _t("Return to application") : _t("All applications");
+    get masarNavigationLabel() {
+        if (this.state.masarHomeOpen) {
+            return this.menuService.getCurrentApp()
+                ? _t("Return to application")
+                : _t("All applications");
         }
         return this.ui.isSmall ? _t("Application menu") : _t("All applications");
     },
 
-    _closeLauncher() {
-        if (this.state.open && !this.state.overlay && this.menuService.getCurrentApp()) {
-            this.restoreLauncherFocus = true;
-            this.setOpenState(false);
+    get masarFilteredApps() {
+        const apps = this.menuService.getApps() || [];
+        const query = (this.state.masarSearch || "").trim().toLowerCase();
+        if (!query) {
+            return apps;
         }
+        return apps.filter((app) => (app.name || "").toLowerCase().includes(query));
     },
 
-    onMenuClick() {
-        if (this.state.open) {
-            this._closeLauncher();
-        } else if (this.ui.isSmall) {
-            this.env.bus.trigger("APP_MENU:TOGGLE_SIDEBAR");
-        } else {
-            this.setOpenState(true);
+    openMasarHome() {
+        this.env.bus.trigger(OVERLAY_CHANGED, null);
+        if (this.state.isAppMenuSidebarOpened) {
+            this._closeAppMenuSidebar();
         }
+        this.state.masarSearch = "";
+        this.state.masarHomeOpen = true;
     },
 
-    _setupKeyNavigation() {
-        this.launcher = useRef("masarLauncher");
-        this.navigationButton = useRef("masarNavigationButton");
-        const options = {
-            area: () => this.launcher.el,
-            isAvailable: () => this.state.open && !this.state.overlay,
-            allowRepeat: true,
-        };
-        for (const key of ["ArrowRight", "ArrowLeft", "ArrowDown", "ArrowUp"]) {
-            useHotkey(key, () => {
-                const rtl = document.documentElement.dir === "rtl";
-                const previous = key === "ArrowUp" || key === (rtl ? "ArrowRight" : "ArrowLeft");
-                this._onWindowKeydown(previous ? "prev" : "next");
-            }, options);
-        }
-        useHotkey("Escape", () => this._closeLauncher(), {
-            area: () => this.launcher.el,
-            isAvailable: () => this.state.open && !this.state.overlay && !!this.menuService.getCurrentApp(),
-            bypassEditableProtection: true,
-        });
-    },
-
-    _onWindowKeydown(direction) {
-        if (!this.state.open || this.state.overlay) {
+    closeMasarHome({restoreFocus = false} = {}) {
+        if (!this.state.masarHomeOpen) {
             return;
         }
-        const items = [...(this.launcher.el?.querySelectorAll(".o-app-menu-item") || [])].filter(el => el.getClientRects().length);
-        if (!items.length) {
-            return;
+        if (restoreFocus && this.menuService.getCurrentApp()) {
+            this.masarRestoreHomeFocus = true;
         }
-        const index = items.indexOf(document.activeElement);
-        const next = index < 0 ? 0 : (index + (direction === "prev" ? -1 : 1) + items.length) % items.length;
-        items[next].focus();
-    },
-});
-
-// The canonical (and inherited Fuse) search input stops Escape propagation.
-// Keep its clear-query behavior, but close only MASAR home for an empty query.
-patch(AppsMenuCanonicalSearchBar.prototype, {
-    _onKeyDown(ev) {
-        if (ev.code === "Escape" && !this.inputValue && ev.target?.closest("#masar-apps-launcher")) {
-            ev.stopPropagation();
-            ev.preventDefault();
-            this.env.bus.trigger(CLOSE_HOME);
-            return;
-        }
-        return super._onKeyDown(ev);
-    },
-});
-
-patch(NavBar.prototype, {
-    setup() {
-        super.setup();
         this.state.masarHomeOpen = false;
-        this.masarOverlay = null;
-        this.sectionsDrawer = useRef("masarSectionsDrawer");
-        useBus(this.env.bus, "APPS_MENU:STATE_CHANGED", ({detail: open}) => {
-            this.state.masarHomeOpen = open;
-            if (open) {
-                this._closeAppMenuSidebar(false);
-            }
-        });
-        useBus(this.env.bus, OVERLAY_CHANGED, ({detail}) => {
-            this.masarOverlay = detail;
-            if (detail !== "sections") {
-                this._closeAppMenuSidebar(false);
-            }
-        });
-        setupDrawer(this, "sections", this.sectionsDrawer,
-            () => this.state.isAppMenuSidebarOpened, () => this._closeAppMenuSidebar());
-        // Home hides sections with display:none. Native adapt may have measured
-        // zero widths on an app change; measure again after the launcher closes
-        // and Owl has restored the visible navbar. Keep native More behavior.
-        useEffect(() => {
-            if (!this.state.masarHomeOpen && !this.ui.isSmall) {
-                this.adapt();
-            }
-        }, () => [this.state.masarHomeOpen, this.ui.isSmall]);
+        this.state.masarSearch = "";
+    },
+
+    toggleMasarHome() {
+        if (this.state.masarHomeOpen) {
+            this.closeMasarHome({restoreFocus: true});
+            return;
+        }
+        if (this.ui.isSmall) {
+            this._openAppMenuSidebar();
+            return;
+        }
+        this.openMasarHome();
+    },
+
+    onAllAppsBtnClick() {
+        this._closeAppMenuSidebar();
+        this.openMasarHome();
     },
 
     _openAppMenuSidebar() {
@@ -200,24 +226,58 @@ patch(NavBar.prototype, {
         super._openAppMenuSidebar();
     },
 
-    _closeAppMenuSidebar(restoreFocus = true) {
+    _closeAppMenuSidebar() {
         const wasOpen = this.state.isAppMenuSidebarOpened;
         super._closeAppMenuSidebar();
         if (this.masarOverlay === "sections") {
             this.env.bus.trigger(OVERLAY_CHANGED, null);
         }
-        if (wasOpen && restoreFocus) {
-            this.root.el?.querySelector(".o_grid_apps_menu__button")?.focus();
+        if (wasOpen) {
+            this.masarNavButton()?.focus();
         }
     },
 
-    openAppMenu() {
-        this._closeAppMenuSidebar(false);
-        this.env.bus.trigger("APP_MENU:OPEN_APP_MENU");
+    onMasarAppSelected(app) {
+        this.closeMasarHome();
+        this.onNavBarDropdownItemSelection(app);
     },
 
-    onAllAppsBtnClick() {
-        this.openAppMenu();
+    onMasarSearchInput(ev) {
+        this.state.masarSearch = ev.target.value || "";
+    },
+
+    clearMasarSearch() {
+        this.state.masarSearch = "";
+        this.masarSearchInput()?.focus();
+    },
+
+    onMasarSearchKeydown(ev) {
+        if (ev.code === "Escape") {
+            if (this.state.masarSearch) {
+                ev.preventDefault();
+                this.clearMasarSearch();
+                return;
+            }
+            if (this.menuService.getCurrentApp()) {
+                ev.preventDefault();
+                this.closeMasarHome({restoreFocus: true});
+            }
+        }
+    },
+
+    _masarMoveAppFocus(direction) {
+        const items = [...(this.masarHome()?.querySelectorAll(".o-masar-app-item") || [])].filter(
+            (el) => el.getClientRects().length
+        );
+        if (!items.length) {
+            return;
+        }
+        const index = items.indexOf(document.activeElement);
+        const next =
+            index < 0
+                ? 0
+                : (index + (direction === "prev" ? -1 : 1) + items.length) % items.length;
+        items[next].focus();
     },
 
     _onSectionKeydown(ev, section) {
@@ -243,21 +303,26 @@ patch(BurgerMenu.prototype, {
     setup() {
         super.setup();
         this.masarOverlay = null;
-        this.accountDrawer = useRef("masarAccountDrawer");
-        this.accountButton = useRef("masarAccountButton");
+        this.masarAccountDrawer = signal.ref();
+        this.masarAccountButton = signal.ref();
         useBus(this.env.bus, OVERLAY_CHANGED, ({detail}) => {
             this.masarOverlay = detail;
-            if (detail !== "account") {
-                this._closeBurger(false);
+            if (detail !== "account" && this.state.isBurgerOpened) {
+                this._closeBurger();
             }
         });
-        useBus(this.env.bus, "APPS_MENU:STATE_CHANGED", ({detail: open}) => {
-            if (open) {
-                this._closeBurger(false);
+        useBus(this.env.bus, "MASAR_NAVIGATION:HOME_CHANGED", ({detail: open}) => {
+            if (open && this.state.isBurgerOpened) {
+                this._closeBurger();
             }
         });
-        setupDrawer(this, "account", this.accountDrawer,
-            () => this.state.isBurgerOpened, () => this._closeBurger());
+        setupDrawer(
+            this,
+            "account",
+            () => this.masarAccountDrawer(),
+            () => this.state.isBurgerOpened,
+            () => this._closeBurger()
+        );
     },
 
     _openBurger() {
@@ -265,14 +330,14 @@ patch(BurgerMenu.prototype, {
         super._openBurger();
     },
 
-    _closeBurger(restoreFocus = true) {
+    _closeBurger() {
         const wasOpen = this.state.isBurgerOpened;
         super._closeBurger();
         if (this.masarOverlay === "account") {
             this.env.bus.trigger(OVERLAY_CHANGED, null);
         }
-        if (wasOpen && restoreFocus) {
-            this.accountButton.el?.focus();
+        if (wasOpen) {
+            this.masarAccountButton()?.focus();
         }
     },
 
@@ -285,5 +350,17 @@ patch(BurgerMenu.prototype, {
         if ((document.documentElement.dir === "rtl" ? -delta : delta) >= 100) {
             this._closeBurger();
         }
+    },
+});
+
+// Keep body class in sync when home toggles via NavBar only.
+patch(NavBar.prototype, {
+    openMasarHome() {
+        this.env.bus.trigger("MASAR_NAVIGATION:HOME_CHANGED", true);
+        return super.openMasarHome(...arguments);
+    },
+    closeMasarHome() {
+        this.env.bus.trigger("MASAR_NAVIGATION:HOME_CHANGED", false);
+        return super.closeMasarHome(...arguments);
     },
 });

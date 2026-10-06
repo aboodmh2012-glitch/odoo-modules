@@ -17,6 +17,7 @@
     .o_menu_sections > a,
     .o_menu_systray .dropdown-toggle,
     .o_menu_systray .o_nav_entry,
+    .o_masar_home_toggle,
     .o_grid_apps_menu__button {
         color: var(--masar-text-inverse) !important;
     }
@@ -40,6 +41,7 @@
     .o_menu_sections > button:hover,
     .o_menu_sections .dropdown-toggle:hover,
     .o_nav_entry:hover,
+    .o_masar_home_toggle:hover,
     .o_grid_apps_menu__button:hover {
         background: var(--masar-sidebar-item-hover) !important;
         color: var(--masar-text-inverse) !important;
@@ -245,7 +247,9 @@ html[data-dir="rtl"] .o_main_navbar .o_navbar_apps_menu::after,
 
 // Hide current-app navigation on home, while keeping the user menu available.
 // Odoo's account avatar also uses o_mobile_menu_toggle; never hide that class.
+body.o_masar_home_opened .o_main_navbar .o_navbar_breadcrumbs,
 body.o_apps_menu_opened .o_main_navbar .o_navbar_breadcrumbs,
+body.o_masar_home_opened .o_app_menu_sidebar,
 body.o_apps_menu_opened .o_app_menu_sidebar {
     display: none !important;
 }

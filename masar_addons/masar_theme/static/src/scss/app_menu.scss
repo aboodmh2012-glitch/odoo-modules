@@ -1,23 +1,15 @@
-// MASAR Pay Apps Dashboard — clear application grid over quiet brand artwork.
+// MASAR Pay Apps Home — full-viewport workspace over brand artwork.
 
-:root {
-    .o_grid_apps_menu[data-theme="milk"],
-    .o_grid_apps_menu[data-theme="community"] {
-        --app-menu-text-color: #{$masar-white};
-        --app-menu-text-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
-        --app-menu-hover-background: transparent;
-    }
-}
-
-.o_apps_menu_opened {
+body.o_masar_home_opened {
     .o_action_manager,
     .o_main_navbar .o_menu_brand,
-    .o_main_navbar .o_menu_sections {
+    .o_main_navbar .o_menu_sections,
+    .o_main_navbar .o_navbar_breadcrumbs {
         visibility: hidden !important;
     }
 }
 
-.app-menu-container {
+.o_masar_apps_home.app-menu-container {
     position: fixed !important;
     inset: auto 0 0 0;
     top: var(--o-navbar-height, 46px) !important;
@@ -139,16 +131,6 @@
                 }
             }
         }
-
-        .search-results,
-        .o-app-menu-search-results {
-            max-height: 40vh;
-            overflow: auto;
-            margin-top: 0.5rem;
-            border-radius: $masar-radius;
-            background: rgba(255, 255, 255, 0.97);
-            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
-        }
     }
 
     .o-app-menu-list {
@@ -174,6 +156,9 @@
     }
 
     .o-app-menu-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         border-radius: $masar-radius-lg;
         padding: 0.55rem 0.35rem 0.45rem;
         background: rgba(255, 255, 255, 0.06) !important;
@@ -185,12 +170,6 @@
             opacity 0.22s ease,
             background 0.22s ease,
             border-color 0.22s ease;
-
-        .o_app {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
 
         &__icon {
             width: 68px;
@@ -218,6 +197,8 @@
             transition:
                 transform 0.22s ease,
                 box-shadow 0.22s ease;
+            color: $masar-navy;
+            font-size: 1.5rem;
         }
 
         &__name {
@@ -228,15 +209,15 @@
             letter-spacing: 0.01em;
             margin-top: 0.4rem;
             line-height: 1.25;
+            text-align: center;
         }
 
-        &__active {
-            color: $masar-orange;
-            filter: drop-shadow(0 0 4px rgba(255, 106, 0, 0.7));
+        &--active .o-app-menu-item__name {
+            color: $masar-orange !important;
         }
 
         &:hover,
-        &:focus {
+        &:focus-visible {
             transform: translateY(-4px);
             background: rgba(255, 106, 0, 0.12) !important;
             border-color: rgba(255, 106, 0, 0.45);
@@ -252,10 +233,16 @@
             }
         }
     }
+
+    .o_masar_apps_empty {
+        color: rgba(255, 255, 255, 0.85);
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+        padding: 1.5rem 1rem;
+    }
 }
 
 @media (max-width: 390px) {
-    .app-menu-container {
+    .o_masar_apps_home.app-menu-container {
         padding: 0.85rem 0.55rem 1.5rem !important;
 
         .o-app-menu-list {
@@ -272,22 +259,37 @@
     }
 }
 
-
 @media (max-width: 767.98px) {
-    .app-menu-container {
+    .o_masar_apps_home.app-menu-container {
         background-image: url("/masar_theme/static/src/img/masar-workspace-mobile.webp") !important;
         padding-bottom: #{'max(2rem, env(safe-area-inset-bottom))'} !important;
     }
 }
-.app-menu-container .o-app-menu-item:focus-visible {
+
+.o_masar_apps_home.app-menu-container .o-app-menu-item:focus-visible {
     outline: 2px solid $masar-orange;
     outline-offset: 3px;
 }
+
 // The pill owns focus; do not draw another input rectangle inside it.
-.o_web_client .app-menu-container .search-input .form-control,
-.o_web_client .app-menu-container .search-input .form-control:focus-visible {
+.o_web_client .o_masar_apps_home .search-input .form-control,
+.o_web_client .o_masar_apps_home .search-input .form-control:focus-visible {
     border: 0;
     outline: 0;
     box-shadow: none;
     background: transparent;
+}
+
+// Apps toggle in the navy navbar
+.o_main_navbar .o_masar_home_toggle {
+    color: var(--masar-text-inverse, #fff) !important;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+
+    &:hover,
+    &[aria-expanded="true"] {
+        background: var(--masar-sidebar-item-hover, rgba(255, 255, 255, 0.12)) !important;
+        border-radius: var(--masar-radius-sm, 0.35rem);
+        color: var(--masar-text-inverse, #fff) !important;
+    }
 }
