@@ -1,7 +1,12 @@
 #!/bin/bash
+# SMART Odoo 20 — serve only.
+# Module installs must be run deliberately (module-by-module), never on every boot.
+# Forbidden here: -i all, -u all, and unconditional -i of app bundles.
 set -euo pipefail
-mkdir -p /var/lib/odoo /var/lib/odoo/sessions
-chown -R odoo:odoo /var/lib/odoo
+
+mkdir -p /var/lib/odoo /var/lib/odoo/sessions /mnt/extra-addons
+chown -R odoo:odoo /var/lib/odoo || true
+
 COMMON_ARGS=(
   -c /etc/odoo/odoo.conf
   --db_host="${HOST:?}"
@@ -9,8 +14,19 @@ COMMON_ARGS=(
   --db_user="${USER:?}"
   --db_password="${PASSWORD:?}"
 )
-APPS="account,crm,sale_management,purchase,stock,point_of_sale,project,hr,hr_recruitment,hr_holidays,hr_attendance,hr_expense,website,website_sale,website_slides,website_event,mass_mailing,mass_mailing_sms,calendar,contacts,survey,fleet,maintenance,repair,mrp,lunch,im_livechat,project_todo"
-echo "Installing selected Odoo 20 Community applications..."
-gosu odoo odoo "${COMMON_ARGS[@]}" -d odoo20 -i "${APPS}" --without-demo --stop-after-init
-echo "Selected Odoo 20 applications installed; starting server..."
+
+# Optional one-shot install when operator sets SMART_INSTALL_MODULES explicitly, e.g.:
+#   SMART_INSTALL_MODULES=hr,hr_recruitment
+# Never set this permanently on the primary service.
+if [[ -n "${SMART_INSTALL_MODULES:-}" ]]; then
+  DB_NAME="${SMART_DB_NAME:-odoo20}"
+  echo "One-shot module install requested for DB=${DB_NAME}: ${SMART_INSTALL_MODULES}"
+  gosu odoo odoo "${COMMON_ARGS[@]}" \
+    -d "${DB_NAME}" \
+    -i "${SMART_INSTALL_MODULES}" \
+    --without-demo \
+    --stop-after-init
+  echo "One-shot install finished; starting server..."
+fi
+
 exec gosu odoo odoo "${COMMON_ARGS[@]}"
