@@ -28,7 +28,7 @@ def main():
     odoo, registry = connect()
     with registry.cursor() as cr:
         env = odoo.api.Environment(cr, odoo.SUPERUSER_ID, {})
-        website = env.ref('website.default_website')
+        website = env.ref('base.default_website')
         if 'MASAR' not in website.name.upper():
             raise RuntimeError('Unexpected website')
         view = env.ref('masar_website.masar_brand_fix_head')

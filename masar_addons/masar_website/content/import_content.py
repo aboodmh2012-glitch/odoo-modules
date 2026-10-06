@@ -68,7 +68,7 @@ def select_page(env, website, url):
 
 
 def inspect(env, source):
-    website = env.ref("website.default_website")
+    website = env.ref("base.default_website")
     if website.name.upper() != "MASAR":
         raise RuntimeError("Target is not the expected MASAR website")
     if website.homepage_url not in (False, "", "/"):

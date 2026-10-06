@@ -40,7 +40,7 @@ def page_state(page):
 
 
 def inventory(env, source):
-    website = env.ref('website.default_website')
+    website = env.ref('base.default_website')
     if website.name.upper() != 'MASAR':
         raise RuntimeError('Wrong website')
     languages = website.language_ids.mapped('code')

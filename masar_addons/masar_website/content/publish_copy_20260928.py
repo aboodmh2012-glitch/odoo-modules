@@ -50,7 +50,7 @@ def main():
         cr.execute('SELECT pg_try_advisory_xact_lock(%s)', [9282026])
         if not cr.fetchone()[0]: raise RuntimeError('Another editorial publication is running')
         env=odoo.api.Environment(cr, odoo.SUPERUSER_ID, {})
-        website=env.ref('website.default_website')
+        website=env.ref('base.default_website')
         if 'MASAR' not in website.name.upper(): raise RuntimeError('Unexpected target website')
         params=env['ir.config_parameter'].sudo()
         if args.apply and params.get_param(MARKER):

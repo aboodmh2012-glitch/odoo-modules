@@ -3,7 +3,7 @@
     <!-- Home-screen / PWA icon (favicon). noupdate=0 so icon revisions apply
          on module upgrade. -->
     <data noupdate="0">
-        <record id="website.default_website" model="website">
+        <record id="base.default_website" model="website">
             <field name="favicon" type="base64" file="masar_website/static/src/img/app_icon.png"/>
         </record>
     </data>
