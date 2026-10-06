@@ -20,25 +20,30 @@ class TierReview(models.Model):
     review_type = fields.Selection(
         compute="_compute_definition_data",
         store=True,
+        related=False,
     )
     reviewer_id = fields.Many2one(
         comodel_name="res.users",
         compute="_compute_definition_data",
         store=True,
+        related=False,
     )
     reviewer_group_id = fields.Many2one(
         comodel_name="res.groups",
         compute="_compute_definition_data",
         store=True,
+        related=False,
     )
     sequence = fields.Integer()
     has_comment = fields.Boolean(
         compute="_compute_definition_data",
         store=True,
+        related=False,
     )
     approve_sequence = fields.Boolean(
         compute="_compute_definition_data",
         store=True,
+        related=False,
     )
 
     @api.depends(
