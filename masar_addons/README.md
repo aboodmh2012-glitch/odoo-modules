@@ -4,6 +4,7 @@ Copied read-only from `smartexsoftorg/masar` `custom_addons/`.
 MASAR Production is never modified.
 
 Native-first decisions: [`docs/migration/NON_HR_NATIVE_MATRIX.md`](../docs/migration/NON_HR_NATIVE_MATRIX.md).
+Odoo 20 compatibility audit, security fix and wave plan: [`docs/migration/ODOO20_FUNCTIONAL_AUDIT.md`](../docs/migration/ODOO20_FUNCTIONAL_AUDIT.md).
 
 ## Priority
 
