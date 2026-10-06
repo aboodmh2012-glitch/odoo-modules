@@ -1,6 +1,5 @@
 # Copyright 2026 MASAR
 # License AGPL-3.0 or later.
-import base64
 import os
 from datetime import timedelta
 
@@ -92,7 +91,7 @@ class SocialAccount(models.Model):
         media = target.post_id.attachment_ids[:1]
         media.check_access("read")
         caption = (target.platform_content or target.post_id.content or target.post_id.name or "").strip()[:CAPTION_MAX]
-        raw = base64.b64decode(media.datas)
+        raw = media.raw.content if media.raw else b""
         size = len(raw)
         token = self._tiktok_token()
         privacy = self._choose_privacy(token)

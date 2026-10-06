@@ -1,6 +1,5 @@
 # Copyright 2026 MASAR
 # License AGPL-3.0 or later.
-import base64
 import os
 from datetime import timedelta
 
@@ -94,7 +93,7 @@ class SocialAccount(models.Model):
             "snippet": {"title": title, "description": description},
             "status": {"privacyStatus": "public", "selfDeclaredMadeForKids": False},
         }
-        raw = base64.b64decode(media.datas)
+        raw = media.raw.content if media.raw else b""
         result = yt_api.upload_video(self._youtube_token(), metadata, raw, media.mimetype)
         vid = result.get("id")
         if not vid:

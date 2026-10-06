@@ -1,4 +1,3 @@
-import base64
 from datetime import datetime, timezone
 
 from odoo import fields, models, _
@@ -51,7 +50,7 @@ class SocialAccount(models.Model):
                 raise DeliveryUncertain()
             return {"id": str(post_id), "url": f"https://www.facebook.com/{post_id}"}
         media.check_access("read")
-        raw = base64.b64decode(media.datas)
+        raw = media.raw.content if media.raw else b""
         if media.mimetype.startswith("image/"):
             data = self._meta_page_publish_photo(
                 text, raw, media.name or "image.jpg", media.mimetype

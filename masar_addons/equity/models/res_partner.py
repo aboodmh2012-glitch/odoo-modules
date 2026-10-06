@@ -1,4 +1,3 @@
-import base64
 from dateutil.relativedelta import relativedelta
 import json
 import uuid
@@ -165,7 +164,7 @@ class ResPartner(models.Model):
         attachment = sudo_self.env['ir.attachment'].create({
             'name': 'UBO_report.pdf',
             'type': 'binary',
-            'datas': base64.b64encode(pdf_content),
+            'raw': pdf_content,
             'res_model': 'res.partner',
             'res_id': self.id,
             'mimetype': 'application/pdf',

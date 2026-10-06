@@ -1,3 +1,5 @@
+import base64
+
 from odoo import api, fields, models
 
 CONTROL_METHODS = [
@@ -136,7 +138,7 @@ class EquityUbo(models.Model):
                     self.env['ir.attachment'].create({
                         'name': attachment_data['name'],
                         'mimetype': attachment_data['type'],
-                        'datas': attachment_data['data'],
+                        'raw': base64.b64decode(attachment_data['data']),
                         'res_model': self._name,
                         'res_id': ubo.id,
                     })
