@@ -29,7 +29,7 @@ Enterprise apps (`industry_fsm`, EE `helpdesk`, EE `social`, EE `knowledge`, EE 
 | Corporate governance (`bf_*`) | **COPY & MIGRATE** | Custom MASAR/BF domain |
 | Reporting helpers (`report_xlsx*`, `date_range*`) | **COPY & MIGRATE** | Shared deps for accounting/reports |
 | `queue_job`, `voip_oca`, `web_responsive` | **COPY & MIGRATE** | Infra used by Social / UX |
-| HR / payroll / sign / appraisal / PPE | **PARTIAL** | Core lifecycle COPY; payroll/sign/PPE/learning SKIP — see `EMPLOYEE_FEATURE_DECISIONS.md` |
+| HR / payroll / sign / appraisal / PPE | **PARTIAL** | Core lifecycle + OCA `payroll`/`payroll_account` COPY; Yemen overlay/sign/PPE/learning SKIP — see `EMPLOYEE_FEATURE_DECISIONS.md` |
 
 ## Module decisions (100 copied)
 
@@ -98,7 +98,7 @@ Do **not** replace the above with Enterprise modules on this SMART Community ima
 ## HR (go-ahead; native-first)
 
 Core lifecycle modules are under `masar_addons/masar_hr_*` (documents, disciplinary, transfer, resignation, attendance regularization, yemen).  
-Skipped for now: payroll/sign/PPE/appraisal/learning/org_chart — see `EMPLOYEE_FEATURE_DECISIONS.md`.
+Skipped for now: Yemen payroll overlay / sign / PPE / appraisal / learning / org_chart — see `EMPLOYEE_FEATURE_DECISIONS.md`. OCA `payroll` and `payroll_account` are copied.
 
 ## Recommended non-HR install batches
 
