@@ -75,9 +75,9 @@ class TestMcpAccessGroupGate(common.HttpCase):
         self.key_ingroup = self._mint_key(self.user_ingroup, "Gate Member Key")
 
         params = self.env["ir.config_parameter"].sudo()
-        params.set_param("mcp_server.enabled", "True")
-        params.set_param("mcp_server.enable_oauth", "True")
-        params.set_param("mcp_server.enable_logging", "True")
+        params.set_str("mcp_server.enabled", "True")
+        params.set_str("mcp_server.enable_oauth", "True")
+        params.set_str("mcp_server.enable_logging", "True")
         self._enable_model("base.model_res_partner", allow_read=True)
         utils.clear_mcp_caches()
 

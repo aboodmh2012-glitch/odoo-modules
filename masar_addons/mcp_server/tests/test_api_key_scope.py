@@ -67,7 +67,7 @@ class TestApiKeyScope(common.HttpCase):
         )
 
         # Enable MCP globally and drop any stale cached toggle value.
-        self.env["ir.config_parameter"].sudo().set_param("mcp_server.enabled", "True")
+        self.env["ir.config_parameter"].sudo().set_str("mcp_server.enabled", "True")
         utils.clear_mcp_caches()
 
     def _post_rpc(self, body, api_key):

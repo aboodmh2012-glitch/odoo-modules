@@ -276,9 +276,9 @@ class TestCustomTools(common.HttpCase):
         )
 
         params = self.env["ir.config_parameter"].sudo()
-        params.set_param("mcp_server.enabled", "True")
-        params.set_param("mcp_server.enable_logging", "True")
-        params.set_param("mcp_server.enable_oauth", "True")
+        params.set_str("mcp_server.enabled", "True")
+        params.set_str("mcp_server.enable_logging", "True")
+        params.set_str("mcp_server.enable_oauth", "True")
         utils.clear_mcp_caches()
 
         # OAuth audience the AS derives from the request host (RFC 8707); a token's

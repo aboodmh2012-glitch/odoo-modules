@@ -76,11 +76,11 @@ class TestOAuth(common.HttpCase):
 
         # Enable MCP globally and expose res.partner (read) for the tool call.
         params = self.env["ir.config_parameter"].sudo()
-        params.set_param("mcp_server.enabled", "True")
+        params.set_str("mcp_server.enabled", "True")
         # OAuth is on by default; set it explicitly here so the suite is
         # independent of the global default, then clear the caches that gate the
         # endpoints.
-        params.set_param("mcp_server.enable_oauth", "True")
+        params.set_str("mcp_server.enable_oauth", "True")
         self._enable_model("base.model_res_partner", allow_read=True)
         utils.clear_mcp_caches()
 
@@ -1543,7 +1543,7 @@ class TestOAuth(common.HttpCase):
     def test_dcr_ip_rate_limit_returns_429(self):
         """Registration is capped per IP independently of the API request limit."""
         # Even with the general API limit disabled, the DCR cap still applies.
-        self.env["ir.config_parameter"].sudo().set_param(
+        self.env["ir.config_parameter"].sudo().set_str(
             "mcp_server.request_limit", "0"
         )
         oauth_server._dcr_limiter.clear()
@@ -1608,9 +1608,9 @@ class TestOAuthDisabled(common.HttpCase):
         self.redirect_uri = "http://127.0.0.1:8765/callback"
 
         params = self.env["ir.config_parameter"].sudo()
-        params.set_param("mcp_server.enabled", "True")
+        params.set_str("mcp_server.enabled", "True")
         # OAuth explicitly OFF -- the whole OAuth front door must be closed.
-        params.set_param("mcp_server.enable_oauth", "False")
+        params.set_str("mcp_server.enable_oauth", "False")
         self._enable_model("base.model_res_partner", allow_read=True)
         utils.clear_mcp_caches()
 
@@ -1735,7 +1735,7 @@ class TestOAuthDisabled(common.HttpCase):
     def test_reenabling_oauth_restores_the_front_door(self):
         """Turning enable_oauth back on re-exposes registration (spot check)."""
         params = self.env["ir.config_parameter"].sudo()
-        params.set_param("mcp_server.enable_oauth", "True")
+        params.set_str("mcp_server.enable_oauth", "True")
         utils.clear_mcp_caches()
 
         response = self.url_open(

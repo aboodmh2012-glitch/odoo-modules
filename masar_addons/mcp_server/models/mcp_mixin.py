@@ -21,7 +21,6 @@ import base64
 
 from odoo import _, api, models
 from odoo.exceptions import AccessError, MissingError, UserError
-from odoo.tools import ormcache
 from odoo.tools.mimetypes import guess_mimetype
 
 from ..controllers import utils
@@ -106,7 +105,7 @@ class McpMixin(models.AbstractModel):
     _description = "MCP Tool Mixin"
 
     @api.model
-    @ormcache(cache="stable")
+    @api.ormcache(cache="stable")
     def _get_mcp_tools(self):
         """Return the tool index ``{tool_name: {...metadata}}``.
 

@@ -48,7 +48,7 @@ class TestMCPCommonController(HttpCase):
         from ..controllers import utils
 
         # Enable MCP globally by default
-        self.env["ir.config_parameter"].sudo().set_param("mcp_server.enabled", "True")
+        self.env["ir.config_parameter"].sudo().set_str("mcp_server.enabled", "True")
         utils.clear_mcp_caches()
 
     def test_common_controller_mcp_disabled(self):
@@ -56,7 +56,7 @@ class TestMCPCommonController(HttpCase):
         from ..controllers import utils
 
         # Disable MCP globally
-        self.env["ir.config_parameter"].sudo().set_param("mcp_server.enabled", "False")
+        self.env["ir.config_parameter"].sudo().set_str("mcp_server.enabled", "False")
         utils.clear_mcp_caches()
 
         request_data = xmlrpclib.dumps((), "version", allow_none=1)
@@ -118,7 +118,7 @@ class TestMCPDatabaseController(HttpCase):
         from ..controllers import utils
 
         # Enable MCP globally by default
-        self.env["ir.config_parameter"].sudo().set_param("mcp_server.enabled", "True")
+        self.env["ir.config_parameter"].sudo().set_str("mcp_server.enabled", "True")
         utils.clear_mcp_caches()
 
     def test_db_controller_mcp_disabled(self):
@@ -126,7 +126,7 @@ class TestMCPDatabaseController(HttpCase):
         from ..controllers import utils
 
         # Disable MCP globally
-        self.env["ir.config_parameter"].sudo().set_param("mcp_server.enabled", "False")
+        self.env["ir.config_parameter"].sudo().set_str("mcp_server.enabled", "False")
         utils.clear_mcp_caches()
 
         request_data = xmlrpclib.dumps((), "list", allow_none=1)
@@ -143,38 +143,18 @@ class TestMCPDatabaseController(HttpCase):
         self.assertEqual(cm.exception.faultCode, 403)
         self.assertIn("MCP Server is disabled globally", cm.exception.faultString)
 
-    @patch("odoo.service.db.dispatch")
-    def test_db_controller_success(self, mock_dispatch):
-        """Test successful XML-RPC database request."""
-        mock_dispatch.return_value = ["test_db1", "test_db2"]
+    def test_db_controller_service_removed(self):
+        """Odoo 20 has no XML-RPC db service: the proxy answers a 404 fault."""
         request_data = xmlrpclib.dumps((), "list", allow_none=1)
-
         response = self.url_open(
             "/mcp/xmlrpc/db", data=request_data, headers={"Content-Type": "text/xml"}
         )
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.headers.get("Content-Type"), "text/xml")
-
-        result = xmlrpclib.loads(response.text)
-        self.assertEqual(result[0][0], ["test_db1", "test_db2"])
-        mock_dispatch.assert_called_once_with("list", ())
-
-    @mute_logger("odoo.addons.mcp_server.controllers.api")
-    @patch("odoo.service.db.dispatch")
-    def test_db_controller_exception(self, mock_dispatch):
-        """Test exception handling in database controller."""
-        mock_dispatch.side_effect = Exception("Database error")
-        request_data = xmlrpclib.dumps((), "test_method", allow_none=1)
-
-        response = self.url_open(
-            "/mcp/xmlrpc/db", data=request_data, headers={"Content-Type": "text/xml"}
-        )
-
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.headers.get("Content-Type"), "text/xml")
-        self.assertIn("fault", response.text)
-        self.assertIn("500", response.text)
+        with self.assertRaises(xmlrpclib.Fault) as cm:
+            xmlrpclib.loads(response.content)
+        self.assertEqual(cm.exception.faultCode, 404)
 
 
 @tagged("much_unit", "post_install", "-at_install")
@@ -185,7 +165,7 @@ class TestMCPObjectController(HttpCase):
         from ..controllers import utils
 
         # Enable MCP globally by default
-        self.env["ir.config_parameter"].sudo().set_param("mcp_server.enabled", "True")
+        self.env["ir.config_parameter"].sudo().set_str("mcp_server.enabled", "True")
         utils.clear_mcp_caches()
 
     def test_object_controller_mcp_disabled(self):
@@ -193,7 +173,7 @@ class TestMCPObjectController(HttpCase):
         from ..controllers import utils
 
         # Disable MCP globally
-        self.env["ir.config_parameter"].sudo().set_param("mcp_server.enabled", "False")
+        self.env["ir.config_parameter"].sudo().set_str("mcp_server.enabled", "False")
         utils.clear_mcp_caches()
 
         params = ("test_db", 1, "password", "res.users", "search", [])
@@ -216,7 +196,7 @@ class TestMCPObjectController(HttpCase):
         from ..controllers import utils
 
         # Ensure MCP is enabled
-        self.env["ir.config_parameter"].sudo().set_param("mcp_server.enabled", "True")
+        self.env["ir.config_parameter"].sudo().set_str("mcp_server.enabled", "True")
         utils.clear_mcp_caches()
 
         params = ("test_db", 1, "password", "res.users", "search")
@@ -239,7 +219,7 @@ class TestMCPObjectController(HttpCase):
         from ..controllers import utils
 
         # Ensure MCP is enabled
-        self.env["ir.config_parameter"].sudo().set_param("mcp_server.enabled", "True")
+        self.env["ir.config_parameter"].sudo().set_str("mcp_server.enabled", "True")
         utils.clear_mcp_caches()
 
         params = ("test_db", 1)  # Not enough params for execute_kw

@@ -128,7 +128,7 @@ class McpToolsRead(models.AbstractModel):
         parameter is unset or not an integer.
         """
         params = self.env["ir.config_parameter"].sudo()  # non-sensitive tuning param
-        value = params.get_param(key, default)
+        value = params.get_int(key, default)
         try:
             return int(value)
         except (TypeError, ValueError):

@@ -451,7 +451,7 @@ def get_system_info(env: Environment) -> Dict[str, Union[str, int]]:
             env["ir.default"].sudo().get("res.partner", "lang")
         )  # A common place for default lang
     if not lang:
-        lang = env["ir.config_parameter"].sudo().get_param("base.language", "en_US")
+        lang = env["ir.config_parameter"].sudo().get_str("base.language", "en_US")
 
     enabled_mcp_models_count = 0
     if is_mcp_enabled():

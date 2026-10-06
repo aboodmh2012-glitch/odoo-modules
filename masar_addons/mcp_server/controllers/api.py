@@ -9,7 +9,6 @@ from odoo import SUPERUSER_ID, api, http
 from odoo.http import request
 from odoo.service import (
     common as common_service_root,
-    db as db_service_root,
     model as model_service_root,
 )
 from odoo.tools import config
@@ -35,6 +34,18 @@ XMLRPC_FAULT_CODES = {
     "rate_limit": 429,
     "internal_error": 500,
 }
+
+
+def _db_service_dispatch(method, params):
+    """Odoo 20 removed the XML-RPC ``db`` service (``odoo.service.db``).
+
+    Keep ``/mcp/xmlrpc/db`` answering with a well-formed XML-RPC fault instead
+    of an import error at module load, so MCP clients get an explicit reason.
+    """
+    raise xmlrpclib.Fault(
+        XMLRPC_FAULT_CODES["not_found"],
+        "The XML-RPC 'db' service is not available in Odoo 20.",
+    )
 
 
 def _generate_xmlrpc_fault(code: int, message: str) -> str:
@@ -111,7 +122,7 @@ class MCPDatabaseController(http.Controller):
     )
     def index(self, **kwargs):
         return _dispatch_service_xmlrpc(
-            "MCPDatabaseController", db_service_root.dispatch
+            "MCPDatabaseController", _db_service_dispatch
         )
 
 

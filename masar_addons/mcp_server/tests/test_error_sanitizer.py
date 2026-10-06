@@ -115,7 +115,7 @@ class TestErrorSanitizerEndpoint(common.HttpCase):
             "rpc", "Sanitizer Key", datetime.now() + timedelta(days=30)
         )
 
-        self.env["ir.config_parameter"].sudo().set_param("mcp_server.enabled", "True")
+        self.env["ir.config_parameter"].sudo().set_str("mcp_server.enabled", "True")
         utils.clear_mcp_caches()
 
     def _post_rpc(self, body):

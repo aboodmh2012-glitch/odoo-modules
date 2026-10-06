@@ -1,4 +1,4 @@
-from odoo import _, api, fields, models, tools
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -124,29 +124,29 @@ class McpEnabledModel(models.Model):
     # wrappers callers use.
     # ------------------------------------------------------------------
     @api.model
-    @tools.ormcache()
+    @api.ormcache()
     def _get_mcp_enabled(self):
         """Global MCP enable switch (``mcp_server.enabled``, default off)."""
         return (
             self.env["ir.config_parameter"]
             .sudo()  # sudo: admin-managed global enable switch, not user data
-            .get_param("mcp_server.enabled", "False")
+            .get_str("mcp_server.enabled", "False")
             == "True"
         )
 
     @api.model
-    @tools.ormcache()
+    @api.ormcache()
     def _get_oauth_enabled(self):
         """OAuth front-door switch (``mcp_server.enable_oauth``, default on)."""
         return (
             self.env["ir.config_parameter"]
             .sudo()  # sudo: admin-managed OAuth enable switch, not user data
-            .get_param("mcp_server.enable_oauth", "True")
+            .get_str("mcp_server.enable_oauth", "True")
             == "True"
         )
 
     @api.model
-    @tools.ormcache()
+    @api.ormcache()
     def _get_allowed_origins(self):
         """Parsed browser-Origin allowlist (``mcp_server.allowed_origins``).
 
@@ -157,7 +157,7 @@ class McpEnabledModel(models.Model):
         raw = (
             self.env["ir.config_parameter"]
             .sudo()  # sudo: admin-managed system param, not user data
-            .get_param("mcp_server.allowed_origins", "")
+            .get_str("mcp_server.allowed_origins", "")
         )
         return tuple(
             entry.strip().rstrip("/").lower()
@@ -166,7 +166,7 @@ class McpEnabledModel(models.Model):
         )
 
     @api.model
-    @tools.ormcache("model_name")
+    @api.ormcache("model_name")
     def is_model_enabled(self, model_name):
         """Check if a model is enabled for MCP access.
 
@@ -180,7 +180,7 @@ class McpEnabledModel(models.Model):
         return bool(record)
 
     @api.model
-    @tools.ormcache("model_name", "operation")
+    @api.ormcache("model_name", "operation")
     def check_model_operation_enabled(self, model_name, operation):
         """Check if a specific operation is enabled for a model (``@ormcache``-d)."""
         if operation not in ["read", "create", "write", "unlink"]:
@@ -198,7 +198,7 @@ class McpEnabledModel(models.Model):
         return bool(record["allow_" + operation])
 
     @api.model
-    @tools.ormcache("model_name")
+    @api.ormcache("model_name")
     def is_method_call_enabled(self, model_name):
         """Whether ``call_model_method`` is allowed for a model (``@ormcache``-d).
 

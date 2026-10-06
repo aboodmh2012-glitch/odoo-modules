@@ -20,7 +20,7 @@ class TestMCPLogging(TransactionCase):
         self.test_user = create_test_user(
             self.env, "Test MCP User", "test_mcp_user", email="test_mcp@example.com"
         )
-        self.env["ir.config_parameter"].sudo().set_param(
+        self.env["ir.config_parameter"].sudo().set_str(
             "mcp_server.enable_logging", "True"
         )
 
@@ -173,7 +173,7 @@ class TestMCPLogging(TransactionCase):
 
     def test_logging_disabled(self):
         """Test that logging is skipped when disabled."""
-        self.env["ir.config_parameter"].sudo().set_param(
+        self.env["ir.config_parameter"].sudo().set_str(
             "mcp_server.enable_logging", "False"
         )
 
@@ -266,7 +266,7 @@ class TestMCPLogging(TransactionCase):
         """Test cleanup using config parameter for retention days."""
         self._clear_logs()
         # Set retention to 7 days in config
-        self.env["ir.config_parameter"].sudo().set_param(
+        self.env["ir.config_parameter"].sudo().set_str(
             "mcp_server.log_retention_days", "7"
         )
 

@@ -57,7 +57,7 @@ class TestMcpProtocol(common.HttpCase):
         )
 
         # Enable MCP globally and drop any stale cached toggle value.
-        self.env["ir.config_parameter"].sudo().set_param("mcp_server.enabled", "True")
+        self.env["ir.config_parameter"].sudo().set_str("mcp_server.enabled", "True")
         utils.clear_mcp_caches()
 
     # ------------------------------------------------------------------
@@ -203,7 +203,7 @@ class TestMcpProtocol(common.HttpCase):
     # ------------------------------------------------------------------
     def _set_allowed_origins(self, value):
         """Set the ``mcp_server.allowed_origins`` param and flush the caches."""
-        self.env["ir.config_parameter"].sudo().set_param(
+        self.env["ir.config_parameter"].sudo().set_str(
             "mcp_server.allowed_origins", value
         )
         utils.clear_mcp_caches()
@@ -425,7 +425,7 @@ class TestMcpProtocol(common.HttpCase):
         # Disable the per-user request limiter so every call reaches tool
         # dispatch (its 429 would otherwise pre-empt the audit path we exercise);
         # the audit throttle is the failure mode under test.
-        self.env["ir.config_parameter"].sudo().set_param(
+        self.env["ir.config_parameter"].sudo().set_str(
             "mcp_server.enable_rate_limiting", "False"
         )
         mcp._audit_write_limiter.clear()
@@ -585,7 +585,7 @@ class TestMcpProtocol(common.HttpCase):
         this mirrors the rate-limit path, which also uses -32000.
         """
         params = self.env["ir.config_parameter"].sudo()
-        params.set_param("mcp_server.enabled", "False")
+        params.set_str("mcp_server.enabled", "False")
         utils.clear_mcp_caches()
         try:
             response = self._post_rpc(
@@ -596,7 +596,7 @@ class TestMcpProtocol(common.HttpCase):
             self.assertEqual(error["code"], -32000)
             self.assertIn("disabled globally", error["message"])
         finally:
-            params.set_param("mcp_server.enabled", "True")
+            params.set_str("mcp_server.enabled", "True")
             utils.clear_mcp_caches()
 
     # ------------------------------------------------------------------

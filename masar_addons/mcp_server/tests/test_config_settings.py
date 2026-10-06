@@ -28,10 +28,10 @@ class TestConfigSettings(TransactionCase):
 
         # Check that the values were saved to the system parameters
         param_obj = self.env["ir.config_parameter"].sudo()
-        self.assertEqual(param_obj.get_param("mcp_server.enabled"), "True")
-        self.assertEqual(param_obj.get_param("mcp_server.request_limit"), "100")
-        self.assertEqual(param_obj.get_param("mcp_server.enable_logging"), "True")
-        self.assertEqual(param_obj.get_param("mcp_server.enable_rate_limiting"), "True")
+        self.assertEqual(param_obj.get_str("mcp_server.enabled"), "True")
+        self.assertEqual(param_obj.get_str("mcp_server.request_limit"), "100")
+        self.assertEqual(param_obj.get_str("mcp_server.enable_logging"), "True")
+        self.assertEqual(param_obj.get_str("mcp_server.enable_rate_limiting"), "True")
 
     def test_default_values(self):
         """Test that default values are set correctly when not specified."""
@@ -44,7 +44,7 @@ class TestConfigSettings(TransactionCase):
             "mcp_server.enable_rate_limiting",
         ]
         for param in params:
-            param_obj.set_param(param, "")
+            param_obj.set_str(param, "")
 
         # Create new settings with defaults
         settings = create_test_config_settings(self.env)
@@ -69,14 +69,14 @@ class TestConfigSettings(TransactionCase):
 
         # Check that the value was saved correctly
         param_obj = self.env["ir.config_parameter"].sudo()
-        self.assertEqual(param_obj.get_param("mcp_server.request_limit"), "0")
+        self.assertEqual(param_obj.get_str("mcp_server.request_limit"), "0")
 
     def test_load_settings(self):
         """Test that settings are loaded from system parameters."""
         # Set some values in system parameters
         param_obj = self.env["ir.config_parameter"].sudo()
-        param_obj.set_param("mcp_server.enabled", "False")
-        param_obj.set_param("mcp_server.request_limit", "200")
+        param_obj.set_str("mcp_server.enabled", "False")
+        param_obj.set_str("mcp_server.request_limit", "200")
 
         # Create settings and check they load from params
         settings = self.Settings.create({})
@@ -128,27 +128,27 @@ class TestConfigSettings(TransactionCase):
 
         with patch("odoo.addons.mcp_server.controllers.utils.request", mock_request):
             # master kill-switch (mcp_server.enabled, default off)
-            param_obj.set_param("mcp_server.enabled", "False")
+            param_obj.set_str("mcp_server.enabled", "False")
             self.assertFalse(utils.is_mcp_enabled())  # prime cache = False
-            param_obj.set_param("mcp_server.enabled", "True")  # direct, no clear
+            param_obj.set_str("mcp_server.enabled", "True")  # direct, no clear
             self.assertTrue(utils.is_mcp_enabled())
-            param_obj.set_param("mcp_server.enabled", "False")
+            param_obj.set_str("mcp_server.enabled", "False")
             self.assertFalse(utils.is_mcp_enabled())
 
             # OAuth front-door switch (mcp_server.enable_oauth, default on)
-            param_obj.set_param("mcp_server.enable_oauth", "True")
+            param_obj.set_str("mcp_server.enable_oauth", "True")
             self.assertTrue(utils.is_oauth_enabled(self.env))  # prime cache = True
-            param_obj.set_param("mcp_server.enable_oauth", "False")
+            param_obj.set_str("mcp_server.enable_oauth", "False")
             self.assertFalse(utils.is_oauth_enabled(self.env))
-            param_obj.set_param("mcp_server.enable_oauth", "True")
+            param_obj.set_str("mcp_server.enable_oauth", "True")
             self.assertTrue(utils.is_oauth_enabled(self.env))
 
             # Origin allowlist (mcp_server.allowed_origins, default empty)
-            param_obj.set_param("mcp_server.allowed_origins", "")
+            param_obj.set_str("mcp_server.allowed_origins", "")
             self.assertEqual(utils.get_allowed_origins(), ())  # prime cache = ()
-            param_obj.set_param("mcp_server.allowed_origins", "https://claude.ai")
+            param_obj.set_str("mcp_server.allowed_origins", "https://claude.ai")
             self.assertEqual(utils.get_allowed_origins(), ("https://claude.ai",))
-            param_obj.set_param("mcp_server.allowed_origins", "")
+            param_obj.set_str("mcp_server.allowed_origins", "")
             self.assertEqual(utils.get_allowed_origins(), ())
 
     def test_settings_ui_display(self):

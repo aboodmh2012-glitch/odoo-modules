@@ -41,7 +41,7 @@ class TestMCPAuthentication(HttpCase):
         auth._auth_failure_limiter.clear()
         # Global MCP kill-switch defaults off; enable it so the gated REST
         # endpoints under test answer 200 instead of 503 on a fresh database.
-        self.env["ir.config_parameter"].sudo().set_param("mcp_server.enabled", "True")
+        self.env["ir.config_parameter"].sudo().set_str("mcp_server.enabled", "True")
 
     def test_01_auth_with_valid_api_key(self):
         """Test authentication with valid API key."""
@@ -233,7 +233,7 @@ class TestSessionAuth(HttpCase):
         super().setUp()
         # Global MCP kill-switch defaults off; enable it so the gated REST
         # endpoints under test answer 200 instead of 503 on a fresh database.
-        self.env["ir.config_parameter"].sudo().set_param("mcp_server.enabled", "True")
+        self.env["ir.config_parameter"].sudo().set_str("mcp_server.enabled", "True")
 
     def test_01_session_auth_on_models_endpoint(self):
         """Session-authenticated user can access /mcp/models."""

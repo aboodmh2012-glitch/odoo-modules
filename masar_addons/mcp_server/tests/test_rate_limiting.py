@@ -29,10 +29,10 @@ class TestRateLimiting(common.TransactionCase):
         )
 
         # Set default rate limiting configuration
-        self.env["ir.config_parameter"].sudo().set_param(
+        self.env["ir.config_parameter"].sudo().set_str(
             "mcp_server.request_limit", "300"
         )
-        self.env["ir.config_parameter"].sudo().set_param(
+        self.env["ir.config_parameter"].sudo().set_str(
             "mcp_server.enable_rate_limiting", "True"
         )
 
@@ -49,7 +49,7 @@ class TestRateLimiting(common.TransactionCase):
 
     def test_get_request_limit_custom(self):
         """Test getting custom request limit"""
-        self.env["ir.config_parameter"].sudo().set_param(
+        self.env["ir.config_parameter"].sudo().set_str(
             "mcp_server.request_limit", "100"
         )
 
@@ -64,7 +64,7 @@ class TestRateLimiting(common.TransactionCase):
 
     def test_get_request_limit_unlimited(self):
         """Test getting unlimited request limit (0)"""
-        self.env["ir.config_parameter"].sudo().set_param(
+        self.env["ir.config_parameter"].sudo().set_str(
             "mcp_server.request_limit", "0"
         )
 
@@ -79,7 +79,7 @@ class TestRateLimiting(common.TransactionCase):
 
     def test_get_request_limit_minimum_enforced(self):
         """Test that minimum request limit is enforced"""
-        self.env["ir.config_parameter"].sudo().set_param(
+        self.env["ir.config_parameter"].sudo().set_str(
             "mcp_server.request_limit", "5"
         )
 
@@ -95,7 +95,7 @@ class TestRateLimiting(common.TransactionCase):
     @mute_logger("odoo.addons.mcp_server.controllers.rate_limiting")
     def test_get_request_limit_invalid_value(self):
         """Test handling of invalid request limit value"""
-        self.env["ir.config_parameter"].sudo().set_param(
+        self.env["ir.config_parameter"].sudo().set_str(
             "mcp_server.request_limit", "invalid"
         )
 
@@ -187,7 +187,7 @@ class TestRateLimiting(common.TransactionCase):
         user_id = self.test_user.id
 
         # Set a limit just above minimum (10) for testing
-        self.env["ir.config_parameter"].sudo().set_param(
+        self.env["ir.config_parameter"].sudo().set_str(
             "mcp_server.request_limit", "12"
         )
 
@@ -209,7 +209,7 @@ class TestRateLimiting(common.TransactionCase):
         user_id = self.test_user.id
 
         # Set a limit above minimum (10) for testing
-        self.env["ir.config_parameter"].sudo().set_param(
+        self.env["ir.config_parameter"].sudo().set_str(
             "mcp_server.request_limit", "12"
         )
 
@@ -233,7 +233,7 @@ class TestRateLimiting(common.TransactionCase):
         user_id = self.test_user.id
 
         # Set unlimited (0)
-        self.env["ir.config_parameter"].sudo().set_param(
+        self.env["ir.config_parameter"].sudo().set_str(
             "mcp_server.request_limit", "0"
         )
 
@@ -270,7 +270,7 @@ class TestRateLimiting(common.TransactionCase):
     def test_rate_limit_decorator_disabled(self):
         """Test rate limit decorator when disabled"""
         # Disable rate limiting
-        self.env["ir.config_parameter"].sudo().set_param(
+        self.env["ir.config_parameter"].sudo().set_str(
             "mcp_server.enable_rate_limiting", "False"
         )
 
@@ -290,7 +290,7 @@ class TestRateLimiting(common.TransactionCase):
     def test_rate_limit_decorator_exceeded(self):
         """Test rate limit decorator when limit is exceeded"""
         # Set a limit above minimum (10) for testing
-        self.env["ir.config_parameter"].sudo().set_param(
+        self.env["ir.config_parameter"].sudo().set_str(
             "mcp_server.request_limit", "11"
         )
 
@@ -344,7 +344,7 @@ class TestRateLimiting(common.TransactionCase):
     def test_rate_limit_decorator_anonymous_exceeded(self):
         """Test rate limit decorator for anonymous user when limit exceeded"""
         # Set limit above minimum (10) for testing
-        self.env["ir.config_parameter"].sudo().set_param(
+        self.env["ir.config_parameter"].sudo().set_str(
             "mcp_server.request_limit", "11"
         )
 

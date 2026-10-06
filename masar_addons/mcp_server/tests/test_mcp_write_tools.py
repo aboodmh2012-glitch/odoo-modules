@@ -116,8 +116,8 @@ class TestMcpWriteTools(common.HttpCase):
         )
 
         params = self.env["ir.config_parameter"].sudo()
-        params.set_param("mcp_server.enabled", "True")
-        params.set_param("mcp_server.enable_logging", "True")
+        params.set_str("mcp_server.enabled", "True")
+        params.set_str("mcp_server.enable_logging", "True")
         utils.clear_mcp_caches()
 
     # ------------------------------------------------------------------
@@ -320,7 +320,7 @@ class TestMcpWriteTools(common.HttpCase):
         reuses ``max_limit`` and trips regardless of whether the ids exist.
         """
         self._set_method_calls(True)
-        self.env["ir.config_parameter"].sudo().set_param("mcp_server.max_limit", "5")
+        self.env["ir.config_parameter"].sudo().set_str("mcp_server.max_limit", "5")
 
         result = self._call_tool(
             "call_model_method",
@@ -787,7 +787,7 @@ class TestMcpWriteTools(common.HttpCase):
         rate_limiting._api_limiter.clear()
         uid = self.mcp_user.id
         dbname = self.env.cr.dbname
-        self.env["ir.config_parameter"].sudo().set_param(
+        self.env["ir.config_parameter"].sudo().set_str(
             "mcp_server.request_limit", "11"
         )
 

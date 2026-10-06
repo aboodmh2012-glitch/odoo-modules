@@ -112,25 +112,25 @@ class ResConfigSettings(models.TransientModel):
         # literal "True"/"False"/"0" strings. The base mechanism stores a
         # boolean False (or integer 0) by deleting the param, which would fall
         # the readers back to their defaults -- so write every value explicitly.
-        params.set_param("mcp_server.enabled", str(self.mcp_enabled))
-        params.set_param("mcp_server.enable_oauth", str(self.mcp_enable_oauth))
-        params.set_param("mcp_server.request_limit", str(self.mcp_request_limit))
-        params.set_param("mcp_server.enable_logging", str(self.mcp_enable_logging))
-        params.set_param(
+        params.set_str("mcp_server.enabled", str(self.mcp_enabled))
+        params.set_str("mcp_server.enable_oauth", str(self.mcp_enable_oauth))
+        params.set_str("mcp_server.request_limit", str(self.mcp_request_limit))
+        params.set_str("mcp_server.enable_logging", str(self.mcp_enable_logging))
+        params.set_str(
             "mcp_server.enable_rate_limiting", str(self.mcp_enable_rate_limiting)
         )
-        params.set_param(
+        params.set_str(
             "mcp_server.log_retention_days", str(self.mcp_log_retention_days)
         )
-        params.set_param("mcp_server.default_limit", str(self.mcp_default_limit))
-        params.set_param("mcp_server.max_limit", str(self.mcp_max_limit))
-        params.set_param("mcp_server.max_smart_fields", str(self.mcp_max_smart_fields))
-        params.set_param(
+        params.set_str("mcp_server.default_limit", str(self.mcp_default_limit))
+        params.set_str("mcp_server.max_limit", str(self.mcp_max_limit))
+        params.set_str("mcp_server.max_smart_fields", str(self.mcp_max_smart_fields))
+        params.set_str(
             "mcp_server.max_related_items", str(self.mcp_max_related_items)
         )
         # A Char: write the stripped value; empty deletes the param, which the
         # runtime reader (utils.get_allowed_origins) reads as "no restriction".
-        params.set_param(
+        params.set_str(
             "mcp_server.allowed_origins", (self.mcp_allowed_origins or "").strip()
         )
 

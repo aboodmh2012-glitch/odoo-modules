@@ -161,7 +161,7 @@ class McpToolsWrite(models.AbstractModel):
         base_url = (
             self.env["ir.config_parameter"]
             .sudo()  # sudo: read system web.base.url param (not user data)
-            .get_param("web.base.url")
+            .get_str("web.base.url")
         )
         if not base_url:
             return ""
