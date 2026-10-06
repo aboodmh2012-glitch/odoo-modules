@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models
+from odoo.tools import SQL
 
 
 class HelpdeskSlaReport(models.Model):
@@ -59,5 +60,7 @@ class HelpdeskSlaReport(models.Model):
         """
 
     @property
-    def _table_query(self):
-        return self._query()
+    def _table_sql(self):
+        # Odoo 20: ``_table_query`` was replaced by ``_table_sql`` (an SQL
+        # table expression, parenthesised when it is a sub-query).
+        return SQL("(%s)", SQL(self._query()))  # pylint: disable=sql-injection

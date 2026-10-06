@@ -22,7 +22,7 @@
                                 role="img"
                                 aria-label="Percentage of satisfaction"
                                 title="Percentage of satisfaction"
-                            /> <t t-esc="record.positive_rate_percentage.value" />%
+                            /> <t t-out="record.positive_rate_percentage.value" />%
                             </a>
                         </t>
                     </b>

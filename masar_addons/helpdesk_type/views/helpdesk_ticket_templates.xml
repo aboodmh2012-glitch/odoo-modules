@@ -12,7 +12,7 @@
                 t-if="request.env.company.helpdesk_mgmt_portal_type"
                 name="td_ticket_type_value"
             >
-                <span t-esc="ticket.type_id.name" />
+                <span t-out="ticket.type_id.name" />
             </td>
         </xpath>
     </template>
@@ -33,7 +33,7 @@
                         <option value="" />
                         <t t-foreach="types" t-as="type">
                             <option t-attf-value="#{type.id}">
-                                <t t-esc="type.name" />
+                                <t t-out="type.name" />
                             </option>
                         </t>
                     </select>
@@ -48,7 +48,7 @@
         <xpath expr="//span[@t-field='ticket.category_id']/.." position="before">
             <div t-if="ticket.type_id" name="ticket_type_id">
                 <strong>Type:</strong>
-                <span t-esc="ticket.type_id.name" />
+                <span t-out="ticket.type_id.name" />
             </div>
         </xpath>
     </template>

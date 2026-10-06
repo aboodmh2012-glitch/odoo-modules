@@ -33,7 +33,7 @@ class TestHelpdeskPortalBase(HttpCaseWithUserPortal):
             f"/rate/{portal_access_token}/submit_feedback",
             data={
                 "rate": 5,
-                "csrf_token": http.Request.csrf_token(self),
+                "csrf_token": http.requestlib.Request.csrf_token(self),
                 "feedback": "good",
             },
         )
@@ -48,7 +48,7 @@ class TestHelpdeskPortalBase(HttpCaseWithUserPortal):
             f"/rate/{portal_access_token}/submit_feedback",
             data={
                 "rate": 3,
-                "csrf_token": http.Request.csrf_token(self),
+                "csrf_token": http.requestlib.Request.csrf_token(self),
                 "feedback": "good",
             },
         )
@@ -63,7 +63,7 @@ class TestHelpdeskPortalBase(HttpCaseWithUserPortal):
             f"/rate/{portal_access_token}/submit_feedback",
             data={
                 "rate": 1,
-                "csrf_token": http.Request.csrf_token(self),
+                "csrf_token": http.requestlib.Request.csrf_token(self),
                 "feedback": "bad job",
             },
         )

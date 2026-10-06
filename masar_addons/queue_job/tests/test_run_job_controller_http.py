@@ -79,7 +79,7 @@ class TestRunJobHttp(HttpCase):
             update its environment.
             """
 
-        with mock.patch.object(http.Request, "update_env", no_op_update_env):
+        with mock.patch.object(http.requestlib.Request, "update_env", no_op_update_env):
             default_env_uid = self._capture_default_env_uid_at_acquire()
 
         self.assertIsNone(default_env_uid)

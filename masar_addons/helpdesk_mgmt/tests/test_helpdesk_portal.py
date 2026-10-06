@@ -59,7 +59,7 @@ class TestHelpdeskPortalBase(HttpCaseWithUserPortal):
     def _submit_ticket(self, **values):
         data = {
             "category": self.portal_category.id,
-            "csrf_token": http.Request.csrf_token(self),
+            "csrf_token": http.requestlib.Request.csrf_token(self),
             "subject": self.new_ticket_title,
             "description": "\n".join(self.new_ticket_desc_lines),
         }
@@ -218,7 +218,7 @@ class TestHelpdeskPortal(TestHelpdeskPortalBase):
         resp = self.url_open(
             "/ticket/close",
             data={
-                "csrf_token": http.Request.csrf_token(self),
+                "csrf_token": http.requestlib.Request.csrf_token(self),
                 "stage_id": stage.id,
                 "ticket_id": ticket.id,
             },

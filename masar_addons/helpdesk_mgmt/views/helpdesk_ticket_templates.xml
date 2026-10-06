@@ -99,7 +99,7 @@
                                     <span t-field="ticket.partner_id" />
                                 </td>
                                 <td class="text-left">
-                                    <span t-esc="ticket.number" />
+                                    <span t-out="ticket.number" />
                                 </td>
                                 <td>
                                     <a
@@ -109,13 +109,13 @@
                                     </a>
                                 </td>
                                 <td t-if="groupby != 'category'">
-                                    <span t-esc="ticket.category_id.complete_name" />
+                                    <span t-out="ticket.category_id.complete_name" />
                                 </td>
                                 <td t-if="groupby != 'stage'">
                                     <span
                                         class="badge badge-pill bg-info"
                                         title="Current stage of the ticket"
-                                        t-esc="ticket.stage_id.name"
+                                        t-out="ticket.stage_id.name"
                                     />
                                 </td>
                                 <td>
@@ -209,7 +209,7 @@
                                             class="col-12"
                                         >
                                             <div
-                                                t-esc="ticket.user_id"
+                                                t-out="ticket.user_id"
                                                 t-options='{"widget": "contact", "fields": ["email"]}'
                                             />
                                         </a>
@@ -219,7 +219,7 @@
                                             t-if="ticket.user_id.phone"
                                         >
                                             <div
-                                                t-esc="ticket.user_id"
+                                                t-out="ticket.user_id"
                                                 t-options='{"widget": "contact", "fields": ["phone"]}'
                                             />
                                         </a>
@@ -360,7 +360,7 @@
                                                                 class='oe_attachment_name text-truncate'
                                                             >
                                                                 <t
-                                                                    t-esc='attachment.name'
+                                                                    t-out='attachment.name'
                                                                 />
                                                             </div>
                                                         </a>
@@ -426,7 +426,7 @@
                             <option value="" />
                             <t t-foreach="teams" t-as="team">
                                 <option t-attf-value="#{team.id}">
-                                    <t t-esc="team.name" />
+                                    <t t-out="team.name" />
                                 </option>
                             </t>
                         </select>
@@ -447,7 +447,7 @@
                             <option value="" />
                             <t t-foreach="categories" t-as="cat">
                                 <option t-attf-value="#{cat.id}">
-                                    <t t-esc="cat.complete_name" />
+                                    <t t-out="cat.complete_name" />
                                 </option>
                             </t>
                         </select>
