@@ -28,7 +28,7 @@ Enterprise apps (`industry_fsm`, EE `helpdesk`, EE `social`, EE `knowledge`, EE 
 | Branding / theme / website / UI | **COPY & MIGRATE** | MASAR identity; review theme for Odoo 20 UI |
 | Corporate governance (`bf_*`) | **COPY & MIGRATE** | Custom MASAR/BF domain |
 | Reporting helpers (`report_xlsx*`, `date_range*`) | **COPY & MIGRATE** | Shared deps for accounting/reports |
-| `queue_job`, `voip_oca`, `web_responsive` | **COPY & MIGRATE** | Infra used by Social / UX |
+| `queue_job`, `web_responsive` | **COPY & MIGRATE** | Infra used by jobs / UX |
 | HR / payroll / sign / appraisal / PPE | **PARTIAL** | Core lifecycle + OCA `payroll`/`payroll_account` COPY; Yemen overlay/sign/PPE/learning SKIP — see `EMPLOYEE_FEATURE_DECISIONS.md` |
 
 ## Module decisions (100 copied)
@@ -67,9 +67,11 @@ Enterprise apps (`industry_fsm`, EE `helpdesk`, EE `social`, EE `knowledge`, EE 
 
 `document_knowledge`, `document_page`, `document_page_access_group`, `document_page_approval`, `document_page_partner`, `document_page_project`, `document_url`, `dms`, `knowledge_control`, `masar_knowledge`, `attachment_zipped_download`
 
-### Social / MCP / VoIP — COPY & MIGRATE
+### MCP / jobs — COPY & MIGRATE
 
-`social`, `social_meta`, `social_facebook`, `social_instagram`, `social_telegram`, `social_linkedin`, `social_tiktok`, `social_youtube`, `social_crm`, `social_helpdesk`, `social_mcp`, `mcp_server`, `queue_job`, `voip_oca`
+`mcp_server`, `queue_job`
+
+**Removed from SMART (uninstalled + deleted):** MASAR `social*` stack (`social`, `social_meta`, `social_facebook`, `social_instagram`, `social_telegram`, `social_linkedin`, `social_tiktok`, `social_youtube`, `social_crm`, `social_helpdesk`, `social_mcp`). Keep native CE `social_media` (website/email). Do not uninstall `mcp_server` / `helpdesk_mgmt` / `crm`.
 
 ### Branding / UX / CRM extras — COPY & MIGRATE
 
@@ -120,8 +122,8 @@ helpdesk_mgmt,helpdesk_type,helpdesk_mgmt_activity,helpdesk_mgmt_crm,helpdesk_mg
 # Batch E — field service
 fieldservice,fieldservice_vehicle,fieldservice_activity,fieldservice_calendar,fieldservice_crm,fieldservice_project,fieldservice_stock,fieldservice_equipment_stock,fieldservice_account,fieldservice_sale,fieldservice_sale_stock,fieldservice_purchase,fieldservice_recurring,fieldservice_sale_recurring,fieldservice_repair,fieldservice_route,fieldservice_availability,fieldservice_route_availability,fieldservice_portal,fieldservice_expense,fieldservice_kanban_info,fieldservice_size,fieldservice_skill,fieldservice_stage_server_action,fieldservice_stage_validation,fieldservice_timesheet
 
-# Batch F — social / mcp / voip
-mcp_server,social,social_meta,social_facebook,social_instagram,social_telegram,social_linkedin,social_tiktok,social_youtube,social_crm,social_helpdesk,social_mcp,voip_oca
+# Batch F — mcp
+mcp_server
 
 # Batch G — brand / website / governance
 masar_brand,masar_theme,masar_ui_tweaks,masar_website,masar_crm_services,bf_corporate_governance
@@ -130,7 +132,7 @@ masar_brand,masar_theme,masar_ui_tweaks,masar_website,masar_crm_services,bf_corp
 ## Python extras (image)
 
 Baked via `odoo20/requirements-extra.txt` in the SMART Dockerfile:
-`openupgradelib`, `xlsxwriter`, `xlrd`, `defusedxml`, `packaging`, `authlib`, `facebook_business`.
+`openupgradelib`, `xlsxwriter`, `xlrd`, `defusedxml`, `packaging`, `authlib`.
 
 ## Safety
 

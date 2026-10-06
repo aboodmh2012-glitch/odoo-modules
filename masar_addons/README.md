@@ -8,7 +8,7 @@ Odoo 20 compatibility audit, security fix and wave plan: [`docs/migration/ODOO20
 
 ## Priority
 
-1. Non-HR modules (accounting, helpdesk, FSM, social, brand, …)
+1. Non-HR modules (accounting, helpdesk, FSM, brand, …)
 2. **HR lifecycle (go-ahead)** — native-first; see [`docs/migration/EMPLOYEE_FEATURE_DECISIONS.md`](../docs/migration/EMPLOYEE_FEATURE_DECISIONS.md)
 
 ## HR copied now (installable)
@@ -119,17 +119,6 @@ Odoo 20 compatibility audit, security fix and wave plan: [`docs/migration/ODOO20
 - `report_xlsx`
 - `report_xlsx_helper`
 - `sale_tier_validation`
-- `social`
-- `social_crm`
-- `social_facebook`
-- `social_helpdesk`
-- `social_instagram`
-- `social_linkedin`
-- `social_mcp`
-- `social_meta`
-- `social_telegram`
-- `social_tiktok`
-- `social_youtube`
 - `stock_picking_tier_validation`
 - `voip_oca`
 - `web_responsive`
