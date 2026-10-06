@@ -39,4 +39,4 @@
  'name': 'Equity',
  'sequence': 31,
  'summary': 'Manage securities, transactions, and cap tables.',
- 'version': '20.0.1.2.1'}
+ 'version': '20.0.1.2.2'}

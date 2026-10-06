@@ -6,7 +6,7 @@ import { useService } from "@web/core/utils/hooks";
 import { ControlPanel } from "@web/search/control_panel/control_panel";
 import { ActionHelper } from "@web/views/action_helper";
 import { formatFloat, formatPercentage, formatMonetary } from "@web/views/fields/formatters";
-import { standardActionServiceProps } from "@web/webclient/actions/action_service";
+import { standardActionServiceProps } from "@web/webclient/actions/action_plugin";
 
 export class CapTable extends Component {
     static template = "equity.CapTable";
