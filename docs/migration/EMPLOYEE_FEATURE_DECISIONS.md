@@ -22,7 +22,7 @@ Updated: 2026-10-06. User go-ahead to migrate HR after native-first review.
 | `masar_hr_resignation` | Resignation + deferred archive | `ir.access.csv` |
 | `masar_hr_attendance_regularization` | Attendance correction requests | `ir.access.csv` |
 | `masar_hr_yemen` | Yemen labor seeds + light extensions | `ir.access.csv`; drop `report_file`; **omit** `hr.leave.type` seeds (Odoo 20 → `hr.time.rule`, use native Time Off) |
-| `payroll` | OCA payslips (no Yemen overlay) | `20.0.1.0.0`; `ir.access.csv`; `get_bool`; `t-out`; Time Off via `hr.work.entry.type` |
+| `payroll` | OCA payslips; MASAR formula on structure (not `masar_hr_payroll_yemen`) | `20.0.1.1.0`; APPEARANCE 25% + TRANSPORT 20%; TAX `(BASIC-10000)×15%`; EINS 6%; CINS 9% |
 | `payroll_account` | Post payslips to `account.move` | `20.0.1.0.0`; `primary_bank_account_id`; no Yemen CoA mapping |
 
 Deps already on SMART: `document_page`, `helpdesk_mgmt`, `helpdesk_type`.

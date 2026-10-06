@@ -2,7 +2,7 @@
 
 {
     "name": "Payroll",
-    "version": "20.0.1.0.1",
+    "version": "20.0.1.1.0",
     "category": "Payroll",
     "website": "https://github.com/OCA/payroll",
     "sequence": 38,
@@ -18,6 +18,7 @@
         "security/ir.access.csv",
         "data/hr_payroll_sequence.xml",
         "data/hr_payroll_data.xml",
+        "data/masar_salary_structure.xml",
         "wizard/hr_payroll_contribution_register_report_views.xml",
         "wizard/hr_payroll_payslips_by_employees_views.xml",
         "views/menus.xml",
