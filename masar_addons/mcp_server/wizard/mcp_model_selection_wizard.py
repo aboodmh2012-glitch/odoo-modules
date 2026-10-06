@@ -37,10 +37,7 @@ class McpModelSelectionWizard(models.TransientModel):
         for rec in self:
             rec.model_ids_domain = domain
 
-    model_ids_domain = fields.Binary(
-        compute="_compute_model_ids_domain",
-        default=lambda self: self._get_model_domain(),
-    )
+    model_ids_domain = fields.Json(compute="_compute_model_ids_domain")
     model_ids = fields.Many2many(
         "ir.model",
         string="Models",
