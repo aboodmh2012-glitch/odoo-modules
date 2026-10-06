@@ -13,22 +13,25 @@
                     <a class="masar-header__brand" href="/">
                         <t t-call="masar_website.masar_lockup"/>
                     </a>
-                    <button type="button" class="masar-nav__toggle" aria-expanded="false" aria-controls="masar-nav">
-                        <span class="masar-nav__toggle-bars" aria-hidden="true"/>
-                        <span class="masar-nav__toggle-label" t-out="copy['nav_toggle']"/>
-                    </button>
                     <nav id="masar-nav" class="masar-nav" t-att-aria-label="copy['nav_label']">
                         <t t-foreach="copy['nav']" t-as="item">
                             <a t-att-href="item['href']" t-att-aria-current="item['current'] and 'page' or None" t-attf-class="masar-nav__link #{item['current'] and 'is-active' or ''}">
                                 <span class="masar-nav__label" t-out="item['label']"/>
                             </a>
                         </t>
+                        <a class="masar-btn masar-btn--primary masar-nav__cta" t-att-href="copy['actions']['get_started_href']">
+                            <span class="masar-btn__label" t-out="copy['actions']['get_started']"/>
+                        </a>
                     </nav>
                     <div class="masar-header__tools">
                         <t t-call="masar_website.masar_lang"/>
-                        <a class="masar-btn masar-btn--primary masar-btn--forward" t-att-href="copy['actions']['get_started_href']">
+                        <a class="masar-btn masar-btn--primary masar-btn--forward masar-header__cta" t-att-href="copy['actions']['get_started_href']">
                             <span class="masar-btn__label" t-out="copy['actions']['get_started']"/>
                         </a>
+                        <button type="button" class="masar-nav__toggle" aria-expanded="false" aria-controls="masar-nav">
+                            <span class="masar-nav__toggle-bars" aria-hidden="true"/>
+                            <span class="masar-nav__toggle-label" t-out="copy['nav_toggle']"/>
+                        </button>
                     </div>
                 </div>
             </header>

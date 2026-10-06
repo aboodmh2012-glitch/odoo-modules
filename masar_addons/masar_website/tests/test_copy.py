@@ -83,6 +83,18 @@ class CopyCatalogTests(unittest.TestCase):
         self.assertFalse(registry.is_current("/business", "/"))
         self.assertFalse(registry.is_current("/business", "/solutions"))
 
+    def test_footer_social_uses_sprite_icons(self):
+        text = (ROOT / "views" / "templates_footer.xml").read_text(encoding="utf-8")
+        self.assertNotIn("fa fa-", text)
+        self.assertIn("masar_website.masar_icon", text)
+        self.assertIn("social['id']", text)
+
+    def test_header_keeps_request_service_in_the_mobile_menu(self):
+        text = (ROOT / "views" / "templates_header.xml").read_text(encoding="utf-8")
+        self.assertIn("masar-header__cta", text)
+        self.assertIn("masar-nav__cta", text)
+        self.assertIn("masar-nav__toggle", text)
+
 
 class TemplateConstraintTests(unittest.TestCase):
     def test_views_use_classes_and_the_catalog(self):
