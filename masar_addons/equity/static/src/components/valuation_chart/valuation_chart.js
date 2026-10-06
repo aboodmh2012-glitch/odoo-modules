@@ -1,34 +1,37 @@
-/** @odoo-module **/
-import { Component, onWillUnmount, useEffect, useRef, onWillStart } from "@odoo/owl";
+import { Component, onWillStart, onWillUnmount, useEffect, signal, t, useProps } from "@odoo/owl";
 import { loadJS } from "@web/core/assets";
 import { registry } from "@web/core/registry";
 import { formatPercentage, formatMonetary } from "@web/views/fields/formatters";
 
 export class ValuationChart extends Component {
     static template = "equity.ValuationChart";
-    static props = {
-        labels: { type: Array },
-        data: { type: Object },
-        stats: { type: Object, optional: true },
-    };
+    props = useProps({
+        labels: t.array(),
+        data: t.object(),
+        stats: t.object().optional(),
+    });
+    canvasRef = signal.ref();
 
     setup() {
-        super.setup();
-        this.canvasRef = useRef("canvas");
         onWillStart(() => loadJS("/web/static/lib/Chart/Chart.js"));
         useEffect(() => this.renderChart());
-        onWillUnmount(this.destroyChart);
+        onWillUnmount(() => this.destroyChart());
     }
 
     destroyChart() {
         if (this.chart) {
             this.chart.destroy();
+            this.chart = null;
         }
     }
 
     renderChart() {
         this.destroyChart();
-        const ctx = this.canvasRef.el.getContext("2d");
+        const el = this.canvasRef();
+        if (!el) {
+            return;
+        }
+        const ctx = el.getContext("2d");
         this.chart = new Chart(ctx, this.getChartConfig());
     }
 
@@ -42,7 +45,7 @@ export class ValuationChart extends Component {
                 datasets: this.props.labels.map((label, index) => {
                     return {
                         label,
-                        data: Object.values(chartData).map(tuple => tuple[index]),
+                        data: Object.values(chartData).map((tuple) => tuple[index]),
                         borderWidth: 2,
                     };
                 }),
@@ -74,11 +77,17 @@ export class ValuationChart extends Component {
     }
 
     get totalValuation() {
-        return formatMonetary(this.props.stats.valuation, { currencyId: this.props.stats.currencyId, humanReadable: true });
+        return formatMonetary(this.props.stats.valuation, {
+            currencyId: this.props.stats.currencyId,
+            humanReadable: true,
+        });
     }
 
     get yourValuation() {
-        return formatMonetary(this.props.stats.yourValuation, { currencyId: this.props.stats.currencyId, humanReadable: true });
+        return formatMonetary(this.props.stats.yourValuation, {
+            currencyId: this.props.stats.currencyId,
+            humanReadable: true,
+        });
     }
 
     get ownership() {
@@ -91,4 +100,3 @@ export class ValuationChart extends Component {
 }
 
 registry.category("public_components").add("equity.ValuationChart", ValuationChart);
-

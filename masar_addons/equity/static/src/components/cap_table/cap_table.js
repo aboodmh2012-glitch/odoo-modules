@@ -1,33 +1,37 @@
 import { useCapTableSampleData } from "@equity/components/cap_table/cap_table_sample_data";
-import { Component, markup, onWillStart, useState } from "@odoo/owl";
+import { Component, markup, onWillStart, useProps } from "@odoo/owl";
 import { _t } from "@web/core/l10n/translation";
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
 import { ControlPanel } from "@web/search/control_panel/control_panel";
 import { ActionHelper } from "@web/views/action_helper";
 import { formatFloat, formatPercentage, formatMonetary } from "@web/views/fields/formatters";
-import { standardActionServiceProps } from "@web/webclient/actions/action_service";
+import { standardActionServiceProps } from "@web/webclient/actions/action_plugin";
 
 export class CapTable extends Component {
     static template = "equity.CapTable";
-    static props = { ...standardActionServiceProps };
     static components = { ActionHelper, ControlPanel };
+    props = useProps({
+        ...standardActionServiceProps,
+    });
 
     setup() {
-        super.setup();
-
         this.orm = useService("orm");
         this.action = useService("action");
-        this.partnerHolderData = useState({});
-        this.partnerClassesIds = useState({});
-        this.partnerData = useState({});
-        this.classData = useState({});
+        this.partnerHolderData = {};
+        this.partnerClassesIds = {};
+        this.partnerData = {};
+        this.classData = {};
         this.isSample = false;
         this.sampleData = useCapTableSampleData();
 
         onWillStart(async () => {
-            let res = await this.orm.call("equity.cap.table", "get_cap_table_data", [(this.props.action.context?.active_ids || [])]);
-            if (Object.keys(res["partner_holder_data"]).length === 0) { // no data, then use sample data
+            let res = await this.orm.call(
+                "equity.cap.table",
+                "get_cap_table_data",
+                [this.props.action.context?.active_ids || []]
+            );
+            if (Object.keys(res["partner_holder_data"]).length === 0) {
                 res = this.sampleData.getSampleData();
                 this.isSample = true;
             }
@@ -48,7 +52,9 @@ export class CapTable extends Component {
     }
 
     async sendToPartner(partnerId) {
-        const action = await this.orm.call("res.partner", "action_partner_equity_send", [parseInt(partnerId)]);
+        const action = await this.orm.call("res.partner", "action_partner_equity_send", [
+            parseInt(partnerId),
+        ]);
         this.action.doAction(action);
     }
 
@@ -68,12 +74,15 @@ export class CapTable extends Component {
         if (holderId && !isNaN(holderId)) {
             holderId = parseInt(holderId);
             domain.push("|", ["subscriber_id", "=", holderId], ["seller_id", "=", holderId]);
-        }
-        else if (!totalCell) {
+        } else if (!totalCell) {
             domain.push(["subscriber_id", "=", false]);
         }
         if (classId && !isNaN(classId)) {
-            domain.push("|", ["security_class_id", "=", parseInt(classId)], ["destination_class_id", "=", parseInt(classId)]);
+            domain.push(
+                "|",
+                ["security_class_id", "=", parseInt(classId)],
+                ["destination_class_id", "=", parseInt(classId)]
+            );
         }
 
         this.action.doAction({
@@ -92,8 +101,11 @@ export class CapTable extends Component {
 
     getHeaders(partnerId) {
         return [
-            { label: this.partnerData[partnerId]["display_name"], onClick: () => this.openRecord("res.partner", partnerId) },
-            ...this.partnerClassesIds[partnerId].map(classId => ({
+            {
+                label: this.partnerData[partnerId]["display_name"],
+                onClick: () => this.openRecord("res.partner", partnerId),
+            },
+            ...this.partnerClassesIds[partnerId].map((classId) => ({
                 label: this.classData[classId]["display_name"],
             })),
             { label: _t("Total") },
@@ -150,7 +162,9 @@ export class CapTable extends Component {
 
     getValuation(partnerId, holderId) {
         const res = this.getStat(partnerId, holderId, "valuation");
-        return formatMonetary(res, { currencyId: this.partnerData[partnerId]["equity_currency_id"] });
+        return formatMonetary(res, {
+            currencyId: this.partnerData[partnerId]["equity_currency_id"],
+        });
     }
 
     getRow(partnerId, holderId, totalLabel = false) {
@@ -162,15 +176,25 @@ export class CapTable extends Component {
 
         return [
             {
-                partnerId: (!isNaN(holderId) && holderId),
-                label: totalLabel || (!isNaN(holderId) && this.partnerData[holderId]["display_name"]) || _t("Unassigned"),
-                onClick: holderId && !isNaN(holderId) ? (() => this.openRecord("res.partner", holderId)) : null,
+                partnerId: !isNaN(holderId) && holderId,
+                label:
+                    totalLabel ||
+                    (!isNaN(holderId) && this.partnerData[holderId]["display_name"]) ||
+                    _t("Unassigned"),
+                onClick:
+                    holderId && !isNaN(holderId)
+                        ? () => this.openRecord("res.partner", holderId)
+                        : null,
             },
-            ...this.partnerClassesIds[partnerId].map(classId => ({
+            ...this.partnerClassesIds[partnerId].map((classId) => ({
                 label: this.getSecurities(partnerId, holderId, classId) || "",
-                onClick: () => this.openTransactions(partnerId, holderId, classId, Boolean(totalLabel)),
+                onClick: () =>
+                    this.openTransactions(partnerId, holderId, classId, Boolean(totalLabel)),
             })),
-            { label: totalSecurities, onClick: () => this.openTransactions(partnerId, holderId, null, Boolean(totalLabel)) },
+            {
+                label: totalSecurities,
+                onClick: () => this.openTransactions(partnerId, holderId, null, Boolean(totalLabel)),
+            },
             { label: this.getOwnership(partnerId, holderId) },
             { label: this.getVotingRights(partnerId, holderId) },
             { label: this.getDividendPayout(partnerId, holderId) },
@@ -181,14 +205,16 @@ export class CapTable extends Component {
 
     getPartnerAvatarSrc(partnerId) {
         if (this.isSample) {
-            return `/base/static/img/res_partner_address_${partnerId}.jpg`
+            return `/base/static/img/res_partner_address_${partnerId}.jpg`;
         }
         return `/web/image?model=res.partner&field=avatar_128&id=${partnerId}`;
     }
 
     get noContentHelp() {
         const helpTitle = _t("No shareholders yet!");
-        const helpDescription = _t("Manage transactions, equity, cap table, and shareholders.");
+        const helpDescription = _t(
+            "Manage transactions, equity, cap table, and shareholders."
+        );
         return markup`<p class="o_view_nocontent_smiling_face">${helpTitle}</p><p>${helpDescription}</p>`;
     }
 }
