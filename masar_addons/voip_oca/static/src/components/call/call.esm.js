@@ -3,19 +3,21 @@
     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 */
 
-import {Component, useState} from "@odoo/owl";
+import {Component, proxy} from "@odoo/owl";
 import {Numpad} from "../numpad/numpad.esm";
 import {Transfer} from "../transfer/transfer.esm";
 import {usePopover} from "@web/core/popover/popover_hook";
 import {useService} from "@web/core/utils/hooks";
 
 export class Call extends Component {
+    static template = "voip_oca.Call";
+    static components = {Numpad};
     setup() {
         super.setup();
         this.action = useService("action");
-        this.voip = useState(useService("voip_oca"));
+        this.voip = useService("voip_oca");
         this.agent = useService("voip_agent_oca");
-        this.state = useState({duration: " 00:00", elapsedSeconds: 0, numpad: false});
+        this.state = proxy({duration: " 00:00", elapsedSeconds: 0, numpad: false});
         this.transferPopover = usePopover(Transfer, {position: "top"});
         if (this.voip.inCall) {
             this.startTimer();
@@ -116,5 +118,3 @@ export class Call extends Component {
         this.agent.session?.sessionDescriptionHandler.sendDtmf(key);
     }
 }
-Call.template = "voip_oca.Call";
-Call.components = {Numpad};

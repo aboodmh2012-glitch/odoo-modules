@@ -8,7 +8,7 @@
                 class="o_numpad_input ps-3 border-0 no-border"
                 placeholder="Enter number..."
                 t-model="voip.numpad.value"
-                t-ref="numpadValue"
+                t-ref="this.numpadValue"
                 t-on-keydown="onNumpadValue"
             />
             <button

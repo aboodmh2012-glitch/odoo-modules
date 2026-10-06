@@ -3,10 +3,16 @@
     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 */
 
-import {Component} from "@odoo/owl";
+import {Component, t, useProps} from "@odoo/owl";
 import {useService} from "@web/core/utils/hooks";
 
 export class Partner extends Component {
+    static template = "voip_oca.Partner";
+    props = useProps({
+        partner: t.object(),
+        activity: t.object().optional(),
+        call: t.object().optional(),
+    });
     setup() {
         super.setup();
         this.action = useService("action");
@@ -117,9 +123,3 @@ export class Partner extends Component {
         this.voip.partner = false;
     }
 }
-Partner.props = {
-    partner: {type: Object},
-    activity: {type: Object, optional: true},
-    call: {type: Object, optional: true},
-};
-Partner.template = "voip_oca.Partner";

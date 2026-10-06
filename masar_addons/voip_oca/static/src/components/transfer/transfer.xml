@@ -19,7 +19,7 @@
                     type="text"
                     placeholder="Enter number"
                     t-model="state.value"
-                    t-ref="input"
+                    t-ref="this.inputRef"
                     t-on-keydown="onKeydown"
                 />
                 <button

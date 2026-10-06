@@ -3,7 +3,7 @@
     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 */
 
-import {Component, onWillStart, useRef, useState} from "@odoo/owl";
+import {Component, onWillStart, signal} from "@odoo/owl";
 import {Call} from "@voip_oca/components/call/call.esm";
 import {Numpad} from "@voip_oca/components/numpad/numpad.esm";
 import {Partner} from "@voip_oca/components/partner/partner.esm";
@@ -12,12 +12,14 @@ import {useDebounced} from "@web/core/utils/timing";
 import {useService} from "@web/core/utils/hooks";
 
 export class VoipOCASoftphone extends Component {
+    static components = {Call, Numpad, Partner};
+    static template = "voip_oca.VoipOCASoftphone";
     setup() {
-        this.voip = useState(useService("voip_oca"));
+        this.voip = useService("voip_oca");
         this.agent = useService("voip_agent_oca");
-        this.searchInput = useRef("searchInput");
+        this.searchInput = signal.ref();
         this.onSearchInput = useDebounced(() => {
-            this._searchInput(this.searchInput.el.value);
+            this._searchInput(this.searchInput()?.value);
         }, 300);
         onWillStart(() => this._searchInput());
     }
@@ -83,10 +85,6 @@ export class VoipOCASoftphone extends Component {
         this.voip.numpadTab = !this.voip.numpadTab;
     }
 }
-
-VoipOCASoftphone.components = {Call, Numpad, Partner};
-VoipOCASoftphone.props = {};
-VoipOCASoftphone.template = "voip_oca.VoipOCASoftphone";
 
 registry.category("main_components").add("voip_oca.VoipOCASoftphone", {
     Component: VoipOCASoftphone,

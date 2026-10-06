@@ -15,5 +15,5 @@
  'maintainers': ['etobella'],
  'name': 'Voip OCA',
  'summary': 'Provides the use of Voip',
- 'version': '20.0.1.0.2',
+ 'version': '20.0.1.0.3',
  'website': 'https://github.com/OCA/connector-telephony'}

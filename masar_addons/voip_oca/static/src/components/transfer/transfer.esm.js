@@ -3,13 +3,18 @@
     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 */
 
-import {Component, onMounted, useRef, useState} from "@odoo/owl";
+import {Component, onMounted, proxy, signal, t, useProps} from "@odoo/owl";
 
 export class Transfer extends Component {
+    static template = "voip_oca.Transfer";
+    props = useProps({
+        onTransfer: t.function(),
+        close: t.function(),
+    });
     setup() {
-        this.inputRef = useRef("input");
-        this.state = useState({value: ""});
-        onMounted(() => this.inputRef.el.focus());
+        this.inputRef = signal.ref();
+        this.state = proxy({value: ""});
+        onMounted(() => this.inputRef()?.focus());
     }
     onKeydown(ev) {
         if (ev.key === "Escape") {
@@ -24,8 +29,3 @@ export class Transfer extends Component {
         this.props.close();
     }
 }
-Transfer.template = "voip_oca.Transfer";
-Transfer.props = {
-    onTransfer: {type: Function},
-    close: {type: Function},
-};

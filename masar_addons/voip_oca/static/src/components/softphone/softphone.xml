@@ -48,7 +48,7 @@
                                 class="form-control border-0 shadow-none"
                                 placeholder="Search"
                                 t-model.trim="voip.searchValue"
-                                t-ref="searchInput"
+                                t-ref="this.searchInput"
                                 t-on-input="onSearchInput"
                             />
                             <button class="oi oi-search btn" />
