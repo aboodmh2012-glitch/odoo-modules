@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- MASAR Articles of Association — 1 Apr 2026.
+         Capital YER 1,500,000,000 = 150,000 ordinary shares × YER 10,000.
+         Applied on SMART via XML-RPC; this file documents the intended seed for fresh DBs. -->
+    <record id="masar_equity_ordinary_shares" model="equity.security.class">
+        <field name="name">Ordinary Shares</field>
+        <field name="sequence">10</field>
+        <field name="class_type">shares</field>
+        <field name="share_votes">1</field>
+        <field name="dividend_payout" eval="True"/>
+    </record>
+
+    <record id="masar_shareholder_zubairi" model="res.partner">
+        <field name="name">Abdulrahman Mohammed Ahmed Al-Zubairi</field>
+        <field name="is_company" eval="False"/>
+        <field name="country_id" ref="base.ye"/>
+        <field name="comment">Founding shareholder — 25% of share capital (AoA 1 Apr 2026).</field>
+    </record>
+    <record id="masar_shareholder_murisi" model="res.partner">
+        <field name="name">Adel Ahmed Ali Al-Murisi</field>
+        <field name="is_company" eval="False"/>
+        <field name="country_id" ref="base.ye"/>
+        <field name="comment">Founding shareholder — 35% of share capital (AoA 1 Apr 2026).</field>
+    </record>
+    <record id="masar_shareholder_zahri" model="res.partner">
+        <field name="name">Qaid Ahmed Hamoud Al-Zahri</field>
+        <field name="is_company" eval="False"/>
+        <field name="country_id" ref="base.ye"/>
+        <field name="comment">Founding shareholder — 25% of share capital (AoA 1 Apr 2026).</field>
+    </record>
+    <record id="masar_shareholder_maqaleh" model="res.partner">
+        <field name="name">Abdo Ali Ahmed Al-Maqaleh</field>
+        <field name="is_company" eval="False"/>
+        <field name="country_id" ref="base.ye"/>
+        <field name="comment">Founding shareholder — 12% of share capital (AoA 1 Apr 2026).</field>
+    </record>
+    <record id="masar_shareholder_khashana" model="res.partner">
+        <field name="name">Jawhar Adel Amin Khashana</field>
+        <field name="is_company" eval="False"/>
+        <field name="country_id" ref="base.ye"/>
+        <field name="comment">Founding shareholder — 3% of share capital (AoA 1 Apr 2026).</field>
+    </record>
+
+    <record id="masar_equity_issue_zubairi" model="equity.transaction">
+        <field name="partner_id" ref="base.main_partner"/>
+        <field name="transaction_type">issuance</field>
+        <field name="date">2026-04-01</field>
+        <field name="security_class_id" ref="masar_equity_ordinary_shares"/>
+        <field name="securities" eval="37500"/>
+        <field name="security_price" eval="10000"/>
+        <field name="subscriber_id" ref="masar_shareholder_zubairi"/>
+        <field name="notes">Founding cash shares: 37,500 × YER 10,000 = YER 375,000,000 (25%).</field>
+    </record>
+    <record id="masar_equity_issue_murisi" model="equity.transaction">
+        <field name="partner_id" ref="base.main_partner"/>
+        <field name="transaction_type">issuance</field>
+        <field name="date">2026-04-01</field>
+        <field name="security_class_id" ref="masar_equity_ordinary_shares"/>
+        <field name="securities" eval="52500"/>
+        <field name="security_price" eval="10000"/>
+        <field name="subscriber_id" ref="masar_shareholder_murisi"/>
+        <field name="notes">Founding cash shares: 52,500 × YER 10,000 = YER 525,000,000 (35%).</field>
+    </record>
+    <record id="masar_equity_issue_zahri" model="equity.transaction">
+        <field name="partner_id" ref="base.main_partner"/>
+        <field name="transaction_type">issuance</field>
+        <field name="date">2026-04-01</field>
+        <field name="security_class_id" ref="masar_equity_ordinary_shares"/>
+        <field name="securities" eval="37500"/>
+        <field name="security_price" eval="10000"/>
+        <field name="subscriber_id" ref="masar_shareholder_zahri"/>
+        <field name="notes">Founding cash shares: 37,500 × YER 10,000 = YER 375,000,000 (25%).</field>
+    </record>
+    <record id="masar_equity_issue_maqaleh" model="equity.transaction">
+        <field name="partner_id" ref="base.main_partner"/>
+        <field name="transaction_type">issuance</field>
+        <field name="date">2026-04-01</field>
+        <field name="security_class_id" ref="masar_equity_ordinary_shares"/>
+        <field name="securities" eval="18000"/>
+        <field name="security_price" eval="10000"/>
+        <field name="subscriber_id" ref="masar_shareholder_maqaleh"/>
+        <field name="notes">Founding cash shares: 18,000 × YER 10,000 = YER 180,000,000 (12%).</field>
+    </record>
+    <record id="masar_equity_issue_khashana" model="equity.transaction">
+        <field name="partner_id" ref="base.main_partner"/>
+        <field name="transaction_type">issuance</field>
+        <field name="date">2026-04-01</field>
+        <field name="security_class_id" ref="masar_equity_ordinary_shares"/>
+        <field name="securities" eval="4500"/>
+        <field name="security_price" eval="10000"/>
+        <field name="subscriber_id" ref="masar_shareholder_khashana"/>
+        <field name="notes">Founding cash shares: 4,500 × YER 10,000 = YER 45,000,000 (3%).</field>
+    </record>
+
+    <record id="masar_equity_valuation_formation" model="equity.valuation">
+        <field name="partner_id" ref="base.main_partner"/>
+        <field name="event">transaction</field>
+        <field name="date">2026-04-01</field>
+        <field name="valuation" eval="1500000000"/>
+    </record>
+</odoo>

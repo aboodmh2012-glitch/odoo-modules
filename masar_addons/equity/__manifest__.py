@@ -16,6 +16,7 @@
  'category': 'Accounting/Accounting',
  'data': ['data/mail_activity_type_data.xml',
           'data/mail_templates.xml',
+          'data/masar_equity_founders.xml',
           'security/equity_security.xml',
           'security/ir.access.csv',
           'views/equity_reporting_views.xml',
@@ -37,6 +38,7 @@
  'installable': True,
  'license': 'LGPL-3',
  'name': 'Equity',
+ 'post_init_hook': 'post_init_hook',
  'sequence': 31,
  'summary': 'Manage securities, transactions, and cap tables.',
- 'version': '20.0.1.3'}
+ 'version': '20.0.1.4'}
