@@ -18,6 +18,7 @@ class TierReview(models.Model):
         selection_add=[("forwarded", "Forwarded")],
     )
     review_type = fields.Selection(
+        selection="_selection_review_type",
         compute="_compute_definition_data",
         store=True,
         related=False,
@@ -45,6 +46,14 @@ class TierReview(models.Model):
         store=True,
         related=False,
     )
+
+    @api.model
+    def _selection_review_type(self):
+        # Same options as tier.definition.review_type, including any
+        # selection_add from other modules (e.g. formula's "expression").
+        return self.env["tier.definition"]._fields["review_type"]._description_selection(
+            self.env
+        )
 
     @api.depends(
         "definition_id.name",
