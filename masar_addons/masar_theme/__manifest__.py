@@ -1,7 +1,7 @@
 {
     "name": "MASAR Theme",
     "summary": "MASAR Pay Application Design System for Odoo 20 backend",
-    "version": "20.0.2.0.0",
+    "version": "20.0.2.1.0",
     "category": "Themes/Backend",
     "author": "MASAR",
     "license": "LGPL-3",
