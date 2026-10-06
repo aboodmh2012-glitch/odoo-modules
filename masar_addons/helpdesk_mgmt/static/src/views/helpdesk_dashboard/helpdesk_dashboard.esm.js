@@ -1,6 +1,6 @@
 import {Component, onWillStart, useState} from "@odoo/owl";
 import {useBus, useService} from "@web/core/utils/hooks";
-import {SIZES} from "@web/core/ui/ui_service";
+import {SIZES} from "@web/core/ui/ui_utils";
 import {ViewButton} from "@web/views/view_button/view_button";
 
 export class HelpdeskDashboard extends Component {

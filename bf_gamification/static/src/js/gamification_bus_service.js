@@ -1,13 +1,13 @@
 /** @odoo-module **/
 
 import { registry } from "@web/core/registry";
-import { reactive } from "@odoo/owl";
+import { proxy } from "@odoo/owl";
 
 export const gamificationBusService = {
     dependencies: ["bus_service", "notification"],
 
     start(env, { bus_service, notification }) {
-        const state = reactive({
+        const state = proxy({
             pendingBadge: null,
             pendingLevelUp: null,
         });

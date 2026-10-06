@@ -5,7 +5,7 @@
     of the voip widgets.
 */
 import {matchString} from "../utils/utils.esm";
-import {reactive} from "@odoo/owl";
+import {proxy} from "@odoo/owl";
 import {registry} from "@web/core/registry";
 import {session} from "@web/session";
 import {url} from "@web/core/utils/urls";
@@ -41,7 +41,7 @@ export class VoipOCA {
         this.user = env.services.user;
         // We will make this service reactive,
         // this way we will hanble the changes on the component
-        return reactive(this);
+        return proxy(this);
     }
     /* Widget Buttons */
     handleVoip() {

@@ -9,7 +9,7 @@
  * deux fois pour le même état.
  */
 
-import { reactive } from "@odoo/owl";
+import { proxy } from "@odoo/owl";
 
 export const ECHELLES = [
     { key: "day", label: "Jour" },
@@ -42,7 +42,7 @@ export class GanttStore {
         this.orm = orm;
         this.notification = notification;
         this.cache = new Map();
-        this.state = reactive({
+        this.state = proxy({
             loading: true,
             portefeuille: { projects: [], plans: [], groupings: [] },
             kind: "project",

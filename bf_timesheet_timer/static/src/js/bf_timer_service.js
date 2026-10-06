@@ -1,11 +1,11 @@
 /** @odoo-module **/
-import { reactive } from "@odoo/owl";
+import { proxy } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 
 export const bfTimerService = {
     dependencies: ["orm"],
     async start(env, { orm }) {
-        const state = reactive({
+        const state = proxy({
             timers: [],
             pendingTimers: [],
             todayTotal: 0,
