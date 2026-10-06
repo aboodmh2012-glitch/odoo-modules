@@ -159,14 +159,16 @@ class TierValidation(models.AbstractModel):
         if search_without_validation:
             # Search for records that have not yet been through a validation
             # process.
-            operator = "!="
+            # Odoo 20 wants 'not in' for x2many emptiness checks.
+            operator = "not in"
+            value = [False]
             model_operator = "not in"
         reviews_query = self.env["tier.review"]._search(
             Domain("model", "=", self._name)
             & Domain("reviewer_ids", operator, value)
             & Domain("can_review", "=", True)
         )
-        return Domain("id", model_operator, reviews_query.subselect("DISTINCT res_id"))
+        return Domain("id", model_operator, reviews_query.subselect(SQL("DISTINCT res_id")))
 
     def _get_to_validate_message_name(self):
         return self._description

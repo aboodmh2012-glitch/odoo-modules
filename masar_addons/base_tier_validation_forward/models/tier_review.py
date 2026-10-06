@@ -18,56 +18,30 @@ class TierReview(models.Model):
         selection_add=[("forwarded", "Forwarded")],
     )
     review_type = fields.Selection(
-        selection="_selection_review_type",
-        compute="_compute_definition_data",
         store=True,
-        related=False,
     )
     reviewer_id = fields.Many2one(
         comodel_name="res.users",
-        compute="_compute_definition_data",
         store=True,
-        related=False,
     )
     reviewer_group_id = fields.Many2one(
         comodel_name="res.groups",
-        compute="_compute_definition_data",
         store=True,
-        related=False,
     )
     sequence = fields.Integer()
     has_comment = fields.Boolean(
-        compute="_compute_definition_data",
         store=True,
-        related=False,
     )
     approve_sequence = fields.Boolean(
-        compute="_compute_definition_data",
         store=True,
-        related=False,
     )
 
-    @api.model
-    def _selection_review_type(self):
-        # Same options as tier.definition.review_type, including any
-        # selection_add from other modules (e.g. formula's "expression").
-        return self.env["tier.definition"]._fields["review_type"]._description_selection(
-            self.env
-        )
-
-    @api.depends(
-        "definition_id.name",
-        "definition_id.review_type",
-        "definition_id.reviewer_id",
-        "definition_id.reviewer_group_id",
-        "definition_id.has_comment",
-        "definition_id.approve_sequence",
-    )
+    @api.depends("definition_id.name")
     def _compute_definition_data(self):
+        # Only ``name`` is a real compute (related=False above). The other
+        # overridden fields stay *stored related* to definition_id, exactly as
+        # they resolved in Odoo 19, where 'related' already took precedence
+        # over the 'compute' this module declared; Odoo 20 only started
+        # warning about the conflict ("is both compute and related").
         for rec in self:
             rec.name = rec.definition_id.name
-            rec.review_type = rec.definition_id.review_type
-            rec.reviewer_id = rec.definition_id.reviewer_id
-            rec.reviewer_group_id = rec.definition_id.reviewer_group_id
-            rec.has_comment = rec.definition_id.has_comment
-            rec.approve_sequence = rec.definition_id.approve_sequence
