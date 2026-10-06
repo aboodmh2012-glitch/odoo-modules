@@ -18,15 +18,11 @@
         </xpath>
     </template>
 
-    <!-- Offline / service-worker fallback page. -->
-    <template id="masar_webclient_offline" inherit_id="web.webclient_offline" name="MASAR Offline Branding" priority="99">
-        <xpath expr="//img" position="attributes">
-            <attribute name="alt">Masar logo</attribute>
-        </xpath>
+    <!-- Offline copy + button color (img replaced in webclient_templates.xml). -->
+    <template id="masar_webclient_offline" inherit_id="web.webclient_offline" name="MASAR Offline Branding" priority="100">
         <xpath expr="//p" position="replace">
             <p>Check your network connection and come back here. Masar will load as soon as you're back online.</p>
         </xpath>
-        <!-- Hard-coded Odoo purple (#714B67) on the offline retry button. -->
         <xpath expr="//style" position="replace">
             <style>
                 body {
