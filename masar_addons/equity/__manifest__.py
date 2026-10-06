@@ -41,4 +41,4 @@
  'post_init_hook': 'post_init_hook',
  'sequence': 31,
  'summary': 'Manage securities, transactions, and cap tables.',
- 'version': '20.0.1.4'}
+ 'version': '20.0.1.5'}
