@@ -57,17 +57,14 @@ class TestFSMOrderRoute(FSMCommon):
         calendar = self.env["resource.calendar"].create(
             {
                 "name": "Early Shift",
-                "tz": "US/Eastern",
                 "attendance_ids": [
                     (
                         0,
                         0,
                         {
-                            "name": "Shift",
                             "dayofweek": str(route_date.weekday()),
                             "hour_from": 6.0,
                             "hour_to": 14.0,
-                            "day_period": "morning",
                         },
                     )
                 ],
@@ -92,17 +89,14 @@ class TestFSMOrderRoute(FSMCommon):
         calendar = self.env["resource.calendar"].create(
             {
                 "name": "Morning Shift",
-                "tz": "US/Eastern",
                 "attendance_ids": [
                     (
                         0,
                         0,
                         {
-                            "name": "Shift",
                             "dayofweek": str(route_date.weekday()),
                             "hour_from": 7.0,
                             "hour_to": 15.0,
-                            "day_period": "morning",
                         },
                     )
                 ],
@@ -131,7 +125,6 @@ class TestFSMOrderRoute(FSMCommon):
         empty_calendar = self.env["resource.calendar"].create(
             {
                 "name": "Empty Schedule",
-                "tz": "US/Eastern",
                 "attendance_ids": [],
             }
         )
@@ -1503,20 +1496,16 @@ class TestFSMOrderRoute(FSMCommon):
         finally:
             self.env.user.tz = old_tz
 
-    def test_tz_name_uses_worker_calendar_before_user(self):
-        """Partner without tz must use the worker calendar tz, not the user."""
+    def test_tz_name_uses_company_before_user(self):
+        """Partner without tz must use the company tz, not the user."""
         order = self.env["fsm.order"].new({})
-        calendar = self.env["resource.calendar"].create(
-            {
-                "name": "LA Calendar",
-                "tz": "America/Los_Angeles",
-            }
-        )
-        person = self.env["fsm.person"].create({"name": "Calendar TZ Worker"})
+        person = self.env["fsm.person"].create({"name": "Company TZ Worker"})
         person.partner_id.tz = False
-        person.calendar_id = calendar
+        person.calendar_id = False
         old_tz = self.env.user.tz
+        old_company_tz = self.env.company.tz
         self.env.user.tz = "UTC"
+        self.env.company.tz = "America/Los_Angeles"
         try:
             self.assertEqual(
                 order._tz_name_for_route_day(
@@ -1534,6 +1523,7 @@ class TestFSMOrderRoute(FSMCommon):
             )
         finally:
             self.env.user.tz = old_tz
+            self.env.company.tz = old_company_tz
 
     def test_write_direct_dayroute_syncs_team(self):
         """Assigning a day route must align the order team with the day route."""
@@ -1600,17 +1590,14 @@ class TestFSMOrderRoute(FSMCommon):
         calendar_b = self.env["resource.calendar"].create(
             {
                 "name": "Company B Calendar",
-                "tz": "UTC",
                 "attendance_ids": [
                     (
                         0,
                         0,
                         {
-                            "name": "Early Shift",
                             "dayofweek": str(self.date.weekday()),
                             "hour_from": 5.0,
                             "hour_to": 13.0,
-                            "day_period": "morning",
                         },
                     )
                 ],

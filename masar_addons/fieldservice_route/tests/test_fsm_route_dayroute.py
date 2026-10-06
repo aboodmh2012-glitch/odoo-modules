@@ -91,7 +91,7 @@ class TestFSMRouteDayRoute(FSMCommon):
         route_date = self._next_weekday(0)
         self.test_person.partner_id.tz = False
         self.test_person.calendar_id = False
-        self.env.company.resource_calendar_id.tz = "UTC"
+        self.env.company.tz = "UTC"
         planned = self.DayRoute._planned_start_from_date(
             route_date,
             person=self.test_person,
@@ -106,7 +106,7 @@ class TestFSMRouteDayRoute(FSMCommon):
         calendar = self.env.company.resource_calendar_id
         with (
             patch.object(type(calendar), "_get_closest_work_time", return_value=None),
-            patch.object(type(calendar), "tz", False),
+            patch.object(type(self.env.company), "tz", False),
             patch.object(type(self.env.user), "tz", False),
         ):
             planned = self.DayRoute._planned_start_from_date(
@@ -140,7 +140,6 @@ class TestFSMRouteDayRoute(FSMCommon):
         calendar = self.env["resource.calendar"].create(
             {
                 "name": "No Attendance",
-                "tz": "UTC",
                 "attendance_ids": [],
             }
         )
@@ -235,24 +234,19 @@ class TestFSMRouteDayRoute(FSMCommon):
         with self.assertRaises(AccessError):
             own_dayroute.with_user(portal_user).write({"name": "Portal edit"})
 
-    def test_planned_start_recomputes_on_two_week_calendar(self):
+    def test_planned_start_recomputes_on_calendar_hours(self):
         route_date = self._next_weekday(0)
         calendar = self.env["resource.calendar"].create(
             {
-                "name": "Two Week Shift",
-                "tz": "UTC",
-                "two_weeks_calendar": True,
+                "name": "Shift Hours",
                 "attendance_ids": [
                     (
                         0,
                         0,
                         {
-                            "name": "Week 1 Monday",
                             "dayofweek": "0",
-                            "week_type": "0",
                             "hour_from": 7.0,
                             "hour_to": 15.0,
-                            "day_period": "morning",
                         },
                     )
                 ],
@@ -266,7 +260,7 @@ class TestFSMRouteDayRoute(FSMCommon):
             }
         )
         before = dayroute.date_start_planned
-        calendar.attendance_ids.write({"week_type": "1"})
+        calendar.attendance_ids.write({"hour_from": 9.0})
         self.assertNotEqual(dayroute.date_start_planned, before)
 
     def test_planned_start_uses_team_company_calendar(self):
@@ -275,17 +269,14 @@ class TestFSMRouteDayRoute(FSMCommon):
         other_calendar = self.env["resource.calendar"].create(
             {
                 "name": "Other Company Calendar",
-                "tz": "UTC",
                 "attendance_ids": [
                     (
                         0,
                         0,
                         {
-                            "name": "Other Shift",
                             "dayofweek": str(route_date.weekday()),
                             "hour_from": 5.0,
                             "hour_to": 13.0,
-                            "day_period": "morning",
                         },
                     )
                 ],
@@ -363,17 +354,14 @@ class TestFSMRouteDayRoute(FSMCommon):
         other_calendar = self.env["resource.calendar"].create(
             {
                 "name": "Default Team Calendar",
-                "tz": "UTC",
                 "attendance_ids": [
                     (
                         0,
                         0,
                         {
-                            "name": "Early",
                             "dayofweek": str(route_date.weekday()),
                             "hour_from": 4.0,
                             "hour_to": 12.0,
-                            "day_period": "morning",
                         },
                     )
                 ],
@@ -506,17 +494,14 @@ class TestFSMRouteDayRoute(FSMCommon):
         calendar = self.env["resource.calendar"].create(
             {
                 "name": f"DST {tz_name} {route_date}",
-                "tz": tz_name,
                 "attendance_ids": [
                     (
                         0,
                         0,
                         {
-                            "name": "Shift",
                             "dayofweek": str(route_date.weekday()),
                             "hour_from": 9.0,
                             "hour_to": 17.0,
-                            "day_period": "morning",
                         },
                     )
                 ],

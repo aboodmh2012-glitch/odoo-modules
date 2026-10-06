@@ -1,6 +1,6 @@
 # SMART Odoo 20 — Functional modules audit & Wave 0 remediation
 
-_Generated 2026-10-06 by Claude Code on branch `claude/odoo20-functional-migration`. Source of truth for prior functionality: `smartexsoftorg/masar@main` (Odoo 19, `custom_addons/`). Target: `aboodmh2012-glitch/odoo-modules@odoo20-railway` (`odoo20-fixed`, Odoo 20.0 CE). Cursor-owned theme/website/UI modules were **not modified**._
+_Generated 2026-10-06 by Claude Code on branch `claude/odoo20-functional-migration`, then continued on `cursor/odoo20-wave-followup-9933` (Wave 0 + MASAR UI port + remaining Wave 4–6 API ports)._
 
 ## 1. Executive summary
 
@@ -531,37 +531,33 @@ Key chains: `base_tier_validation` → {account,purchase,sale,stock_picking}_tie
 
 ## 6. Remaining blockers (not fixed in Wave 0)
 
-- `account_chart_update` — account.group removed in 19.3 (install fails). Low value unless chart templates are re-applied; candidate DEPRECATE
-- `account_financial_report` — account.group removed (install fails). High value: GL/TB/aged reports for CE
-- `account_usability` — account.group removed (install fails); many features now native, port only what is used
-- `dms` — portal_common_category XPath gone; ir.rule._compute_domain, datas, toggle_active still to port
-- `document_page_project` — project kanban XPath o_project_kanban_boxes gone (card view in 20)
-- `equity` — _table_sql + attachment raw fixed in Wave 0; still blocked by portal XPath portal_service_category (Odoo 20 portal home)
-- `fieldservice_availability` — depends on fieldservice_route (resource.calendar.tz removed)
-- `fieldservice_crm` — crm.lead form XPath opportunity_partner/partner_id gone
-- `fieldservice_equipment_stock` — blocked by fieldservice_stock
-- `fieldservice_repair` — blocked by fieldservice_stock
-- `fieldservice_route` — resource.calendar redesigned in 20 (no tz/two_weeks_calendar/week_type); tz now on res.company
-- `fieldservice_route_availability` — blocked by fieldservice_route
-- `fieldservice_sale_stock` — blocked by fieldservice_stock
-- `fieldservice_stock` — stock.move.product_uom renamed in 20 (view fails)
-- `fieldservice_timesheet` — timesheet report _select must return SQL (LiteralSQL + str TypeError)
-- `fieldservice_portal` — installs, but portal pages raise `QWebError (KeyError: object)` and the portal-home entry is missing (portal templates changed in 20).
-- `dms` — besides the portal XPath: `ir.rule._compute_domain/_make_access_error`, `datas` read/write, `toggle_active` in views.
-- `bf_corporate_governance` tests — 2 tests assume the superuser has the Governance Manager group.
-- `masar_hr_resignation` — archive flow writes `hr.version.departure_date` (now related to the new `hr.employee.departure` model) → `_check_dates` error; port to the native departure flow (Wave 3).
-- `mcp_server` tests — 53 remaining: fixtures mint 30-day API keys as non-admin users (Odoo 20 enforces per-group `api_key_duration`), 2 SimpleNamespace request mocks lack `url_root`.
-- `queue_job` — 1 HTTP test mocks a request without `host_id`; `helpdesk_mgmt_sla` test data uses `resource.calendar.attendance.name` (removed in 20).
-- Hoot JS suites are now run by web's CrossModule `WebSuite` (needs a browser run; OCA wrapper tests removed).
-- `social_meta` tests expect `social_facebook` to be installed (`platform="facebook"`); pre-existing test design.
+Wave 0 left these as follow-ups. **This branch ports the ones that fit Odoo 20 APIs** (see §6.1). Items still open are called out below.
 
-### BLOCKED_BY_CURSOR (reported only — not touched)
+### 6.1 Ported on `cursor/odoo20-wave-followup-9933`
 
-- `masar_brand`: `<function model="ir.config_parameter" name="set_param">` in `data/ir_config_parameter_data.xml` → install fails on 20 (use `set_str`). It blocks `masar_theme`, `masar_ui_tweaks`, `masar_website` in a fresh DB.
-- `web_responsive`: `installable: False` in SMART, but `masar_theme` and `masar_ui_tweaks` depend on it → "some depends are not loaded, skipped".
-- `masar_website`: 37 `get_param/set_param` call sites (will raise `AttributeError` at runtime).
-- `masar_theme`: 1 server-side `t-esc` (`views/branding_templates.xml`) → renders empty.
-- `masar_hr_org_chart` (not in SMART) depends on `masar_theme`.
+- **BLOCKED_BY_CURSOR (done in the UI lane, merged here):** `masar_brand` uses `<record>` ICP instead of `set_param`; `masar_theme` / `masar_ui_tweaks` no longer depend on `web_responsive`; `masar_website` `get_param`/`set_param` → typed ICP; branding `t-esc` → `t-out`.
+- **`fieldservice_stock` / `fieldservice_crm` / `fieldservice_timesheet` / `document_page_project` / `equity` / `fieldservice_portal` / `dms` portal:** view/portal/SQL ports in `c32d9e8` (`product_uom_id`, CRM partner xpath, `project.view_project_card`, `portal.entry`, timesheet `SQL`, `_access_domain`, attachment `raw`).
+- **`fieldservice_route`:** dropped `resource.calendar.tz` / `two_weeks_calendar` / `attendance.week_type`; timezone is `partner.tz` → `res.company.tz` → `user.tz` → UTC. Unblocks `fieldservice_availability` and `fieldservice_route_availability`.
+- **`account_usability`:** dropped `account.group` inherit/views/tests (model removed in 19.3/20). Remaining menus/Saxon/tags kept.
+- **`account_financial_report`:** dropped `account.group` inherit; trial-balance hierarchy uses `account.account.parent_id`. GL/aged/VAT/open items can load.
+- **`account_chart_update`:** account-group sync is a no-op (default off); accounts/taxes/fiscal positions still update.
+- **`masar_hr_resignation`:** archives via `hr.employee.departure` create (reason `hr.departure_resigned`) instead of writing related `departure_date`. User archive still gated by `masar_hr_resignation.deactivate_user`.
+- **`dms` leftovers:** `toggle_active` → `action_archive`/`action_unarchive`; attachment create writes `raw`.
+- **`helpdesk_mgmt_sla` tests:** attendance `name` removed.
+- **`fieldservice_repair` / stock.move tests:** UoM field is `uom_id` / `product_uom_id` depending on the model.
+- **`mcp_server` tests:** `generate_test_api_key` raises per-group `api_key_duration` (or clamps) so non-admin 30-day fixtures no longer 500.
+
+### 6.2 Still open (not a small API port)
+
+- `account_chart_update` group sync itself is gone with the model (parent-account chart sync not rewritten).
+- Trial-balance hierarchy is parent-account based; prefix-code `account.group` reports are not coming back.
+- Two-week `resource.calendar` rotations (`calendar_type='variable'` recurrency) were not reimplemented; planned-start follows the remaining attendance hours.
+- `mcp_server`: 2 SimpleNamespace request mocks may still lack `url_root`; `queue_job` 1 HTTP test still mocks a request without `host_id`; `bf_corporate_governance` 2 tests still assume Governance Manager on the superuser; `social_meta` tests still expect `social_facebook`.
+- `web_responsive` stays `installable=False` (theme no longer depends on it).
+- Official OCA 20.0 module migrations are still empty; rebase when they land.
+- SMART root 18.0 `bf_*` modules remain undeployable (Dockerfile + series).
+- Empty helpdesk attachments already stored cannot be recovered (§7).
+- `masar_hr_org_chart` is still not in SMART (depends on `masar_theme`; evaluate native HR org chart first).
 - Production log: an external client (Python-urllib) calls `website.search_read` with `social_facebook`; that field no longer exists on `website` in Odoo 20.
 
 ## 7. Production rollout (not executed)
@@ -578,9 +574,9 @@ Key chains: `base_tier_validation` → {account,purchase,sale,stock_picking}_tie
 - **Wave 1 — foundations:** **SMART CI today only tests the root Odoo 18 modules inside `odoo:18`; nothing tests `masar_addons/` on Odoo 20.** Add an `odoo:20.0` job running the per-module install + tests used for this audit (and `tools/odoo20_api_scan.py`). Rebase `queue_job`, `base_tier_validation*`, `date_range`, `report_xlsx*` on OCA 20.0 as soon as migrated; add CI (`tools/ci_test_modules.py`) running the per-module install + tests used here on every PR.
 - **Wave 2 — governance/approvals:** `bf_corporate_governance` tests/roles; decide root 18.0 Symbifox governance pieces (knowledge dashboard, project_document) — they need `project_knowledge_matrix` which is 18.0; port only missing functionality into the masar_addons copy.
 - **Wave 3 — HR:** `masar_hr_*` already installable; port `hr_appraisal_oca`, `hr_personal_equipment_*` (compare with CE `maintenance`/`hr_maintenance`); payroll (`payroll` + `masar_hr_payroll_yemen`) as its own phase; keep the native employee form (MASAR #166/#167/#169/#170).
-- **Wave 4 — accounting/assets:** Port `account_financial_report`, `account_usability`, `account_chart_update` (remove `account.group`), replace `account_lock_date_update` with native lock dates + lock exceptions, `equity` portal.
-- **Wave 5 — helpdesk/CRM/FSM/ops:** `fieldservice_stock` (`stock.move.product_uom`), `fieldservice_route` (resource.calendar redesign), `fieldservice_crm` XPath, `fieldservice_timesheet` SQL, `fieldservice_portal` templates, helpdesk dashboard kanban.
-- **Wave 6 — knowledge/training:** `dms` port; `document_page_project` card view; port `masar_hr_learning` (all deps are CE 20 native, data-only); compare `masar_knowledge`/`knowledge_control` with `project_knowledge_matrix` and `bf_training_*` (18.0, BUSL) and port only missing features.
+- **Wave 4 — accounting/assets (mostly done here):** `account_financial_report` / `account_usability` / `account_chart_update` no longer inherit `account.group`; TB hierarchy uses `parent_id`. Replace `account_lock_date_update` with native lock dates + lock exceptions still open.
+- **Wave 5 — helpdesk/CRM/FSM/ops (mostly done here):** stock UoM, route timezone, CRM xpath, timesheet SQL, portal.entry, SLA attendance fixtures. Helpdesk dashboard kanban Owl `t-esc` is deprecation-only.
+- **Wave 6 — knowledge/training (partial):** `dms` portal + `raw` + `_access_domain` + archive actions; `document_page_project` card view. Still open: port `masar_hr_learning`; compare `masar_knowledge` with 18.0 `bf_training_*`.
 - **Wave 7 — rest:** `attachment_zipped_download` → native `/mail/attachment/zip`; sign stack (`sign_oca`, `fieldservice_sign`, `masar_hr_contract_sign`) only if e-signature is required; Owl `t-esc` deprecations in `voip_oca`, `social`, `dms` client templates.
 
 ## 9. How this was measured (reproducible)

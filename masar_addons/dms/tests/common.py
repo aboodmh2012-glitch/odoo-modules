@@ -169,7 +169,7 @@ class DocumentsBaseCase(BaseCommon):
                 "name": name,
                 "res_model": res_model,
                 "res_id": res_id,
-                "datas": content or cls.content_base64(),
+                "raw": base64.b64decode(content or cls.content_base64()),
             }
         )
 

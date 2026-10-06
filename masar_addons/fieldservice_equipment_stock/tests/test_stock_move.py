@@ -42,15 +42,20 @@ class TestStockMove(TransactionCase):
         )
 
         # Create a stock move from INCOMING to STOCK
-        stockMoveInA = self.env["stock.move"].create(
-            {
-                "location_id": self.supplier_location.id,
-                "location_dest_id": self.stock_location.id,
-                "product_id": productA.id,
-                "product_uom": productA.uom_id.id,
-                "product_uom_qty": 2,
-            }
-        )
+        move_vals = {
+            "location_id": self.supplier_location.id,
+            "location_dest_id": self.stock_location.id,
+            "product_id": productA.id,
+            "product_uom_qty": 2,
+        }
+        Move = self.env["stock.move"]
+        if "product_uom_id" in Move._fields:
+            move_vals["product_uom_id"] = productA.uom_id.id
+        elif "uom_id" in Move._fields:
+            move_vals["uom_id"] = productA.uom_id.id
+        else:
+            move_vals["product_uom"] = productA.uom_id.id
+        stockMoveInA = Move.create(move_vals)
 
         stockMoveInA.quantity = stockMoveInA.product_uom_qty
         stockMoveInA._action_confirm()

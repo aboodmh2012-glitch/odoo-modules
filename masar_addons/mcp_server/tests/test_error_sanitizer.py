@@ -17,7 +17,7 @@ from odoo.tools import mute_logger
 
 from ..controllers import error_sanitizer, rate_limiting, utils
 from ..models.mcp_tools_read import McpToolsRead
-from .test_helpers import create_test_user, grant_mcp_access
+from .test_helpers import generate_test_api_key, create_test_user, grant_mcp_access
 
 
 @tagged("much_unit", "post_install", "-at_install")
@@ -111,7 +111,7 @@ class TestErrorSanitizerEndpoint(common.HttpCase):
             email=f"mcp_sanitize_{unique_id}@example.com",
         )
         grant_mcp_access(self.mcp_user)
-        self.api_key = self.env(user=self.mcp_user)["res.users.apikeys"]._generate(
+        self.api_key = generate_test_api_key(self.env(user=self.mcp_user), 
             "rpc", "Sanitizer Key", datetime.now() + timedelta(days=30)
         )
 

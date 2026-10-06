@@ -70,7 +70,8 @@ class TestAccountChartUpdate(TestAccountChartUpdateCommon):
         IrDefault.discard_records(accounts)
         accounts.unlink()
         self.env["account.fiscal.position"].search(domain).unlink()
-        self.env["account.group"].search(domain).unlink()
+        if "account.group" in self.env:
+            self.env["account.group"].search(domain).unlink()
         wizard.unlink()
         # Now do the real one for detecting additions
         wizard = self.wizard_obj.with_company(self.company).create(self.wizard_vals)
@@ -95,16 +96,8 @@ class TestAccountChartUpdate(TestAccountChartUpdateCommon):
         self.assertNotIn("updated", account_types)
         self.assertNotIn("deleted", account_types)
         self.assertEqual(wizard.account_ids.mapped("xml_id"), list(account_data.keys()))
-        # account.group data
-        account_group_data = self.chart_template_data["account.group"]
-        self.assertEqual(len(wizard.account_group_ids), len(account_group_data))
-        account_group_types = wizard.account_group_ids.mapped("type")
-        # generic_coa has no account.group data
-        self.assertNotIn("new", account_group_types)
-        self.assertNotIn("updated", account_group_types)
-        self.assertEqual(
-            wizard.account_group_ids.mapped("xml_id"), list(account_group_data.keys())
-        )
+        # account.group was removed in Odoo 20; wizard keeps the field empty.
+        self.assertFalse(wizard.account_group_ids)
         # fiscal.position
         fp_data = self.chart_template_data["account.fiscal.position"]
         self.assertEqual(len(wizard.fiscal_position_ids), len(fp_data))
@@ -258,13 +251,9 @@ class TestAccountChartUpdate(TestAccountChartUpdateCommon):
 
     def test_04_account_group_code_prefix_end_no_false_positive(self):
         """Account group with code_prefix_end > code_prefix_start should not be flagged.
-
-        Regression test: the wizard's condition for resolving the expected
-        code_prefix_end was inverted — it used the template's end value only
-        when end < start (i.e. the invalid case) and fell back to start
-        otherwise, producing a false diff whenever the group had a genuine
-        range like 643-648.
         """
+        if "account.group" not in self.env:
+            self.skipTest("account.group was removed in Odoo 20")
         wizard = self.wizard_obj.with_company(self.company).create(self.wizard_vals)
         # Simulate template data for an account group with a range (start != end)
         t_data = {
@@ -720,6 +709,8 @@ class TestAccountChartUpdate(TestAccountChartUpdateCommon):
         """When the template's code_prefix_end differs from the DB, the
         wizard must append a per-field bullet with the actual/expected
         values under the "Differences in these fields:" header."""
+        if "account.group" not in self.env:
+            self.skipTest("account.group was removed in Odoo 20")
         wizard = self.wizard_obj.with_company(self.company).create(self.wizard_vals)
         t_data = {
             "test_group_end_drift": {
@@ -758,6 +749,8 @@ class TestAccountChartUpdate(TestAccountChartUpdateCommon):
         `code_prefix_end` normalization still disagrees with the DB, the
         renderer must prepend the "Differences in these fields:" header
         itself."""
+        if "account.group" not in self.env:
+            self.skipTest("account.group was removed in Odoo 20")
         wizard = self.wizard_obj.with_company(self.company).create(self.wizard_vals)
         # Template omits code_prefix_end entirely → normalizes to
         # code_prefix_start ("700"); DB has "750".
@@ -795,6 +788,8 @@ class TestAccountChartUpdate(TestAccountChartUpdateCommon):
         "updated" with the `Missing XML-ID` note, and the note must be
         appended (not overwriting) when another drift already produced
         a header."""
+        if "account.group" not in self.env:
+            self.skipTest("account.group was removed in Odoo 20")
         wizard = self.wizard_obj.with_company(self.company).create(self.wizard_vals)
         # Template says the group should be xmlid `test_group_missing`, and
         # the DB has a matching record but with no xml_id at all.

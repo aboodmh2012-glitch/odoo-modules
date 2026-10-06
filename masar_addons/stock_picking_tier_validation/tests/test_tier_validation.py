@@ -50,6 +50,14 @@ class TestStockPickingTierValidation(BaseCommon):
             }
         )
 
+    def _stock_move_uom_vals(self, uom):
+        Move = self.env["stock.move"]
+        if "product_uom_id" in Move._fields:
+            return {"product_uom_id": uom.id}
+        if "uom_id" in Move._fields:
+            return {"uom_id": uom.id}
+        return {"product_uom": uom.id}
+
     def _create_picking(self, picking_type, location, location_dest):
         self.env["stock.quant"].create(
             {
@@ -67,11 +75,11 @@ class TestStockPickingTierValidation(BaseCommon):
                     Command.create(
                         {
                             "product_id": self.product.id,
-                            "product_uom": self.product.uom_id.id,
                             "product_uom_qty": 3,
                             "location_id": location.id,
                             "location_dest_id": location_dest.id,
                             "price_unit": 10,
+                            **self._stock_move_uom_vals(self.product.uom_id),
                         }
                     ),
                 ],

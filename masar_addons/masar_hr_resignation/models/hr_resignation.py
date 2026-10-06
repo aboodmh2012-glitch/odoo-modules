@@ -234,7 +234,7 @@ class HrResignation(models.Model):
         return True
 
     def _close_employee_versions(self, employee, last_day):
-        """End open contract versions using Odoo 19 writable fields."""
+        """End open contract versions. Skip related departure_date (Odoo 20)."""
         if "hr.version" not in self.env:
             return
         Version = self.env["hr.version"]
@@ -256,6 +256,39 @@ class HrResignation(models.Model):
                 if not ver.departure_date:
                     ver.departure_date = last_day
 
+    def _register_native_departure(self, employee, last_day, reason_text=""):
+        """Create Odoo 20 hr.employee.departure without writing related dates.
+
+        ``action_register()`` also archives the related user; MASAR only does
+        that when ``masar_hr_resignation.deactivate_user`` is set, so we create
+        the departure (which attaches ``departure_id`` and closes the contract)
+        then archive the employee ourselves.
+        """
+        if "hr.employee.departure" not in self.env:
+            return False
+        Departure = self.env["hr.employee.departure"]
+        existing = Departure.search(
+            [("employee_id", "=", employee.id), ("apply_date", "=", False)], limit=1
+        )
+        if existing:
+            return existing
+        reason = self.env.ref("hr.departure_resigned", raise_if_not_found=False)
+        vals = {
+            "employee_id": employee.id,
+            "dismissal_date": last_day,
+            "departure_date": last_day,
+            "action_date": last_day,
+            "departure_description": reason_text or False,
+        }
+        if reason:
+            vals["departure_reason_id"] = reason.id
+        try:
+            departure = self.env["hr.employee.departure"].sudo().create(vals)
+        except ValidationError:
+            return False
+        departure.apply_date = fields.Date.context_today(self)
+        return departure
+
     def _process_archive(self):
         """Archive employee safely without cloning or unlinking users by default."""
         deactivate_user = (
@@ -271,17 +304,21 @@ class HrResignation(models.Model):
                 )
                 continue
             last_day = rec.approved_last_day
-            # Native departure fields on employee when present
-            emp_vals = {}
-            if (
-                "departure_date" in employee._fields
-                and not employee._fields["departure_date"].related
-            ):
-                emp_vals["departure_date"] = last_day
-            if emp_vals:
-                employee.write(emp_vals)
-            self._close_employee_versions(employee, last_day)
-            employee.action_archive()
+            departure = self._register_native_departure(
+                employee, last_day, rec.reason
+            )
+            if not departure:
+                emp_vals = {}
+                if (
+                    "departure_date" in employee._fields
+                    and not employee._fields["departure_date"].related
+                ):
+                    emp_vals["departure_date"] = last_day
+                if emp_vals:
+                    employee.write(emp_vals)
+                self._close_employee_versions(employee, last_day)
+            if employee.active:
+                employee.action_archive()
             if deactivate_user and employee.user_id:
                 employee.user_id.active = False
             rec._workflow_write(

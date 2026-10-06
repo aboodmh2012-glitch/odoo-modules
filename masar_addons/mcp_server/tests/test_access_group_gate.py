@@ -24,6 +24,7 @@ from odoo.tests import common, tagged
 from ..controllers import auth, oauth_server, rate_limiting, utils
 from ..models import ir_http
 from .test_helpers import (
+    generate_test_api_key,
     create_test_user,
     grant_mcp_access,
     users_groups_field,
@@ -90,7 +91,7 @@ class TestMcpAccessGroupGate(common.HttpCase):
     # ------------------------------------------------------------------
     def _mint_key(self, user, name):
         """Mint an ``rpc``-scope API key for ``user``."""
-        return self.env(user=user)["res.users.apikeys"]._generate(
+        return generate_test_api_key(self.env(user=user), 
             "rpc", name, fields.Datetime.now() + timedelta(days=30)
         )
 

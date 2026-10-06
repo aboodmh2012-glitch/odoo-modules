@@ -114,9 +114,9 @@ class WizardUpdateChartsAccounts(models.TransientModel):
     )
     update_account_group = fields.Boolean(
         string="Update account groups",
-        default=True,
-        help="Existing account groups are updated. "
-        "Account groups are searched by prefix_code_start.",
+        default=False,
+        help="Odoo 20 removed account.group; this option is kept disabled. "
+        "Chart hierarchy now lives on account.account.parent_id.",
     )
     update_fiscal_position = fields.Boolean(
         string="Update fiscal positions",
@@ -441,7 +441,6 @@ class WizardUpdateChartsAccounts(models.TransientModel):
         chart_template_model = self.env["account.chart.template"]
         t_data = chart_template_model._get_chart_template_data(self.chart_template)
         model_mapping = {
-            "account.group": self.update_account_group,
             "account.account": self.update_account,
             "account.tax.group": self.update_tax_group,
             "account.tax": self.update_tax,
@@ -478,7 +477,7 @@ class WizardUpdateChartsAccounts(models.TransientModel):
         self.env.transaction.invalidate_ormcache()
         t_data = self._get_chart_template_data()
         # Search for, and load, the records to create/update.
-        if self.update_account_group:
+        if self.update_account_group and t_data.get("account.group"):
             self._find_account_groups(t_data["account.group"])
         if self.update_account:
             self._find_accounts(t_data["account.account"])
@@ -499,7 +498,7 @@ class WizardUpdateChartsAccounts(models.TransientModel):
         self.log = False
         t_data = self._get_chart_template_data()
         # Create or update the records.
-        if self.update_account_group:
+        if self.update_account_group and t_data.get("account.group"):
             self._update_account_groups(t_data["account.group"])
         if self.update_account:
             self._update_accounts(t_data["account.account"])
@@ -1222,63 +1221,9 @@ class WizardUpdateChartsAccounts(models.TransientModel):
         ]
 
     def _find_account_groups(self, t_data):
-        """Load account template data to create/update."""
-        ag_vals = []
-        for xmlid, r_data in t_data.items():
-            account_group = self._find_record_matching("account.group", xmlid, r_data)
-            if not account_group:
-                # Account to be created
-                ag_vals.append(
-                    {
-                        "xml_id": xmlid,
-                        "update_chart_wizard_id": self.id,
-                        "type": "new",
-                        "notes": self.env._("No account found with this code."),
-                    }
-                )
-            else:
-                # Check the account for changes
-                notes = self.diff_notes(r_data, account_group)
-                code_prefix_end = (
-                    r_data["code_prefix_end"]
-                    if r_data.get("code_prefix_end")
-                    and r_data["code_prefix_end"] >= r_data["code_prefix_start"]
-                    else r_data["code_prefix_start"]
-                )
-                if code_prefix_end != account_group.code_prefix_end:
-                    label = account_group._fields["code_prefix_end"].get_description(
-                        self.env
-                    )["string"]
-                    line = self.env._(
-                        "- %(label)s: '%(actual)s' → '%(expected)s'",
-                        label=label,
-                        actual=account_group.code_prefix_end or "",
-                        expected=code_prefix_end or "",
-                    )
-                    if notes:
-                        # Append under the existing "Differences in these fields:"
-                        # header produced by diff_notes.
-                        notes += f"\n{line}"
-                    else:
-                        notes = self.env._("Differences in these fields:") + f"\n{line}"
-                if self.missing_xml_id(account_group, xmlid):
-                    notes += (notes and "\n" or "") + self._missing_xml_id_note(
-                        account_group, xmlid
-                    )
-                if notes:
-                    # Account to be updated
-                    ag_vals.append(
-                        {
-                            "xml_id": xmlid,
-                            "update_chart_wizard_id": self.id,
-                            "type": "updated",
-                            "update_account_group_id": account_group.id,
-                            "notes": notes,
-                        }
-                    )
-        self.account_group_ids = [Command.clear()] + [
-            Command.create(ag_val) for ag_val in ag_vals
-        ]
+        """Account groups were removed in Odoo 20; keep the hook as a no-op."""
+        self.account_group_ids = [Command.clear()]
+        return
 
     def _find_fiscal_positions(self, t_data):
         """Load fiscal position template data to create/update."""
@@ -1447,19 +1392,8 @@ class WizardUpdateChartsAccounts(models.TransientModel):
         self._load_data("account.account", data)
 
     def _update_account_groups(self, t_data):
-        """Process account groups templates to create/update."""
-        data = {}
-        for wiz_ag in self.account_group_ids:
-            ag = wiz_ag.update_account_group_id
-            xml_id = wiz_ag.xml_id
-            key = ag.id or xml_id
-            t_data_item = t_data[xml_id]
-            data_item = t_data_item if wiz_ag.type == "new" else {}
-            if wiz_ag.type == "updated":
-                self.recreate_xml_id(ag, xml_id)
-                data_item = self.diff_fields(t_data_item, ag)
-            data[key] = data_item
-        self._load_data("account.group", data)
+        """Account groups were removed in Odoo 20; keep the hook as a no-op."""
+        return
 
     def _update_fiscal_positions(self, t_data):
         """Process fiscal position templates to create/update."""
@@ -1584,7 +1518,7 @@ class WizardUpdateChartsAccountsAccountGroup(models.TransientModel):
         readonly=False,
     )
     update_account_group_id = fields.Many2one(
-        comodel_name="account.group",
+        comodel_name="account.account",
         string="Account group to update",
         required=False,
         ondelete="set null",
@@ -1698,5 +1632,5 @@ class WizardAccountGroupMatching(models.TransientModel):
 
     def _get_matching_selection(self):
         vals = super()._get_matching_selection()
-        vals += self._selection_from_files("account.group", ["code_prefix_start"])
+        # account.group was removed in Odoo 20; matching stays XML-ID only.
         return vals

@@ -1,1 +1,1 @@
-from . import test_account_group
+# Odoo 20 removed account.group; hierarchy lives on account.account.parent_id.

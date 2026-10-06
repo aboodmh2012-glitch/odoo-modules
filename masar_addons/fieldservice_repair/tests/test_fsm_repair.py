@@ -98,7 +98,12 @@ class TestFSMRepairCommon(FSMCommon):
         self.assertEqual(repair_order.state, "draft")
         self.assertEqual(repair_order.name, f"{order.name} - {self.equipment_1.name}")
         self.assertEqual(repair_order.product_id, self.equipment_1.product_id)
-        self.assertEqual(repair_order.product_uom, self.equipment_1.product_id.uom_id)
+        self.assertEqual(
+            repair_order.uom_id
+            if "uom_id" in repair_order._fields
+            else repair_order.product_uom,
+            self.equipment_1.product_id.uom_id,
+        )
         self.assertEqual(repair_order.location_id, self.stock_location)
         self.assertEqual(repair_order.lot_id, self.equipment_1.lot_id)
         self.assertEqual(repair_order.product_qty, 1)

@@ -768,13 +768,22 @@ class TrialBalanceReport(models.AbstractModel):
         trial_balance = sorted(trial_balance, key=lambda k: k["name"])
         return trial_balance, total_amount_grouped
 
+    def _account_complete_code(self, account):
+        """Build a hierarchy path from account.account.parent_id (Odoo 20 CoA)."""
+        parts = []
+        seen = set()
+        current = account
+        while current and current.id not in seen:
+            seen.add(current.id)
+            parts.append(current.code or "")
+            current = current.parent_id
+        return " / ".join(reversed(parts))
+
     def _get_hierarchy_groups(self, group_ids, groups_data, foreign_currency):
         processed_groups = []
-        # Sort groups so that parent groups are processed before child groups
-        groups = (
-            self.env["account.group"]
-            .browse(group_ids)
-            .sorted(key=lambda x: x.complete_code)
+        Account = self.env["account.account"].with_context(active_test=False)
+        groups = Account.browse(group_ids).sorted(
+            key=lambda x: groups_data[x.id].get("complete_code") or x.code or ""
         )
         for group in groups:
             group_id = group.id
@@ -787,18 +796,20 @@ class TrialBalanceReport(models.AbstractModel):
                         name=groups_data[group_id]["name"],
                     )
                 )
-            else:
-                processed_groups.append(parent_id)
+            processed_groups.append(parent_id)
             while parent_id:
-                if parent_id not in groups_data.keys():
-                    group = self.env["account.group"].browse(parent_id)
-                    groups_data[group.id] = {
-                        "id": group.id,
-                        "code": group.code_prefix_start,
-                        "name": group.name,
-                        "parent_id": group.parent_id.id,
-                        "complete_code": group.complete_code,
-                        "account_ids": group.compute_account_ids.ids,
+                if parent_id not in groups_data:
+                    parent = Account.browse(parent_id)
+                    groups_data[parent.id] = {
+                        "id": parent.id,
+                        "code": parent.code,
+                        "name": parent.name,
+                        "parent_id": parent.parent_id.id,
+                        "complete_code": self._account_complete_code(parent),
+                        "account_ids": self.env["account.account"]
+                        .with_context(active_test=False)
+                        .search([("parent_id", "=", parent.id)])
+                        .ids,
                         "type": "group_type",
                         "initial_balance": 0,
                         "debit": 0,
@@ -807,7 +818,7 @@ class TrialBalanceReport(models.AbstractModel):
                         "ending_balance": 0,
                     }
                     if foreign_currency:
-                        groups_data[group.id].update(
+                        groups_data[parent.id].update(
                             initial_currency_balance=0,
                             ending_currency_balance=0,
                         )
@@ -816,60 +827,50 @@ class TrialBalanceReport(models.AbstractModel):
                 for acc_key in acc_keys:
                     groups_data[parent_id][acc_key] += groups_data[group_id][acc_key]
                 if foreign_currency:
-                    groups_data[group_id]["initial_currency_balance"] += groups_data[
+                    groups_data[parent_id]["initial_currency_balance"] += groups_data[
                         group_id
                     ]["initial_currency_balance"]
-                    groups_data[group_id]["ending_currency_balance"] += groups_data[
+                    groups_data[parent_id]["ending_currency_balance"] += groups_data[
                         group_id
                     ]["ending_currency_balance"]
                 parent_id = groups_data[parent_id]["parent_id"]
         return groups_data
 
     def _get_groups_data(self, accounts_data, total_amount, foreign_currency):
-        accounts_ids = list(accounts_data.keys())
-        accounts = (
-            self.env["account.account"]
-            .with_context(active_test=False)
-            .browse(accounts_ids)
-        )
+        Account = self.env["account.account"].with_context(active_test=False)
+        if "parent_id" not in Account._fields:
+            return {}
+        accounts = Account.browse(list(accounts_data.keys()))
         account_group_relation = {}
         for account in accounts:
-            accounts_data[account.id]["complete_code"] = (
-                account.group_id.complete_code + " / " + account.code
-                if account.group_id.id
-                else ""
+            accounts_data[account.id]["complete_code"] = self._account_complete_code(
+                account
             )
-            if account.group_id.id:
-                if account.group_id.id not in account_group_relation.keys():
-                    account_group_relation.update({account.group_id.id: [account.id]})
-                else:
-                    account_group_relation[account.group_id.id].append(account.id)
-        groups = self.env["account.group"].browse(account_group_relation.keys())
+            parent = account.parent_id
+            if parent:
+                account_group_relation.setdefault(parent.id, []).append(account.id)
+        groups = Account.browse(account_group_relation.keys())
         groups_data = {}
         for group in groups:
-            groups_data.update(
-                {
-                    group.id: {
-                        "id": group.id,
-                        "code": group.code_prefix_start,
-                        "name": group.name,
-                        "parent_id": group.parent_id.id,
-                        "type": "group_type",
-                        "complete_code": group.complete_code,
-                        "account_ids": group.compute_account_ids.ids,
-                        "initial_balance": 0.0,
-                        "credit": 0.0,
-                        "debit": 0.0,
-                        "balance": 0.0,
-                        "ending_balance": 0.0,
-                    }
-                }
-            )
+            groups_data[group.id] = {
+                "id": group.id,
+                "code": group.code,
+                "name": group.name,
+                "parent_id": group.parent_id.id,
+                "type": "group_type",
+                "complete_code": self._account_complete_code(group),
+                "account_ids": account_group_relation.get(group.id, []),
+                "initial_balance": 0.0,
+                "credit": 0.0,
+                "debit": 0.0,
+                "balance": 0.0,
+                "ending_balance": 0.0,
+            }
             if foreign_currency:
                 groups_data[group.id]["initial_currency_balance"] = 0.0
                 groups_data[group.id]["ending_currency_balance"] = 0.0
-        for group_id in account_group_relation.keys():
-            for account_id in account_group_relation[group_id]:
+        for group_id, account_ids in account_group_relation.items():
+            for account_id in account_ids:
                 groups_data[group_id]["initial_balance"] += total_amount[account_id][
                     "initial_balance"
                 ]
@@ -895,52 +896,8 @@ class TrialBalanceReport(models.AbstractModel):
         return groups_data
 
     def _get_computed_groups_data(self, accounts_data, total_amount, foreign_currency):
-        groups = self.env["account.group"].search([("id", "!=", False)])
-        groups_data = {}
-        for group in groups:
-            len_group_code = len(group.code_prefix_start)
-            groups_data.update(
-                {
-                    group.id: {
-                        "id": group.id,
-                        "code": group.code_prefix_start,
-                        "name": group.name,
-                        "parent_id": group.parent_id.id,
-                        "type": "group_type",
-                        "complete_code": group.complete_code,
-                        "account_ids": group.compute_account_ids.ids,
-                        "initial_balance": 0.0,
-                        "credit": 0.0,
-                        "debit": 0.0,
-                        "balance": 0.0,
-                        "ending_balance": 0.0,
-                    }
-                }
-            )
-            if foreign_currency:
-                groups_data[group.id]["initial_currency_balance"] = 0.0
-                groups_data[group.id]["ending_currency_balance"] = 0.0
-            for account in accounts_data.values():
-                if group.code_prefix_start == account["code"][:len_group_code]:
-                    acc_id = account["id"]
-                    group_id = group.id
-                    groups_data[group_id]["initial_balance"] += total_amount[acc_id][
-                        "initial_balance"
-                    ]
-                    groups_data[group_id]["debit"] += total_amount[acc_id]["debit"]
-                    groups_data[group_id]["credit"] += total_amount[acc_id]["credit"]
-                    groups_data[group_id]["balance"] += total_amount[acc_id]["balance"]
-                    groups_data[group_id]["ending_balance"] += total_amount[acc_id][
-                        "ending_balance"
-                    ]
-                    if foreign_currency:
-                        groups_data[group_id]["initial_currency_balance"] += (
-                            total_amount[acc_id]["initial_currency_balance"]
-                        )
-                        groups_data[group_id]["ending_currency_balance"] += (
-                            total_amount[acc_id]["ending_currency_balance"]
-                        )
-        return groups_data
+        # Kept for API compatibility; hierarchy now comes from parent accounts.
+        return self._get_groups_data(accounts_data, total_amount, foreign_currency)
 
     def _get_report_values(self, docids, data):
         res = super()._get_report_values(docids, data)

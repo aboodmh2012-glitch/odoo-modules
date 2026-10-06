@@ -31,7 +31,7 @@ from odoo.tests import common, tagged
 from ..controllers import rate_limiting, utils
 from ..models.mcp_tools_read import DEFAULT_LIMIT, MAX_LIMIT
 from ..tools.smart_fields import DEFAULT_MAX_SMART_FIELDS
-from .test_helpers import create_test_user, grant_mcp_access, users_groups_field
+from .test_helpers import generate_test_api_key, create_test_user, grant_mcp_access, users_groups_field
 
 # Valid 1x1 RGB PNG, used to populate ``res.partner.image_1920``.
 _PNG_1X1 = (
@@ -136,7 +136,7 @@ class TestMcpReadTools(common.HttpCase):
     # ------------------------------------------------------------------
     def _mint_key(self, user, name):
         """Mint an ``rpc``-scope API key for ``user``."""
-        return self.env(user=user)["res.users.apikeys"]._generate(
+        return generate_test_api_key(self.env(user=user), 
             "rpc", name, datetime.now() + timedelta(days=30)
         )
 

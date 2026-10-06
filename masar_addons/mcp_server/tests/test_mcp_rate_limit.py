@@ -16,7 +16,7 @@ from datetime import datetime, timedelta
 from odoo.tests import common, tagged
 
 from ..controllers import rate_limiting, utils
-from .test_helpers import create_test_user, grant_mcp_access
+from .test_helpers import generate_test_api_key, create_test_user, grant_mcp_access
 
 
 @tagged("much_unit", "post_install", "-at_install")
@@ -36,7 +36,7 @@ class TestMcpRateLimit(common.HttpCase):
             email=f"mcp_rl_{unique_id}@example.com",
         )
         grant_mcp_access(self.mcp_user)
-        self.api_key = self.env(user=self.mcp_user)["res.users.apikeys"]._generate(
+        self.api_key = generate_test_api_key(self.env(user=self.mcp_user), 
             "rpc", "Rate Limit Key", datetime.now() + timedelta(days=30)
         )
 

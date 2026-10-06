@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 
 from odoo.tests import common, tagged
 
-from .test_helpers import create_test_user, users_groups_field
+from .test_helpers import generate_test_api_key, create_test_user, users_groups_field
 
 _MIGRATION_PATH = os.path.join(
     os.path.dirname(__file__),
@@ -58,7 +58,7 @@ class TestMigrationGrant(common.TransactionCase):
         )
 
     def _mcp_key(self, user):
-        self.env(user=user)["res.users.apikeys"]._generate(
+        generate_test_api_key(self.env(user=user), 
             "mcp", "mig key", datetime.now() + timedelta(days=30)
         )
 

@@ -26,13 +26,32 @@ class TestTrialBalanceReport(AccountTestInvoicingCommon):
                 tracking_disable=True,
             )
         )
-        # Remove previous account groups and related invoices to avoid conflicts
-        group_obj = cls.env["account.group"]
-        cls.group1 = group_obj.create({"code_prefix_start": "1", "name": "Group 1"})
-        cls.group11 = group_obj.create(
-            {"code_prefix_start": "11", "name": "Group 11", "parent_id": cls.group1.id}
+        # Parent accounts stand in for the removed account.group hierarchy.
+        cls.group1 = cls._create_account_account(
+            cls,
+            {
+                "code": "GRP1",
+                "name": "Group 1",
+                "account_type": "asset_current",
+            },
         )
-        cls.group2 = group_obj.create({"code_prefix_start": "2", "name": "Group 2"})
+        cls.group11 = cls._create_account_account(
+            cls,
+            {
+                "code": "GRP11",
+                "name": "Group 11",
+                "account_type": "asset_current",
+                "parent_id": cls.group1.id,
+            },
+        )
+        cls.group2 = cls._create_account_account(
+            cls,
+            {
+                "code": "GRP2",
+                "name": "Group 2",
+                "account_type": "asset_current",
+            },
+        )
         # Set accounts
         cls.account001 = cls._create_account_account(
             cls,
@@ -77,6 +96,11 @@ class TestTrialBalanceReport(AccountTestInvoicingCommon):
                 "account_type": "income_other",
             },
         )
+        cls.account100.parent_id = cls.group1
+        cls.account200.parent_id = cls.group2
+        cls.account201.parent_id = cls.group2
+        if cls.account110:
+            cls.account110.parent_id = cls.group11
         cls.previous_fy_date_start = "2015-01-01"
         cls.previous_fy_date_end = "2015-12-31"
         cls.fy_date_start = "2016-01-01"
@@ -296,8 +320,8 @@ class TestTrialBalanceReport(AccountTestInvoicingCommon):
         return total
 
     def test_00_account_group(self):
-        self.assertTrue(self.account100 in self.group1.compute_account_ids)
-        self.assertTrue(self.account200 in self.group2.compute_account_ids)
+        self.assertEqual(self.account100.parent_id, self.group1)
+        self.assertEqual(self.account200.parent_id, self.group2)
 
     def test_02_account_balance_hierarchy(self):
         # Generate the general ledger line

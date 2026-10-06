@@ -18,7 +18,7 @@ from ..controllers import error_sanitizer, mcp, rate_limiting, utils
 from ..controllers.mcp import MCPController
 from ..controllers.mcp_route import MCP_MAX_CONTENT_LENGTH
 from ..models import ir_http
-from .test_helpers import create_test_user, grant_mcp_access
+from .test_helpers import generate_test_api_key, create_test_user, grant_mcp_access
 
 # Must match mcp_server/controllers/mcp.py.
 PREFERRED_PROTOCOL_VERSION = "2025-11-25"
@@ -52,7 +52,7 @@ class TestMcpProtocol(common.HttpCase):
 
         # Mint an rpc-scope API key for the user.
         env_as_user = self.env(user=self.mcp_user)
-        self.api_key = env_as_user["res.users.apikeys"]._generate(
+        self.api_key = generate_test_api_key(env_as_user, 
             "rpc", "Test MCP Protocol Key", datetime.now() + timedelta(days=30)
         )
 
@@ -362,7 +362,7 @@ class TestMcpProtocol(common.HttpCase):
             f"mcp_archived_user_{unique_id}",
             email=f"mcp_archived_{unique_id}@example.com",
         )
-        key = self.env(user=archived_user)["res.users.apikeys"]._generate(
+        key = generate_test_api_key(self.env(user=archived_user), 
             "rpc", "Archived User Key", datetime.now() + timedelta(days=30)
         )
         # Deactivate the owner AFTER minting the key: an outstanding rpc key must
@@ -379,7 +379,7 @@ class TestMcpProtocol(common.HttpCase):
         """A key minted for a non-rpc scope is not accepted at /mcp (401)."""
         # Front door 1 accepts a credential scoped to 'mcp' or 'rpc'; a key
         # scoped to neither must not resolve a user (no OAuth fallback either).
-        key = self.env(user=self.mcp_user)["res.users.apikeys"]._generate(
+        key = generate_test_api_key(self.env(user=self.mcp_user), 
             "mcp_not_rpc", "Non-RPC Scope Key", datetime.now() + timedelta(days=30)
         )
         response = self._post_rpc(

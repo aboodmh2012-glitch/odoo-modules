@@ -7,7 +7,7 @@ from odoo.tests import tagged
 from odoo.tests.common import HttpCase
 
 from ..controllers import auth
-from .test_helpers import create_test_user
+from .test_helpers import generate_test_api_key, create_test_user
 
 
 @tagged("much_unit", "post_install", "-at_install")
@@ -29,7 +29,7 @@ class TestMCPAuthentication(HttpCase):
 
         # Create API key for test user
         env_as_user = cls.env(user=cls.test_user)
-        cls.api_key = env_as_user["res.users.apikeys"]._generate(
+        cls.api_key = generate_test_api_key(env_as_user, 
             "rpc", "Test API Key", datetime.now() + timedelta(days=30)
         )
 
@@ -225,7 +225,7 @@ class TestSessionAuth(HttpCase):
 
         # Create API key for priority test
         env_as_user = cls.env(user=cls.test_user)
-        cls.api_key = env_as_user["res.users.apikeys"]._generate(
+        cls.api_key = generate_test_api_key(env_as_user, 
             "rpc", "Test Session API Key", datetime.now() + timedelta(days=30)
         )
 

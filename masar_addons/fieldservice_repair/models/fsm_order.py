@@ -50,14 +50,21 @@ class FSMOrder(models.Model):
         return {
             "name": f"{self.name} - {equipment.name}",
             "product_id": equipment.product_id.id,
-            "product_uom": equipment.product_id.uom_id.id,
             "location_id": equipment.current_stock_location_id.id,
             "lot_id": equipment.lot_id.id,
             "product_qty": 1,
             "internal_notes": self.description,
             "partner_id": self.location_id.partner_id.id,
             "fsm_order_id": self.id,
+            **self._repair_uom_vals(equipment.product_id.uom_id),
         }
+
+    def _repair_uom_vals(self, uom):
+        """Odoo 20 renamed repair.order.product_uom to uom_id."""
+        Repair = self.env["repair.order"]
+        if "uom_id" in Repair._fields:
+            return {"uom_id": uom.id}
+        return {"product_uom": uom.id}
 
     def _create_repair_orders(self):
         """Create the repair orders for the FSM orders that have a type of repair."""

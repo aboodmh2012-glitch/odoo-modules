@@ -27,7 +27,7 @@ from odoo.http import request_var
 from odoo.tests import common, tagged
 
 from ..controllers import auth, rate_limiting, utils
-from .test_helpers import create_test_user, grant_mcp_access
+from .test_helpers import generate_test_api_key, create_test_user, grant_mcp_access
 
 # Must match mcp_server/controllers/mcp.py.
 PREFERRED_PROTOCOL_VERSION = "2025-11-25"
@@ -54,15 +54,15 @@ class TestApiKeyScope(common.HttpCase):
         env_as_user = self.env(user=self.mcp_user)
         expiration = datetime.now() + timedelta(days=30)
         # A key minted with the dedicated ``mcp`` scope...
-        self.mcp_key = env_as_user["res.users.apikeys"]._generate(
+        self.mcp_key = generate_test_api_key(env_as_user, 
             "mcp", "MCP Scoped Key", expiration
         )
         # ...and a legacy NULL/global key (backward-compat wildcard).
-        self.null_key = env_as_user["res.users.apikeys"]._generate(
+        self.null_key = generate_test_api_key(env_as_user, 
             None, "Legacy Null Scope Key", expiration
         )
         # ...and an explicit ``rpc``-scope key (general RPC access).
-        self.rpc_key = env_as_user["res.users.apikeys"]._generate(
+        self.rpc_key = generate_test_api_key(env_as_user, 
             "rpc", "RPC Scoped Key", expiration
         )
 
@@ -200,23 +200,23 @@ class TestApiKeyScopeGenerate(common.TransactionCase):
     def test_generate_with_context_flag_stores_mcp_scope(self):
         """``with_context(mcp_api_key_scope="mcp")._generate(None, ...)`` stores ``mcp``."""
         expiration = datetime.now() + timedelta(days=30)
-        self.env["res.users.apikeys"].with_context(
+        generate_test_api_key(self.env.with_context(
             mcp_api_key_scope="mcp"
-        )._generate(None, "ctx mcp key", expiration)
+        ), None, "ctx mcp key", expiration)
         self.assertEqual(self._latest_key_scope(), "mcp")
 
     def test_generate_without_context_flag_stores_null_scope(self):
         """Without the context flag, ``_generate(None, ...)`` stores a NULL scope."""
         expiration = datetime.now() + timedelta(days=30)
-        self.env["res.users.apikeys"]._generate(None, "ctx null key", expiration)
+        generate_test_api_key(self.env, None, "ctx null key", expiration)
         self.assertFalse(self._latest_key_scope())
 
     def test_generate_explicit_scope_arg_wins_over_context_flag(self):
         """An explicit ``scope`` arg overrides the ``mcp_api_key_scope`` context flag."""
         expiration = datetime.now() + timedelta(days=30)
-        self.env["res.users.apikeys"].with_context(
+        generate_test_api_key(self.env.with_context(
             mcp_api_key_scope="mcp"
-        )._generate("rpc", "explicit-wins", expiration)
+        ), "rpc", "explicit-wins", expiration)
         self.assertEqual(self._latest_key_scope(), "rpc")
 
 

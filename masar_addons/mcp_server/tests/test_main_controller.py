@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from odoo.tests import common, tagged
 
 from ..controllers import utils
-from .test_helpers import create_test_user, grant_mcp_access
+from .test_helpers import generate_test_api_key, create_test_user, grant_mcp_access
 
 
 @tagged("much_unit", "post_install", "-at_install")
@@ -28,7 +28,7 @@ class TestMcpMainController(common.HttpCase):
 
         # Generate API key
         env_as_user = self.env(user=self.mcp_user)
-        self.api_key = env_as_user["res.users.apikeys"]._generate(
+        self.api_key = generate_test_api_key(env_as_user, 
             "rpc", "Test MCP API Key", datetime.now() + timedelta(days=30)
         )
 

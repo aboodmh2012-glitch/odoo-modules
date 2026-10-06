@@ -143,7 +143,7 @@
                                         role="menuitem"
                                         t-if="record.permission_write.raw_value and record.active.raw_value and (!record.is_locked.raw_value or (record.is_locked.raw_value and record.is_lock_editor.raw_value))"
                                     >
-                                        <a name="toggle_active" type="object">
+                                        <a name="action_archive" type="object">
                                             <i class="fa fa-archive" />
                                             Archive
                                         </a>
@@ -152,7 +152,7 @@
                                         role="menuitem"
                                         t-if="record.permission_write.raw_value and !record.active.raw_value and (!record.is_locked.raw_value or (record.is_locked.raw_value and record.is_lock_editor.raw_value))"
                                     >
-                                        <a name="toggle_active" type="object">
+                                        <a name="action_unarchive" type="object">
                                             <i class="fa fa-archive" />
                                             Unarchive
                                         </a>

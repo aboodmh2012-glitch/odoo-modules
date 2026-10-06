@@ -4,7 +4,7 @@ from unittest.mock import MagicMock, patch
 from odoo.tests import common, tagged
 
 from ..controllers import utils
-from .test_helpers import create_test_user
+from .test_helpers import generate_test_api_key, create_test_user
 
 
 @tagged("much_unit", "post_install", "-at_install")
@@ -26,7 +26,7 @@ class TestMcpUtils(common.TransactionCase):
         )
 
         env_as_user = self.env(user=self.test_user)
-        self.valid_api_key = env_as_user["res.users.apikeys"]._generate(
+        self.valid_api_key = generate_test_api_key(env_as_user, 
             "rpc", "Test Utils API Key", datetime.now() + timedelta(days=30)
         )
 
@@ -384,7 +384,7 @@ class TestAuthAndResponseUtils(common.TransactionCase):
         )
 
         env_as_user = self.env(user=self.test_user)
-        self.valid_api_key = env_as_user["res.users.apikeys"]._generate(
+        self.valid_api_key = generate_test_api_key(env_as_user, 
             "rpc", "Test Auth API Key", datetime.now() + timedelta(days=30)
         )
 

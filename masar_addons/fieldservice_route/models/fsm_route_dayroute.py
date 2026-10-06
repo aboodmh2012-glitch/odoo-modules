@@ -8,15 +8,13 @@ from pytz import timezone, utc
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
+# Odoo 20 dropped calendar.tz / two_weeks_calendar / attendance.week_type /
+# attendance.display_type. Timezone lives on the partner, company, or user.
 _CALENDAR_DEPENDS = (
-    "tz",
-    "two_weeks_calendar",
     "attendance_ids.hour_from",
     "attendance_ids.hour_to",
     "attendance_ids.dayofweek",
-    "attendance_ids.week_type",
     "attendance_ids.day_period",
-    "attendance_ids.display_type",
 )
 
 
@@ -115,7 +113,8 @@ class FSMRouteDayRoute(models.Model):
         calendar = (person and person.calendar_id) or company.resource_calendar_id
         tz_name = (
             (person and person.partner_id.tz)
-            or (calendar and calendar.tz)
+            or (company and company.tz)
+            or self.env.company.tz
             or self.env.user.tz
             or "UTC"
         )
@@ -163,6 +162,7 @@ class FSMRouteDayRoute(models.Model):
         *(_calendar_depends("route_id.fsm_person_id.calendar_id")),
         "team_id",
         "team_id.company_id",
+        "team_id.company_id.tz",
         *(_calendar_depends("team_id.company_id.resource_calendar_id")),
     )
     def _compute_date_start_planned(self):

@@ -104,13 +104,8 @@ class FSMOrder(models.Model):
         route_person = route.fsm_person_id if route else self.env["fsm.person"]
         return (
             (person.partner_id.tz if person else False)
-            or (person.calendar_id.tz if person and person.calendar_id else False)
             or (route_person.partner_id.tz if route_person else False)
-            or (
-                route_person.calendar_id.tz
-                if route_person and route_person.calendar_id
-                else False
-            )
+            or self.env.company.tz
             or self.env.user.tz
             or "UTC"
         )

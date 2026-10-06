@@ -32,7 +32,7 @@ from odoo import fields
 from odoo.tests import common, tagged
 
 from ..controllers import mcp, oauth_server, rate_limiting, utils
-from .test_helpers import create_test_user, grant_mcp_access, users_groups_field
+from .test_helpers import generate_test_api_key, create_test_user, grant_mcp_access, users_groups_field
 from .test_oauth import _code_challenge, _sha256_hex
 
 
@@ -633,7 +633,7 @@ class TestOAuthScopes(common.HttpCase):
     # ------------------------------------------------------------------
     def test_api_key_auth_is_ungated(self):
         """An API key stashes no scope: write tools stay listed and callable."""
-        api_key = self.env(user=self.user)["res.users.apikeys"]._generate(
+        api_key = generate_test_api_key(self.env(user=self.user), 
             "rpc", "Scope Test Key", fields.Datetime.now() + timedelta(days=30)
         )
         self.assertIn("create_record", self._list_tool_names(api_key))

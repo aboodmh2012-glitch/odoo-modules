@@ -24,6 +24,7 @@ class TestHrResignation(TransactionCase):
             {
                 "name": "Resign Emp",
                 "user_id": cls.emp_user.id,
+                "date_version": fields.Date.today() - timedelta(days=400),
             }
         )
 
@@ -62,6 +63,12 @@ class TestHrResignation(TransactionCase):
         res.with_user(self.hr_user).action_approve()
         self.assertFalse(self.employee.active)
         self.assertEqual(res.state, "done")
+        if "hr.employee.departure" in self.env:
+            departure = self.env["hr.employee.departure"].search(
+                [("employee_id", "=", self.employee.id)], limit=1
+            )
+            self.assertTrue(departure)
+            self.assertEqual(departure.departure_date, last)
 
     def test_employee_cannot_approve(self):
         res = (

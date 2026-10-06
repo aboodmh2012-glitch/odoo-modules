@@ -587,7 +587,7 @@ class DMSFile(models.Model):
                 .create(
                     {
                         "name": vals["name"],
-                        "datas": vals["content"],
+                        "raw": base64.b64decode(vals["content"] or b""),
                         "res_model": directory.res_model,
                         "res_id": directory.res_id,
                     }

@@ -30,7 +30,7 @@ from odoo.tests import common, tagged
 from odoo.tools import mute_logger
 
 from ..controllers import oauth_server, rate_limiting, utils
-from .test_helpers import create_test_user, grant_mcp_access
+from .test_helpers import generate_test_api_key, create_test_user, grant_mcp_access
 
 
 def _code_challenge(verifier):
@@ -1601,7 +1601,7 @@ class TestOAuthDisabled(common.HttpCase):
         grant_mcp_access(self.user)
         # An rpc-scope API key: the always-available front door, unaffected by
         # the OAuth switch.
-        self.api_key = self.env(user=self.user)["res.users.apikeys"]._generate(
+        self.api_key = generate_test_api_key(self.env(user=self.user), 
             "rpc", "OAuth-Off Key", fields.Datetime.now() + timedelta(days=30)
         )
         self.resource = self.base_url() + "/mcp"

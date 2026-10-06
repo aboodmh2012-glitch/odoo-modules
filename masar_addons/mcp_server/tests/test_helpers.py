@@ -184,6 +184,33 @@ def grant_mcp_access(*users):
         user.write({users_groups_field(user.env): [(4, group.id)]})
 
 
+def generate_test_api_key(env, scope, name, expiration_date=None):
+    """Mint an API key that respects Odoo 20 per-group ``api_key_duration``.
+
+    Core rejects a 30-day key for a non-admin whose groups only allow a
+    shorter duration. Tests still pass a 30-day expiry; we raise the
+    user's group cap when possible and otherwise clamp the date.
+    """
+    from datetime import datetime, timedelta
+
+    if expiration_date is None:
+        expiration_date = datetime.now() + timedelta(days=30)
+    user = env.user
+    Groups = env["res.groups"]
+    if "api_key_duration" in Groups._fields and user.all_group_ids:
+        try:
+            user.all_group_ids.sudo().write({"api_key_duration": 30})
+        except Exception:
+            durations = [
+                d for d in user.all_group_ids.mapped("api_key_duration") if d
+            ]
+            if durations:
+                cap = datetime.now() + timedelta(days=float(max(durations)))
+                if expiration_date > cap:
+                    expiration_date = cap
+    return env["res.users.apikeys"]._generate(scope, name, expiration_date)
+
+
 def create_test_config_settings(env, **kwargs):
     """Create test config settings with all required fields filled.
 

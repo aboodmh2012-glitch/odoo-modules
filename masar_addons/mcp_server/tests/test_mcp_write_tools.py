@@ -39,7 +39,7 @@ from odoo.tests import common, tagged
 from odoo.tools import mute_logger
 
 from ..controllers import rate_limiting, utils
-from .test_helpers import create_test_user, grant_mcp_access, users_groups_field
+from .test_helpers import generate_test_api_key, create_test_user, grant_mcp_access, users_groups_field
 
 
 @tagged("much_unit", "post_install", "-at_install")
@@ -125,7 +125,7 @@ class TestMcpWriteTools(common.HttpCase):
     # ------------------------------------------------------------------
     def _mint_key(self, user, name):
         """Mint an ``rpc``-scope API key for ``user``."""
-        return self.env(user=user)["res.users.apikeys"]._generate(
+        return generate_test_api_key(self.env(user=user), 
             "rpc", name, datetime.now() + timedelta(days=30)
         )
 

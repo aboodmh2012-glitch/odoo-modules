@@ -28,7 +28,7 @@ class TrialBalanceReportWizard(models.TransientModel):
     )
     show_hierarchy = fields.Boolean(
         string="Show hierarchy",
-        help="Use when your account groups are hierarchical",
+        help="Use when your chart of accounts is hierarchical (parent accounts).",
     )
     limit_hierarchy_level = fields.Boolean("Limit hierarchy levels")
     show_hierarchy_level = fields.Integer("Hierarchy Levels to display", default=1)
