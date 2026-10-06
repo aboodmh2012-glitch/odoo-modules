@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- MASAR salary formula (Yemen labor). Replaces the empty OCA BASIC/GROSS/NET stub. -->
+    <record id="BASIC" model="hr.salary.rule.category">
+        <field name="name">Basic</field>
+        <field name="code">BASIC</field>
+    </record>
+    <record id="ALW" model="hr.salary.rule.category">
+        <field name="name">Allowance</field>
+        <field name="code">ALW</field>
+    </record>
+    <record id="GROSS" model="hr.salary.rule.category">
+        <field name="name">Gross</field>
+        <field name="code">GROSS</field>
+    </record>
+    <record id="DED" model="hr.salary.rule.category">
+        <field name="name">Deduction</field>
+        <field name="code">DED</field>
+    </record>
+    <record id="NET" model="hr.salary.rule.category">
+        <field name="name">Net</field>
+        <field name="code">NET</field>
+    </record>
+    <record id="COMP" model="hr.salary.rule.category">
+        <field name="name">Company Contribution</field>
+        <field name="code">COMP</field>
+    </record>
+    <record id="COST" model="hr.salary.rule.category">
+        <field name="name">Employer Cost</field>
+        <field name="code">COST</field>
+    </record>
+
+    <record id="hr_rule_basic" model="hr.salary.rule">
+        <field name="name">Basic Salary</field>
+        <field name="sequence" eval="1" />
+        <field name="code">BASIC</field>
+        <field name="category_id" ref="BASIC" />
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip" eval="True" />
+        <field name="amount_python_compute">result = contract.wage</field>
+        <field name="note">الراتب الأساسي</field>
+    </record>
+    <record id="hr_rule_appearance" model="hr.salary.rule">
+        <field name="name">Appearance Allowance</field>
+        <field name="sequence" eval="10" />
+        <field name="code">APPEARANCE</field>
+        <field name="category_id" ref="ALW" />
+        <field name="condition_select">none</field>
+        <field name="amount_select">percentage</field>
+        <field name="amount_percentage" eval="25.0" />
+        <field name="amount_percentage_base">BASIC</field>
+        <field name="appears_on_payslip" eval="True" />
+        <field name="note">بدل المظهر = الأساسي × 25%</field>
+    </record>
+    <record id="hr_rule_transport" model="hr.salary.rule">
+        <field name="name">Transport Allowance</field>
+        <field name="sequence" eval="20" />
+        <field name="code">TRANSPORT</field>
+        <field name="category_id" ref="ALW" />
+        <field name="condition_select">none</field>
+        <field name="amount_select">percentage</field>
+        <field name="amount_percentage" eval="20.0" />
+        <field name="amount_percentage_base">BASIC</field>
+        <field name="appears_on_payslip" eval="True" />
+        <field name="note">بدل المواصلات = الأساسي × 20%</field>
+    </record>
+    <record id="hr_rule_taxable" model="hr.salary.rule">
+        <field name="name">Gross</field>
+        <field name="sequence" eval="100" />
+        <field name="code">GROSS</field>
+        <field name="category_id" ref="GROSS" />
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip" eval="True" />
+        <field name="amount_python_compute">result = BASIC + APPEARANCE + TRANSPORT</field>
+        <field name="note">الإجمالي = الأساسي + بدل المظهر + بدل المواصلات</field>
+    </record>
+    <record id="hr_rule_company_insurance" model="hr.salary.rule">
+        <field name="name">Employer Insurance</field>
+        <field name="sequence" eval="110" />
+        <field name="code">CINS</field>
+        <field name="category_id" ref="COMP" />
+        <field name="condition_select">none</field>
+        <field name="amount_select">percentage</field>
+        <field name="amount_percentage" eval="9.0" />
+        <field name="amount_percentage_base">BASIC</field>
+        <field name="appears_on_payslip" eval="True" />
+        <field name="note">تأمين الشركة = الأساسي × 9% — لا يُخصم من الموظف</field>
+    </record>
+    <record id="hr_rule_tax" model="hr.salary.rule">
+        <field name="name">Tax</field>
+        <field name="sequence" eval="120" />
+        <field name="code">TAX</field>
+        <field name="category_id" ref="DED" />
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip" eval="True" />
+        <field name="amount_python_compute">tax_base = BASIC - 10000.0
+result = -(tax_base if tax_base > 0.0 else 0.0)
+result_rate = 15.0</field>
+        <field name="note">الضريبة = max(الأساسي − 10,000, 0) × 15%</field>
+    </record>
+    <record id="hr_rule_employee_insurance" model="hr.salary.rule">
+        <field name="name">Employee Insurance</field>
+        <field name="sequence" eval="130" />
+        <field name="code">EINS</field>
+        <field name="category_id" ref="DED" />
+        <field name="condition_select">none</field>
+        <field name="amount_select">percentage</field>
+        <field name="amount_percentage" eval="-6.0" />
+        <field name="amount_percentage_base">BASIC</field>
+        <field name="appears_on_payslip" eval="True" />
+        <field name="note">تأمين الموظف = الأساسي × 6%</field>
+    </record>
+    <record id="hr_rule_net" model="hr.salary.rule">
+        <field name="name">Net Salary</field>
+        <field name="sequence" eval="200" />
+        <field name="code">NET</field>
+        <field name="category_id" ref="NET" />
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip" eval="True" />
+        <field name="amount_python_compute">result = GROSS + TAX + EINS</field>
+        <field name="note">صافي الراتب = الإجمالي − الضريبة − تأمين الموظف</field>
+    </record>
+    <record id="hr_rule_employer_cost" model="hr.salary.rule">
+        <field name="name">Employer Cost</field>
+        <field name="sequence" eval="210" />
+        <field name="code">ECOST</field>
+        <field name="category_id" ref="COST" />
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip" eval="True" />
+        <field name="amount_python_compute">result = GROSS + CINS</field>
+        <field name="note">تكلفة الموظف على MASAR = الإجمالي + تأمين الشركة</field>
+    </record>
+
+    <record id="structure_base" model="hr.payroll.structure">
+        <field name="code">MASAR</field>
+        <field name="name">MASAR Salary</field>
+        <field name="company_id" ref="base.main_company" />
+        <field name="note">BASIC → APPEARANCE 25% → TRANSPORT 20% → GROSS → CINS 9% → TAX 15% of (BASIC − 10,000) → EINS 6% → NET → ECOST.
+Example BASIC 1,000,000 → GROSS 1,450,000 → TAX 148,500 → EINS 60,000 → NET 1,241,500 → CINS 90,000 → ECOST 1,540,000.</field>
+        <field
+            name="rule_ids"
+            eval="[(6, 0, [
+                ref('hr_rule_basic'),
+                ref('hr_rule_appearance'),
+                ref('hr_rule_transport'),
+                ref('hr_rule_taxable'),
+                ref('hr_rule_company_insurance'),
+                ref('hr_rule_tax'),
+                ref('hr_rule_employee_insurance'),
+                ref('hr_rule_net'),
+                ref('hr_rule_employer_cost'),
+            ])]"
+        />
+    </record>
+</odoo>

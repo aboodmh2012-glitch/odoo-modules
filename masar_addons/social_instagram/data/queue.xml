@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <record id="job_instagram_update" model="queue.job.function">
-        <field name="model_id" ref="social.model_social_account"/>
-        <field name="method">_process_instagram_update</field>
-        <field name="channel_id" ref="social.channel_social"/>
-        <field name="retry_pattern" eval="{1: 60, 2: 180, 3: 600}"/>
-    </record>
-</odoo>

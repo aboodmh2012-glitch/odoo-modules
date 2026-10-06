@@ -1,8 +1,0 @@
-<odoo>
-<record id="social_category" model="ir.module.category"><field name="name">Social</field><field name="sequence">30</field></record>
-<record id="social_privilege" model="res.groups.privilege"><field name="name">Social</field><field name="category_id" ref="social_category"/></record>
-<record id="group_social_user" model="res.groups"><field name="name">Operator</field><field name="privilege_id" ref="social_privilege"/><field name="implied_ids" eval="[(4, ref('base.group_user'))]"/></record>
-<record id="group_social_manager" model="res.groups"><field name="name">Manager</field><field name="user_ids" eval="[(4, ref('base.user_admin'))]"/><field name="privilege_id" ref="social_privilege"/><field name="implied_ids" eval="[(4, ref('group_social_user'))]"/></record>
-<record id="group_social_publisher" model="res.groups"><field name="name">Social Publisher</field><field name="user_ids" eval="[(4, ref('base.user_admin'))]"/><field name="implied_ids" eval="[(4, ref('group_social_user'))]"/></record>
-<record id="group_social_admin" model="res.groups"><field name="name">Social Connection Administrator</field><field name="user_ids" eval="[(4, ref('base.user_admin'))]"/><field name="implied_ids" eval="[(4, ref('base.group_user'))]"/></record>
-</odoo>
