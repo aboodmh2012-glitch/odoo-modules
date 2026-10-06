@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 from odoo import http
 from odoo.http import request
+from odoo.http.stream import Stream
 
 
 class AttachmentZippedDownloadController(http.Controller):
@@ -13,7 +14,7 @@ class AttachmentZippedDownloadController(http.Controller):
             return
         list_ids = map(int, ids.split(","))
         out_file = request.env["ir.attachment"].browse(list_ids)._create_temp_zip()
-        stream = http.Stream(
+        stream = Stream(
             type="data",
             data=out_file.getvalue(),
             mimetype="application/zip",

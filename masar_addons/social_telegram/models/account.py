@@ -1,4 +1,3 @@
-import base64
 from datetime import datetime, timezone
 
 import requests
@@ -64,7 +63,7 @@ class SocialAccount(models.Model):
         media.check_access("read")
         photo = media.mimetype.startswith("image/")
         key = "photo" if photo else "video"
-        return self._telegram_request("sendPhoto" if photo else "sendVideo", {"chat_id": self.external_account_id, "caption": text}, files={key: (media.name, base64.b64decode(media.datas), media.mimetype)})
+        return self._telegram_request("sendPhoto" if photo else "sendVideo", {"chat_id": self.external_account_id, "caption": text}, files={key: (media.name, media.raw.content if media.raw else b"", media.mimetype)})
 
     def _send_reply(self, conversation, text):
         if self.platform != "telegram":
