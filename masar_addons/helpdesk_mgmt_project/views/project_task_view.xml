@@ -40,9 +40,10 @@
     </record>
     <record id="view_task_kanban_helpdesk" model="ir.ui.view">
         <field name="model">project.task</field>
-        <field name="inherit_id" ref="project.view_task_kanban" />
+        <!-- Odoo 20: task kanban cards are rendered by project.view_task_card -->
+        <field name="inherit_id" ref="project.view_task_card" />
         <field name="arch" type="xml">
-            <xpath expr="//main//footer/div[2]" position="before">
+            <xpath expr="//footer/field[@name='priority']" position="before">
                 <div
                     invisible="ticket_count==0"
                     groups="helpdesk_mgmt.group_helpdesk_user_own"
