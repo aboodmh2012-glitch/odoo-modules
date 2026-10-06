@@ -1,31 +1,31 @@
 id,name,model_id,group_id/id,operation,domain
-access_dms_tag_user,dms_tag_user,dms.tag,group_dms_user,crud,
-access_dms_category_user,dms_category_user,dms.category,group_dms_user,crud,
+access_dms_tag_user,dms_tag_user,dms.tag,dms.group_dms_user,crud,
+access_dms_category_user,dms_category_user,dms.category,dms.group_dms_user,crud,
 access_dms_storage_base_user,dms_storage_base_user,dms.storage,base.group_user,r,
 access_dms_storage_portal,dms_storage_portal,dms.storage,base.group_portal,r,
-access_dms_storage_user,dms_storage_user,dms.storage,group_dms_user,r,
-access_dms_storage_manager,dms_storage_manager,dms.storage,group_dms_manager,crud,
+access_dms_storage_user,dms_storage_user,dms.storage,dms.group_dms_user,r,
+access_dms_storage_manager,dms_storage_manager,dms.storage,dms.group_dms_manager,crud,
 access_dms_directory_portal,dms_directory_portal,dms.directory,base.group_portal,r,
 access_dms_directory_base_user,dms_directory_base_user,dms.directory,base.group_user,r,
-access_dms_directory_user,dms_directory_user,dms.directory,group_dms_user,crud,
+access_dms_directory_user,dms_directory_user,dms.directory,dms.group_dms_user,crud,
 access_dms_file_portal,dms_file_portal,dms.file,base.group_portal,r,
 access_dms_file_base_user,dms_file_base_user,dms.file,base.group_user,r,
-access_dms_file_user,dms_file_user,dms.file,group_dms_user,crud,
+access_dms_file_user,dms_file_user,dms.file,dms.group_dms_user,crud,
 access_dms_access_group_public,access_dms_access_group_public,dms.access.group,base.group_public,r,
 access_dms_access_group_portal,access_dms_access_group_portal,dms.access.group,base.group_portal,r,
 access_security_access_groups_user,access_security_access_groups_user,dms.access.group,base.group_user,r,
-access_security_access_groups_dms_user,access_security_access_groups_dms_user,dms.access.group,group_dms_user,crud,
-access_wizard_dms_file_move,access_wizard_dms_file_move,wizard.dms.file.move,group_dms_user,crud,
-access_wizard_dms_share,access_wizard_dms_share,wizard.dms.share,group_dms_manager,cru,
+access_security_access_groups_dms_user,access_security_access_groups_dms_user,dms.access.group,dms.group_dms_user,crud,
+access_wizard_dms_file_move,access_wizard_dms_file_move,wizard.dms.file.move,dms.group_dms_user,crud,
+access_wizard_dms_share,access_wizard_dms_share,wizard.dms.share,dms.group_dms_manager,cru,
 rule_multi_company_storage,DMS Storage multi-company,dms.storage,,crud,"['|',('company_id','=',False),('company_id','in',company_ids)]"
 rule_multi_company_directory,DMS Directory multi-company,dms.directory,,crud,"['|',('company_id','=',False),('company_id','in',company_ids)]"
 rule_multi_company_file,File multi-company,dms.file,,crud,"['|',('company_id','=',False),('company_id','in',company_ids)]"
 rule_file_locked,Locked files are only modified by locker user.,dms.file,,crud,"['|', ('locked_by', '=', False), ('locked_by', '=', user.id)]"
-rule_security_groups_user_group_dms_user,DMS users can only edit and delete their own groups. (group_dms_user),dms.access.group,group_dms_user,crud,"[('create_uid','=',user.id)]"
-rule_security_groups_manager_group_dms_manager,DMS Managers can edit and delete all groups. (group_dms_manager),dms.access.group,group_dms_manager,crud,"[(1 ,'=', 1)]"
+rule_security_groups_user_group_dms_user,DMS users can only edit and delete their own groups. (group_dms_user),dms.access.group,dms.group_dms_user,crud,"[('create_uid','=',user.id)]"
+rule_security_groups_manager_group_dms_manager,DMS Managers can edit and delete all groups. (group_dms_manager),dms.access.group,dms.group_dms_manager,crud,"[(1 ,'=', 1)]"
 rule_forbid_hidden_storage_base_group_portal,Basic users cannot access hidden storage (base.group_portal),dms.storage,base.group_portal,crud,"[('is_hidden', '=', False)]"
-rule_forbid_hidden_storage_group_dms_user,Basic users cannot access hidden storage (group_dms_user),dms.storage,group_dms_user,crud,"[('is_hidden', '=', False)]"
-rule_allow_hidden_storage_group_dms_manager,Managers can access hidden storage (group_dms_manager),dms.storage,group_dms_manager,crud,"[('is_hidden', '=', True)]"
+rule_forbid_hidden_storage_group_dms_user,Basic users cannot access hidden storage (group_dms_user),dms.storage,dms.group_dms_user,crud,"[('is_hidden', '=', False)]"
+rule_allow_hidden_storage_group_dms_manager,Managers can access hidden storage (group_dms_manager),dms.storage,dms.group_dms_manager,crud,"[('is_hidden', '=', True)]"
 rule_directory_computed_create,Apply computed create permissions.,dms.directory,,crud,"[('permission_create', '=', True)]"
 rule_directory_computed_read,Apply computed read permissions.,dms.directory,,crud,"[('permission_read', '=', True)]"
 rule_directory_computed_unlink,Apply computed unlink permissions.,dms.directory,,crud,"[('permission_unlink', '=', True)]"

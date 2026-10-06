@@ -1,28 +1,28 @@
 id,name,model_id,group_id/id,operation,domain
-access_helpdesk_ticket_manager,helpdesk.ticket.manager,helpdesk.ticket,group_helpdesk_manager,crud,
-access_helpdesk_ticket_user,helpdesk.ticket.user,helpdesk.ticket,group_helpdesk_user,cru,
-access_helpdesk_ticket_user_personal,helpdesk.ticket.user.personal,helpdesk.ticket,group_helpdesk_user_own,cru,
+access_helpdesk_ticket_manager,helpdesk.ticket.manager,helpdesk.ticket,helpdesk_mgmt.group_helpdesk_manager,crud,
+access_helpdesk_ticket_user,helpdesk.ticket.user,helpdesk.ticket,helpdesk_mgmt.group_helpdesk_user,cru,
+access_helpdesk_ticket_user_personal,helpdesk.ticket.user.personal,helpdesk.ticket,helpdesk_mgmt.group_helpdesk_user_own,cru,
 access_helpdesk_ticket_portal,helpdesk.ticket.portal,helpdesk.ticket,base.group_portal,r,
 access_helpdesk_ticket_base_user,helpdesk.ticket.portal,helpdesk.ticket,base.group_user,r,
-access_helpdesk_ticket_stage_manager,helpdesk.ticket.stage.manager,helpdesk.ticket.stage,group_helpdesk_manager,crud,
+access_helpdesk_ticket_stage_manager,helpdesk.ticket.stage.manager,helpdesk.ticket.stage,helpdesk_mgmt.group_helpdesk_manager,crud,
 access_helpdesk_ticket_stage_user,helpdesk.ticket.stage.user,helpdesk.ticket.stage,base.group_user,r,
 access_helpdesk_ticket_stage_portal,helpdesk.ticket.stage.portal,helpdesk.ticket.stage,base.group_portal,r,
 access_helpdesk_ticket_stage_public,helpdesk.ticket.stage.public,helpdesk.ticket.stage,base.group_public,ru,
-access_helpdesk_ticket_tag_manager,helpdesk.ticket.tag.manager,helpdesk.ticket.tag,group_helpdesk_manager,crud,
+access_helpdesk_ticket_tag_manager,helpdesk.ticket.tag.manager,helpdesk.ticket.tag,helpdesk_mgmt.group_helpdesk_manager,crud,
 access_helpdesk_ticket_tag_user,helpdesk.ticket.tag.user,helpdesk.ticket.tag,base.group_user,r,
-access_helpdesk_ticket_team_manager,helpdesk.ticket.team.manager,helpdesk.ticket.team,group_helpdesk_manager,crud,
+access_helpdesk_ticket_team_manager,helpdesk.ticket.team.manager,helpdesk.ticket.team,helpdesk_mgmt.group_helpdesk_manager,crud,
 access_helpdesk_ticket_team_user,helpdesk.ticket.team.user,helpdesk.ticket.team,base.group_user,r,
 access_helpdesk_ticket_team_portal,helpdesk.ticket.team.portal,helpdesk.ticket.team,base.group_portal,r,
-access_helpdesk_ticket_channel_manager,helpdesk.ticket.channel.manager,helpdesk.ticket.channel,group_helpdesk_manager,crud,
+access_helpdesk_ticket_channel_manager,helpdesk.ticket.channel.manager,helpdesk.ticket.channel,helpdesk_mgmt.group_helpdesk_manager,crud,
 access_helpdesk_ticket_channel_user,helpdesk.ticket.channel.user,helpdesk.ticket.channel,base.group_user,r,
-access_helpdesk_ticket_category_manager,helpdesk.ticket.category.manager,helpdesk.ticket.category,group_helpdesk_manager,crud,
+access_helpdesk_ticket_category_manager,helpdesk.ticket.category.manager,helpdesk.ticket.category,helpdesk_mgmt.group_helpdesk_manager,crud,
 access_helpdesk_ticket_category_user,helpdesk.ticket.category.user,helpdesk.ticket.category,base.group_user,r,
 access_helpdesk_ticket_category_portal,helpdesk.ticket.category.portal,helpdesk.ticket.category,base.group_portal,r,
 access_helpdesk_ticket_category_public,helpdesk.ticket.category.public,helpdesk.ticket.category,base.group_public,r,
-access_helpdesk_ticket_duplicate_wizard,helpdesk.ticket.duplicate.wizard,helpdesk.ticket.duplicate.wizard,group_helpdesk_user,crud,
-helpdesk_ticket_personal_rule_group_helpdesk_user_own,Personal Tickets (group_helpdesk_user_own),helpdesk.ticket,group_helpdesk_user_own,crud,"[""|"", ('user_id', '=', user.id), '&', ('user_id','=',False), ('team_id', 'in', user.helpdesk_team_ids.ids)]"
-helpdesk_ticket_team_rule_group_helpdesk_user_team,Team Tickets (group_helpdesk_user_team),helpdesk.ticket,group_helpdesk_user_team,crud,"['|',('team_id','in',user.helpdesk_team_ids.ids),('team_id','=',False)]"
-helpdesk_ticket_user_rule_group_helpdesk_user,All Tickets (group_helpdesk_user),helpdesk.ticket,group_helpdesk_user,crud,
+access_helpdesk_ticket_duplicate_wizard,helpdesk.ticket.duplicate.wizard,helpdesk.ticket.duplicate.wizard,helpdesk_mgmt.group_helpdesk_user,crud,
+helpdesk_ticket_personal_rule_group_helpdesk_user_own,Personal Tickets (group_helpdesk_user_own),helpdesk.ticket,helpdesk_mgmt.group_helpdesk_user_own,crud,"[""|"", ('user_id', '=', user.id), '&', ('user_id','=',False), ('team_id', 'in', user.helpdesk_team_ids.ids)]"
+helpdesk_ticket_team_rule_group_helpdesk_user_team,Team Tickets (group_helpdesk_user_team),helpdesk.ticket,helpdesk_mgmt.group_helpdesk_user_team,crud,"['|',('team_id','in',user.helpdesk_team_ids.ids),('team_id','=',False)]"
+helpdesk_ticket_user_rule_group_helpdesk_user,All Tickets (group_helpdesk_user),helpdesk.ticket,helpdesk_mgmt.group_helpdesk_user,crud,
 helpdesk_ticket_comp_rule,Helpdesk Ticket Company Rule,helpdesk.ticket,,crud,"[('company_id', 'in', company_ids + [False])]"
 helpdesk_ticket_category_comp_rule,Helpdesk Category Company Rule,helpdesk.ticket.category,,crud,"[('company_id', 'in', company_ids + [False])]"
 helpdesk_ticket_channel_comp_rule,Helpdesk Channel Company Rule,helpdesk.ticket.channel,,crud,"[('company_id', 'in', company_ids + [False])]"
