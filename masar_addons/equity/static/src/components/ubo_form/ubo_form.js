@@ -1,6 +1,6 @@
 import { HolderEditDialog } from "@equity/components/ubo_form/holder_edit_dialog";
 import { HolderEndDialog } from "@equity/components/ubo_form/holder_end_dialog";
-import { Component, markup, useState } from "@odoo/owl";
+import { Component, markup, proxy, t, useProps } from "@odoo/owl";
 import { deserializeDate, formatDate } from "@web/core/l10n/dates";
 import { _t } from "@web/core/l10n/translation";
 import { rpc } from "@web/core/network/rpc";
@@ -11,20 +11,20 @@ import { formatPercentage } from "@web/views/fields/formatters";
 
 export class UboForm extends Component {
     static template = "equity.UboForm";
-    static props = {
-        accessToken: { type: String },
-        ubos: { type: Array },
-        equityUboSettings: { type: Object },
-        allCountries: { type: Array },
-        defaultCountryId: { type: Number },
-    };
+    props = useProps({
+        accessToken: t.string(),
+        ubos: t.array(),
+        equityUboSettings: t.object(),
+        allCountries: t.array(),
+        defaultCountryId: t.number(),
+    });
 
     setup() {
         super.setup();
         this.dialogService = useService("dialog");
         this.notification = useService("notification");
 
-        this.ubos = useState(this.props.ubos);
+        this.ubos = proxy(this.props.ubos);
         this.allCountries = Object.fromEntries(this.props.allCountries.map(({ id, name }) => [id, name]));
     }
 

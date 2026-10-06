@@ -1,6 +1,6 @@
 import { ValuationChart } from "@equity/components/valuation_chart/valuation_chart";
 import { useValuationChartActionSampleData } from "@equity/components/valuation_chart_action/valuation_chart_action_sample_data";
-import { Component, markup, onWillStart } from "@odoo/owl";
+import { Component, markup, onWillStart, useProps } from "@odoo/owl";
 import { _t } from "@web/core/l10n/translation";
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
@@ -9,7 +9,7 @@ import { standardActionServiceProps } from "@web/webclient/actions/action_servic
 
 export class ValuationChartAction extends Component {
     static template = "equity.ValuationChartAction";
-    static props = { ...standardActionServiceProps };
+    props = useProps({ ...standardActionServiceProps });
     static components = { ActionHelper, ValuationChart };
 
     setup() {

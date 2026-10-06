@@ -1,5 +1,5 @@
 import { useCapTableSampleData } from "@equity/components/cap_table/cap_table_sample_data";
-import { Component, markup, onWillStart, useState } from "@odoo/owl";
+import { Component, markup, onWillStart, proxy, useProps } from "@odoo/owl";
 import { _t } from "@web/core/l10n/translation";
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
@@ -10,7 +10,7 @@ import { standardActionServiceProps } from "@web/webclient/actions/action_servic
 
 export class CapTable extends Component {
     static template = "equity.CapTable";
-    static props = { ...standardActionServiceProps };
+    props = useProps({ ...standardActionServiceProps });
     static components = { ActionHelper, ControlPanel };
 
     setup() {
@@ -18,10 +18,10 @@ export class CapTable extends Component {
 
         this.orm = useService("orm");
         this.action = useService("action");
-        this.partnerHolderData = useState({});
-        this.partnerClassesIds = useState({});
-        this.partnerData = useState({});
-        this.classData = useState({});
+        this.partnerHolderData = proxy({});
+        this.partnerClassesIds = proxy({});
+        this.partnerData = proxy({});
+        this.classData = proxy({});
         this.isSample = false;
         this.sampleData = useCapTableSampleData();
 
