@@ -183,6 +183,12 @@ html body:has(.oe_website_login_container) {
             display: none !important;
         }
     }
+
+    // Signup leftover can sit beside the form, not inside oe_login_form.
+    a[href*="/web/signup"],
+    .oe_signup_form {
+        display: none !important;
+    }
 }
 
 @media (max-width: 767.98px) {

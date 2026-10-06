@@ -60,5 +60,25 @@ def _ensure_admin_feature_groups(env):
             system.write({"implied_ids": [(4, group.id)]})
 
 
+def _apply_display_names(env):
+    """noupdate XML will not overwrite an already-named company/website."""
+    company = env.ref("base.main_company", raise_if_not_found=False)
+    if company:
+        vals = {}
+        if company.name != "MASAR Pay":
+            vals["name"] = "MASAR Pay"
+        if "masar_brand_name" in company._fields and company.masar_brand_name != "MASAR":
+            vals["masar_brand_name"] = "MASAR"
+        if vals:
+            company.write(vals)
+    partner = env.ref("base.main_partner", raise_if_not_found=False)
+    if partner and partner.name != "MASAR Pay":
+        partner.write({"name": "MASAR Pay"})
+    website = env.ref("base.default_website", raise_if_not_found=False)
+    if website and website.name != "MASAR Pay":
+        website.write({"name": "MASAR Pay"})
+
+
 def post_init_hook(env):
     _ensure_admin_feature_groups(env)
+    _apply_display_names(env)

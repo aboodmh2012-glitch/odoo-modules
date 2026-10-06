@@ -13,6 +13,7 @@ class ResUsers(models.Model):
             {"tour_enabled": False}
         )
         params = self.env["ir.config_parameter"].sudo()
-        if params.get_param("auth_signup.invitation_scope") == "b2c":
-            params.set_param("auth_signup.invitation_scope", "b2b")
+        # Odoo 20: set_param/get_param were removed; use typed setters.
+        if params.get_str("auth_signup.invitation_scope") == "b2c":
+            params.set_str("auth_signup.invitation_scope", "b2b")
 

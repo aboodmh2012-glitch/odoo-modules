@@ -1,7 +1,7 @@
 {
     "name": "MASAR UI Tweaks",
     "summary": "Tidy backend systray for MASAR Pay (no web_responsive)",
-    "version": "20.0.2.1.0",
+    "version": "20.0.2.2.0",
     "category": "Extra Tools",
     "author": "MASAR",
     "license": "LGPL-3",

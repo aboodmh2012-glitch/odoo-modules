@@ -143,7 +143,7 @@ class HrJob(models.Model):
         # Reuse MASAR's real Meta application ID. Never substitute a Page ID,
         # app secret or placeholder just to suppress the debugger warning.
         app_id = (os.environ.get("SOCIAL_META_APP_ID") or "").strip() or (
-            self.env["ir.config_parameter"].sudo().get_param("social.meta_app_id") or ""
+            self.env["ir.config_parameter"].sudo().get_str("social.meta_app_id") or ""
         ).strip()
         if re.fullmatch(r"[0-9]+", app_id):
             meta["default_opengraph"]["fb:app_id"] = app_id

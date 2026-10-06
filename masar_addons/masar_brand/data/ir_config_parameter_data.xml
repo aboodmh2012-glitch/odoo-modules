@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="1">
+        <!-- Odoo 20: ir.config_parameter.set_param is gone; use records. -->
+        <record id="config_param_masar_brand" model="ir.config_parameter">
+            <field name="key">masar.brand</field>
+            <field name="value">MASAR</field>
+        </record>
 
-        <!-- Odoo 20: prefer <value> children over eval= on <function> -->
-        <function model="ir.config_parameter" name="set_param">
-            <value>masar.brand</value>
-            <value>MASAR</value>
-        </function>
+        <record id="config_param_masar_company_name_ar" model="ir.config_parameter">
+            <field name="key">masar.company_name_ar</field>
+            <field name="value">شركة مسار العالمية للأنظمة والحلول المالية</field>
+        </record>
 
-        <function model="ir.config_parameter" name="set_param">
-            <value>masar.company_name_ar</value>
-            <value>شركة مسار العالمية للأنظمة والحلول المالية</value>
-        </function>
-
-        <function model="ir.config_parameter" name="set_param">
-            <value>masar.company_name_en</value>
-            <value>MASAR Global for Financial Systems &amp; Solutions</value>
-        </function>
-
+        <record id="config_param_masar_company_name_en" model="ir.config_parameter">
+            <field name="key">masar.company_name_en</field>
+            <field name="value">MASAR Global for Financial Systems &amp; Solutions</field>
+        </record>
     </data>
 </odoo>
