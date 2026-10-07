@@ -1,0 +1,276 @@
+// MASAR Pay Application Shell — navbar, mobile sidebar, workspace chrome.
+// Desktop nav = navy topbar (web_responsive apps grid; no third-party AppsBar).
+
+// ---------- Top navigation (primary brand frame) ----------
+.o_main_navbar {
+    background: var(--masar-navy-gradient) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: var(--masar-elev-2);
+
+    .o_menu_brand,
+    .o_menu_brand:hover,
+    .o_navbar_breadcrumbs,
+    .o_nav_entry,
+    .o_menu_sections > button,
+    .o_menu_sections .dropdown-toggle,
+    .o_menu_sections .o_menu_entry_lvl_1,
+    .o_menu_sections > a,
+    .o_menu_systray .dropdown-toggle,
+    .o_menu_systray .o_nav_entry,
+    .o_masar_home_toggle,
+    .o_grid_apps_menu__button {
+        color: var(--masar-text-inverse) !important;
+    }
+
+    // Preserve natural item widths so native NavBar.adapt can move overflow
+    // into More. Shrunk links otherwise overlap in apps with many sections.
+    .o_menu_sections {
+        min-width: 0;
+
+        > * {
+            flex-shrink: 0;
+        }
+    }
+
+    .o_menu_brand {
+        font-weight: 700;
+        letter-spacing: 0.02em;
+    }
+
+    .o_menu_sections .o_nav_entry:hover,
+    .o_menu_sections > button:hover,
+    .o_menu_sections .dropdown-toggle:hover,
+    .o_nav_entry:hover,
+    .o_masar_home_toggle:hover,
+    .o_grid_apps_menu__button:hover {
+        background: var(--masar-sidebar-item-hover) !important;
+        color: var(--masar-text-inverse) !important;
+        border-radius: var(--masar-radius-sm);
+    }
+
+    .o_menu_sections .o_nav_entry.active,
+    .o_menu_sections > button[aria-expanded="true"],
+    .o_menu_sections .dropdown-toggle.show,
+    .o_menu_sections .active > .o_nav_entry {
+        background: var(--masar-sidebar-item-active) !important;
+        box-shadow: inset 0 -2px 0 var(--masar-orange);
+        border-radius: var(--masar-radius-sm);
+    }
+
+    .o_menu_systray {
+        .o_mail_systray_item,
+        .o_ActivityMenu,
+        .o_NotificationMenu {
+            color: var(--masar-white);
+        }
+    }
+
+    .dropdown-menu {
+        border: 1px solid var(--masar-line);
+        border-radius: var(--masar-radius);
+        box-shadow: var(--masar-shadow);
+    }
+}
+
+// Brand mark next to apps button (injected via CSS content on desktop)
+.o_main_navbar .o_navbar_apps_menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    padding-inline-end: 0.5rem;
+
+    .o_masar_navbar_mark {
+        width: 28px;
+        height: 28px;
+        margin-inline-start: 0.45rem;
+        border-radius: 6px;
+        object-fit: contain;
+        background: #fff;
+    }
+
+    &::after {
+        content: "MASAR Pay";
+        display: inline-flex;
+        align-items: center;
+        margin-inline-start: 0.55rem;
+        font-weight: 700;
+        font-size: 0.95rem;
+        letter-spacing: 0.01em;
+        color: var(--masar-white);
+        white-space: nowrap;
+        direction: ltr #{'/*rtl:ignore*/'};
+        unicode-bidi: isolate;
+    }
+}
+
+html[data-dir="rtl"] .o_main_navbar .o_navbar_apps_menu::after,
+.o_rtl .o_main_navbar .o_navbar_apps_menu::after {
+    margin-inline-start: 0;
+    margin-inline-end: 0.55rem;
+}
+
+@media (max-width: 767.98px) {
+    .o_main_navbar .o_navbar_apps_menu::after,
+    .o_main_navbar .o_masar_navbar_mark {
+        display: none;
+    }
+}
+
+// ---------- Mobile / burger app sidebar ----------
+// Mirror the native start-edge drawer with RTL compilation.
+.o_app_menu_sidebar {
+    transform: translateX(100%);
+}
+
+// Core web.SectionMenu uses text-900 on both headings and clickable li items.
+// Override that utility in this dark surface, not all backend text.
+.o_app_menu_sidebar {
+    --bs-body-color: #fff;
+    --bs-link-color: #fff;
+    --bs-link-color-rgb: 255, 255, 255;
+    background: var(--masar-navy-gradient) !important;
+    color: var(--masar-white);
+
+    .o_sidebar_topbar {
+        background: var(--masar-navy) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+        color: var(--masar-white);
+    }
+
+    // The scrollable nav paints its own surface over the outer sidebar.
+    // Pair its background with the white labels in both app-menu modes.
+    .o_burger_menu_content {
+        background: var(--masar-navy-gradient) !important;
+        color: var(--masar-white) !important;
+        color-scheme: dark;
+    }
+
+    .o_sidebar_close,
+    .o_burger_menu_content,
+    .o_burger_menu_content .text-900,
+    .o_burger_menu_content [data-menu-xmlid],
+    .o_burger_menu_content a,
+    .o_burger_menu_content .o_app {
+        color: var(--masar-white) !important;
+    }
+
+    .o_burger_menu_content .border-top {
+        border-color: rgba(255, 255, 255, 0.18) !important;
+    }
+
+    // Only actionable rows get a selection surface, not the entire sidebar.
+    .o_burger_menu_content li[data-menu-xmlid] {
+        min-height: 44px;
+        padding-inline: 1rem;
+        cursor: pointer;
+    }
+
+    .o_burger_menu_content li[data-menu-xmlid]:hover,
+    .o_burger_menu_content li[data-menu-xmlid]:focus-visible {
+        background: rgba(255, 255, 255, 0.12) !important;
+        color: var(--masar-white) !important;
+    }
+
+    .o_burger_menu_content li.bg-primary-subtle,
+    .o_burger_menu_content li.active {
+        background: rgba(255, 106, 0, 0.18) !important;
+        color: var(--masar-white) !important;
+        border-inline-start: 3px solid var(--masar-orange);
+    }
+
+    .o_burger_menu_content li:focus-visible,
+    .o_sidebar_close:focus-visible {
+        outline: 2px solid var(--masar-orange);
+        outline-offset: -3px;
+    }
+}
+
+// ---------- Workspace (light reading surface) ----------
+.o_web_client,
+.o_action_manager {
+    background: var(--masar-workspace-bg) !important;
+}
+
+.o_action {
+    background: transparent;
+}
+
+.o_content {
+    background: transparent;
+}
+
+// Control panel details live in backend_control_panel.scss
+
+// User menu avatar ring
+.o_user_menu .o_avatar,
+.o_user_menu img,
+.o_menu_systray .o_avatar img {
+    box-shadow: 0 0 0 2px rgba(255, 106, 0, 0.45);
+}
+
+// Operational empty states stay quiet; artwork is reserved for login/apps.
+.o_home_menu,
+.o_action:empty,
+.o_nocontent_help {
+    background: var(--masar-surface-primary);
+}
+
+.o_nocontent_help {
+    border-radius: var(--masar-radius-lg);
+    border: 1px solid var(--masar-line);
+    color: var(--masar-text);
+
+    .o_nocontent_help_title {
+        color: var(--masar-navy);
+        font-weight: 700;
+    }
+}
+
+
+// Core Odoo section buttons carry btn-primary styles; keep topbar neutral.
+.o_main_navbar .o_menu_sections > button,
+.o_main_navbar .o_menu_sections > a {
+    background: transparent !important;
+    border: 0;
+    box-shadow: none;
+}
+.o_main_navbar .o_menu_sections > button:hover,
+.o_main_navbar .o_menu_sections > a:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+.o_main_navbar .o_menu_sections > button[aria-expanded="true"],
+.o_main_navbar .o_menu_sections > a.active {
+    background: rgba(255, 106, 0, 0.18) !important;
+    box-shadow: inset 0 -2px 0 var(--masar-orange);
+}
+.o_app_menu_sidebar .o_sidebar_topbar .btn {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: var(--masar-white) !important;
+    border-color: transparent;
+    min-height: 44px;
+}
+.o_web_client .o_main_navbar button:focus-visible,
+.o_web_client .o_main_navbar a:focus-visible {
+    outline: 2px solid var(--masar-orange);
+}
+
+// Empty CRM/HR boards: hide faded sample records; keep a quiet empty state.
+.o_view_sample .o_kanban_record,
+.o_view_sample .o_data_row {
+    visibility: hidden !important;
+}
+.o_onboarding,
+.o_onboarding_container,
+.o_onboarding_wrapper {
+    display: none !important;
+}
+
+// Hide current-app navigation on home, while keeping the user menu available.
+// Odoo's account avatar also uses o_mobile_menu_toggle; never hide that class.
+body.o_masar_home_opened .o_main_navbar .o_navbar_breadcrumbs,
+body.o_apps_menu_opened .o_main_navbar .o_navbar_breadcrumbs,
+body.o_masar_home_opened .o_app_menu_sidebar,
+body.o_apps_menu_opened .o_app_menu_sidebar {
+    display: none !important;
+}

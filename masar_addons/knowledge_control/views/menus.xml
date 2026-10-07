@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <menuitem id="menu_kc_policies"
+            name="Policies &amp; Procedures"
+            parent="document_knowledge.menu_document_root"
+            action="action_kc_policies"
+            sequence="25"
+            groups="knowledge_control.group_knowledge_control_user"/>
+  <menuitem id="menu_kc_controlled"
+            name="Controlled Documents"
+            parent="document_knowledge.menu_document_root"
+            action="action_kc_controlled"
+            sequence="26"
+            groups="knowledge_control.group_knowledge_control_user"/>
+  <menuitem id="menu_kc_forms"
+            name="Forms &amp; Templates"
+            parent="document_knowledge.menu_document_root"
+            action="action_kc_forms"
+            sequence="27"
+            groups="knowledge_control.group_knowledge_control_user"/>
+  <menuitem id="menu_kc_acknowledgments"
+            name="Acknowledgments"
+            parent="document_knowledge.menu_document_root"
+            action="action_kc_acknowledgments"
+            sequence="28"
+            groups="knowledge_control.group_knowledge_control_user"/>
+  <menuitem id="menu_kc_reviews"
+            name="Reviews &amp; Expirations"
+            parent="document_knowledge.menu_document_root"
+            action="action_kc_reviews"
+            sequence="29"
+            groups="knowledge_control.group_knowledge_control_user"/>
+</odoo>

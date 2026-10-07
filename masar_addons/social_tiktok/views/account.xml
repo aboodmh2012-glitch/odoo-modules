@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_social_tiktok_link_wizard_form" model="ir.ui.view">
+    <field name="name">social.tiktok.link.wizard.form</field>
+    <field name="model">social.tiktok.link.wizard</field>
+    <field name="arch" type="xml">
+      <form string="Confirm TikTok account">
+        <p class="text-muted">
+          Confirm the TikTok account to connect. Tokens are stored only on the server.
+        </p>
+        <field name="line_ids">
+          <list create="false" delete="false" edit="false">
+            <field name="name"/>
+            <field name="external_id" string="Open ID"/>
+            <button name="action_select" type="object" string="Connect"
+                    class="btn-primary" icon="fa-link"/>
+          </list>
+        </field>
+        <footer>
+          <button string="Close" class="btn-secondary" special="cancel"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+
+  <record id="action_social_tiktok_link_wizard" model="ir.actions.act_window">
+    <field name="name">Confirm TikTok account</field>
+    <field name="res_model">social.tiktok.link.wizard</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+  </record>
+
+  <record id="action_social_connect_tiktok" model="ir.actions.server">
+    <field name="name">Connect TikTok</field>
+    <field name="model_id" ref="social.model_social_account"/>
+    <field name="binding_model_id" ref="social.model_social_account"/>
+    <field name="binding_view_types">list</field>
+    <field name="state">code</field>
+    <field name="code">action = model.action_connect_tiktok()</field>
+  </record>
+</odoo>

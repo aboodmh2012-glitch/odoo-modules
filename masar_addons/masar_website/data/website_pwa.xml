@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Favicon binary write is handled in post_init_hook (Odoo 20 website._handle_favicon
+         rejects base64 strings from XML type="base64" file=). Head icons below remain. -->
+
+    <!-- Replace website's default apple-touch-icon (serves an ICO favicon that
+         iOS rejects, then falls back to purple Odoo). Do not append extra icons
+         after a broken first link — replace it. -->
+    <data>
+        <template id="masar_pwa_meta" inherit_id="website.layout" name="MASAR PWA head meta" priority="99">
+            <xpath expr="//link[@rel='apple-touch-icon']" position="replace">
+                <link rel="apple-touch-icon" sizes="180x180" href="/masar_theme/static/src/img/masar-icon-180.png?v=20261004"/>
+                <link rel="apple-touch-icon" sizes="152x152" href="/masar_theme/static/src/img/masar-icon-180.png?v=20261004"/>
+                <link rel="apple-touch-icon" sizes="167x167" href="/masar_theme/static/src/img/masar-icon-180.png?v=20261004"/>
+                <link rel="apple-touch-icon" href="/masar_theme/static/src/img/masar-icon-180.png?v=20261004"/>
+                <link rel="icon" type="image/png" sizes="512x512" href="/masar_theme/static/src/img/masar-icon-512.png?v=20261004"/>
+                <link rel="manifest" href="/web/manifest.webmanifest"/>
+                <meta name="apple-mobile-web-app-title" content="Masar"/>
+                <meta name="application-name" content="Masar"/>
+                <meta name="apple-mobile-web-app-capable" content="yes"/>
+                <meta name="mobile-web-app-capable" content="yes"/>
+                <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+                <meta name="theme-color" content="#0E1B2B"/>
+                <meta name="msapplication-TileColor" content="#0E1B2B"/>
+            </xpath>
+        </template>
+    </data>
+</odoo>

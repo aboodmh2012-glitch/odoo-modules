@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <template
+        id="portal_breadcrumbs"
+        name="Portal layout: ticket and fsm order menu entry"
+        inherit_id="portal.portal_breadcrumbs"
+        priority="55"
+    >
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li
+                t-if="page_name == 'fsm_order' or fsm_order"
+                t-attf-class="breadcrumb-item #{'active ' if not fsm_order else ''}"
+            >
+                <a
+                    t-if="fsm_order"
+                    t-attf-href="/my/fsm_orders?{{ keep_query() }}"
+                >Work Orders</a>
+                <t t-else="">Work Orders</t>
+            </li>
+            <li t-if="fsm_order" class="breadcrumb-item active">
+                <t t-out="fsm_order.name" />
+            </li>
+        </xpath>
+    </template>
+
+    <!-- Odoo 20 portal home uses portal.entry cards, not o_portal_docs xpath. -->
+</odoo>

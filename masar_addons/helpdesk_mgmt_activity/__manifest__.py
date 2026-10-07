@@ -1,0 +1,12 @@
+{'application': False,
+ 'author': 'Cetmix OÜ, Odoo Community Association (OCA)',
+ 'data': ['views/res_config_settings_views.xml',
+          'views/helpdesk_ticket_view.xml',
+          'views/mail_activity_views.xml',
+          'views/helpdesk_ticket_team_views.xml'],
+ 'depends': ['helpdesk_mgmt'],
+ 'license': 'AGPL-3',
+ 'name': 'Helpdesk Management Activity',
+ 'summary': 'Create Activities for Odoo records from the Helpdesk',
+ 'version': '20.0.1.0.0',
+ 'website': 'https://github.com/OCA/helpdesk'}

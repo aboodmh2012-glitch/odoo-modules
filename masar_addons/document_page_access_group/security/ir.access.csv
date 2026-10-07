@@ -1,0 +1,2 @@
+id,name,model_id,group_id/id,operation,domain
+document_page_access_restriction,Document Page Access (access groups),document.page,,crud,"['|', ('id', '!=', False) if (not user.has_group('document_knowledge.group_document_user') or user.has_group('document_page.group_document_manager')) else ('id', '=', False), '|', ('groups_id', 'in', user.group_ids.ids), '|', ('user_ids', 'in', [user.id]), '&', ('groups_id', '=', False), ('user_ids', '=', False)]"

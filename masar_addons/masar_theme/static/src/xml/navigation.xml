@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <!--
+        MASAR Apps Home on native Odoo 20 NavBar (Owl 3).
+        Replaces the desktop Dropdown with a toggle + full-viewport workspace.
+        Mobile keeps the native sections sidebar; "All Apps" opens Home.
+        Odoo 20: t-custom-portal (not t-portal); expressions use this.
+    -->
+    <t t-inherit="web.NavBar.AppsMenu" t-inherit-mode="extension">
+        <xpath expr="//Dropdown" position="replace">
+            <button
+                type="button"
+                class="o_masar_home_toggle o_nav_entry border-0 bg-transparent"
+                data-hotkey="h"
+                t-ref="this.masarNavButton"
+                t-att-title="this.masarNavigationLabel"
+                t-att-aria-label="this.masarNavigationLabel"
+                t-att-aria-expanded="this.state.masarHomeOpen ? 'true' : 'false'"
+                aria-controls="masar-apps-launcher"
+                t-on-click.stop="this.toggleMasarHome"
+            >
+                <i class="oi" data-icon="apps"/>
+            </button>
+            <img
+                class="o_masar_navbar_mark"
+                src="/masar_theme/static/src/img/masar-icon-192.png?v=20261004"
+                alt="MASAR Pay"
+                width="28"
+                height="28"
+            />
+        </xpath>
+    </t>
+
+    <!-- Home overlay lives on NavBar so mobile "All Apps" can open it too. -->
+    <t t-inherit="web.NavBar" t-inherit-mode="extension">
+        <xpath expr="//header" position="inside">
+            <t t-custom-portal="'body'">
+                <div
+                    t-if="this.state.masarHomeOpen"
+                    class="o_masar_apps_home app-menu-container"
+                    id="masar-apps-launcher"
+                    role="region"
+                    aria-label="All applications"
+                    t-ref="this.masarHome"
+                >
+                    <div class="search-container">
+                        <div class="search-input d-flex align-items-center gap-2">
+                            <i class="oi search-icon" data-icon="search" aria-hidden="true"/>
+                            <input
+                                type="search"
+                                class="form-control border-0 shadow-none"
+                                placeholder="Search apps…"
+                                aria-label="Search apps"
+                                autocomplete="off"
+                                t-ref="this.masarSearchInput"
+                                t-att-value="this.state.masarSearch"
+                                t-on-input="this.onMasarSearchInput"
+                                t-on-keydown="this.onMasarSearchKeydown"
+                            />
+                            <button
+                                t-if="this.state.masarSearch"
+                                type="button"
+                                class="btn btn-link text-decoration-none px-2"
+                                aria-label="Clear search"
+                                t-on-click="this.clearMasarSearch"
+                            >×</button>
+                        </div>
+                    </div>
+                    <div class="o-app-menu-list">
+                        <a
+                            t-foreach="this.masarFilteredApps"
+                            t-as="app"
+                            t-key="app.id"
+                            class="o-app-menu-item o-masar-app-item o_app text-decoration-none"
+                            t-att-class="{ 'o-app-menu-item--active': this.menuService.getCurrentApp() === app }"
+                            t-att-href="this.getMenuItemHref(app)"
+                            t-att-data-menu-xmlid="app.xmlid"
+                            t-att-data-section="app.id"
+                            tabindex="0"
+                            t-on-click.prevent="() => this.onMasarAppSelected(app)"
+                            t-on-keydown="(ev) => this.onMasarAppKeydown(ev, app)"
+                        >
+                            <img
+                                t-if="app.webIconData"
+                                class="o-app-menu-item__icon"
+                                t-att-src="app.webIconData"
+                                alt=""
+                            />
+                            <span
+                                t-else=""
+                                class="o-app-menu-item__icon d-inline-flex align-items-center justify-content-center"
+                            >
+                                <i class="oi" data-icon="apps" aria-hidden="true"/>
+                            </span>
+                            <span class="o-app-menu-item__name" t-out="app.name"/>
+                        </a>
+                    </div>
+                    <div t-if="!this.masarFilteredApps.length" class="o_masar_apps_empty text-center">
+                        No applications match this search.
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </t>
+
+    <t t-inherit="web.NavBar.AppsMenu.Sidebar" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('o_app_menu_sidebar')]" position="attributes">
+            <attribute name="t-ref">this.masarSectionsDrawer</attribute>
+            <attribute name="id">masar-sections-menu</attribute>
+            <attribute name="role">dialog</attribute>
+            <attribute name="aria-modal">true</attribute>
+            <attribute name="aria-label">Application menu</attribute>
+        </xpath>
+    </t>
+
+    <t t-inherit="web.SectionMenu" t-inherit-mode="extension">
+        <xpath expr="//li[@t-on-click]" position="attributes">
+            <attribute name="tabindex">0</attribute>
+            <attribute name="role">button</attribute>
+            <attribute name="t-on-keydown">ev => this._onSectionKeydown(ev, section)</attribute>
+        </xpath>
+    </t>
+
+    <t t-inherit="web.BurgerMenu" t-inherit-mode="extension">
+        <xpath expr="//button[contains(@t-on-click, '_openBurger')]" position="attributes">
+            <attribute name="t-ref">this.masarAccountButton</attribute>
+            <attribute name="title">User menu</attribute>
+            <attribute name="aria-label">User menu</attribute>
+            <attribute name="t-att-aria-expanded">this.state.isBurgerOpened ? 'true' : 'false'</attribute>
+            <attribute name="aria-controls">masar-account-menu</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('o_burger_menu')]" position="attributes">
+            <attribute name="t-ref">this.masarAccountDrawer</attribute>
+            <attribute name="id">masar-account-menu</attribute>
+            <attribute name="role">dialog</attribute>
+            <attribute name="aria-modal">true</attribute>
+            <attribute name="aria-label">User menu</attribute>
+        </xpath>
+    </t>
+</templates>

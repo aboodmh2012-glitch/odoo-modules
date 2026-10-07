@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_wiki_history_form_kc" model="ir.ui.view">
+    <field name="name">document.page.history.form.kc</field>
+    <field name="model">document.page.history</field>
+    <field name="inherit_id" ref="document_page.wiki_history_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//sheet" position="inside">
+        <group string="Controlled version" name="kc_version">
+          <group>
+            <field name="kc_version_label"/>
+            <field name="kc_version_type"/>
+            <field name="kc_frozen"/>
+            <field name="kc_content_sha256"/>
+          </group>
+          <group>
+            <field name="kc_version_major"/>
+            <field name="kc_version_minor"/>
+            <field name="kc_previous_history_id"/>
+          </group>
+        </group>
+      </xpath>
+    </field>
+  </record>
+</odoo>

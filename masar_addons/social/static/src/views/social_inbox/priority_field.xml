@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="social.PriorityField">
+        <span class="o_social_priority_field text-nowrap">
+            <span class="o_social_priority_dot" t-att-class="'o_social_priority_' + value"/>
+            <span t-out="label"/>
+        </span>
+    </t>
+</templates>

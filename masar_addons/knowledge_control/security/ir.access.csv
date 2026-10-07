@@ -1,0 +1,5 @@
+id,name,model_id,group_id/id,operation,domain
+rule_kc_distribution_own,KC distribution: own acknowledgments,document.page.distribution,knowledge_control.group_knowledge_control_user,ru,"['|', ('partner_id', '=', user.partner_id.id), ('user_id', '=', user.id)]"
+rule_kc_distribution_manager,KC distribution: manager all,document.page.distribution,knowledge_control.group_knowledge_control_manager,crud,
+rule_kc_distribution_company,KC distribution: company,document.page.distribution,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+access_kc_distribute_wizard_user,document.page.distribute.wizard user,document.page.distribute.wizard,knowledge_control.group_knowledge_control_user,crud,

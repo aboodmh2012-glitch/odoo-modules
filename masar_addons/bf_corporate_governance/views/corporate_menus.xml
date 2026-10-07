@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (c) 2026 Les services de consultation Blue Fox, Inc.
+  Copyright 2026 MASAR — Governance app: Composition / Meetings / Resolutions
+  SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+<odoo>
+  <menuitem id="menu_corporate_root"
+            name="Governance"
+            sequence="47"
+            web_icon="bf_corporate_governance,static/description/icon.png"
+            groups="bf_corporate_governance.group_corporate_user"/>
+
+  <!-- 1) Board & Committees -->
+  <menuitem id="menu_corporate_composition"
+            name="Board &amp; Committees"
+            parent="menu_corporate_root"
+            groups="group_corporate_user"
+            sequence="10"/>
+  <menuitem id="menu_corporate_directors"
+            name="Board Members"
+            parent="menu_corporate_composition"
+            action="corporate_director_action"
+            sequence="10"/>
+  <menuitem id="menu_corporate_committees"
+            name="Board Committees"
+            parent="menu_corporate_composition"
+            action="corporate_committee_action"
+            sequence="20"/>
+  <menuitem id="menu_corporate_officers"
+            name="Officers Register"
+            parent="menu_corporate_composition"
+            action="corporate_officer_action"
+            sequence="30"/>
+
+  <!-- 2) Meetings (single view with Board/Committee filters) -->
+  <menuitem id="menu_corporate_meetings"
+            name="Meetings"
+            parent="menu_corporate_root"
+            action="corporate_meeting_action"
+            groups="group_corporate_user"
+            sequence="20"/>
+
+  <!-- 3) Resolutions -->
+  <menuitem id="menu_corporate_resolutions"
+            name="Resolutions"
+            parent="menu_corporate_root"
+            action="corporate_resolution_action"
+            sequence="30"/>
+
+  <!-- Secondary registers -->
+  <menuitem id="menu_corporate_records"
+            name="Records &amp; Compliance"
+            parent="menu_corporate_root"
+            groups="group_corporate_user"
+            sequence="90"/>
+  <menuitem id="menu_corporate_compliance"
+            name="Compliance Calendar"
+            parent="menu_corporate_records"
+            action="corporate_compliance_action"
+            sequence="10"/>
+  <menuitem id="menu_corporate_minute_book"
+            name="Minute Book"
+            parent="menu_corporate_records"
+            action="corporate_minute_book_action"
+            sequence="20"/>
+</odoo>

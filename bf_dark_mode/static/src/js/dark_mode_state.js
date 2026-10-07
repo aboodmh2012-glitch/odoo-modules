@@ -1,5 +1,5 @@
 /** @odoo-module **/
-import { reactive } from "@odoo/owl";
+import { proxy } from "@odoo/owl";
 
 /**
  * Single source of truth for the JS that has to REACT to the theme.
@@ -11,7 +11,7 @@ import { reactive } from "@odoo/owl";
  * when the theme flips, hence this shared reactive flag: the systray toggle
  * writes it, the chatter patch subscribes to it.
  */
-export const bfDarkState = reactive({
+export const bfDarkState = proxy({
     enabled: Boolean(document.body?.classList.contains("bf_dark_mode")),
 });
 

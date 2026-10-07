@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="masar_footer" inherit_id="website.footer_custom" name="MASAR Footer" priority="99">
+        <xpath expr="//div[@id='footer']" position="replace">
+            <div id="footer" class="masar-footer" t-if="not no_footer">
+                <t t-set="copy" t-value="website.masar_public()"/>
+                <div class="masar-wrap masar-footer__top">
+                    <div class="masar-footer__brand">
+                        <a class="masar-header__brand" href="/">
+                            <t t-call="masar_website.masar_lockup"/>
+                        </a>
+                    </div>
+                    <div class="masar-footer__grid">
+                        <div t-foreach="copy['footer']['columns']" t-as="column" class="masar-footer__col masar-footer__col--menu">
+                            <h2 class="masar-footer__title">
+                                <button type="button" class="masar-footer__toggle" aria-expanded="false" t-attf-aria-controls="masar-footer-#{column['id']}">
+                                    <span t-out="column['title']"/>
+                                    <span class="masar-footer__chevron" aria-hidden="true"/>
+                                </button>
+                            </h2>
+                            <ul class="masar-footer__links" t-attf-id="masar-footer-#{column['id']}">
+                                <li t-foreach="column['links']" t-as="link">
+                                    <a class="masar-footer__link" t-att-href="link['href']">
+                                        <span t-out="link['label']"/>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="masar-footer__tools">
+                        <t t-call="masar_website.masar_lang"/>
+                        <div class="masar-newsletter" id="newsletter">
+                            <h2 class="masar-newsletter__label" t-out="copy['footer']['newsletter_title']"/>
+                            <div class="masar-newsletter__main">
+                                <p t-if="request.params.get('newsletter') == 'ok'" class="masar-newsletter__status" role="status" t-out="copy['footer']['newsletter_ok']"/>
+                                <p t-if="request.params.get('newsletter') == 'invalid'" class="masar-newsletter__status masar-newsletter__status--invalid" role="alert" t-out="copy['footer']['newsletter_invalid']"/>
+                                <form class="masar-newsletter__form" action="/masar/newsletter" method="post">
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                    <div class="masar-newsletter__hp" aria-hidden="true">
+                                        <input type="text" name="company_url" tabindex="-1" autocomplete="off"/>
+                                    </div>
+                                    <div class="masar-newsletter__row">
+                                        <label class="masar-newsletter__field-label" for="masar-newsletter-email" t-out="copy['actions']['email_label']"/>
+                                        <input id="masar-newsletter-email" class="masar-newsletter__input" type="email" name="email" required="required" t-att-placeholder="copy['actions']['email_placeholder']" t-att-aria-label="copy['actions']['email_label']"/>
+                                        <button class="masar-btn masar-btn--primary" type="submit">
+                                            <span class="masar-btn__label" t-out="copy['actions']['subscribe']"/>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="masar-wrap masar-footer__partners">
+                    <div class="masar-social">
+                        <t t-foreach="copy['footer']['social']" t-as="social">
+                            <a t-if="social['href']" class="masar-social__link" t-att-href="social['href']" t-att-aria-label="social['label']" target="_blank" rel="noopener noreferrer">
+                                <t t-set="icon" t-value="social['id']"/>
+                                <t t-call="masar_website.masar_icon"/>
+                            </a>
+                            <span t-else="" class="masar-social__link" role="img" t-att-aria-label="social['label']">
+                                <t t-set="icon" t-value="social['id']"/>
+                                <t t-call="masar_website.masar_icon"/>
+                            </span>
+                        </t>
+                    </div>
+                    <div class="masar-footer__payrow">
+                        <t t-call="masar_website.masar_paymarks"/>
+                        <p class="masar-paymarks__caption" t-out="copy['footer']['partners_caption']"/>
+                    </div>
+                </div>
+                <div class="masar-wrap masar-footer__bottom">
+                    <p class="masar-footer__legal">
+                        <span class="masar-footer__year" t-out="copy['_meta']['year']"/>
+                        <span class="masar-footer__rights" t-out="copy['brand']['rights']"/>
+                    </p>
+                    <ul class="masar-footer__legal-links">
+                        <li t-foreach="copy['footer']['legal_links']" t-as="legal">
+                            <a class="masar-footer__legal-link" t-att-href="legal['href']">
+                                <span t-out="legal['label']"/>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

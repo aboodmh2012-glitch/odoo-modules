@@ -1,0 +1,61 @@
+// MASAR accessibility — focus, targets, reduced motion (WCAG 2.2 AA oriented).
+
+.o_web_client {
+    // Visible focus without relying on browser defaults alone
+    a:focus-visible,
+    button:focus-visible,
+    .btn:focus-visible,
+    .o_nav_entry:focus-visible,
+    .o_menu_item:focus-visible,
+    .dropdown-item:focus-visible,
+    .o-dropdown-item:focus-visible,
+    .o_input:focus-visible,
+    .form-control:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+        outline: 2px solid var(--masar-focus);
+        outline-offset: 2px;
+        box-shadow: var(--masar-focus-ring);
+    }
+
+    // Prefer ≥24px interactive targets on touch / control panel
+    .o_control_panel .btn,
+    .o_main_navbar .o_nav_entry,
+    .o_main_navbar .o_masar_home_toggle,
+    .o_main_navbar .o_grid_apps_menu__button,
+    .o_pager .btn {
+        min-height: 2rem;
+        min-width: 2rem;
+    }
+}
+
+@media (pointer: coarse) {
+    .o_web_client {
+        .o_control_panel .btn,
+        .o_main_navbar .o_nav_entry,
+        .o_kanban_record .btn,
+        .modal-footer .btn {
+            min-height: 2.75rem;
+            padding-inline: var(--masar-space-4);
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .o_web_client *,
+    .o_web_client *::before,
+    .o_web_client *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+// Do not use color alone for selection — keep inset indicator
+.o_list_view tbody tr.o_data_row.o_selected_row,
+.o_list_view tbody tr.o_row_selected {
+    outline: 1px solid rgba(7, 31, 61, 0.25);
+}
+

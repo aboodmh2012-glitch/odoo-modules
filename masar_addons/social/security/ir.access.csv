@@ -1,0 +1,20 @@
+id,name,model_id,group_id/id,operation,domain
+rule_account_member,Social account: account members,social.account,social.group_social_user,r,"[('user_ids', 'in', [user.id])]"
+rule_account_manager,Social account: manager,social.account,social.group_social_manager,r,
+rule_account_admin,Social account: connection administrator,social.account,social.group_social_admin,cru,
+rule_account_company,Social account: company,social.account,,crud,"[('company_id', 'in', company_ids)]"
+rule_profile_member,Social profile: account members,social.profile,social.group_social_user,cru,"[('account_id.user_ids', 'in', [user.id])]"
+rule_profile_manager,Social profile: manager,social.profile,social.group_social_manager,cru,
+rule_profile_company,Social profile: company,social.profile,,crud,"[('company_id', 'in', company_ids)]"
+rule_post_member,Social post: account members,social.post,social.group_social_user,crud,"[('allowed_user_ids', 'in', [user.id])]"
+rule_post_manager,Social post: manager,social.post,social.group_social_manager,crud,
+rule_post_company,Social post: company,social.post,,crud,"[('company_id', 'in', company_ids)]"
+rule_post_target_member,Social post_target: account members,social.post.target,social.group_social_user,crud,"[('account_id.user_ids', 'in', [user.id]), ('post_id.allowed_user_ids', 'in', [user.id])]"
+rule_post_target_manager,Social post_target: manager,social.post.target,social.group_social_manager,crud,
+rule_post_target_company,Social post_target: company,social.post.target,,crud,"[('company_id', 'in', company_ids)]"
+rule_conversation_member,Social conversation: account members,social.conversation,social.group_social_user,cru,"[('account_id.user_ids', 'in', [user.id])]"
+rule_conversation_manager,Social conversation: manager,social.conversation,social.group_social_manager,cru,
+rule_conversation_company,Social conversation: company,social.conversation,,crud,"[('company_id', 'in', company_ids)]"
+rule_delivery_member,Social delivery: account members,social.delivery,social.group_social_user,cru,"[('account_id.user_ids', 'in', [user.id])]"
+rule_delivery_manager,Social delivery: manager,social.delivery,social.group_social_manager,cru,
+rule_delivery_company,Social delivery: company,social.delivery,,crud,"[('company_id', 'in', company_ids)]"

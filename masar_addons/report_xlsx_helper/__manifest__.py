@@ -1,0 +1,10 @@
+{'author': 'Noviat, Odoo Community Association (OCA)',
+ 'category': 'Reporting',
+ 'data': [],
+ 'depends': ['report_xlsx'],
+ 'development_status': 'Mature',
+ 'installable': True,
+ 'license': 'AGPL-3',
+ 'name': 'Report xlsx helpers',
+ 'version': '20.0.1.0.0',
+ 'website': 'https://github.com/OCA/reporting-engine'}

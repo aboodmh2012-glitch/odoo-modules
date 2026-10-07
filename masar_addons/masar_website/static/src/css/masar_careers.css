@@ -1,0 +1,72 @@
+/* Scoped recruitment presentation. Native form and upload behavior stay intact. */
+.masar-role-hero .masar-hero__title{max-width:55rem;font-size:clamp(1.8rem,3.4vw,3.3rem);line-height:1.4;margin-bottom:1.6rem}
+.masar-role-explore{display:inline-block;color:#fff;margin-inline-start:1.2rem;text-underline-offset:5px}
+.masar-role-panel{padding:2rem;border:1px solid #dce4eb;border-radius:20px;background:#fff;margin-bottom:1.5rem;scroll-margin-top:8rem}
+.masar-role-panel>h2{border-inline-start:4px solid #ed7309;padding-inline-start:.9rem}
+.masar-role-copy h3{font-size:1.2rem;color:#082039;margin:1.8rem 0 .8rem}
+.masar-role-copy ul{padding-inline-start:1.4rem;margin-bottom:1.5rem}.masar-role-copy li{padding-inline-start:.25rem;margin-bottom:.7rem}
+/*rtl:begin:ignore*/
+.masar-role-copy [lang="en"]{direction:ltr;text-align:left;border-top:1px solid #e3e9ef;margin-top:1.8rem;padding-top:.5rem}
+.masar-role-copy>h3:nth-of-type(n+2),.masar-role-copy>p:nth-of-type(2),.masar-role-copy>ul:nth-of-type(2){direction:ltr;text-align:left}
+/*rtl:end:ignore*/
+html body #wrap.masar-careers .masar-role-hero a.masar-job-back,html body #wrap.masar-careers .masar-role-hero a.masar-role-explore{color:#fff!important}
+.masar-role-copy>h3:nth-of-type(2){border-top:1px solid #e3e9ef;padding-top:1.6rem}
+.masar-role-kicker{font-size:.8rem;font-weight:700;color:#a74c00;letter-spacing:.04em;margin-bottom:.6rem}
+.masar-role-muted{color:#506477;line-height:1.8}
+.masar-role-degree{display:flex;align-items:center;gap:1rem;background:#f5f7fa;padding:1.2rem;border-radius:12px;margin:1.5rem 0}
+.masar-role-degree>.fa{font-size:1.6rem;color:#a74c00}.masar-role-degree h3{font-size:.9rem;margin:0 0 .3rem}.masar-role-degree p{margin:0;font-weight:600}
+.masar-skill-group{margin-top:1.5rem}.masar-skill-group h3{font-size:1.05rem;margin-bottom:.75rem}
+.masar-role-skills{list-style:none;margin:0;padding:0;display:grid;gap:.6rem}.masar-role-skills li{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.8rem 1rem;border:1px solid #e3e9ef;border-radius:10px;font-size:.92rem;line-height:1.6}
+.masar-skill-level{flex-shrink:0;font-size:.8rem;border-radius:6px;background:#f4f6f8;color:#506477;padding:.25rem .6rem}
+.masar-role-apply{border-top:1px solid #dce4eb;padding-top:1.5rem;margin-top:1.5rem}
+@media(min-width:992px){.masar-careers .masar-job-summary{position:sticky;top:7rem}}
+@media(max-width:575px){.masar-role-panel{padding:1.25rem}.masar-role-explore{display:block;margin:1.2rem 0 0}.masar-role-skills li{align-items:start;flex-direction:column;gap:.45rem}.masar-role-hero .masar-hero__title{font-size:1.85rem}}
+.masar-careers-toolbar {display:flex;align-items:center;justify-content:space-between;gap:1.5rem;margin-bottom:2rem;flex-wrap:wrap}
+.masar-careers-toolbar h2 {margin:0;font-size:1.65rem;color:#082039}
+.masar-job-search {display:flex;gap:.6rem;flex:0 1 32rem;min-width:0}
+.masar-job-search input {flex:1;min-width:0;border:1px solid #cdd7e2;border-radius:12px;padding:.85rem 1rem;background:#fff;color:#082039}
+.masar-job-search input:focus-visible {outline:3px solid #ff8a23;outline-offset:2px}
+.masar-jobs-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem}
+.masar-job-card {display:flex;flex-direction:column;padding:1.6rem;background:#fff;border:1px solid #dce4eb;border-radius:18px;box-shadow:0 6px 24px rgba(8,32,57,.04);min-width:0}
+.masar-job-card h3 {font-size:1.2rem;line-height:1.5;margin:0 0 1rem;overflow-wrap:anywhere}
+.masar-job-card h3 a {color:#082039;text-decoration:none}
+.masar-job-card:focus-within {outline:3px solid #ff8a23;outline-offset:2px}
+.masar-job-meta {margin:0 0 1.4rem;display:grid;gap:.85rem}
+.masar-job-meta dt {font-size:.8rem;color:#65788a;margin-bottom:.2rem;font-weight:500}
+.masar-job-meta dd {margin:0;color:#082039;font-size:.95rem;overflow-wrap:anywhere}
+.masar-job-link {margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;font-weight:700;color:#a74c00}
+[dir="rtl"] .masar-job-link>span:last-child {transform:scaleX(-1)}
+.masar-jobs-empty {text-align:center;border:1px solid #dce4eb;border-radius:20px;background:#f7fafc;padding:3.5rem 1.5rem;color:#082039}
+.masar-jobs-empty__icon {font-size:2rem;color:#e76d08;margin-bottom:1rem}
+.masar-jobs-empty h3 {font-size:1.5rem}.masar-jobs-empty p {max-width:38rem;margin:1rem auto 0;color:#506477;line-height:1.9}
+.masar-jobs-pager {margin-top:2rem}.masar-careers-process {background:#f2f6fa;color:#082039}
+.masar-careers-process p {max-width:50rem;line-height:1.9;margin-bottom:0}
+.masar-job-back {display:inline-block;margin-bottom:1.5rem;color:#fff;text-underline-offset:4px}
+.masar-job-layout {display:grid;grid-template-columns:minmax(0,2fr) minmax(16rem,1fr);gap:2rem;align-items:start}
+.masar-job-description {min-width:0;color:#082039;line-height:1.9;overflow-wrap:anywhere}
+.masar-job-description h2,.masar-job-summary h2 {font-size:1.5rem;margin:0 0 1.2rem}
+.masar-job-description img {max-width:100%;height:auto}
+.masar-job-summary {padding:1.75rem;border:1px solid #dce4eb;border-radius:18px;background:#f7fafc;color:#082039}
+.masar-job-summary p {line-height:1.8}.masar-job-summary .masar-btn {width:100%;text-align:center}
+.masar-careers-apply {max-width:1120px;padding-block:2rem 4rem;color:#082039}
+.masar-careers-apply .masar-application-intro {max-width:50rem;color:#506477;line-height:1.9;margin-bottom:2rem}
+.masar-careers-apply #jobs_section {padding:0}.masar-careers-apply #forms>.container {padding:0}
+.masar-careers-apply #hr_recruitment_form {padding:1.5rem;border:1px solid #dce4eb;border-radius:18px;background:#fff;margin:0}
+.masar-careers-apply .form-control {min-height:48px;border-radius:10px}
+.masar-careers-apply .form-control:focus {border-color:#e76d08;box-shadow:0 0 0 3px rgba(231,109,8,.18)}
+.masar-careers-apply #apply-btn {background:#ed7309;border-color:#ed7309;color:#082039;font-weight:700;border-radius:10px;min-height:48px}
+.masar-careers-apply #apply-btn:hover {background:#ff8a23;border-color:#ff8a23}
+.masar-careers-apply #jobs_section>.row>section:last-child {padding-inline-start:1.5rem!important}
+.masar-process-note {color:#506477;line-height:1.8;margin-top:1.5rem}
+@media(max-width:991px){.masar-jobs-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.masar-job-layout{grid-template-columns:1fr}.masar-careers-apply #jobs_section>.row>section:last-child{padding-inline-start:.75rem!important;margin-top:2rem}}
+@media(max-width:575px){.masar-jobs-grid{grid-template-columns:1fr}.masar-job-search{flex-basis:100%;flex-wrap:wrap}.masar-job-search input{flex-basis:100%}.masar-job-search button{width:100%}.masar-job-card{padding:1.25rem}.masar-careers-apply #hr_recruitment_form{padding:1rem}.masar-careers-apply .s_website_form_label{width:100%!important;flex:0 0 100%;margin-bottom:.4rem}.masar-careers-apply .s_website_form_submit>div.s_website_form_label{display:none}.masar-careers-apply #apply-btn{width:100%}}
+
+.masar-job-share-actions {display:flex;align-items:center;flex-wrap:wrap;gap:.65rem;margin-top:1rem}
+.masar-job-share,.masar-job-copy {display:inline-flex;align-items:center;justify-content:center;flex:0 0 44px;width:44px;height:44px;padding:0;border:1px solid #cdd7e2;border-radius:10px;background:#fff;color:#082039;text-decoration:none;font-size:1.15rem;line-height:1;cursor:pointer}
+.masar-job-share .fa {color:#1877f2}
+.masar-job-share:hover,.masar-job-copy:hover {background:#eef4fa;color:#082039;border-color:#8da6bf}
+.masar-job-share:focus-visible,.masar-job-copy:focus-visible,.masar-job-copy-fallback:focus-visible {outline:3px solid #ff8a23;outline-offset:3px}
+.masar-job-copy.is-copied {color:#227347;border-color:#227347}
+.masar-job-share-status {flex-basis:100%;font-size:.85rem;color:#506477}
+.masar-job-share-status:empty {display:none}
+.masar-job-copy-fallback {width:100%;min-width:0;padding:.65rem;border:1px solid #cdd7e2;border-radius:8px;direction:ltr;color:#082039;background:#fff}

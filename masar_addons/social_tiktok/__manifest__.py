@@ -1,0 +1,13 @@
+{'application': False,
+ 'author': 'MASAR',
+ 'auto_install': False,
+ 'category': 'Marketing/Social Marketing',
+ 'data': ['security/ir.access.csv', 'views/account.xml'],
+ 'depends': ['social'],
+ 'external_dependencies': {'python': ['requests']},
+ 'installable': True,
+ 'license': 'AGPL-3',
+ 'name': 'Social · TikTok',
+ 'summary': 'TikTok connector — OAuth link and video publishing (Content Posting API)',
+ 'version': '20.0.1.0.0',
+ 'website': 'https://masar.sa'}

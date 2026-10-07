@@ -1,0 +1,12 @@
+{'application': False,
+ 'author': 'MASAR',
+ 'category': 'Marketing/Social Marketing',
+ 'data': ['views/account.xml', 'data/queue.xml'],
+ 'depends': ['social'],
+ 'external_dependencies': {'python': ['requests']},
+ 'installable': True,
+ 'license': 'AGPL-3',
+ 'name': 'Social · Telegram',
+ 'summary': 'Telegram Bot publishing and inbound updates',
+ 'version': '20.0.1.0.3',
+ 'website': 'https://masar.sa'}

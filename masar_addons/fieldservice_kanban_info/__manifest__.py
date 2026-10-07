@@ -1,0 +1,12 @@
+{'application': False,
+ 'author': 'APSL-Nagarro, Odoo Community Association (OCA)',
+ 'category': 'Field Service',
+ 'data': ['views/fsm_order.xml', 'views/res_config_settings_views.xml'],
+ 'depends': ['fieldservice'],
+ 'installable': True,
+ 'license': 'AGPL-3',
+ 'maintainers': ['ppyczko'],
+ 'name': 'Field Service - Kanban Info',
+ 'summary': 'Display key service information on Field Service Kanban cards.',
+ 'version': '20.0.1.0.1',
+ 'website': 'https://github.com/OCA/field-service'}

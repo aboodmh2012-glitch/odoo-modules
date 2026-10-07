@@ -1,0 +1,111 @@
+// MASAR Pay — kanban cards & dashboard surfaces.
+
+.o_kanban_view {
+    .o_kanban_header {
+        color: var(--masar-navy);
+        font-weight: 700;
+    }
+
+    .o_kanban_record {
+        background: var(--masar-white) !important;
+        border: 1px solid var(--masar-line) !important;
+        border-radius: var(--masar-radius) !important;
+        box-shadow: var(--masar-shadow-sm);
+        transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+
+        &:hover {
+            border-color: rgba(7, 31, 61, 0.35) !important;
+            box-shadow: var(--masar-shadow);
+            transform: translateY(-1px);
+        }
+
+        .o_kanban_record_title,
+        .o_kanban_record_subtitle,
+        .oe_kanban_details strong {
+            color: var(--masar-navy);
+        }
+
+        .o_kanban_record_subtitle,
+        .text-muted {
+            color: var(--masar-text-soft) !important;
+        }
+    }
+
+    .o_kanban_group {
+        background: transparent;
+    }
+
+    // Functional state colors only (semantic badges kept intact)
+    .oe_kanban_color_1,
+    .oe_kanban_status_green,
+    .o_kanban_color_success {
+        box-shadow: inset 3px 0 0 var(--masar-green);
+    }
+
+    .oe_kanban_status_red,
+    .o_kanban_color_danger {
+        box-shadow: inset 3px 0 0 var(--masar-danger);
+    }
+
+    .oe_kanban_status_orange,
+    .o_kanban_color_warning {
+        box-shadow: inset 3px 0 0 var(--masar-orange);
+    }
+}
+
+// Dashboard / board-like cards
+.o_dashboard,
+.o_account_dashboard,
+.o_project_dashboard,
+.o_hr_dashboard,
+.o_board_layout,
+.o_action_dashboard {
+    .o_dashboard_card,
+    .o_kanban_record,
+    .card,
+    .o_stat_info {
+        border-radius: var(--masar-radius);
+    }
+
+    .card {
+        background: var(--masar-white);
+        border: 1px solid var(--masar-line);
+        box-shadow: var(--masar-shadow-sm);
+    }
+
+    .card-header,
+    h2,
+    h3,
+    .o_kanban_primary_left {
+        color: var(--masar-navy);
+    }
+
+    .o_stat_value {
+        color: var(--masar-navy);
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .o_stat_text {
+        color: var(--masar-text-soft);
+    }
+
+    .btn-primary {
+        background: var(--masar-orange);
+        border-color: var(--masar-orange);
+        color: var(--masar-navy);
+    }
+}
+
+// Activity / notification surfaces
+.o_ActivityMenu_dropdown,
+.o_NotificationMenu_dropdown,
+.o-mail-ActivityMenu,
+.o-mail-NotificationItem {
+    border-radius: var(--masar-radius);
+
+    .o-mail-NotificationItem:hover {
+        background: rgba(7, 31, 61, 0.06);
+    }
+}
+

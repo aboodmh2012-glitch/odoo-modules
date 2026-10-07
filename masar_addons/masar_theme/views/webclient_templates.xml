@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Odoo 20: web.webclient_bootstrap uses t-set="head" (no head_web). -->
+    <template id="masar_webclient_pwa_icon" inherit_id="web.webclient_bootstrap" name="MASAR Webclient PWA Chrome" priority="99">
+        <xpath expr="//t[@t-call='web.layout']" position="before">
+            <t t-set="x_icon" t-value="'/masar_theme/static/src/img/masar-icon-192.png?v=20261004'"/>
+        </xpath>
+        <xpath expr="//meta[@name='theme-color']" position="replace">
+            <meta name="theme-color" content="#071F3D"/>
+        </xpath>
+        <xpath expr="//link[@rel='apple-touch-icon']" position="replace">
+            <link rel="apple-touch-icon" href="/masar_theme/static/src/img/masar-icon-180.png?v=20261004"/>
+        </xpath>
+    </template>
+
+    <!-- Odoo 20 offline page embeds a base64 odoo_icon; swap for MASAR mark. -->
+    <template id="masar_offline_icon" inherit_id="web.webclient_offline" name="MASAR Offline Icon" priority="99">
+        <xpath expr="//img" position="replace">
+            <img src="/masar_theme/static/src/img/masar-icon-192.png?v=20261004" alt="MASAR Pay"/>
+        </xpath>
+    </template>
+</odoo>

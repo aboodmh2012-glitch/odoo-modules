@@ -1,0 +1,2 @@
+id,name,model_id,group_id/id,operation,domain
+document_page_history_change_request_restriction,Change Request Visibility,document.page.history,,crud,"['|', ('id', '!=', False) if (not user.has_group('document_knowledge.group_document_user') or user.has_group('document_page.group_document_manager')) else ('id', '=', False), '|', '|', ('state', '=', 'approved'), ('create_uid', '=', user.id), ('state', '!=', 'draft') if user.has_group('document_page_approval.group_document_approver_user') else ('id', '=', False)]"

@@ -1,0 +1,11 @@
+{'application': False,
+ 'author': 'MASAR',
+ 'category': 'Marketing/Social Marketing',
+ 'data': ['views/account.xml', 'data/queue.xml'],
+ 'depends': ['social_meta'],
+ 'installable': True,
+ 'license': 'AGPL-3',
+ 'name': 'Social · Instagram',
+ 'summary': 'Instagram Business publishing and comment inbox via Meta Graph API',
+ 'version': '20.0.1.0.4',
+ 'website': 'https://masar.sa'}

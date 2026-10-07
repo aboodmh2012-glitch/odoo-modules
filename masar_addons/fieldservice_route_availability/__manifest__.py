@@ -1,0 +1,12 @@
+{'application': False,
+ 'author': 'APSL-Nagarro, Odoo Community Association (OCA)',
+ 'category': 'Field Service',
+ 'data': [],
+ 'depends': ['fieldservice_availability'],
+ 'installable': True,
+ 'license': 'AGPL-3',
+ 'maintainers': ['peluko00'],
+ 'name': 'Field Service Route Availability',
+ 'summary': 'Restricts blackout days for Scheduled Start (ETA) orders with the same date.',
+ 'version': '20.0.1.0.0',
+ 'website': 'https://github.com/OCA/field-service'}

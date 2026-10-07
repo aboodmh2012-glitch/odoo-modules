@@ -1,0 +1,12 @@
+{'application': False,
+ 'author': 'APSL-Nagarro, Odoo Community Association (OCA)',
+ 'category': 'Helpdesk',
+ 'data': ['views/helpdesk_ticket_team.xml', 'data/helpdesk_data.xml'],
+ 'depends': ['helpdesk_mgmt'],
+ 'development_status': 'Alpha',
+ 'installable': True,
+ 'license': 'AGPL-3',
+ 'maintainers': ['miquelalzanillas'],
+ 'name': 'Helpdesk Ticket Close Inactive',
+ 'version': '20.0.1.0.1',
+ 'website': 'https://github.com/OCA/helpdesk'}

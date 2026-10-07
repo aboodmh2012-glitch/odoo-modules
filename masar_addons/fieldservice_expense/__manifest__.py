@@ -1,0 +1,12 @@
+{'author': 'Gray Matter Logic, Odoo Community Association (OCA)',
+ 'category': 'Field Service',
+ 'data': ['views/hr_expense_views.xml', 'views/fsm_order_views.xml'],
+ 'depends': ['fieldservice', 'hr_expense'],
+ 'development_status': 'Alpha',
+ 'installable': True,
+ 'license': 'AGPL-3',
+ 'maintainers': ['max3903'],
+ 'name': 'Field Service - Expenses',
+ 'summary': 'Report expenses from Field Service orders',
+ 'version': '20.0.1.0.0',
+ 'website': 'https://github.com/OCA/field-service'}

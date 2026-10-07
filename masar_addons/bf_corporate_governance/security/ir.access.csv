@@ -1,0 +1,31 @@
+id,name,model_id,group_id/id,operation,domain
+access_corporate_resolution_user,Corporate Resolution User Access,corporate.resolution,bf_corporate_governance.group_corporate_user,r,
+access_corporate_resolution_manager,Corporate Resolution Manager Access,corporate.resolution,bf_corporate_governance.group_corporate_manager,crud,
+access_corporate_resolution_secretary,Corporate Resolution Secretary Access,corporate.resolution,bf_corporate_governance.group_corporate_secretary,cru,
+rule_corporate_resolution_company,Corporate resolution: multi-company,corporate.resolution,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+access_corporate_resolution_signatory_user,Corporate Resolution Signatory User Access,corporate.resolution.signatory,bf_corporate_governance.group_corporate_user,r,
+access_corporate_resolution_signatory_manager,Corporate Resolution Signatory Manager Access,corporate.resolution.signatory,bf_corporate_governance.group_corporate_manager,crud,
+access_corporate_resolution_signatory_secretary,Corporate Resolution Signatory Secretary Access,corporate.resolution.signatory,bf_corporate_governance.group_corporate_secretary,cru,
+rule_corporate_signatory_company,Corporate resolution signatory: multi-company,corporate.resolution.signatory,,crud,"['|', ('resolution_id.company_id', '=', False), ('resolution_id.company_id', 'in', company_ids)]"
+access_corporate_director_user,Corporate Director User Access,corporate.director,bf_corporate_governance.group_corporate_user,r,
+access_corporate_director_manager,Corporate Director Manager Access,corporate.director,bf_corporate_governance.group_corporate_manager,crud,
+rule_corporate_director_company,Corporate director: multi-company,corporate.director,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+access_corporate_officer_user,Corporate Officer User Access,corporate.officer,bf_corporate_governance.group_corporate_user,r,
+access_corporate_officer_manager,Corporate Officer Manager Access,corporate.officer,bf_corporate_governance.group_corporate_manager,crud,
+rule_corporate_officer_company,Corporate officer: multi-company,corporate.officer,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+access_corporate_compliance_user,Corporate Compliance User Access,corporate.compliance.event,bf_corporate_governance.group_corporate_user,r,
+access_corporate_compliance_manager,Corporate Compliance Manager Access,corporate.compliance.event,bf_corporate_governance.group_corporate_manager,crud,
+rule_corporate_compliance_company,Corporate compliance: multi-company,corporate.compliance.event,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+access_corporate_committee_user,Corporate Committee User Access,corporate.committee,bf_corporate_governance.group_corporate_user,r,
+access_corporate_committee_manager,Corporate Committee Manager Access,corporate.committee,bf_corporate_governance.group_corporate_manager,crud,
+rule_corporate_committee_company,Corporate committee: multi-company,corporate.committee,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+access_corporate_committee_member_user,Corporate Committee Member User Access,corporate.committee.member,bf_corporate_governance.group_corporate_user,r,
+access_corporate_committee_member_manager,Corporate Committee Member Manager Access,corporate.committee.member,bf_corporate_governance.group_corporate_manager,crud,
+rule_corporate_committee_member_company,Corporate committee member: multi-company,corporate.committee.member,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+access_corporate_meeting_user,Corporate Meeting User Access,corporate.meeting,bf_corporate_governance.group_corporate_user,r,
+access_corporate_meeting_secretary,Corporate Meeting Secretary Access,corporate.meeting,bf_corporate_governance.group_corporate_secretary,cru,
+access_corporate_meeting_manager,Corporate Meeting Manager Access,corporate.meeting,bf_corporate_governance.group_corporate_manager,crud,
+rule_corporate_meeting_company,Corporate meeting: multi-company,corporate.meeting,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+access_corporate_meeting_attendance_user,Corporate Meeting Attendance User Access,corporate.meeting.attendance,bf_corporate_governance.group_corporate_user,r,
+access_corporate_meeting_attendance_secretary,Corporate Meeting Attendance Secretary Access,corporate.meeting.attendance,bf_corporate_governance.group_corporate_secretary,crud,
+rule_corporate_meeting_attendance_company,Corporate meeting attendance: multi-company,corporate.meeting.attendance,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"

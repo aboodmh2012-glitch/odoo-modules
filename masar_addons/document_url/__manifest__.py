@@ -1,0 +1,12 @@
+{'assets': {'web.assets_backend': ['document_url/static/src/js/url.esm.js',
+                                   'document_url/static/src/xml/url.xml',
+                                   'document_url/static/src/scss/document_url.scss']},
+ 'author': 'Tecnativa, Odoo Community Association (OCA)',
+ 'category': 'Tools',
+ 'data': ['security/ir.access.csv', 'view/document_url_view.xml'],
+ 'depends': ['mail'],
+ 'installable': True,
+ 'license': 'AGPL-3',
+ 'name': 'URL attachment',
+ 'version': '20.0.1.0.1',
+ 'website': 'https://github.com/OCA/knowledge'}

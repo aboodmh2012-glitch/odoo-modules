@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2026 MASAR — SPDX-License-Identifier: AGPL-3.0-or-later -->
+<odoo>
+    <record id="corporate_meeting_view_form" model="ir.ui.view">
+        <field name="name">corporate.meeting.form</field>
+        <field name="model">corporate.meeting</field>
+        <field name="arch" type="xml">
+            <form string="Meeting">
+                <header>
+                    <button name="action_schedule" string="Schedule" type="object"
+                            class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_mark_held" string="Mark as Held" type="object"
+                            class="btn-primary" invisible="state != 'scheduled'"/>
+                    <button name="action_cancel" string="Cancel" type="object"
+                            invisible="state in ('held', 'cancelled')"/>
+                    <button name="action_reset_draft" string="Reset to Draft" type="object"
+                            invisible="state in ('draft',)"/>
+                    <field name="state" widget="statusbar" clickable="1"
+                           statusbar_visible="draft,scheduled,held"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object"
+                                name="action_open_resolutions" icon="fa-gavel">
+                            <field name="resolution_count" widget="statinfo"
+                                   string="Resolutions"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="reference"/>
+                        <h1><field name="reference" readonly="1"/></h1>
+                        <label for="name"/>
+                        <h2><field name="name" placeholder="Meeting subject…"/></h2>
+                    </div>
+                    <group>
+                        <group string="Details">
+                            <field name="meeting_type"/>
+                            <field name="committee_id"
+                                   invisible="meeting_type != 'committee'"
+                                   required="meeting_type == 'committee'"
+                                   domain="[('is_active', '=', True)]"/>
+                            <field name="date"/>
+                            <field name="meeting_mode"/>
+                            <field name="location"
+                                   invisible="meeting_mode == 'remote'"/>
+                        </group>
+                        <group string="Governance">
+                            <field name="chairperson_id"/>
+                            <field name="quorum_achieved"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Agenda" name="agenda">
+                            <field name="agenda" placeholder="Agenda items…"/>
+                        </page>
+                        <page string="Attendance" name="attendance">
+                            <field name="attendance_ids">
+                                <list editable="bottom">
+                                    <field name="partner_id"/>
+                                    <field name="attendance_status"/>
+                                    <field name="attendance_mode"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Minutes" name="minutes">
+                            <field name="minutes_page_id"/>
+                            <field name="minutes" placeholder="Draft minutes…"/>
+                        </page>
+                        <page string="Resolutions" name="resolutions">
+                            <field name="resolution_ids" context="{'default_meeting_id': id}">
+                                <list>
+                                    <field name="sequence"/>
+                                    <field name="name"/>
+                                    <field name="resolution_type"/>
+                                    <field name="status" widget="badge"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="corporate_meeting_view_list" model="ir.ui.view">
+        <field name="name">corporate.meeting.list</field>
+        <field name="model">corporate.meeting</field>
+        <field name="arch" type="xml">
+            <list string="Meetings" decoration-muted="state == 'cancelled'">
+                <field name="reference"/>
+                <field name="name"/>
+                <field name="meeting_type"/>
+                <field name="committee_id" optional="show"/>
+                <field name="date"/>
+                <field name="meeting_mode" optional="hide"/>
+                <field name="quorum_achieved" optional="hide"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'held'"
+                       decoration-info="state == 'scheduled'"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="corporate_meeting_view_calendar" model="ir.ui.view">
+        <field name="name">corporate.meeting.calendar</field>
+        <field name="model">corporate.meeting</field>
+        <field name="arch" type="xml">
+            <calendar string="Meetings" date_start="date" color="meeting_type" mode="month">
+                <field name="name"/>
+                <field name="meeting_type"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="corporate_meeting_view_search" model="ir.ui.view">
+        <field name="name">corporate.meeting.search</field>
+        <field name="model">corporate.meeting</field>
+        <field name="arch" type="xml">
+            <search string="Search meetings">
+                <field name="name"/>
+                <field name="committee_id"/>
+                <separator/>
+                <filter string="Board Meetings" name="board"
+                        domain="[('meeting_type', '=', 'board')]"/>
+                <filter string="Committee Meetings" name="committee"
+                        domain="[('meeting_type', '=', 'committee')]"/>
+                <separator/>
+                <filter string="Scheduled" name="scheduled"
+                        domain="[('state', '=', 'scheduled')]"/>
+                <filter string="Held" name="held"
+                        domain="[('state', '=', 'held')]"/>
+                <separator/>
+                <filter string="Meeting Date" name="by_date" date="date"/>
+                <group>
+                    <filter string="Type" name="group_type"
+                            context="{'group_by': 'meeting_type'}"/>
+                    <filter string="Committee" name="group_committee"
+                            context="{'group_by': 'committee_id'}"/>
+                    <filter string="Status" name="group_state"
+                            context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="corporate_meeting_action" model="ir.actions.act_window">
+        <field name="name">Meetings</field>
+        <field name="res_model">corporate.meeting</field>
+        <field name="view_mode">list,calendar,form</field>
+        <field name="search_view_id" ref="corporate_meeting_view_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Schedule the first board or committee meeting</p>
+        </field>
+    </record>
+</odoo>

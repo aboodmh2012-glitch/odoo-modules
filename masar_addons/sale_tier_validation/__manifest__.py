@@ -1,0 +1,11 @@
+{'application': False,
+ 'author': 'Open Source Integrators, Odoo Community Association (OCA)',
+ 'category': 'Sale',
+ 'data': ['data/mail_data.xml', 'views/sale_order_view.xml', 'views/res_config_settings_views.xml'],
+ 'depends': ['sale', 'base_tier_validation'],
+ 'installable': True,
+ 'license': 'AGPL-3',
+ 'name': 'Sale Tier Validation',
+ 'summary': 'Extends the functionality of Sale Orders to support a tier validation process.',
+ 'version': '20.0.1.0.0',
+ 'website': 'https://github.com/OCA/tier-validation'}

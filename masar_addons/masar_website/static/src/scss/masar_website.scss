@@ -1,0 +1,1314 @@
+/* MASAR public website — fintech marketing surface */
+/* Avoid bare CSS min()/clamp() — libsass treats them as Sass functions. */
+
+:root {
+    --masar-navy: #0E1B2B;
+    --masar-navy-deep: #062D52;
+    --masar-orange: #FF7A00;
+    --masar-orange-deep: #FF5A00;
+    --masar-blue: #007BFF;
+    --masar-green: #22C55E;
+    --masar-cyan: #00D2FF;
+    --masar-white: #FFFFFF;
+    --masar-surface: #FFFFFF;
+    --masar-surface-alt: #F4F7FB;
+    --masar-text-soft: #3E4C5E;
+    --masar-ink: var(--masar-navy);
+    --masar-ink-soft: var(--masar-text-soft);
+    --masar-cream: var(--masar-surface);
+    --masar-sand: var(--masar-surface-alt);
+    --masar-line: rgba(14, 27, 43, 0.12);
+}
+
+.masar-site,
+.masar-footer {
+    color: var(--masar-ink);
+    background: var(--masar-cream);
+}
+
+.masar-site h1,
+.masar-site h2,
+.masar-site h3,
+.masar-footer h2,
+.masar-footer h3 {
+    letter-spacing: -0.02em;
+}
+
+/* ---------- Hero: one composition, brand-first, full-bleed ---------- */
+.masar-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    color: #fff;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(14, 27, 43, 0.12) 0%,
+            rgba(14, 27, 43, 0.38) 55%,
+            rgba(14, 27, 43, 0.62) 100%
+        ),
+        url("/masar_website/static/src/img/masar-hero-yemen.webp") center / cover no-repeat;
+    isolation: isolate;
+}
+
+.masar-hero__glow {
+    position: absolute;
+    right: -10%;
+    bottom: -20%;
+    width: 55vw;
+    max-width: 520px;
+    height: 55vw;
+    max-height: 520px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 210, 255, 0.22), transparent 70%);
+    filter: blur(8px);
+    pointer-events: none;
+    z-index: 0;
+    animation: masar-pulse 8s ease-in-out infinite;
+}
+
+.masar-hero__inner {
+    position: relative;
+    z-index: 1;
+    width: calc(100% - 2.5rem);
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 7rem 0 4.5rem;
+}
+
+.masar-hero__brand {
+    display: block;
+    font-size: 2.6rem;
+    font-weight: 700;
+    line-height: 1.05;
+    margin: 0 0 0.85rem;
+    letter-spacing: 0.04em;
+    text-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+    animation: masar-rise 0.9s ease both;
+}
+
+@media (min-width: 768px) {
+    .masar-hero__brand {
+        font-size: 3.6rem;
+    }
+}
+
+@media (min-width: 1100px) {
+    .masar-hero__brand {
+        font-size: 4.6rem;
+    }
+}
+
+.masar-hero__title {
+    max-width: 18ch;
+    font-size: 1.35rem;
+    font-weight: 500;
+    line-height: 1.35;
+    margin: 0 0 1rem;
+    color: rgba(255, 255, 255, 0.96);
+    animation: masar-rise 0.9s ease 0.12s both;
+}
+
+@media (min-width: 768px) {
+    .masar-hero__title {
+        font-size: 1.7rem;
+    }
+}
+
+@media (min-width: 1100px) {
+    .masar-hero__title {
+        font-size: 2rem;
+    }
+}
+
+.masar-hero__lead {
+    max-width: 42rem;
+    margin: 0 0 1.75rem;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.84);
+    animation: masar-rise 0.9s ease 0.22s both;
+}
+
+@media (min-width: 900px) {
+    .masar-hero__lead {
+        font-size: 1.125rem;
+    }
+}
+
+.masar-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    animation: masar-rise 0.9s ease 0.32s both;
+}
+
+.masar-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3rem;
+    padding: 0.7rem 1.35rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none !important;
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.masar-btn:hover {
+    transform: translateY(-2px);
+}
+
+.masar-btn--primary {
+    background: var(--masar-orange);
+    color: #fff !important;
+    box-shadow: 0 10px 28px rgba(255, 122, 0, 0.35);
+}
+
+.masar-btn--primary:hover {
+    background: var(--masar-orange-deep);
+    color: #fff !important;
+}
+
+.masar-btn--ghost {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff !important;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.masar-btn--ghost:hover {
+    background: rgba(255, 255, 255, 0.18);
+    color: #fff !important;
+}
+
+.masar-btn--dark {
+    background: var(--masar-ink);
+    color: #fff !important;
+}
+
+.masar-btn--outline {
+    background: transparent;
+    color: var(--masar-ink) !important;
+    border: 1px solid rgba(22, 18, 14, 0.25);
+}
+
+/* ---------- Sections ---------- */
+.masar-section {
+    padding: 3.5rem 0;
+}
+
+@media (min-width: 900px) {
+    .masar-section {
+        padding: 6rem 0;
+    }
+}
+
+.masar-section--sand {
+    background: var(--masar-sand);
+}
+
+.masar-section--ink {
+    background: var(--masar-ink);
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.masar-section--ink .masar-kicker,
+.masar-section--ink .masar-title,
+.masar-section--ink .masar-copy,
+.masar-section--ink .masar-item__title,
+.masar-section--ink .masar-item__text {
+    color: inherit;
+}
+
+.masar-wrap {
+    width: calc(100% - 2.5rem);
+    max-width: 1120px;
+    margin: 0 auto;
+}
+
+.masar-kicker {
+    display: inline-block;
+    margin: 0 0 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--masar-orange);
+}
+
+.masar-title {
+    margin: 0 0 1rem;
+    font-size: 1.7rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--masar-ink);
+    max-width: 18ch;
+}
+
+@media (min-width: 900px) {
+    .masar-title {
+        font-size: 2.55rem;
+    }
+}
+
+.masar-title--wide {
+    max-width: 28ch;
+}
+
+.masar-copy {
+    margin: 0;
+    max-width: 46rem;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--masar-ink-soft);
+}
+
+.masar-copy + .masar-copy {
+    margin-top: 1rem;
+}
+
+.masar-split {
+    display: grid;
+    gap: 2rem;
+}
+
+@media (min-width: 900px) {
+    .masar-split {
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: 3.5rem;
+        align-items: start;
+    }
+}
+
+.masar-stack {
+    display: grid;
+    gap: 1.75rem;
+}
+
+.masar-item {
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--masar-line);
+}
+
+.masar-section--ink .masar-item {
+    border-top-color: rgba(255, 255, 255, 0.12);
+}
+
+.masar-item__title {
+    margin: 0 0 0.4rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--masar-ink);
+}
+
+.masar-item__text {
+    margin: 0;
+    color: var(--masar-ink-soft);
+    line-height: 1.65;
+}
+
+.masar-values {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 2rem;
+}
+
+@media (min-width: 720px) {
+    .masar-values {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem 2rem;
+    }
+}
+
+.masar-value__name {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-weight: 700;
+    color: var(--masar-navy);
+}
+
+.masar-services {
+    display: grid;
+    gap: 0;
+    margin-top: 2rem;
+}
+
+.masar-service {
+    display: grid;
+    gap: 0.65rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--masar-line);
+}
+
+.masar-service:last-child {
+    border-bottom: 1px solid var(--masar-line);
+}
+
+@media (min-width: 800px) {
+    .masar-service {
+        grid-template-columns: 220px 1fr;
+        gap: 2rem;
+        align-items: start;
+    }
+}
+
+.masar-service__name {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.masar-service__includes {
+    margin: 0.65rem 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.masar-service__includes li {
+    padding: 0.28rem 0.7rem;
+    border-radius: 999px;
+    background: rgba(255, 122, 0, 0.1);
+    color: var(--masar-ink);
+    font-size: 0.82rem;
+    font-weight: 500;
+}
+
+.masar-pillars {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 2rem;
+}
+
+@media (min-width: 800px) {
+    .masar-pillars {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.masar-pillar {
+    padding: 0;
+}
+
+.masar-pillar__title {
+    margin: 0 0 0.45rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.masar-cta {
+    text-align: center;
+}
+
+.masar-cta .masar-title {
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.masar-cta .masar-copy {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.masar-cta__actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+}
+
+/* Reveal on scroll */
+.masar-reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.masar-reveal.is-in {
+    opacity: 1;
+    transform: none;
+}
+
+@keyframes masar-rise {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes masar-pulse {
+    0%,
+    100% {
+        opacity: 0.55;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.9;
+        transform: scale(1.06);
+    }
+}
+
+/* ---------- Footer ---------- */
+.masar-footer {
+    background: var(--masar-navy);
+    color: rgba(255, 255, 255, 0.82);
+    padding: 3.5rem 0 1.5rem;
+}
+
+.masar-footer a {
+    color: rgba(255, 255, 255, 0.78);
+    text-decoration: none;
+}
+
+.masar-footer a:hover {
+    color: #fff;
+}
+
+.masar-footer__brand {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #fff;
+    margin: 0 0 1.5rem;
+}
+
+.masar-footer__grid {
+    display: grid;
+    gap: 1.75rem;
+}
+
+@media (min-width: 900px) {
+    .masar-footer__grid {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 1.25rem;
+    }
+}
+
+.masar-footer__col h3 {
+    margin: 0 0 0.85rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+    font-weight: 600;
+}
+
+.masar-footer__col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.45rem;
+}
+
+.masar-footer__bottom {
+    margin-top: 2.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Marketing site: hide ecommerce chrome when website_sale is installed */
+header .o_wsale_my_cart,
+#top .o_wsale_my_cart {
+    display: none !important;
+}
+
+/* Hide placeholder demo phone until a real number is configured */
+header a[href^="tel:+1"],
+#top a[href^="tel:+1"] {
+    display: none !important;
+}
+
+
+/* ---------- 2026 visual refinement ---------- */
+.masar-site {
+    background:
+        radial-gradient(circle at 85% 10%, rgba(255, 122, 0, 0.06), transparent 26rem),
+        var(--masar-cream);
+}
+
+.masar-hero {
+    min-height: 88vh;
+    align-items: center;
+    background:
+        linear-gradient(90deg, rgba(14, 27, 43, 0.74) 0%, rgba(14, 27, 43, 0.50) 46%, rgba(14, 27, 43, 0.16) 100%),
+        linear-gradient(180deg, rgba(14, 27, 43, 0.02) 0%, rgba(14, 27, 43, 0.36) 100%),
+        url("/masar_website/static/src/img/masar-hero-yemen.webp") center / cover no-repeat;
+}
+
+html[dir="rtl"] .masar-hero,
+html[lang^="ar"] .masar-hero {
+    background:
+        linear-gradient(270deg, rgba(14, 27, 43, 0.74) 0%, rgba(14, 27, 43, 0.50) 46%, rgba(14, 27, 43, 0.16) 100%),
+        linear-gradient(180deg, rgba(14, 27, 43, 0.02) 0%, rgba(14, 27, 43, 0.36) 100%),
+        url("/masar_website/static/src/img/masar-hero-yemen.webp") center / cover no-repeat;
+}
+
+.masar-hero__inner {
+    padding: 9rem 0 6rem;
+}
+
+.masar-hero__brand {
+    display: inline-flex;
+    width: auto;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.52rem 0.85rem;
+    margin: 0 0 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    text-shadow: none;
+}
+
+.masar-hero__brand::before {
+    content: "";
+    width: 0.48rem;
+    height: 0.48rem;
+    border-radius: 50%;
+    background: var(--masar-orange);
+    box-shadow: 0 0 0 0.3rem rgba(255, 122, 0, 0.15);
+}
+
+.masar-hero__title {
+    max-width: 12ch;
+    margin-bottom: 1.15rem;
+    font-size: 2.7rem;
+    font-weight: 700;
+    line-height: 1.06;
+    letter-spacing: -0.045em;
+    text-wrap: balance;
+}
+
+.masar-hero__lead {
+    max-width: 38rem;
+    font-size: 1.04rem;
+    line-height: 1.8;
+}
+
+@media (min-width: 768px) {
+    .masar-hero__brand {
+        font-size: 0.86rem;
+    }
+
+    .masar-hero__title {
+        font-size: 4.25rem;
+    }
+
+    .masar-hero__lead {
+        font-size: 1.15rem;
+    }
+}
+
+@media (min-width: 1100px) {
+    .masar-hero__title {
+        font-size: 5.25rem;
+        max-width: 11ch;
+    }
+}
+
+.masar-btn {
+    min-height: 3.2rem;
+    padding: 0.78rem 1.45rem;
+    border-radius: 0.85rem;
+}
+
+.masar-btn--primary {
+    box-shadow: 0 14px 34px rgba(255, 122, 0, 0.28);
+}
+
+.masar-section {
+    position: relative;
+}
+
+.masar-section--sand {
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0)),
+        var(--masar-sand);
+}
+
+.masar-kicker {
+    padding: 0.35rem 0.62rem;
+    border-radius: 999px;
+    background: rgba(255, 122, 0, 0.09);
+    letter-spacing: 0.08em;
+}
+
+.masar-title {
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+}
+
+@media (min-width: 900px) {
+    .masar-title {
+        font-size: 3rem;
+    }
+}
+
+.masar-copy {
+    font-size: 1.08rem;
+}
+
+.masar-services {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.masar-service {
+    display: block;
+    min-height: 100%;
+    padding: 1.5rem;
+    border: 1px solid var(--masar-line);
+    border-radius: 1.1rem;
+    background: rgba(255, 255, 255, 0.56);
+    box-shadow: 0 12px 34px rgba(22, 18, 14, 0.04);
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.masar-service:last-child {
+    border-bottom: 1px solid var(--masar-line);
+}
+
+.masar-service:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 122, 0, 0.32);
+    box-shadow: 0 18px 46px rgba(22, 18, 14, 0.08);
+}
+
+.masar-service__name {
+    margin-bottom: 0.7rem;
+    font-size: 1.28rem;
+}
+
+@media (min-width: 760px) {
+    .masar-services {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.masar-pillars {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.masar-pillars .masar-item {
+    min-height: 100%;
+    padding: 1.35rem;
+    border: 1px solid var(--masar-line);
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+@media (min-width: 700px) {
+    .masar-pillars {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1100px) {
+    .masar-pillars {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.masar-section--ink {
+    background:
+        radial-gradient(circle at 85% 20%, rgba(0, 210, 255, 0.14), transparent 22rem),
+        var(--masar-navy);
+}
+
+.masar-cta {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.masar-cta .masar-title {
+    font-size: 2.25rem;
+}
+
+@media (min-width: 900px) {
+    .masar-cta .masar-title {
+        font-size: 3.6rem;
+    }
+}
+
+.masar-footer {
+    background:
+        radial-gradient(circle at 10% 0%, rgba(0, 123, 255, 0.16), transparent 20rem),
+        var(--masar-navy);
+}
+
+/* Improve Odoo website header without replacing native structure. */
+header#top,
+header.o_header_standard {
+    border-bottom: 1px solid rgba(22, 18, 14, 0.08);
+}
+
+header#top .navbar,
+header.o_header_standard .navbar {
+    min-height: 4.5rem;
+}
+
+header#top .nav-link,
+header.o_header_standard .nav-link {
+    font-weight: 600;
+}
+
+@media (max-width: 767px) {
+    .masar-hero {
+        min-height: 82vh;
+        background-position: 58% center;
+    }
+
+    .masar-hero__inner {
+        width: calc(100% - 1.5rem);
+        padding: 7.5rem 0 4rem;
+    }
+
+    .masar-hero__title {
+        font-size: 2.65rem;
+        max-width: 13ch;
+    }
+
+    .masar-hero__lead {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .masar-hero__actions {
+        width: 100%;
+    }
+
+    .masar-hero__actions .masar-btn {
+        flex: 1 1 10rem;
+    }
+
+    .masar-wrap {
+        width: calc(100% - 1.5rem);
+    }
+
+    .masar-service {
+        padding: 1.2rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .masar-hero__glow,
+    .masar-hero__brand,
+    .masar-hero__title,
+    .masar-hero__lead,
+    .masar-hero__actions {
+        animation: none !important;
+    }
+
+    .masar-reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* ---------- Banner overlay: a little lighter so the photo reads ---------- */
+.masar-site .masar-banner__bg {
+    opacity: 0.68;
+}
+
+.masar-site .masar-banner__overlay,
+[dir="rtl"] .masar-site .masar-banner__overlay {
+    background: linear-gradient(
+        100deg,
+        rgba(14, 27, 43, 0.78) 0%,
+        rgba(14, 27, 43, 0.6) 42%,
+        rgba(14, 27, 43, 0.26) 70%,
+        rgba(14, 27, 43, 0.08) 100%
+    );
+}
+
+[dir="rtl"] .masar-site .masar-banner__overlay {
+    background: linear-gradient(
+        260deg,
+        rgba(14, 27, 43, 0.78) 0%,
+        rgba(14, 27, 43, 0.6) 42%,
+        rgba(14, 27, 43, 0.26) 70%,
+        rgba(14, 27, 43, 0.08) 100%
+    );
+}
+
+/* ---------- Section rhythm: quiet separators between bands ---------- */
+.masar-site > section + section {
+    box-shadow: inset 0 1px 0 rgba(14, 27, 43, 0.1);
+}
+
+.masar-site > section.masar-section:nth-of-type(odd):not(.masar-section--ink),
+.masar-site > section.masar-section-band--a,
+.masar-site > section.masar-section-band--c {
+    background: var(--masar-surface);
+}
+
+.masar-site > section.masar-section:nth-of-type(even):not(.masar-section--ink),
+.masar-site > section.masar-section--sand,
+.masar-site > section.masar-section-band--b,
+.masar-site > section.s_masar_solutions {
+    background: var(--masar-surface-alt);
+}
+
+.masar-site > section.masar-section--ink {
+    background:
+        radial-gradient(circle at 85% 20%, rgba(0, 210, 255, 0.14), transparent 22rem),
+        var(--masar-navy);
+}
+
+/* ---------- Core-page banners ---------- */
+.masar-hero.masar-hero--about,
+html[dir="rtl"] .masar-hero.masar-hero--about,
+html[lang^="ar"] .masar-hero.masar-hero--about {
+    min-height: 68vh;
+    align-items: flex-end;
+    background:
+        linear-gradient(90deg, rgba(14, 27, 43, 0.74) 0%, rgba(14, 27, 43, 0.5) 46%, rgba(14, 27, 43, 0.16) 100%),
+        linear-gradient(180deg, rgba(14, 27, 43, 0.02) 0%, rgba(14, 27, 43, 0.36) 100%),
+        url("/masar_website/static/src/img/banners/about.jpg") center / cover no-repeat;
+    --masar-hero-photo: url("/masar_website/static/src/img/banners/about.jpg");
+}
+
+.masar-hero.masar-hero--business,
+html[dir="rtl"] .masar-hero.masar-hero--business,
+html[lang^="ar"] .masar-hero.masar-hero--business {
+    background:
+        linear-gradient(90deg, rgba(14, 27, 43, 0.74) 0%, rgba(14, 27, 43, 0.5) 46%, rgba(14, 27, 43, 0.16) 100%),
+        linear-gradient(180deg, rgba(14, 27, 43, 0.02) 0%, rgba(14, 27, 43, 0.36) 100%),
+        url("/masar_website/static/src/img/banners/business.jpg") center / cover no-repeat;
+    --masar-hero-photo: url("/masar_website/static/src/img/banners/business.jpg");
+}
+
+.masar-hero.masar-hero--personal,
+html[dir="rtl"] .masar-hero.masar-hero--personal,
+html[lang^="ar"] .masar-hero.masar-hero--personal {
+    background:
+        linear-gradient(90deg, rgba(14, 27, 43, 0.74) 0%, rgba(14, 27, 43, 0.5) 46%, rgba(14, 27, 43, 0.16) 100%),
+        linear-gradient(180deg, rgba(14, 27, 43, 0.02) 0%, rgba(14, 27, 43, 0.36) 100%),
+        url("/masar_website/static/src/img/banners/personal.jpg") center / cover no-repeat;
+    --masar-hero-photo: url("/masar_website/static/src/img/banners/personal.jpg");
+}
+
+.masar-hero.masar-hero--institutions,
+html[dir="rtl"] .masar-hero.masar-hero--institutions,
+html[lang^="ar"] .masar-hero.masar-hero--institutions {
+    background:
+        linear-gradient(90deg, rgba(14, 27, 43, 0.74) 0%, rgba(14, 27, 43, 0.5) 46%, rgba(14, 27, 43, 0.16) 100%),
+        linear-gradient(180deg, rgba(14, 27, 43, 0.02) 0%, rgba(14, 27, 43, 0.36) 100%),
+        url("/masar_website/static/src/img/banners/institutions.jpg") center / cover no-repeat;
+    --masar-hero-photo: url("/masar_website/static/src/img/banners/institutions.jpg");
+}
+
+.masar-hero.masar-hero--developers,
+html[dir="rtl"] .masar-hero.masar-hero--developers,
+html[lang^="ar"] .masar-hero.masar-hero--developers {
+    background:
+        linear-gradient(90deg, rgba(14, 27, 43, 0.74) 0%, rgba(14, 27, 43, 0.5) 46%, rgba(14, 27, 43, 0.16) 100%),
+        linear-gradient(180deg, rgba(14, 27, 43, 0.02) 0%, rgba(14, 27, 43, 0.36) 100%),
+        url("/masar_website/static/src/img/banners/developers.jpg") center / cover no-repeat;
+    --masar-hero-photo: url("/masar_website/static/src/img/banners/developers.jpg");
+}
+
+.masar-hero.masar-hero--security,
+html[dir="rtl"] .masar-hero.masar-hero--security,
+html[lang^="ar"] .masar-hero.masar-hero--security {
+    background:
+        linear-gradient(90deg, rgba(14, 27, 43, 0.74) 0%, rgba(14, 27, 43, 0.5) 46%, rgba(14, 27, 43, 0.16) 100%),
+        linear-gradient(180deg, rgba(14, 27, 43, 0.02) 0%, rgba(14, 27, 43, 0.36) 100%),
+        url("/masar_website/static/src/img/banners/security.jpg") center / cover no-repeat;
+    --masar-hero-photo: url("/masar_website/static/src/img/banners/security.jpg");
+}
+
+.masar-hero.masar-hero--solutions,
+html[dir="rtl"] .masar-hero.masar-hero--solutions,
+html[lang^="ar"] .masar-hero.masar-hero--solutions {
+    background:
+        linear-gradient(90deg, rgba(14, 27, 43, 0.74) 0%, rgba(14, 27, 43, 0.5) 46%, rgba(14, 27, 43, 0.16) 100%),
+        linear-gradient(180deg, rgba(14, 27, 43, 0.02) 0%, rgba(14, 27, 43, 0.36) 100%),
+        url("/masar_website/static/src/img/banners/solutions.jpg") center / cover no-repeat;
+    --masar-hero-photo: url("/masar_website/static/src/img/banners/solutions.jpg");
+}
+
+.masar-hero.masar-hero--accounts,
+html[dir="rtl"] .masar-hero.masar-hero--accounts,
+html[lang^="ar"] .masar-hero.masar-hero--accounts {
+    background:
+        linear-gradient(90deg, rgba(14, 27, 43, 0.74) 0%, rgba(14, 27, 43, 0.5) 46%, rgba(14, 27, 43, 0.16) 100%),
+        linear-gradient(180deg, rgba(14, 27, 43, 0.02) 0%, rgba(14, 27, 43, 0.36) 100%),
+        url("/masar_website/static/src/img/solutions/accounts.jpg") center / cover no-repeat;
+    --masar-hero-photo: url("/masar_website/static/src/img/solutions/accounts.jpg");
+}
+
+.masar-hero.masar-hero--pos,
+html[dir="rtl"] .masar-hero.masar-hero--pos,
+html[lang^="ar"] .masar-hero.masar-hero--pos {
+    background:
+        linear-gradient(90deg, rgba(14, 27, 43, 0.74) 0%, rgba(14, 27, 43, 0.5) 46%, rgba(14, 27, 43, 0.16) 100%),
+        linear-gradient(180deg, rgba(14, 27, 43, 0.02) 0%, rgba(14, 27, 43, 0.36) 100%),
+        url("/masar_website/static/src/img/solutions/pos.jpg") center / cover no-repeat;
+    --masar-hero-photo: url("/masar_website/static/src/img/solutions/pos.jpg");
+}
+
+.masar-hero.masar-hero--gateway,
+html[dir="rtl"] .masar-hero.masar-hero--gateway,
+html[lang^="ar"] .masar-hero.masar-hero--gateway {
+    background:
+        linear-gradient(90deg, rgba(14, 27, 43, 0.74) 0%, rgba(14, 27, 43, 0.5) 46%, rgba(14, 27, 43, 0.16) 100%),
+        linear-gradient(180deg, rgba(14, 27, 43, 0.02) 0%, rgba(14, 27, 43, 0.36) 100%),
+        url("/masar_website/static/src/img/solutions/gateway.jpg") center / cover no-repeat;
+    --masar-hero-photo: url("/masar_website/static/src/img/solutions/gateway.jpg");
+}
+
+.masar-hero.masar-hero--payouts,
+html[dir="rtl"] .masar-hero.masar-hero--payouts,
+html[lang^="ar"] .masar-hero.masar-hero--payouts {
+    background:
+        linear-gradient(90deg, rgba(14, 27, 43, 0.74) 0%, rgba(14, 27, 43, 0.5) 46%, rgba(14, 27, 43, 0.16) 100%),
+        linear-gradient(180deg, rgba(14, 27, 43, 0.02) 0%, rgba(14, 27, 43, 0.36) 100%),
+        url("/masar_website/static/src/img/solutions/payouts.jpg") center / cover no-repeat;
+    --masar-hero-photo: url("/masar_website/static/src/img/solutions/payouts.jpg");
+}
+
+.masar-hero.masar-hero--bills,
+html[dir="rtl"] .masar-hero.masar-hero--bills,
+html[lang^="ar"] .masar-hero.masar-hero--bills {
+    background:
+        linear-gradient(90deg, rgba(14, 27, 43, 0.74) 0%, rgba(14, 27, 43, 0.5) 46%, rgba(14, 27, 43, 0.16) 100%),
+        linear-gradient(180deg, rgba(14, 27, 43, 0.02) 0%, rgba(14, 27, 43, 0.36) 100%),
+        url("/masar_website/static/src/img/solutions/bills.jpg") center / cover no-repeat;
+    --masar-hero-photo: url("/masar_website/static/src/img/solutions/bills.jpg");
+}
+
+.masar-hero.masar-hero--atm,
+html[dir="rtl"] .masar-hero.masar-hero--atm,
+html[lang^="ar"] .masar-hero.masar-hero--atm {
+    background:
+        linear-gradient(90deg, rgba(14, 27, 43, 0.74) 0%, rgba(14, 27, 43, 0.5) 46%, rgba(14, 27, 43, 0.16) 100%),
+        linear-gradient(180deg, rgba(14, 27, 43, 0.02) 0%, rgba(14, 27, 43, 0.36) 100%),
+        url("/masar_website/static/src/img/solutions/atm.jpg") center / cover no-repeat;
+    --masar-hero-photo: url("/masar_website/static/src/img/solutions/atm.jpg");
+}
+
+.masar-site .masar-hero.masar-hero--about,
+.masar-site .masar-hero.masar-hero--business,
+.masar-site .masar-hero.masar-hero--personal,
+.masar-site .masar-hero.masar-hero--institutions,
+.masar-site .masar-hero.masar-hero--developers,
+.masar-site .masar-hero.masar-hero--security,
+.masar-site .masar-hero.masar-hero--solutions,
+.masar-site .masar-hero.masar-hero--accounts,
+.masar-site .masar-hero.masar-hero--pos,
+.masar-site .masar-hero.masar-hero--gateway,
+.masar-site .masar-hero.masar-hero--payouts,
+.masar-site .masar-hero.masar-hero--bills,
+.masar-site .masar-hero.masar-hero--atm {
+    min-height: 62vh;
+}
+
+.masar-site.masar-editorial .masar-hero.masar-hero--about .masar-hero__inner,
+.masar-site.masar-editorial .masar-hero.masar-hero--business .masar-hero__inner,
+.masar-site.masar-editorial .masar-hero.masar-hero--personal .masar-hero__inner,
+.masar-site.masar-editorial .masar-hero.masar-hero--institutions .masar-hero__inner,
+.masar-site.masar-editorial .masar-hero.masar-hero--developers .masar-hero__inner,
+.masar-site.masar-editorial .masar-hero.masar-hero--security .masar-hero__inner,
+.masar-site.masar-editorial .masar-hero.masar-hero--solutions .masar-hero__inner,
+.masar-site.masar-editorial .masar-hero.masar-hero--accounts .masar-hero__inner,
+.masar-site.masar-editorial .masar-hero.masar-hero--pos .masar-hero__inner,
+.masar-site.masar-editorial .masar-hero.masar-hero--gateway .masar-hero__inner,
+.masar-site.masar-editorial .masar-hero.masar-hero--payouts .masar-hero__inner,
+.masar-site.masar-editorial .masar-hero.masar-hero--bills .masar-hero__inner,
+.masar-site.masar-editorial .masar-hero.masar-hero--atm .masar-hero__inner {
+    padding: 7rem 0 4.25rem;
+}
+
+/* ---------- Quiet visual detail on core pages ---------- */
+.masar-highlights {
+    position: relative;
+    z-index: 2;
+    margin-top: -2.2rem;
+    padding-bottom: 0.5rem;
+}
+
+.masar-highlights__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+}
+
+.masar-highlight {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--masar-line);
+    border-radius: 0.95rem;
+    background: var(--masar-white);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+}
+
+.masar-highlight span {
+    color: var(--masar-orange);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.masar-highlight b {
+    color: var(--masar-navy);
+    font-weight: 600;
+}
+
+.masar-site .masar-values > div {
+    padding: 1.15rem 1.1rem 1.25rem;
+    border: 1px solid var(--masar-line);
+    border-radius: 1rem;
+    background: var(--masar-white);
+}
+
+.masar-site .masar-editorial-card,
+.masar-site #solutionsRegion .s_card {
+    border-color: var(--masar-line) !important;
+}
+
+.masar-site .o_card_img {
+    object-fit: cover;
+}
+
+.masar-site .o_card_img_wrapper {
+    background: var(--masar-surface-alt);
+}
+
+.masar-service .o_card_img_wrapper {
+    margin: 0 0 1rem;
+    border-radius: 0.85rem;
+    overflow: hidden;
+}
+
+@media (min-width: 800px) {
+    .masar-highlights__grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+html[dir="rtl"] .masar-hero.masar-hero--about,
+html[lang^="ar"] .masar-hero.masar-hero--about,
+html[dir="rtl"] .masar-hero.masar-hero--business,
+html[lang^="ar"] .masar-hero.masar-hero--business,
+html[dir="rtl"] .masar-hero.masar-hero--personal,
+html[lang^="ar"] .masar-hero.masar-hero--personal,
+html[dir="rtl"] .masar-hero.masar-hero--institutions,
+html[lang^="ar"] .masar-hero.masar-hero--institutions,
+html[dir="rtl"] .masar-hero.masar-hero--developers,
+html[lang^="ar"] .masar-hero.masar-hero--developers,
+html[dir="rtl"] .masar-hero.masar-hero--security,
+html[lang^="ar"] .masar-hero.masar-hero--security,
+html[dir="rtl"] .masar-hero.masar-hero--solutions,
+html[lang^="ar"] .masar-hero.masar-hero--solutions,
+html[dir="rtl"] .masar-hero.masar-hero--accounts,
+html[lang^="ar"] .masar-hero.masar-hero--accounts,
+html[dir="rtl"] .masar-hero.masar-hero--pos,
+html[lang^="ar"] .masar-hero.masar-hero--pos,
+html[dir="rtl"] .masar-hero.masar-hero--gateway,
+html[lang^="ar"] .masar-hero.masar-hero--gateway,
+html[dir="rtl"] .masar-hero.masar-hero--payouts,
+html[lang^="ar"] .masar-hero.masar-hero--payouts,
+html[dir="rtl"] .masar-hero.masar-hero--bills,
+html[lang^="ar"] .masar-hero.masar-hero--bills,
+html[dir="rtl"] .masar-hero.masar-hero--atm,
+html[lang^="ar"] .masar-hero.masar-hero--atm {
+    background-image:
+        linear-gradient(270deg, rgba(14, 27, 43, 0.74) 0%, rgba(14, 27, 43, 0.5) 46%, rgba(14, 27, 43, 0.16) 100%),
+        linear-gradient(180deg, rgba(14, 27, 43, 0.02) 0%, rgba(14, 27, 43, 0.36) 100%),
+        var(--masar-hero-photo);
+}
+
+/* ---------- Brand roles: links, forms, success. Orange stays on CTAs. ---------- */
+.masar-site a:not(.masar-btn):not(.btn) {
+    color: var(--masar-blue);
+}
+
+.masar-site a:not(.masar-btn):not(.btn):hover {
+    color: var(--masar-navy);
+}
+
+.masar-footer a,
+.masar-section--ink a:not(.masar-btn),
+.masar-hero a:not(.masar-btn) {
+    color: rgba(255, 255, 255, 0.84);
+}
+
+.masar-footer a:hover,
+.masar-section--ink a:not(.masar-btn):hover,
+.masar-hero a:not(.masar-btn):hover {
+    color: var(--masar-white);
+}
+
+#developers .masar-kicker,
+.masar-site .fa,
+.masar-site .oi {
+    color: var(--masar-blue);
+}
+
+.masar-site .masar-kicker {
+    color: var(--masar-orange);
+}
+
+.masar-site input:focus,
+.masar-site select:focus,
+.masar-site textarea:focus {
+    border-color: var(--masar-blue);
+    outline-color: var(--masar-blue);
+}
+
+.masar-site .text-success,
+.masar-site .alert-success {
+    color: var(--masar-green);
+}
+
+.masar-site .s_masar_solutions,
+.masar-site .masar-solution-card__title,
+.masar-site .s_masar_solutions .masar-lead {
+    color: var(--masar-navy);
+}
+
+.masar-site .masar-solution-card {
+    background: var(--masar-white);
+    border-color: var(--masar-line);
+}
+
+
+/* ---------- Global quality layer: accessibility, performance and brand consistency ---------- */
+:root {
+    --masar-blue-950: #03264a;
+    --masar-blue-900: #053b72;
+    --masar-blue-700: #0068b5;
+    --masar-cyan-500: #16b9e8;
+    --masar-orange-500: #ff7a2f;
+    --masar-surface: #ffffff;
+    --masar-focus: #ff9b54;
+    --masar-radius-sm: .75rem;
+    --masar-radius-md: 1rem;
+    --masar-shadow-card: 0 12px 32px rgba(3, 38, 74, .10);
+}
+
+html {
+    scroll-behavior: smooth;
+    text-size-adjust: 100%;
+}
+
+body {
+    color: var(--masar-blue-950);
+    text-rendering: optimizeLegibility;
+}
+
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline: 3px solid var(--masar-focus) !important;
+    outline-offset: 3px;
+    border-radius: .35rem;
+}
+
+.masar-hero {
+    background-image:
+        linear-gradient(90deg, rgba(3, 38, 74, .96) 0%, rgba(3, 59, 114, .76) 47%, rgba(3, 38, 74, .34) 100%),
+        url("/masar_website/static/src/img/masar-hero-yemen.webp");
+    background-position: center;
+    background-size: cover;
+}
+
+html[dir="rtl"] .masar-hero,
+html[lang^="ar"] .masar-hero {
+    background-image:
+        linear-gradient(270deg, rgba(3, 38, 74, .96) 0%, rgba(3, 59, 114, .76) 47%, rgba(3, 38, 74, .34) 100%),
+        url("/masar_website/static/src/img/masar-hero-yemen.webp");
+}
+
+.masar-btn,
+.masar-card,
+.masar-offer-card {
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+@media (hover: hover) {
+    .masar-btn:hover {
+        transform: translateY(-2px);
+    }
+
+    .masar-card:hover,
+    .masar-offer-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--masar-shadow-card);
+    }
+}
+
+@media (max-width: 767.98px) {
+    .masar-hero {
+        min-height: auto;
+        background-position: 62% center;
+    }
+
+    html[dir="rtl"] .masar-hero,
+    html[lang^="ar"] .masar-hero {
+        background-position: 38% center;
+    }
+
+    .masar-hero__actions .masar-btn {
+        min-height: 48px;
+    }
+
+    header#top .navbar .btn,
+    header.o_header_standard .navbar .btn {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+
+/* Neutralize legacy editor text substitutions now that copy is source-controlled. */
+html body .masar-lockup__tagline {
+    font-size: .6875rem !important;
+}
+
+html body .masar-lockup__tagline::after,
+html body .masar-hero__copy::before,
+html body .masar-footer__link::after {
+    content: none !important;
+    display: none !important;
+}
+
+html body .masar-footer__link,
+html body .masar-footer__link > * {
+    font-size: .875rem !important;
+}

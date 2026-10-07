@@ -1,0 +1,264 @@
+// MASAR Pay — /web/login only (scoped). Does not restyle public website pages.
+// Selectors use `html body:has(...)` to beat masar_website's
+// `html body #wrapwrap { background: #fff !important }` (loaded after assets).
+
+$o-login-card-width: 28rem;
+
+$masar-login-bg: url("/masar_theme/static/src/img/masar-workspace-desktop.webp");
+
+// A single background layer avoids different crops behind the card and page.
+// :has is limited to Odoo's authentication container (login/signup/reset).
+html body:has(.oe_website_login_container) {
+    min-height: 100vh;
+    min-height: 100svh;
+    // Auth card stays LTR even after a public /ar visit.
+    direction: ltr #{'/*rtl:ignore*/'};
+    background: $masar-navy !important;
+
+    #wrapwrap {
+        min-height: 100vh;
+        min-height: 100svh;
+        background-color: $masar-navy !important;
+        background-image: $masar-login-bg !important;
+        background-repeat: no-repeat !important;
+        background-position: center !important;
+        background-size: cover !important;
+        background-attachment: scroll !important;
+        overflow-x: clip;
+    }
+
+    #wrapwrap > main {
+        box-sizing: border-box;
+        margin: 0 !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        min-height: 100svh;
+        padding: clamp(1rem, 4vh, 3rem) clamp(1rem, 5vw, 5rem);
+        background: transparent !important;
+    }
+
+    #wrapwrap > header,
+    #wrapwrap > footer,
+    #wrapwrap .o_footer,
+    #wrapwrap #o_shared_blocks,
+    .o_livechat_button {
+        display: none !important;
+    }
+}
+
+// Single clean login card (brand + form)
+.oe_website_login_container {
+    box-sizing: border-box;
+    flex: 0 1 $o-login-card-width;
+    width: 100%;
+    max-width: $o-login-card-width;
+    margin: 0 !important;
+    padding: 1.75rem 1.6rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: $masar-radius-lg;
+    background: $masar-white;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.28);
+}
+
+.masar-login-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.45rem;
+    margin-bottom: 1.25rem;
+    text-align: center;
+    direction: ltr #{'/*rtl:ignore*/'};
+    unicode-bidi: isolate;
+
+    img {
+        width: 72px;
+        height: 72px;
+        object-fit: contain;
+        border-radius: 18px;
+        box-shadow: 0 10px 28px rgba(7, 31, 61, 0.22);
+        background: $masar-white;
+    }
+
+    .masar-login-brand-title {
+        margin: 0;
+        font-size: 1.35rem;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        color: $masar-navy;
+
+        .masar-login-pay {
+            color: $masar-orange;
+        }
+    }
+
+    .masar-login-brand-tagline {
+        margin: 0;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: $masar-text-soft;
+    }
+}
+
+.oe_website_login_container {
+    .o_database_list,
+    .oe_login_form,
+    .oe_signup_form,
+    .oe_reset_password_form,
+    .o_login_form {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        backdrop-filter: none;
+
+        .form-control {
+            min-height: 3.2rem;
+            border-radius: $masar-radius;
+            border-color: rgba(7, 31, 61, 0.16);
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .form-control:focus {
+            border-color: $masar-blue;
+            box-shadow: 0 0 0 0.2rem rgba(7, 31, 61, 0.16);
+        }
+
+        .form-label {
+            color: $masar-navy;
+            font-weight: 600;
+        }
+
+        .input-group {
+            .form-control {
+                border-start-end-radius: 0;
+                border-end-end-radius: 0;
+            }
+
+            .o_show_password {
+                min-height: 3.2rem;
+                border-start-start-radius: 0;
+                border-end-start-radius: 0;
+                border-start-end-radius: $masar-radius;
+                border-end-end-radius: $masar-radius;
+            }
+        }
+
+        .oe_login_buttons .btn-primary,
+        .btn-primary {
+            min-height: 3.2rem;
+            border: 0;
+            border-radius: $masar-radius;
+            background: $masar-orange !important;
+            box-shadow: 0 0.55rem 1.4rem rgba(255, 106, 0, 0.16);
+            font-weight: 700;
+            color: $masar-navy !important;
+        }
+
+        .oe_login_buttons .btn-primary:hover,
+        .btn-primary:hover {
+            background: $masar-orange-deep !important;
+        }
+
+        a,
+        a.btn-link {
+            color: $masar-navy;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .o_login_auth,
+        .passkey_login_link,
+        a.passkey_login_link,
+        .masar-faceid-field-btn,
+        .masar-login-faceid-group .masar-faceid-field-btn,
+        a[href*="/web/signup"] {
+            display: none !important;
+        }
+    }
+
+    // Signup leftover can sit beside the form, not inside oe_login_form.
+    a[href*="/web/signup"],
+    .oe_signup_form {
+        display: none !important;
+    }
+}
+
+@media (max-width: 767.98px) {
+    html body:has(.oe_website_login_container) {
+        #wrapwrap {
+            background-image: url("/masar_theme/static/src/img/masar-workspace-mobile.webp") !important;
+            background-position: center !important;
+        }
+
+        #wrapwrap > main {
+            // Natural vertical flow remains reachable with the software keyboard.
+            align-items: flex-start;
+            justify-content: center;
+            padding: #{'max(1rem, env(safe-area-inset-top))'} 1rem
+                #{'max(1rem, env(safe-area-inset-bottom))'};
+        }
+    }
+
+    .oe_website_login_container {
+        flex: 0 1 28rem;
+        margin: clamp(0rem, 4vh, 2rem) 0 !important;
+        padding: 1.25rem;
+        border-radius: 1rem;
+    }
+
+    .masar-login-brand {
+        margin-bottom: 1rem;
+
+        img {
+            width: 60px;
+            height: 60px;
+        }
+    }
+}
+
+@media (max-height: 600px) and (min-width: 768px) {
+    html body:has(.oe_website_login_container) #wrapwrap > main {
+        align-items: flex-start;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .oe_login_form *,
+    .oe_signup_form *,
+    .oe_reset_password_form *,
+    .o_login_form *,
+    .o_database_list *,
+    .oe_website_login_container * {
+        scroll-behavior: auto !important;
+        transition: none !important;
+    }
+}
+
+
+// Authentication fields remain comfortable with iOS zoom and keyboard.
+html body:has(.oe_website_login_container) .oe_website_login_container {
+    .form-control { font-size: 1rem; color: $masar-navy; }
+    .alert { text-align: start; overflow-wrap: anywhere; }
+    .o_show_password { min-width: 44px; color: $masar-navy; }
+    .o_caps_lock_warning > .d-flex {
+        gap: 0.75rem;
+        .form-label { flex-shrink: 0; white-space: nowrap; }
+        .btn-link {
+            padding-inline: 0;
+            font-size: 0.8125rem;
+            text-align: end;
+        }
+    }
+    .btn:focus-visible, a:focus-visible {
+        outline: 2px solid $masar-navy;
+        outline-offset: 3px;
+    }
+}

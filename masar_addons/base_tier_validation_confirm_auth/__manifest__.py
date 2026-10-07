@@ -1,0 +1,11 @@
+{'application': False,
+ 'author': 'ForgeFlow, Odoo Community Association (OCA)',
+ 'category': 'Tools',
+ 'data': ['views/tier_definition_view.xml'],
+ 'depends': ['base_tier_validation'],
+ 'installable': True,
+ 'license': 'AGPL-3',
+ 'name': 'Base Tier Validation Confirm Auth',
+ 'summary': 'Authentication confirmation for base tiers.',
+ 'version': '20.0.1.0.0',
+ 'website': 'https://github.com/OCA/tier-validation'}

@@ -1,0 +1,10 @@
+{'author': 'Tecnativa, Odoo Community Association (OCA)',
+ 'category': 'Accounting & Finance',
+ 'data': ['security/ir.access.csv', 'wizards/account_move_make_netting_view.xml'],
+ 'depends': ['account'],
+ 'installable': True,
+ 'license': 'AGPL-3',
+ 'name': 'Account netting',
+ 'summary': 'Compensate AR/AP accounts from the same partner',
+ 'version': '20.0.1.0.0',
+ 'website': 'https://github.com/OCA/account-financial-tools'}

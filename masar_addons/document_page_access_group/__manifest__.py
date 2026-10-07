@@ -1,0 +1,11 @@
+{'application': False,
+ 'author': 'Sygel, Creu Blanca, Odoo Community Association (OCA)',
+ 'category': 'document_knowledge',
+ 'data': ['security/ir.access.csv', 'views/document_page.xml'],
+ 'depends': ['document_page', 'document_knowledge'],
+ 'installable': True,
+ 'license': 'AGPL-3',
+ 'name': 'Document Page Access Group',
+ 'summary': 'Choose groups to access document pages',
+ 'version': '20.0.1.0.0',
+ 'website': 'https://github.com/OCA/knowledge'}

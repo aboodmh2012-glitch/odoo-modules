@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="portal_fsm_orders" model="portal.entry">
+        <field name="name">FSM Orders</field>
+        <field name="description">View your fieldservice orders</field>
+        <field name="url">/my/fsm_orders</field>
+        <field name="image" type="bytes" file="fieldservice_portal/static/src/img/fsmorder.svg"/>
+        <field name="placeholder_count">fsm_order_count</field>
+        <field name="category">common_category</field>
+        <field name="sequence" eval="90"/>
+    </record>
+</odoo>

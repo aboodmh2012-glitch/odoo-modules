@@ -2,7 +2,7 @@
 import { registry } from "@web/core/registry";
 import { user } from "@web/core/user";
 import { loadJS } from "@web/core/assets";
-import { reactive } from "@odoo/owl";
+import { proxy } from "@odoo/owl";
 
 // Service porteur de l'UA JsSIP. Il DOIT être un service (pas un composant) :
 // l'enregistrement SIP doit survivre à la fermeture du panneau, sinon on cesse
@@ -15,7 +15,7 @@ export const softphoneService = {
     dependencies: ["orm", "notification"],
     start(env, { orm, notification }) {
         // État réactif partagé avec la barre système et le panneau.
-        const state = reactive({
+        const state = proxy({
             available: false,   // membre du groupe + poste configuré
             status: "off",      // off | connecting | registered | failed
             inCall: false,

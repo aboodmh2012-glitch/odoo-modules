@@ -1,0 +1,26 @@
+Copyright (c) 2026 Les services de consultation Blue Fox, Inc.
+Copyright 2026 MASAR
+
+Upstream Blue Fox ``bf_corporate_governance`` was published under LGPL-3.
+The MASAR port depends on AGPL-3 modules (``document_page``,
+``knowledge_control``). Per ADR-8 / docs/THIRD_PARTY_NOTICES.md, the
+installable MASAR module is distributed under the GNU Affero General Public
+License version 3 (or later).
+
+Blue Fox copyright is retained. LGPL-3 permits conveying combined/derived
+works under AGPL-compatible terms when the dependency graph requires it.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+Full license text: https://www.gnu.org/licenses/agpl-3.0.en.html

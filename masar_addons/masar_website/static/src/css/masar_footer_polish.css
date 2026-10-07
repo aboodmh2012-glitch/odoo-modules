@@ -1,0 +1,159 @@
+/* MASAR shared footer: clear hierarchy, fluid newsletter, and native accordions. */
+html body #wrapwrap #footer.masar-footer{
+  background:#021d3e!important;color:#fff!important;padding:44px 0 20px!important;
+  border-top:1px solid rgba(255,255,255,.12);text-align:start!important;
+}
+html body #wrapwrap #footer .masar-wrap{
+  width:calc(100% - 48px)!important;max-width:1232px!important;padding-inline:0!important;
+  margin-inline:auto!important;box-sizing:border-box;
+}
+html body #wrapwrap #footer .masar-footer__top{
+  display:grid!important;grid-template-columns:minmax(200px,1fr) minmax(0,560px)!important;
+  gap:32px!important;align-items:center;justify-items:stretch!important;
+}
+html body #wrapwrap #footer .masar-footer__brand{
+  grid-column:1;grid-row:1;width:100%!important;min-width:0;margin:0!important;
+  align-items:flex-start!important;text-align:start!important;
+}
+html body #wrapwrap #footer .masar-lockup{width:220px!important;max-width:100%!important}
+html body #wrapwrap #footer .masar-footer__grid{
+  grid-column:1/-1;grid-row:2;display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  width:100%;min-width:0;gap:24px!important;justify-items:stretch!important;
+  border-top:1px solid rgba(255,255,255,.13);padding-block:28px 4px;
+}
+html body #wrapwrap #footer .masar-footer__col{width:100%!important;min-width:0;max-width:none;text-align:start!important}
+html body #wrapwrap #footer .masar-footer__title{font-size:.975rem!important;margin:0!important;letter-spacing:0!important}
+html body #wrapwrap #footer .masar-footer__toggle{
+  justify-content:space-between!important;text-align:start!important;margin:0 0 10px!important;
+  color:#fff!important;min-height:32px;font-size:inherit;line-height:1.5;
+}
+html body #wrapwrap #footer .masar-footer__links{gap:2px!important;justify-items:stretch!important}
+html body #wrapwrap #footer .masar-footer__link{
+  color:#c6d1df!important;line-height:1.65!important;white-space:normal!important;min-height:36px;
+}
+html body #wrapwrap #footer :is(.masar-footer__link,.masar-footer__legal-link):hover{color:#ff8b4f!important}
+html body #wrapwrap #footer .masar-footer__tools{
+  grid-column:2;grid-row:1;display:grid!important;grid-template-columns:minmax(0,1fr) auto;
+  align-items:end;gap:18px!important;width:100%!important;min-width:0;
+  margin:0!important;padding:0!important;border:0!important;
+}
+html body #wrapwrap #footer .masar-newsletter{
+  order:-1;display:block!important;width:100%!important;max-width:none!important;min-width:0;text-align:start!important;
+}
+html body #wrapwrap #footer .masar-newsletter__label{
+  position:static!important;width:auto!important;height:auto!important;clip:auto!important;overflow:visible!important;
+  white-space:normal!important;margin:0 0 10px!important;font-size:.95rem!important;line-height:1.5;
+}
+html body #wrapwrap #footer :is(.masar-newsletter__main,.masar-newsletter__form){width:100%!important;max-width:none!important;min-width:0!important;margin:0!important}
+html body #wrapwrap #footer .masar-newsletter__row{
+  display:grid!important;grid-template-columns:minmax(0,1fr) auto;width:100%!important;min-width:0!important;
+  box-sizing:border-box;padding:4px!important;gap:4px!important;border:1px solid rgba(255,255,255,.18)!important;
+  background:#fff!important;border-radius:12px!important;box-shadow:none!important;
+}
+html body #wrapwrap #footer .masar-newsletter__input{
+  width:100%!important;max-width:100%!important;min-width:0!important;min-height:44px!important;
+  font-size:16px!important;line-height:1.5;margin:0!important;padding:8px 10px!important;box-sizing:border-box;
+  border:0!important;border-radius:8px!important;background:#fff!important;color:#042b59!important;
+}
+html body #wrapwrap #footer .masar-newsletter__row .masar-btn{
+  width:auto!important;min-height:44px!important;padding:0 16px!important;border-radius:8px!important;
+  background:#ff6b1a!important;color:#021d3e!important;box-shadow:none!important;transform:none!important;
+  font-size:.9rem!important;white-space:nowrap!important;
+}
+html body #wrapwrap footer .masar-footer .masar-lang__menu a.masar-lang__option{color:#042B59!important}
+html body #wrapwrap footer .masar-footer .masar-lang__menu a.masar-lang__option:hover,
+html body #wrapwrap footer .masar-footer .masar-lang__menu a.masar-lang__option:focus,
+html body #wrapwrap footer .masar-footer .masar-lang__menu a.masar-lang__option:focus-visible{color:#FF6B1A!important}
+html body #wrapwrap #footer .masar-lang{min-width:0;justify-self:start}
+html body #wrapwrap #footer .masar-lang__toggle{
+  min-width:64px;min-height:52px;padding:10px 12px!important;border:1px solid rgba(255,255,255,.2)!important;border-radius:10px;
+}
+/* Show official social links only. Placeholder logos are not navigation or proof of a partnership. */
+html body #wrapwrap #footer .masar-footer__payrow,
+html body #wrapwrap #footer span.masar-social__link{display:none!important}
+html body #wrapwrap #footer .masar-footer__partners{display:none!important}
+html body #wrapwrap #footer .masar-footer__partners:has(a.masar-social__link[href]:not([href='']):not([href='#'])){
+  display:flex!important;border:0!important;margin-top:20px!important;padding:0!important;
+}
+html body #wrapwrap #footer a.masar-social__link{
+  display:inline-flex!important;align-items:center;justify-content:center;
+  width:44px!important;height:44px!important;border:1px solid rgba(255,255,255,.22)!important;border-radius:10px!important;
+  color:#fff!important;background:transparent;text-decoration:none!important;
+  transition:color .22s ease,background-color .22s ease,border-color .22s ease,transform .22s ease,box-shadow .22s ease;
+}
+html body #wrapwrap #footer a.masar-social__link .masar-icon{
+  width:1.2rem;height:1.2rem;display:block;flex:none;color:currentColor;
+}
+html body #wrapwrap #footer a.masar-social__link i.fa{
+  display:block;width:1.2rem;height:1.2rem;font-size:0!important;line-height:0;color:transparent;
+  background-color:currentColor;-webkit-mask:center/contain no-repeat;mask:center/contain no-repeat;
+}
+html body #wrapwrap #footer a.masar-social__link[href*="facebook"] i.fa{
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H9v3h2v7h3v-7h2.5l.5-3H14V9z'/%3E%3C/svg%3E");
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H9v3h2v7h3v-7h2.5l.5-3H14V9z'/%3E%3C/svg%3E");
+}
+html body #wrapwrap #footer a.masar-social__link[href*="instagram"] i.fa{
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm10 2H7a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm-5 3.2A3.8 3.8 0 1 1 8.2 12 3.8 3.8 0 0 1 12 8.2zm0 2A1.8 1.8 0 1 0 13.8 12 1.8 1.8 0 0 0 12 10.2zM17.2 6.6a1 1 0 1 1-1 1 1 1 0 0 1 1-1z'/%3E%3C/svg%3E");
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm10 2H7a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm-5 3.2A3.8 3.8 0 1 1 8.2 12 3.8 3.8 0 0 1 12 8.2zm0 2A1.8 1.8 0 1 0 13.8 12 1.8 1.8 0 0 0 12 10.2zM17.2 6.6a1 1 0 1 1-1 1 1 1 0 0 1 1-1z'/%3E%3C/svg%3E");
+}
+html body #wrapwrap #footer a.masar-social__link[href*="x.com"] i.fa,
+html body #wrapwrap #footer a.masar-social__link[href*="twitter"] i.fa{
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M4 4h4.6l3.8 5.3L16.9 4H21l-6.4 8 6.8 8h-4.6l-4.2-5.8L7.2 20H4l6.7-8.2z'/%3E%3C/svg%3E");
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M4 4h4.6l3.8 5.3L16.9 4H21l-6.4 8 6.8 8h-4.6l-4.2-5.8L7.2 20H4l6.7-8.2z'/%3E%3C/svg%3E");
+}
+html body #wrapwrap #footer a.masar-social__link[href*="youtube"] i.fa{
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M23 8.2a3.6 3.6 0 0 0-2.5-2.6C18.6 5.1 12 5.1 12 5.1s-6.6 0-8.5.5A3.6 3.6 0 0 0 1 8.2 37 37 0 0 0 1 12a37 37 0 0 0 .5 3.8 3.6 3.6 0 0 0 2.5 2.6c1.9.5 8.5.5 8.5.5s6.6 0 8.5-.5a3.6 3.6 0 0 0 2.5-2.6A37 37 0 0 0 23 12a37 37 0 0 0 0-3.8zM9.8 15.2v-6.4L16 12z'/%3E%3C/svg%3E");
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M23 8.2a3.6 3.6 0 0 0-2.5-2.6C18.6 5.1 12 5.1 12 5.1s-6.6 0-8.5.5A3.6 3.6 0 0 0 1 8.2 37 37 0 0 0 1 12a37 37 0 0 0 .5 3.8 3.6 3.6 0 0 0 2.5 2.6c1.9.5 8.5.5 8.5.5s6.6 0 8.5-.5a3.6 3.6 0 0 0 2.5-2.6A37 37 0 0 0 23 12a37 37 0 0 0 0-3.8zM9.8 15.2v-6.4L16 12z'/%3E%3C/svg%3E");
+}
+html body #wrapwrap #footer a.masar-social__link:hover,
+html body #wrapwrap #footer a.masar-social__link:focus-visible{
+  color:#FF6B1A!important;border-color:#FF6B1A!important;background:rgba(255,107,26,.14)!important;
+  transform:translateY(-3px);box-shadow:0 12px 22px rgba(0,0,0,.32);
+}
+html body #wrapwrap #footer a.masar-social__link:hover .masar-icon,
+html body #wrapwrap #footer a.masar-social__link:focus-visible .masar-icon,
+html body #wrapwrap #footer a.masar-social__link:hover i.fa,
+html body #wrapwrap #footer a.masar-social__link:focus-visible i.fa{color:#FF6B1A!important;transform:scale(1.08)}
+@media(prefers-reduced-motion:reduce){
+  html body #wrapwrap #footer a.masar-social__link,
+  html body #wrapwrap #footer a.masar-social__link .masar-icon,
+  html body #wrapwrap #footer a.masar-social__link i.fa{transition:none}
+  html body #wrapwrap #footer a.masar-social__link:hover,
+  html body #wrapwrap #footer a.masar-social__link:focus-visible,
+  html body #wrapwrap #footer a.masar-social__link:hover .masar-icon,
+  html body #wrapwrap #footer a.masar-social__link:focus-visible .masar-icon,
+  html body #wrapwrap #footer a.masar-social__link:hover i.fa,
+  html body #wrapwrap #footer a.masar-social__link:focus-visible i.fa{transform:none}
+}
+html body #wrapwrap #footer .masar-footer__bottom{
+  display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:space-between!important;
+  gap:16px!important;margin-top:28px!important;padding-top:20px!important;border-color:rgba(255,255,255,.13)!important;text-align:start!important;
+}
+html body #wrapwrap #footer .masar-footer__legal{flex-wrap:wrap;justify-content:flex-start!important;font-size:.8rem!important;line-height:1.6;gap:4px!important}
+html body #wrapwrap #footer .masar-footer__legal-links{
+  display:flex!important;flex-direction:row!important;flex-wrap:wrap;justify-content:flex-start!important;gap:4px 20px!important;
+}
+html body #wrapwrap #footer .masar-footer__legal-link{font-size:.8rem!important;color:#c6d1df!important;min-height:36px;line-height:1.5!important}
+@media(max-width:1199.98px){
+  html body #wrapwrap #footer .masar-footer__grid{grid-template-columns:1fr!important;gap:0!important;padding:0!important}
+  html body #wrapwrap #footer .masar-footer__col--menu{padding:0!important;border-bottom:1px solid rgba(255,255,255,.13)}
+  html body #wrapwrap #footer .masar-footer__toggle{min-height:58px!important;margin:0!important;padding:8px 0!important;cursor:pointer}
+  html body #wrapwrap #footer .masar-footer__chevron{width:32px;height:32px;border:0!important;background:transparent!important}
+  html body #wrapwrap #footer .masar-footer__col--menu .masar-footer__links{display:none!important}
+  html body #wrapwrap #footer .masar-footer__col--menu.is-open .masar-footer__links{display:grid!important;padding:0 0 12px!important;margin:0!important;justify-items:stretch!important}
+  html body #wrapwrap #footer .masar-footer__link{min-height:44px!important;width:100%}
+  html body #wrapwrap #footer .masar-footer__bottom{flex-direction:column!important;align-items:flex-start!important}
+}
+@media(max-width:767.98px){
+  html body #wrapwrap #footer.masar-footer{padding:32px 0 20px!important}
+  html body #wrapwrap #footer .masar-wrap{width:calc(100% - 40px)!important}
+  html body #wrapwrap #footer .masar-footer__top{display:flex!important;flex-direction:column;align-items:stretch!important;gap:24px!important}
+  html body #wrapwrap #footer .masar-lockup{width:190px!important}
+  html body #wrapwrap #footer .masar-footer__tools{display:flex!important;flex-direction:column;align-items:stretch!important;gap:16px!important}
+  html body #wrapwrap #footer .masar-footer__tools>.masar-lang{align-self:flex-start}
+  html body #wrapwrap #footer .masar-lang__toggle{min-height:44px}
+  html body #wrapwrap #footer .masar-lang__menu{inset-inline-start:0!important;inset-inline-end:auto!important;max-width:calc(100vw - 40px)}
+  html body #wrapwrap #footer .masar-footer__bottom{margin-top:24px!important;padding-top:16px!important;gap:12px!important}
+  html body #wrapwrap #footer .masar-footer__legal-links{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;gap:2px 14px!important;order:-1}
+  html body #wrapwrap #footer .masar-footer__legal-link{min-height:44px!important;width:100%;font-size:.775rem!important}
+}

@@ -1,0 +1,5 @@
+id,name,model_id,group_id/id,operation,domain
+rule_resignation_own,Resignation: own,hr.resignation,base.group_user,cru,"[('employee_id', 'in', user.employee_ids.ids)]"
+rule_resignation_hr,Resignation: HR all,hr.resignation,hr.group_hr_user,cru,
+rule_resignation_hr_1,Resignation: HR all,hr.resignation,hr.group_hr_manager,crud,
+rule_resignation_company,Resignation multi-company,hr.resignation,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"

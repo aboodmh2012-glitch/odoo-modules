@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Password-only login: do not expose device Face ID / passkey on /web/login. -->
+    <template id="masar_hide_passkey_login" inherit_id="auth_passkey.auth_passkey_login_oauth" name="MASAR Hide Passkey Login" priority="99">
+        <xpath expr="//t[@t-set='passkey_btn']" position="replace">
+            <t t-set="passkey_btn" t-value="[]"/>
+        </xpath>
+    </template>
+
+    <!-- Website replaces web.login_layout and drops no_header/no_footer — restore them
+         so /web/login is an auth screen, not the public site chrome. -->
+    <template id="masar_website_login_no_chrome" inherit_id="website.login_layout" name="MASAR Login Hide Website Chrome" priority="99">
+        <xpath expr="//t[@t-call='website.layout']" position="before">
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+        </xpath>
+    </template>
+
+    <!-- Always show the password form. Odoo 19 hides it behind web.user_switch when
+         no login is prefilled — that left a blank white page for MASAR. -->
+    <template id="masar_login_show_password_form" inherit_id="web.login" name="MASAR Login Show Password Form" priority="45">
+        <xpath expr="//owl-component[@name='web.user_switch']" position="replace"/>
+        <xpath expr="//form[@role='form']" position="attributes">
+            <attribute name="t-attf-class">oe_login_form</attribute>
+        </xpath>
+    </template>
+
+    <!-- Password-only: hide Odoo public signup leftover. -->
+    <template id="masar_hide_login_signup" inherit_id="auth_signup.login" name="MASAR Hide Login Signup" priority="99">
+        <xpath expr="//a[contains(@t-attf-href, '/web/signup')]" position="replace"/>
+    </template>
+
+    <!-- Brand mark above the login fields (inside oe_website_login_container). -->
+    <template id="masar_login_brand_mark" inherit_id="web.login" name="MASAR Login Brand Mark" priority="40">
+        <xpath expr="//div[@id='oe_structure_login_top']" position="after">
+            <div class="masar-login-brand">
+                <img src="/masar_theme/static/src/img/masar-icon-192.png?v=20261004"
+                     alt="MASAR Pay"
+                     width="72"
+                     height="72"/>
+                <p class="masar-login-brand-title">
+                    MASAR <span class="masar-login-pay">Pay</span>
+                </p>
+                <p class="masar-login-brand-tagline">One Masar. Every Payment.</p>
+            </div>
+        </xpath>
+    </template>
+</odoo>

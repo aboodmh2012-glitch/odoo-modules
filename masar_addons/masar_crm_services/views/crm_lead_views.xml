@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="crm_lead_view_form_masar_services" model="ir.ui.view">
+        <field name="name">crm.lead.form.masar.services</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field name="masar_requested_service"/>
+                <field name="masar_source_page" placeholder="Website or landing page"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="crm_lead_view_search_masar_services" model="ir.ui.view">
+        <field name="name">crm.lead.search.masar.services</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="masar_requested_service"/>
+            </xpath>
+            <xpath expr="//filter[@name='assigned_to_me']" position="after">
+                <separator/>
+                <filter string="Requested Service" name="group_by_masar_service"
+                        context="{'group_by': 'masar_requested_service'}"/>
+                <filter string="Source" name="group_by_masar_source"
+                        context="{'group_by': 'source_id'}"/>
+                <filter string="Campaign" name="group_by_masar_campaign"
+                        context="{'group_by': 'campaign_id'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

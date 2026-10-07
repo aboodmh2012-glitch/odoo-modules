@@ -1,0 +1,1108 @@
+/* Loaded after stored masar-site-overrides. html:root beats :root.
+   Explicit chrome keeps white type on navy heroes, header, and footer. */
+
+html:root {
+    --masar-orange: #FF7A00;
+    --masar-orange-deep: #FF5A00;
+    --masar-bg-0: #FFFFFF;
+    --masar-bg-1: #F4F7FB;
+    --masar-bg-2: #F4F7FB;
+    --masar-card: #FFFFFF;
+    --masar-border: rgba(14, 27, 43, 0.12);
+    --masar-border-strong: rgba(14, 27, 43, 0.18);
+    --masar-text: #0E1B2B;
+    --masar-muted: #3E4C5E;
+    --masar-ink: #0E1B2B;
+    --masar-ink-soft: #3E4C5E;
+    --masar-cream: #FFFFFF;
+    --masar-sand: #F4F7FB;
+    --masar-line: rgba(14, 27, 43, 0.12);
+    --masar-navy: #0E1B2B;
+    --masar-blue: #007BFF;
+    --masar-green: #22C55E;
+    --masar-cyan: #00D2FF;
+    --bs-primary: #FF7A00;
+    --bs-primary-rgb: 255, 122, 0;
+    --o-color-1: #FF7A00;
+}
+
+html body,
+html body #wrapwrap,
+html body #wrapwrap > main,
+html body .masar-site {
+    background: #FFFFFF !important;
+    color: #0E1B2B !important;
+}
+
+html body #wrapwrap header#top,
+html body #wrapwrap .o_header_standard,
+html body #wrapwrap header#top .navbar,
+html body #wrapwrap footer#bottom,
+html body #wrapwrap footer,
+html body #wrapwrap .o_footer {
+    background: #0E1B2B !important;
+    color: #FFFFFF !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+html body #wrapwrap header#top .navbar .nav-link,
+html body #wrapwrap header#top .navbar-brand,
+html body #wrapwrap footer a,
+html body #wrapwrap .o_footer a {
+    color: #FFFFFF !important;
+}
+
+html body #wrapwrap header#top .navbar .nav-link:hover,
+html body #wrapwrap header#top .navbar .nav-link.active {
+    color: #FF7A00 !important;
+}
+
+html body #wrapwrap .dropdown-menu {
+    background: #FFFFFF !important;
+    color: #0E1B2B !important;
+}
+
+html body #wrapwrap .dropdown-menu .dropdown-item {
+    color: #0E1B2B !important;
+}
+
+html body #wrapwrap .dropdown-menu .dropdown-item:hover,
+html body #wrapwrap .dropdown-menu .dropdown-item:focus {
+    color: #FF7A00 !important;
+    background: #F4F7FB !important;
+}
+
+html body .masar-site .masar-section,
+html body .masar-site .masar-section-band,
+html body .masar-site .masar-section-band--a,
+html body .masar-site .masar-section-band--c,
+html body .masar-site #masar-content-top {
+    background: #FFFFFF !important;
+    color: #0E1B2B !important;
+    border-color: rgba(14, 27, 43, 0.1) !important;
+}
+
+html body .masar-site .masar-section-band--b,
+html body .masar-site .s_masar_solutions {
+    background: #F4F7FB !important;
+    color: #0E1B2B !important;
+}
+
+html body .masar-site .masar-editorial-card,
+html body .masar-site .masar-solution-card,
+html body .masar-site #solutionsRegion .s_card {
+    background: #FFFFFF !important;
+    color: #0E1B2B !important;
+    border-color: rgba(14, 27, 43, 0.12) !important;
+}
+
+html body .masar-site .masar-service__name,
+html body .masar-site .masar-solution-card__title,
+html body .masar-site .s_masar_solutions .masar-title,
+html body .masar-site .masar-editorial-card__body,
+html body .masar-site .masar-solution-card__features li {
+    color: #0E1B2B !important;
+}
+
+html body .masar-site .masar-editorial-card p,
+html body .masar-site .masar-editorial-card__body,
+html body .masar-site .s_masar_solutions .masar-lead,
+html body .masar-site .masar-solution-card__features li {
+    color: #3E4C5E !important;
+}
+
+html body .masar-site .masar-btn--primary,
+html body .btn-primary,
+html body a.btn-primary,
+html body .btn-fill-o_color_1,
+html body .bg-o-color-1,
+html body .bg-primary {
+    background: #FF7A00 !important;
+    background-color: #FF7A00 !important;
+    border-color: #FF7A00 !important;
+    color: #FFFFFF !important;
+}
+
+html body .masar-site .masar-btn--primary:hover,
+html body .btn-primary:hover {
+    background: #FF5A00 !important;
+    background-color: #FF5A00 !important;
+    border-color: #FF5A00 !important;
+}
+
+html body .masar-site .masar-btn--outline {
+    border-color: #0E1B2B !important;
+    color: #0E1B2B !important;
+    background: transparent !important;
+}
+
+html body .masar-banner .masar-btn--outline,
+html body .masar-hero .masar-btn--outline {
+    border-color: rgba(255, 255, 255, 0.55) !important;
+    color: #FFFFFF !important;
+}
+
+html body .masar-banner__overlay {
+    background: linear-gradient(100deg, rgba(14, 27, 43, 0.78) 0%, rgba(14, 27, 43, 0.5) 46%, rgba(14, 27, 43, 0.16) 100%) !important;
+}
+
+html body [dir="rtl"] .masar-banner__overlay {
+    background: linear-gradient(260deg, rgba(14, 27, 43, 0.78) 0%, rgba(14, 27, 43, 0.5) 46%, rgba(14, 27, 43, 0.16) 100%) !important;
+}
+
+html body .masar-banner__bg {
+    opacity: 0.68 !important;
+}
+
+html body .masar-banner__title,
+html body .masar-banner__eyebrow,
+html body .masar-hero,
+html body .masar-hero__title,
+html body .masar-site .masar-hero__title {
+    color: #FFFFFF !important;
+}
+
+html body .masar-banner__lead,
+html body .masar-hero__lead,
+html body .masar-site .masar-hero__lead {
+    color: rgba(255, 255, 255, 0.84) !important;
+}
+
+html body .masar-site a:not(.masar-btn):not(.btn):not(.nav-link):not(.navbar-brand):not(.dropdown-item) {
+    color: #007BFF !important;
+}
+
+html body .masar-banner a:not(.masar-btn),
+html body .masar-hero a:not(.masar-btn),
+html body #wrapwrap footer a {
+    color: #FFFFFF !important;
+}
+
+html body .text-primary,
+html body .text-o-color-1,
+html body .btn-outline-primary {
+    color: #007BFF !important;
+}
+
+html body .btn-outline-primary {
+    border-color: #007BFF !important;
+}
+
+html body .masar-site .text-success,
+html body .masar-site .alert-success {
+    color: #22C55E !important;
+}
+
+html body .masar-hero .masar-hero__part--accent,
+html body .masar-site a.masar-textlink,
+html body .masar-site a.masar-textlink:hover {
+    color: var(--masar-orange) !important;
+}
+
+html body .masar-site a.masar-offer,
+html body .masar-site a.masar-offer .masar-offer__name {
+    color: var(--masar-navy) !important;
+}
+
+html body .masar-site a.masar-offer .masar-offer__text {
+    color: var(--masar-text-soft) !important;
+}
+
+html body .masar-site .masar-band,
+html body .masar-site .masar-audience__card {
+    color: var(--masar-white) !important;
+}
+
+html body .masar-site .masar-band {
+    background:
+        radial-gradient(circle at 80% 20%, rgba(0, 160, 255, 0.18), transparent 18rem),
+        var(--masar-navy) !important;
+}
+
+html body #wrapwrap footer a.masar-footer__link:hover,
+html body #wrapwrap footer a.masar-footer__legal-link:hover,
+html body #wrapwrap footer .masar-nav__link.is-active {
+    color: var(--masar-orange) !important;
+}
+
+
+/* ===== MASAR Pay final homepage layer: navy, orange, white ===== */
+html:root{
+  --masar-navy:#042B59!important;--masar-navy-deep:#021D3E!important;
+  --masar-blue:#042B59!important;--masar-cyan:#042B59!important;
+  --masar-orange:#FF6B1A!important;--masar-orange-deep:#E9570C!important;
+  --masar-white:#FFF!important;--masar-ink:#042B59!important;--masar-text:#042B59!important;
+}
+html body #wrapwrap header#top,html body #wrapwrap .o_header_standard,
+html body #wrapwrap header#top .navbar,html body #wrapwrap footer#bottom,
+html body #wrapwrap footer,html body #wrapwrap .o_footer{background:#042B59!important}
+html body .masar-pay>.masar-hero--home{
+  box-sizing:border-box!important;position:relative!important;isolation:isolate;
+  display:flex!important;align-items:center!important;min-height:clamp(680px,78svh,790px)!important;
+  padding:72px 0 128px!important;overflow:hidden!important;color:#fff!important;
+  background-image:linear-gradient(90deg,rgba(2,29,62,.92) 0%,rgba(2,29,62,.76) 29%,rgba(2,29,62,.26) 50%,rgba(2,29,62,.02) 72%),url("/masar_website/static/src/img/hero-fintech-yemen-v2.webp?v=card-payment-20260928")!important;
+  background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;
+}
+html[dir="rtl"] body .masar-pay>.masar-hero--home{
+  background-image:linear-gradient(270deg,rgba(2,29,62,.92) 0%,rgba(2,29,62,.76) 29%,rgba(2,29,62,.26) 50%,rgba(2,29,62,.02) 72%),url("/masar_website/static/src/img/hero-fintech-yemen-v2-rtl.webp?v=card-payment-20260928")!important;
+}
+html body .masar-pay>.masar-hero--home::after{content:"";position:absolute;z-index:-1;inset:auto 0 0;height:150px;background:linear-gradient(180deg,transparent,rgba(2,29,62,.36))}
+html body .masar-pay>.masar-hero--home .masar-sky,
+html body .masar-pay>.masar-hero--home .masar-stage{display:none!important}
+html body .masar-pay>.masar-hero--home .masar-hero__top{width:100%;align-items:center!important;justify-content:flex-start!important}
+html body .masar-pay>.masar-hero--home .masar-hero__copy{max-width:650px;padding:0!important;background:none!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important}
+html body .masar-pay>.masar-hero--home .masar-hero__copy,
+html body .masar-pay>.masar-hero--home .masar-hero__copy *{animation:none!important;animation-delay:0s!important;transition-delay:0s!important;opacity:1!important}
+html body .masar-pay>.masar-hero--home .masar-hero__badge{display:flex!important;align-items:center;gap:12px;width:max-content;max-width:100%;margin:0 0 20px!important;color:#fff!important;font-size:.78rem!important;font-weight:850!important;letter-spacing:.06em;text-transform:uppercase;white-space:normal!important;text-align:start!important}
+html body .masar-pay>.masar-hero--home .masar-hero__badge::before{content:"";width:34px;height:3px;border-radius:99px;background:#FF6B1A;box-shadow:0 0 16px rgba(255,107,26,.48)}
+html body .masar-pay>.masar-hero--home .masar-hero__title{max-width:10.5em!important;margin:0 0 22px!important;color:#fff!important;font-size:clamp(3.2rem,5.3vw,5.45rem)!important;font-weight:850!important;line-height:.99!important;letter-spacing:-.052em!important;text-wrap:balance;text-shadow:0 9px 28px rgba(0,0,0,.28)}
+html body .masar-pay>.masar-hero--home .masar-hero__part--accent{color:#FF6B1A!important}
+html body .masar-pay>.masar-hero--home .masar-hero__lead{max-width:590px!important;margin:0 0 28px!important;color:rgba(255,255,255,.9)!important;font-size:clamp(1rem,1.32vw,1.18rem)!important;line-height:1.72!important;text-shadow:0 3px 16px rgba(0,0,0,.25)}
+html body .masar-pay>.masar-hero--home .masar-hero__actions{display:flex;flex-wrap:wrap;gap:12px}
+html body .masar-pay>.masar-hero--home .masar-btn{min-height:54px;padding:0 25px!important;border-radius:12px!important;font-weight:850!important}
+html body .masar-pay>.masar-hero--home .masar-btn--primary{background:#FF6B1A!important;border-color:#FF6B1A!important;color:#fff!important;box-shadow:0 15px 34px rgba(255,107,26,.3)}
+html body .masar-pay>.masar-hero--home .masar-btn--ghost{background:rgba(2,29,62,.24)!important;border-color:rgba(255,255,255,.68)!important;color:#fff!important;backdrop-filter:blur(8px)}
+html body .masar-pay>.masar-hero--home .masar-btn:hover{transform:translateY(-3px)}
+
+html body .masar-pay>.masar-trust-band{position:relative;z-index:3;margin-top:-72px;padding:0!important;background:transparent!important}
+html body .masar-pay>.masar-trust-band .masar-wrap{padding:0 22px}
+html body .masar-pay>.masar-trust-band .masar-trust{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:0!important;margin:0!important;padding:18px!important;border:1px solid rgba(4,43,89,.09);border-radius:24px;background:#fff;box-shadow:0 24px 64px rgba(2,29,62,.15)}
+html body .masar-pay>.masar-trust-band .masar-trust__item{min-width:0;padding:14px 20px!important;border-inline-end:1px solid rgba(4,43,89,.1)}
+html body .masar-pay>.masar-trust-band .masar-trust__item:last-child{border-inline-end:0}
+html body .masar-pay>.masar-trust-band .masar-trust__icon{display:grid!important;place-items:center;width:48px;height:48px;flex:0 0 48px;border-radius:14px;color:#042B59!important;background:#FFF3EB}
+html body .masar-pay>.masar-trust-band .masar-trust__title{color:#042B59!important;font-weight:850!important}
+html body .masar-pay>.masar-trust-band .masar-trust__text{color:#617188!important;font-size:.86rem!important}
+
+html body .masar-pay>.masar-services-showcase{padding:clamp(92px,9vw,126px) 0 clamp(70px,8vw,108px)!important;background:radial-gradient(circle at 8% 0%,rgba(255,107,26,.07),transparent 24rem),#fff!important}
+html body .masar-section-head{display:flex;align-items:end;justify-content:space-between;gap:32px;margin-bottom:34px}
+html body .masar-section-head__copy{max-width:760px}
+html body .masar-section-head__eyebrow{margin:0 0 10px;color:#FF6B1A;font-size:.78rem;font-weight:850;letter-spacing:.12em;text-transform:uppercase}
+html body .masar-section-head__title{margin:0;color:#042B59;font-size:clamp(2.2rem,4vw,4rem);line-height:1.02;letter-spacing:-.045em;text-wrap:balance}
+html body .masar-section-head__lead{max-width:680px;margin:16px 0 0;color:#586B82;font-size:1.04rem;line-height:1.75}
+html body .masar-section-head__link{flex:0 0 auto;padding:12px 17px;border:1px solid rgba(4,43,89,.18);border-radius:11px;color:#042B59!important;font-weight:800;text-decoration:none!important}
+html body .masar-section-head__link:hover{color:#fff!important;background:#042B59;border-color:#042B59}
+html body .masar-services-showcase .masar-offers{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:14px!important}
+html body .masar-services-showcase .masar-offer{position:relative;min-height:245px!important;padding:24px 20px 20px!important;overflow:hidden;border:1px solid rgba(4,43,89,.09)!important;border-radius:18px!important;background:#fff!important;box-shadow:0 12px 34px rgba(4,43,89,.07)!important;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease!important}
+html body .masar-services-showcase .masar-offer::before{content:"";position:absolute;inset:0 0 auto;height:4px;background:#FF6B1A;transform:scaleX(0);transition:transform .25s ease}
+html body .masar-services-showcase .masar-offer:hover{transform:translateY(-8px)!important;border-color:rgba(255,107,26,.38)!important;box-shadow:0 22px 50px rgba(4,43,89,.13)!important}
+html body .masar-services-showcase .masar-offer:hover::before{transform:scaleX(1)}
+html body .masar-services-showcase .masar-offer__icon{display:grid!important;place-items:center;width:54px;height:54px;margin-bottom:8px;border-radius:16px;color:#042B59!important;background:#F3F6FA}
+html body .masar-services-showcase .masar-offer__name{color:#042B59!important;font-size:1.02rem!important;font-weight:850!important}
+html body .masar-services-showcase .masar-offer__text{color:#66778C!important;line-height:1.55!important}
+html body .masar-services-showcase .masar-offer__go{border-color:#FF6B1A!important}
+
+html body .masar-pay>.masar-audience-band{padding:0 0 clamp(76px,8vw,112px)!important;background:#fff!important}
+html body .masar-pay .masar-audience{gap:22px!important}
+html body .masar-pay .masar-audience__card{position:relative;isolation:isolate;min-height:520px!important;padding:clamp(28px,4vw,52px)!important;overflow:hidden;border:0;border-radius:26px!important;background-size:cover!important;background-position:center!important;box-shadow:0 22px 58px rgba(2,29,62,.17)}
+html body .masar-pay .masar-audience__card::before{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(90deg,rgba(2,29,62,.98) 0%,rgba(2,29,62,.82) 45%,rgba(2,29,62,.12) 100%)}
+html[dir="rtl"] body .masar-pay .masar-audience__card::before{background:linear-gradient(270deg,rgba(2,29,62,.98) 0%,rgba(2,29,62,.82) 45%,rgba(2,29,62,.12) 100%)}
+html body .masar-pay .masar-audience__card--business{background-image:url("/masar_website/static/src/img/business-yemen.webp")!important}
+html body .masar-pay .masar-audience__card--personal{background-image:url("/masar_website/static/src/img/individuals-yemen.webp")!important}
+html body .masar-pay .masar-audience__kicker{margin:0;color:#FF6B1A!important;font-weight:850!important}
+html body .masar-pay .masar-audience__title{max-width:13em!important;color:#fff!important;font-size:clamp(2rem,3vw,3.15rem)!important;line-height:1.06!important;letter-spacing:-.035em}
+html body .masar-pay .masar-audience__card .masar-points{margin:6px 0 16px!important}
+html body .masar-pay .masar-audience__card .masar-points__text{color:rgba(255,255,255,.9)!important;font-size:1rem}
+html body .masar-pay .masar-audience__card .masar-btn{margin-top:auto}
+
+html body .masar-pay>#about{padding:clamp(72px,8vw,104px) 0!important;background:#F5F7FA!important}
+html body .masar-pay .masar-principles{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:18px!important}
+html body .masar-pay .masar-principle{position:relative;display:flex;flex-direction:column;align-items:stretch;min-height:0;padding:28px;border:1px solid rgba(4,43,89,.08);border-radius:20px;background:#fff;box-shadow:0 14px 36px rgba(4,43,89,.06)}
+html body .masar-pay .masar-principle::before{content:"";display:block;width:34px;height:4px;margin-bottom:22px;border-radius:99px;background:#FF6B1A}
+html body .masar-pay .masar-principle__header,html body .masar-pay .masar-principle__heading{display:flex;flex-direction:row;align-items:center;justify-content:flex-start;gap:12px;width:100%;margin-bottom:14px}
+html body .masar-pay .masar-principle__body{display:block;width:100%}
+html body .masar-pay .masar-principle__title{color:#042B59!important;font-size:1.18rem!important;font-weight:850!important}
+html body .masar-pay .masar-principle__text,html body .masar-pay .masar-principle__line{color:#5F7086!important;line-height:1.72!important}
+html body .masar-pay .masar-path-banner{display:flex;flex-direction:row;align-items:center;gap:36px;margin-top:22px;padding:36px 40px;border-radius:24px;color:#fff;background:linear-gradient(135deg,#042B59 0%,#021D3E 72%);box-shadow:0 22px 48px rgba(2,29,62,.18)}
+html body .masar-pay .masar-path-banner__header{display:flex;flex:0 0 16rem;flex-direction:row;align-items:center;gap:14px;min-width:0}
+html body .masar-pay .masar-path-banner__icon{display:grid;place-items:center;flex:none;width:52px;height:52px;border-radius:16px;color:#fff;background:rgba(255,255,255,.14)}
+html body .masar-pay .masar-path-banner__icon svg{width:26px;height:26px}
+html body .masar-pay .masar-path-banner__title{margin:0;color:#fff!important;font-size:clamp(1.45rem,2.2vw,2rem)!important;font-weight:850!important;line-height:1.25!important}
+html body .masar-pay .masar-path-banner__body{display:block;flex:1 1 auto;min-width:0}
+html body .masar-pay .masar-path-banner__text{margin:0 0 14px;color:rgba(255,255,255,.86)!important;font-size:1.02rem;line-height:1.7!important}
+html body #wrapwrap .masar-pay .masar-path-banner .masar-textlink{color:#FF6B1A!important}
+html body .masar-pay>.masar-opportunity{padding:64px 0!important;min-height:280px;background:#021d3e!important}
+html body .masar-pay>.masar-opportunity::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(90deg,rgba(2,29,62,.94) 0%,rgba(2,29,62,.74) 26%,rgba(2,29,62,.22) 58%,rgba(2,29,62,.55) 100%),url("/masar_website/static/src/img/masar-hero-yemen.webp");background-repeat:no-repeat;background-position:center,left 56%;background-size:auto,124% auto}
+@media(max-width:1199.98px){
+ html body .masar-pay>.masar-opportunity::before{background-image:linear-gradient(180deg,rgba(2,29,62,.78),rgba(2,29,62,.62)),url("/masar_website/static/src/img/masar-hero-yemen.webp");background-position:center,center 48%;background-size:auto,cover}
+}
+html[dir="rtl"] body .masar-pay>.masar-opportunity::before{transform:scaleX(-1)}
+html body .masar-pay .masar-opportunity__title{font-size:clamp(2.4rem,5vw,4.7rem)!important;line-height:1!important}
+html body .masar-pay .masar-opportunity .masar-lockup{width:clamp(190px,22vw,320px)!important}
+
+@media(max-width:1180px){
+ html body .masar-services-showcase .masar-offers{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ html body .masar-pay .masar-principles{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:900px){
+ html body .masar-pay>.masar-hero--home{min-height:720px!important;align-items:flex-start!important;padding:70px 0 180px!important;background-image:linear-gradient(180deg,rgba(2,29,62,.94) 0%,rgba(2,29,62,.8) 52%,rgba(2,29,62,.24) 78%,rgba(2,29,62,.02) 100%),url("/masar_website/static/src/img/hero-fintech-yemen-v2.webp?v=card-payment-20260928")!important;background-position:68% center!important}
+ html[dir="rtl"] body .masar-pay>.masar-hero--home{background-image:linear-gradient(180deg,rgba(2,29,62,.94) 0%,rgba(2,29,62,.8) 52%,rgba(2,29,62,.24) 78%,rgba(2,29,62,.02) 100%),url("/masar_website/static/src/img/hero-fintech-yemen-v2-rtl.webp?v=card-payment-20260928")!important;background-position:32% center!important}
+ html body .masar-pay>.masar-trust-band .masar-trust{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ html body .masar-pay>.masar-trust-band .masar-trust__item:nth-child(2){border-inline-end:0}
+ html body .masar-pay>.masar-trust-band .masar-trust__item:nth-child(-n+2){border-bottom:1px solid rgba(4,43,89,.1)}
+ html body .masar-pay .masar-audience{grid-template-columns:1fr!important}
+ html body .masar-pay .masar-principles{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ html body .masar-pay .masar-path-banner{flex-direction:column;align-items:flex-start;gap:18px;padding:28px}
+ html body .masar-pay .masar-path-banner__header{flex-basis:auto;width:100%}
+}
+@media(max-width:640px){
+ html body .masar-pay>.masar-hero--home{min-height:690px!important;padding:44px 0 165px!important;background-position:72% center!important}
+ html[dir="rtl"] body .masar-pay>.masar-hero--home{background-position:28% center!important}
+ html body .masar-pay>.masar-hero--home .masar-hero__badge{font-size:.7rem!important}
+ html body .masar-pay>.masar-hero--home .masar-hero__title{font-size:clamp(2.65rem,13vw,3.8rem)!important}
+ html body .masar-pay>.masar-hero--home .masar-hero__lead{font-size:.97rem!important;line-height:1.62!important}
+ html body .masar-pay>.masar-hero--home .masar-hero__actions{display:grid!important;grid-template-columns:1fr;width:100%}
+ html body .masar-pay>.masar-hero--home .masar-btn{width:100%;justify-content:center}
+ html body .masar-pay>.masar-trust-band{margin-top:-112px}
+ html body .masar-pay>.masar-trust-band .masar-wrap{padding:0 14px}
+ html body .masar-pay>.masar-trust-band .masar-trust{padding:10px!important;border-radius:19px}
+ html body .masar-pay>.masar-trust-band .masar-trust__item{padding:12px 9px!important;gap:9px!important}
+ html body .masar-pay>.masar-trust-band .masar-trust__icon{width:40px;height:40px;flex-basis:40px}
+ html body .masar-pay>.masar-trust-band .masar-trust__text{display:none}
+ html body .masar-pay>.masar-trust-band .masar-trust__title{font-size:.82rem!important}
+ html body .masar-section-head{align-items:flex-start;flex-direction:column;margin-bottom:26px}
+ html body .masar-section-head__title{font-size:2.3rem}
+ html body .masar-services-showcase .masar-offers{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+ html body .masar-services-showcase .masar-offer{min-height:212px!important;padding:18px 14px!important}
+ html body .masar-services-showcase .masar-offer__text{font-size:.83rem!important}
+ html body .masar-pay .masar-audience__card{min-height:470px!important;padding:28px 22px!important;background-position:62% center!important}
+ html[dir="rtl"] body .masar-pay .masar-audience__card{background-position:38% center!important}
+ html body .masar-pay .masar-principles{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ html body .masar-pay .masar-principle{min-height:0;padding:18px}
+ html body .masar-pay .masar-path-banner{flex-direction:column;align-items:flex-start;gap:16px;padding:24px 20px}
+ html body .masar-pay .masar-path-banner__header{flex-basis:auto;width:100%}
+}
+
+
+/* Final fold proportion: keep the complete hero within the first desktop viewport. */
+html body .masar-pay>.masar-hero--home{
+  height:clamp(680px,78svh,790px)!important;
+  min-height:0!important;
+}
+@media(max-width:900px){
+  html body .masar-pay>.masar-hero--home{height:720px!important;min-height:0!important}
+}
+@media(max-width:640px){
+  html body .masar-pay>.masar-hero--home{height:auto!important;min-height:690px!important}
+}
+
+
+/* ===== Homepage finishing pass: rhythm, contrast and interaction ===== */
+html body .masar-pay>.masar-services-showcase{
+  padding-top:92px!important;
+  padding-bottom:76px!important;
+}
+html body .masar-pay>.masar-audience-band{padding-bottom:70px!important}
+html body .masar-pay>#about{padding-top:78px!important;padding-bottom:82px!important}
+html body #wrapwrap .masar-site a.masar-section-head__link{
+  color:#042B59!important;
+  border-color:rgba(4,43,89,.2)!important;
+  background:#fff!important;
+}
+html body #wrapwrap .masar-site a.masar-section-head__link:hover{
+  color:#fff!important;background:#042B59!important;border-color:#042B59!important;
+}
+html body #wrapwrap .masar-site a.masar-textlink,
+html body #wrapwrap .masar-site a.masar-textlink:hover{color:#FF6B1A!important}
+html body .masar-services-showcase .masar-offer__name{min-height:2.6em}
+html body .masar-services-showcase .masar-offer__text{min-height:3.05em}
+html body .masar-pay .masar-audience__card{transition:transform .28s ease,box-shadow .28s ease}
+html body .masar-pay .masar-audience__card:hover{transform:translateY(-6px);box-shadow:0 28px 66px rgba(2,29,62,.22)}
+html body .masar-pay .masar-principle{transition:transform .25s ease,box-shadow .25s ease}
+html body .masar-pay .masar-principle:hover{transform:translateY(-5px);box-shadow:0 20px 44px rgba(4,43,89,.11)}
+html body .masar-pay>.masar-opportunity{position:relative;overflow:hidden}
+html body .masar-pay>.masar-opportunity .masar-opportunity__inner{position:relative;z-index:1}
+html body .masar-pay>.masar-opportunity::after{content:none}
+html body .masar-pay>.masar-closing{
+  position:relative;overflow:hidden;
+  background:radial-gradient(circle at 50% -20%,rgba(255,107,26,.15),transparent 36rem),linear-gradient(135deg,#042B59,#021D3E)!important;
+}
+html body #wrapwrap footer .masar-footer__title,
+html body #wrapwrap footer .masar-newsletter__label{color:#fff!important}
+html body #wrapwrap footer .masar-footer__title{font-weight:800!important;font-size:.92rem!important}
+html body #wrapwrap footer .masar-newsletter__label{font-weight:800!important}
+html body #wrapwrap footer .masar-footer__title::after,
+html body #wrapwrap footer .masar-newsletter__label::after{
+  content:none;display:none;
+}
+html body #wrapwrap footer .masar-footer__link{color:rgba(255,255,255,.82)!important}
+html body #wrapwrap footer .masar-footer__link:hover{color:#FF6B1A!important}
+html body #wrapwrap footer .masar-newsletter__input{background:#fff!important;color:#042B59!important}
+html body #wrapwrap footer .masar-newsletter__input::placeholder{color:#6B788B!important}
+html body #wrapwrap a:focus-visible,
+html body #wrapwrap button:focus-visible,
+html body #wrapwrap input:focus-visible{
+  outline:3px solid #FF6B1A!important;outline-offset:3px!important;
+}
+@media(max-width:900px){
+ html body .masar-pay>.masar-services-showcase{padding-top:82px!important;padding-bottom:64px!important}
+ html body .masar-pay>.masar-audience-band{padding-bottom:62px!important}
+ html body .masar-pay>#about{padding-top:66px!important;padding-bottom:68px!important}
+}
+@media(max-width:640px){
+ html body .masar-pay>.masar-services-showcase{padding-top:72px!important}
+ html body .masar-section-head__lead{font-size:.96rem!important}
+ html body .masar-services-showcase .masar-offer__name,
+ html body .masar-services-showcase .masar-offer__text{min-height:0}
+ html body .masar-pay .masar-audience__card:hover,
+ html body .masar-pay .masar-principle:hover{transform:none}
+ html body #wrapwrap footer .masar-footer__title::after,
+ html body #wrapwrap footer .masar-newsletter__label::after{content:none;display:none}
+}
+@media(prefers-reduced-motion:reduce){
+ html body .masar-pay .masar-audience__card,
+ html body .masar-pay .masar-principle{transition:none!important}
+}
+
+
+/* ===== Dedicated mobile hero composition ===== */
+@media(max-width:640px){
+  html body .masar-pay>.masar-hero--home{
+    height:auto!important;min-height:620px!important;
+    padding:32px 0 108px!important;
+    align-items:flex-start!important;
+  }
+  html body .masar-pay>.masar-hero--home::before{
+    content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:linear-gradient(90deg,rgba(2,29,62,.62) 0%,rgba(2,29,62,.32) 58%,rgba(2,29,62,.08) 100%);
+  }
+  html[dir="rtl"] body .masar-pay>.masar-hero--home::before{
+    background:linear-gradient(270deg,rgba(2,29,62,.62) 0%,rgba(2,29,62,.32) 58%,rgba(2,29,62,.08) 100%);
+  }
+  html body .masar-pay>.masar-hero--home .masar-hero__top{
+    position:relative;z-index:1;width:100%!important;max-width:none!important;
+    margin:0!important;padding-inline:22px!important;
+  }
+  html body .masar-pay>.masar-hero--home .masar-hero__copy{width:100%;max-width:100%}
+  html body .masar-pay>.masar-hero--home .masar-hero__badge{
+    margin-bottom:16px!important;font-size:.67rem!important;line-height:1.4!important;letter-spacing:.035em!important;
+  }
+  html body .masar-pay>.masar-hero--home .masar-hero__badge::before{width:28px}
+  html body .masar-pay>.masar-hero--home .masar-hero__title{
+    max-width:9.4em!important;margin-bottom:18px!important;
+    font-size:clamp(2.45rem,11vw,3rem)!important;line-height:.99!important;letter-spacing:-.045em!important;
+  }
+  html body .masar-pay>.masar-hero--home .masar-hero__lead{
+    max-width:34ch!important;margin-bottom:22px!important;
+    font-size:.96rem!important;line-height:1.58!important;
+  }
+  html body .masar-pay>.masar-hero--home .masar-hero__actions{gap:10px!important}
+  html body .masar-pay>.masar-hero--home .masar-btn{
+    min-height:50px!important;padding:0 18px!important;border-radius:12px!important;font-size:.94rem!important;
+  }
+  html body .masar-pay>.masar-trust-band{margin-top:-78px!important}
+}
+@media(max-width:390px){
+  html body .masar-pay>.masar-hero--home{min-height:600px!important;padding-top:28px!important}
+  html body .masar-pay>.masar-hero--home .masar-hero__top{padding-inline:18px!important}
+  html body .masar-pay>.masar-hero--home .masar-hero__title{font-size:clamp(2.3rem,10.8vw,2.65rem)!important}
+  html body .masar-pay>.masar-hero--home .masar-hero__lead{font-size:.92rem!important}
+}
+
+
+/* ===== Mobile services: purpose-built presentation inspired by strong fintech mobile patterns ===== */
+html body .masar-mobile-services{display:none}
+@media(max-width:640px){
+  html body .masar-services-showcase .masar-offers{display:none!important}
+  html body .masar-services-showcase .masar-section-head{margin-bottom:24px!important}
+  html body .masar-services-showcase .masar-section-head__link{display:none!important}
+  html body .masar-services-showcase .masar-section-head__title{
+    max-width:10em;font-size:2.25rem!important;line-height:1.05!important
+  }
+  html body .masar-mobile-services{
+    display:block;
+    margin-inline:-2px;
+  }
+  html body .masar-mobile-services__featured{
+    display:grid;grid-template-columns:1fr;gap:18px;
+  }
+  html body .masar-mobile-feature{
+    position:relative;display:block;overflow:hidden;
+    border:1px solid rgba(4,43,89,.10);border-radius:24px;
+    background:#fff;color:#042B59!important;
+    box-shadow:0 18px 44px rgba(2,29,62,.12);
+    text-decoration:none!important;
+  }
+  html body .masar-mobile-feature__media{
+    position:relative;display:block;overflow:hidden;
+    aspect-ratio:16/9;background:#042B59;
+  }
+  html body .masar-mobile-feature__media::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(180deg,rgba(2,29,62,0) 48%,rgba(2,29,62,.40) 100%);
+  }
+  html body .masar-mobile-feature__media img{
+    width:100%;height:100%;display:block;object-fit:cover;
+    transition:transform .45s cubic-bezier(.2,.7,.2,1);
+  }
+  html body .masar-mobile-feature__body{
+    position:relative;display:flex;flex-direction:column;align-items:flex-start;
+    min-height:214px;padding:24px 22px 22px;
+  }
+  html body .masar-mobile-feature__meta{
+    width:100%;display:flex;align-items:center;justify-content:space-between;
+    margin-bottom:16px;
+  }
+  html body .masar-mobile-feature__icon{
+    width:48px;height:48px;display:grid;place-items:center;
+    border-radius:15px;background:rgba(255,107,26,.10);color:#FF6B1A;
+  }
+  html body .masar-mobile-feature__icon svg{width:26px;height:26px}
+  html body .masar-mobile-feature__number{
+    color:rgba(4,43,89,.16);font-size:2.65rem;font-weight:900;
+    line-height:1;letter-spacing:-.06em;
+  }
+  html body .masar-mobile-feature__title{
+    display:block;margin-bottom:8px;color:inherit;
+    font-size:1.38rem;line-height:1.25;font-weight:900;
+  }
+  html body .masar-mobile-feature__text{
+    display:block;margin-bottom:18px;color:#65748A;
+    font-size:.96rem;line-height:1.65;
+  }
+  html body .masar-mobile-feature__link{
+    display:inline-flex;align-items:center;gap:9px;margin-top:auto;
+    color:#FF6B1A;font-size:.9rem;font-weight:850;
+  }
+  html body .masar-mobile-feature--pos{
+    background:#042B59;color:#fff!important;border-color:#042B59;
+  }
+  html body .masar-mobile-feature--pos .masar-mobile-feature__text{color:rgba(255,255,255,.76)}
+  html body .masar-mobile-feature--pos .masar-mobile-feature__number{color:rgba(255,255,255,.15)}
+  html body .masar-mobile-feature--pos .masar-mobile-feature__icon{
+    background:rgba(255,255,255,.10);color:#FF6B1A;
+  }
+  html body .masar-mobile-services__grid{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:12px;margin-top:18px;
+  }
+  html body .masar-mobile-service{
+    position:relative;display:flex;flex-direction:column;min-width:0;min-height:210px;
+    padding:18px 16px;border:1px solid rgba(4,43,89,.10);border-radius:20px;
+    background:#fff;color:#042B59!important;text-decoration:none!important;
+    box-shadow:0 12px 32px rgba(2,29,62,.075);
+  }
+  html body .masar-mobile-service__top{
+    display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;
+  }
+  html body .masar-mobile-service__icon{
+    width:42px;height:42px;display:grid;place-items:center;
+    border-radius:13px;background:#F3F6FA;color:#FF6B1A;
+  }
+  html body .masar-mobile-service__icon svg{width:23px;height:23px}
+  html body .masar-mobile-service__number{
+    color:rgba(4,43,89,.17);font-size:1.05rem;font-weight:900;
+  }
+  html body .masar-mobile-service__title{
+    display:block;margin-bottom:7px;color:inherit;
+    font-size:1rem;line-height:1.35;font-weight:900;
+  }
+  html body .masar-mobile-service__text{
+    display:block;color:#68778B;font-size:.8rem;line-height:1.55;
+  }
+  html body .masar-mobile-service__arrow{
+    width:28px;height:28px;display:block;margin-top:auto;
+    border-radius:50%;background:#FF6B1A;position:relative;
+  }
+  html body .masar-mobile-service__arrow::before{
+    content:"";position:absolute;left:10px;top:9px;width:7px;height:7px;
+    border-top:2px solid #fff;border-right:2px solid #fff;
+    transform:rotate(45deg);
+  }
+  html[dir="rtl"] body .masar-mobile-service__arrow::before{
+    left:auto;right:10px;transform:rotate(-135deg);
+  }
+  html body .masar-mobile-feature:active,
+  html body .masar-mobile-service:active{transform:scale(.985)}
+}
+@media(max-width:360px){
+  html body .masar-mobile-services__grid{grid-template-columns:1fr}
+  html body .masar-mobile-service{min-height:180px}
+}
+@media(prefers-reduced-motion:reduce){
+  html body .masar-mobile-feature__media img{transition:none!important}
+}
+
+
+/* Every mobile service uses the same rich visual treatment. */
+@media(max-width:640px){
+  html body .masar-mobile-services__featured--all{gap:20px}
+  html body .masar-mobile-services__featured--all .masar-mobile-feature{
+    content-visibility:auto;contain-intrinsic-size:470px;
+  }
+  html body .masar-mobile-feature--dark{
+    background:#042B59;color:#fff!important;border-color:#042B59;
+  }
+  html body .masar-mobile-feature--dark .masar-mobile-feature__text{color:rgba(255,255,255,.76)}
+  html body .masar-mobile-feature--dark .masar-mobile-feature__number{color:rgba(255,255,255,.15)}
+  html body .masar-mobile-feature--dark .masar-mobile-feature__icon{
+    background:rgba(255,255,255,.10);color:#FF6B1A;
+  }
+  html body .masar-mobile-feature--light{
+    background:#fff;color:#042B59!important;
+  }
+  html body .masar-mobile-feature--light .masar-mobile-feature__text{color:#65748A}
+}
+
+
+/* === Professional services explorer · 2026-09-27 === */
+.masar-services-showcase {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 8% 18%, rgba(255,107,26,.07), transparent 22rem),
+    linear-gradient(180deg, #fff 0%, #f6f8fb 100%);
+}
+.masar-services-showcase::before {
+  content: "";
+  position: absolute;
+  inset-inline-end: -8rem;
+  top: 5rem;
+  width: 22rem;
+  height: 22rem;
+  border: 1px solid rgba(4,43,89,.08);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.masar-service-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 32px;
+}
+.masar-service-card {
+  grid-column: span 3;
+  position: relative;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  overflow: hidden;
+  color: #042b59;
+  background: #fff;
+  border: 1px solid rgba(4,43,89,.10);
+  border-radius: 24px;
+  box-shadow: 0 14px 35px rgba(4,43,89,.07);
+  text-decoration: none !important;
+  isolation: isolate;
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+.masar-service-card--anchor { grid-column: span 6; }
+.masar-service-card:hover {
+  color: #042b59;
+  transform: translateY(-6px);
+  border-color: rgba(255,107,26,.38);
+  box-shadow: 0 24px 55px rgba(4,43,89,.13);
+}
+.masar-service-card:focus-visible {
+  outline: 3px solid rgba(255,107,26,.38);
+  outline-offset: 4px;
+}
+.masar-service-card__media {
+  position: relative;
+  display: block;
+  height: 174px;
+  overflow: hidden;
+  background: #052d5c;
+}
+.masar-service-card--anchor .masar-service-card__media { height: 258px; }
+.masar-service-card__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(3,28,59,.50));
+}
+.masar-service-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .7s cubic-bezier(.2,.75,.25,1);
+}
+.masar-service-card:hover .masar-service-card__media img { transform: scale(1.035); }
+.masar-service-card__number {
+  position: absolute;
+  z-index: 1;
+  inset-block-start: 16px;
+  inset-inline-end: 16px;
+  display: grid;
+  place-items: center;
+  min-width: 44px;
+  height: 30px;
+  padding: 0 10px;
+  border: 1px solid rgba(255,255,255,.38);
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(4,43,89,.56);
+  backdrop-filter: blur(10px);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+.masar-service-card__content,
+.masar-service-card__body {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+  flex: 1;
+}
+.masar-service-card__content,
+.masar-service-card__body {
+  padding: 26px 20px 20px;
+  box-sizing: border-box;
+}
+.masar-service-card__content .masar-service-card__body {
+  padding: 0;
+  gap: 0;
+  flex: 0 0 auto;
+}
+.masar-service-card__header,
+.masar-service-card__heading {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+  flex: 0 0 auto;
+}
+.masar-service-card__icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  color: #ff6b1a;
+  background: rgba(255,107,26,.10);
+}
+.masar-service-card__icon svg { width: 23px; height: 23px; }
+.masar-service-card__copy { display: flex; min-width: 0; flex-direction: column; gap: 7px; }
+.masar-service-card__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  overflow: visible;
+  color: #042b59;
+  font-size: clamp(17px, 1.35vw, 22px);
+  font-weight: 800;
+  line-height: 1.3;
+  white-space: normal;
+}
+.masar-service-card__text {
+  display: block;
+  width: 100%;
+  margin: 0;
+  overflow: visible;
+  color: #52677f;
+  font-size: 14px;
+  line-height: 1.65;
+}
+.masar-service-card__arrow {
+  width: 35px;
+  height: 35px;
+  border: 1px solid rgba(4,43,89,.12);
+  border-radius: 50%;
+  transition: background .25s ease, border-color .25s ease;
+}
+.masar-service-card__arrow::before {
+  content: "→";
+  display: grid;
+  height: 100%;
+  place-items: center;
+  color: #ff6b1a;
+  font-size: 17px;
+  font-weight: 800;
+}
+[dir="rtl"] .masar-service-card__arrow::before { content: "←"; }
+.masar-service-card:hover .masar-service-card__arrow {
+  border-color: #ff6b1a;
+  background: #ff6b1a;
+}
+.masar-service-card:hover .masar-service-card__arrow::before { color: #fff; }
+.masar-service-list { display: none; }
+
+@media (max-width: 991.98px) {
+  .masar-service-card { grid-column: span 6; }
+  .masar-service-card--anchor { grid-column: span 6; }
+  .masar-service-card__media,
+  .masar-service-card--anchor .masar-service-card__media { height: 210px; }
+}
+@media (max-width: 767.98px) {
+  .masar-services-showcase { padding-block: 58px !important; }
+  .masar-services-showcase::before { display: none; }
+  .masar-services-showcase .masar-section-head {
+    display: block;
+    margin-bottom: 26px;
+  }
+  .masar-services-showcase .masar-section-head__title {
+    max-width: 12em;
+    font-size: clamp(31px, 9vw, 42px);
+    line-height: 1.08;
+  }
+  .masar-services-showcase .masar-section-head__lead {
+    margin-top: 14px;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  .masar-services-showcase .masar-section-head__link { display: none; }
+  .masar-offers,
+  .masar-mobile-services,
+  .masar-service-list { display: none !important; }
+  .masar-service-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .masar-service-item {
+    overflow: hidden;
+    background: rgba(255,255,255,.96);
+    border: 1px solid rgba(4,43,89,.11);
+    border-radius: 18px;
+    box-shadow: 0 8px 24px rgba(4,43,89,.055);
+  }
+  .masar-service-item[open] {
+    border-color: rgba(255,107,26,.40);
+    box-shadow: 0 16px 38px rgba(4,43,89,.10);
+  }
+  .masar-service-item__summary {
+    display: grid;
+    grid-template-columns: auto auto 1fr auto;
+    align-items: center;
+    gap: 11px;
+    min-height: 76px;
+    padding: 12px 14px;
+    color: #042b59;
+    cursor: pointer;
+    list-style: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .masar-service-item__summary::-webkit-details-marker { display: none; }
+  .masar-service-item__number {
+    color: #8190a3;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .10em;
+  }
+  .masar-service-item__icon {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 13px;
+    color: #ff6b1a;
+    background: rgba(255,107,26,.10);
+  }
+  .masar-service-item__icon svg { width: 22px; height: 22px; }
+  .masar-service-item__title {
+    min-width: 0;
+    font-size: 17px;
+    line-height: 1.3;
+  }
+  .masar-service-item__toggle {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #f2f5f8;
+  }
+  .masar-service-item__toggle::before,
+  .masar-service-item__toggle::after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 9px;
+    width: 14px;
+    height: 2px;
+    border-radius: 2px;
+    background: #042b59;
+    transition: transform .25s ease;
+  }
+  .masar-service-item__toggle::after { transform: rotate(90deg); }
+  .masar-service-item[open] .masar-service-item__toggle { background: #ff6b1a; }
+  .masar-service-item[open] .masar-service-item__toggle::before,
+  .masar-service-item[open] .masar-service-item__toggle::after { background: #fff; }
+  .masar-service-item[open] .masar-service-item__toggle::after { transform: rotate(0); }
+  .masar-service-item__panel {
+    padding: 0 14px 18px;
+    animation: masarServiceReveal .28s ease both;
+  }
+  .masar-service-item__image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 14px;
+    background: #042b59;
+  }
+  .masar-service-item__text {
+    margin: 14px 3px 11px;
+    color: #52677f;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .masar-service-item__link {
+    display: inline-flex;
+    margin-inline: 3px;
+    color: #ff6b1a !important;
+    font-size: 14px;
+    font-weight: 800;
+  }
+}
+@keyframes masarServiceReveal {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .masar-service-card,
+  .masar-service-card__media img,
+  .masar-service-item__panel { transition: none; animation: none; }
+}
+
+/* Keep the supplied card/POS interaction in the mobile crop in both languages. */
+@media(max-width:980px){
+  html body .masar-pay>.masar-hero--home,
+  html[dir="rtl"] body .masar-pay>.masar-hero--home{background-position:62% center!important}
+}
+
+/* Mobile: show the complete supplied photograph below the copy, without cropping. */
+@media(max-width:640px){
+  html body #wrapwrap .masar-pay>.masar-hero--home{
+    display:flex!important;flex-direction:column!important;align-items:stretch!important;
+    height:auto!important;min-height:0!important;padding:28px 0 0!important;
+    gap:24px;background:#021d3e!important;
+  }
+  html body #wrapwrap .masar-pay>.masar-hero--home::before{display:none!important}
+  html body #wrapwrap .masar-pay>.masar-hero--home::after{
+    content:"";display:block!important;position:relative!important;inset:auto!important;
+    width:100%;height:auto!important;aspect-ratio:16/9;flex:none;z-index:0;
+    background:url("/masar_website/static/src/img/hero-fintech-yemen-v2.webp?v=card-payment-20260928") center/contain no-repeat!important;
+  }
+  html body #wrapwrap .masar-pay>.masar-trust-band{margin-top:0!important}
+}
+
+@media(max-width:640px){
+  html body #wrapwrap .masar-pay>.masar-hero--home .masar-hero__top{height:auto!important;min-height:0!important;padding-block:0!important;flex:none!important}
+}
+
+/* Sticky site header. overflow-x:hidden on #wrapwrap breaks position:sticky, so the bar is fixed. */
+html{scroll-padding-top:calc(var(--masar-header-offset, 4.85rem) + 12px)}
+html body #wrapwrap > header.masar-header{
+  position:fixed!important;inset-block-start:0;inset-inline:0;z-index:1100!important;width:100%;
+  background:rgba(4,43,89,.94)!important;
+  -webkit-backdrop-filter:blur(18px) saturate(1.25);
+  backdrop-filter:blur(18px) saturate(1.25);
+  border-bottom:1px solid transparent;
+  box-shadow:none;
+  transition:background-color .28s ease,box-shadow .28s ease,border-color .28s ease;
+}
+html body #wrapwrap > header.masar-header.is-scrolled{
+  background:rgba(2,29,62,.97)!important;
+  border-bottom-color:rgba(255,255,255,.1);
+  box-shadow:0 10px 28px rgba(2,29,62,.22);
+}
+html body #wrapwrap > main{margin-top:var(--masar-header-offset, 4.85rem)}
+html body #wrapwrap #wrap :is(section,[id]){scroll-margin-top:calc(var(--masar-header-offset, 4.85rem) + 12px)}
+@media(max-width:1100px){
+  html body #wrapwrap > header.masar-header.is-open .masar-nav{
+    background:#042B59;box-shadow:0 18px 36px rgba(2,29,62,.28);
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  html body #wrapwrap > header.masar-header{transition:none!important}
+}
+
+/* About: headquarters photo sits opposite the Who We Are copy. */
+html body #wrapwrap .masar-page--about .masar-block--split > .masar-wrap{
+  display:grid;
+  grid-template-columns:minmax(0,1.08fr) minmax(280px,.92fr);
+  column-gap:clamp(28px,4vw,56px);
+  align-items:center;
+}
+html body #wrapwrap .masar-page--about .masar-block--split .masar-block__head{grid-column:1;grid-row:1;margin-bottom:0}
+html body #wrapwrap .masar-page--about .masar-block--split .masar-prose{grid-column:1;grid-row:2;max-width:none}
+html body #wrapwrap .masar-page--about .masar-block--split .masar-split__figure{grid-column:2;grid-row:1 / span 2;margin:0}
+html body #wrapwrap .masar-page--about .masar-split__photo{
+  display:block;width:100%;height:auto;border-radius:24px;
+  box-shadow:0 22px 48px rgba(4,43,89,.16);
+}
+@media(max-width:1199.98px){
+  html body #wrapwrap .masar-page--about .masar-block--split > .masar-wrap{
+    grid-template-columns:1fr;
+    row-gap:22px;
+    justify-items:center;
+  }
+  html body #wrapwrap .masar-page--about .masar-block--split .masar-block__head,
+  html body #wrapwrap .masar-page--about .masar-block--split .masar-prose,
+  html body #wrapwrap .masar-page--about .masar-block--split .masar-split__figure{
+    grid-column:1;grid-row:auto;width:min(100%,42rem);
+  }
+  html body #wrapwrap .masar-page--about .masar-split__photo{border-radius:20px}
+}
+@media(max-width:640px){
+  html body #wrapwrap .masar-page--about .masar-block--split > .masar-wrap{row-gap:16px}
+  html body #wrapwrap .masar-page--about .masar-block--split .masar-block__head,
+  html body #wrapwrap .masar-page--about .masar-block--split .masar-prose,
+  html body #wrapwrap .masar-page--about .masar-block--split .masar-split__figure{width:100%}
+  html body #wrapwrap .masar-page--about .masar-split__photo{border-radius:16px}
+}
+
+/* Public header: keep logo, language, CTA, and menu on one row. */
+html body #wrapwrap > header.masar-header .masar-header__bar{
+  display:flex;flex-wrap:nowrap;align-items:center;gap:.55rem;min-width:0;
+}
+html body #wrapwrap > header.masar-header .masar-header__brand{order:1;min-width:0;flex:0 1 auto}
+html body #wrapwrap > header.masar-header .masar-nav{order:2}
+html body #wrapwrap > header.masar-header .masar-header__tools{
+  order:4;margin-inline-start:auto;display:flex;align-items:center;gap:.45rem;flex:0 0 auto;
+}
+html body #wrapwrap > header.masar-header > .masar-header__bar > .masar-nav__toggle{
+  order:5;margin-inline-start:0!important;flex-shrink:0;
+}
+html body #wrapwrap > header.masar-header .masar-nav__cta{display:none}
+html body #wrapwrap > header.masar-header .masar-header__cta{
+  white-space:nowrap;overflow-wrap:normal;flex-shrink:0;
+}
+/* Logo stays the original 190px lockup from masar_premium.css. */
+html body #wrapwrap > header.masar-header .masar-lockup{
+  width:190px!important;max-width:190px!important;min-height:56px!important;flex:none!important;
+}
+/* Logged-in Apps corner sits above the MASAR header (z-index 1100). Keep
+   position:fixed so the triangle is not pulled into document flow. */
+html body .o_frontend_to_backend_nav,
+html body .o_frontend_to_backend_nav.d-none,
+html body .o_frontend_to_backend_nav.position-fixed{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  position:fixed!important;
+  top:0!important;
+  inset-inline-start:0!important;
+  inset-inline-end:auto!important;
+  z-index:1200!important;
+  height:auto!important;
+  max-height:none!important;
+  overflow:visible!important;
+  pointer-events:auto!important;
+}
+@media(max-width:1100px){
+  html body #wrapwrap > header.masar-header .masar-wrap{width:calc(100% - 1.25rem)!important;padding-inline:10px!important}
+  html body #wrapwrap > header.masar-header .masar-nav__toggle{display:inline-flex;margin-inline-start:0!important}
+  html body #wrapwrap > header.masar-header .masar-header__cta{
+    min-height:40px!important;padding-inline:.75rem!important;font-size:.8rem;
+  }
+  html body #wrapwrap > header.masar-header .masar-header__cta.masar-btn--forward::after{display:none}
+  html body #wrapwrap > header.masar-header.is-open .masar-nav__cta{
+    display:inline-flex;width:100%;justify-content:center;margin-top:.35rem;
+  }
+}
+@media(max-width:640px){
+  html body #wrapwrap > header.masar-header .masar-header__tools > .masar-btn{display:none!important}
+  html body #wrapwrap > header.masar-header .masar-lang__toggle{min-width:44px;padding-inline:.2rem}
+  html body #wrapwrap > header.masar-header.is-open .masar-nav{
+    display:flex;padding:.75rem 1rem 1.1rem;
+  }
+  html body #wrapwrap > header.masar-header.is-open .masar-nav__cta{
+    display:inline-flex!important;width:100%;justify-content:center;margin-top:.65rem;
+  }
+}
