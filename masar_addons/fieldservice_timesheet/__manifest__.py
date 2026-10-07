@@ -1,0 +1,12 @@
+{'author': 'Camptocamp, Odoo Community Association (OCA)',
+ 'category': 'Project',
+ 'data': ['views/fsm_order.xml', 'views/hr_timesheet.xml', 'report/report_timesheet_templates.xml'],
+ 'depends': ['hr_timesheet', 'fieldservice_project'],
+ 'development_status': 'Beta',
+ 'installable': True,
+ 'license': 'AGPL-3',
+ 'maintainers': ['max3903'],
+ 'name': 'Field Service - Timesheet',
+ 'summary': 'Timesheet on Field Service Orders',
+ 'version': '20.0.1.0.0',
+ 'website': 'https://github.com/OCA/field-service'}

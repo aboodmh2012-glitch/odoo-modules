@@ -1,0 +1,162 @@
+[
+  {
+    "slug": "/",
+    "name": "Home",
+    "seo_title": "MASAR | Payments and Digital Financial Solutions",
+    "meta_description": "Explore MASAR and its planned solutions for individuals, merchants and institutions: accounts, cards, point of sale, payment gateway, payouts and bills.",
+    "body": "# Money moves. We make the way simpler.\nAt MASAR, we are developing payment solutions that connect the needs of individuals, merchants, businesses and institutions: from accounts and cards to accepting payments, disbursing funds and paying bills.\n\n## Different needs. A clearer path.\nEvery financial transaction has a purpose: a purchase to pay for, a merchant awaiting payment, an employee due a salary, or an institution tracking what has been paid and what remains. We shape our planned services around these needs, not the complexity behind them.\n\n## Find what fits your needs\n**For individuals:** Explore accounts, cards, everyday payments and cash services.\n**For merchants and businesses:** Discover payment solutions for stores, websites and apps.\n**For companies and institutions:** Discuss payroll, supplier payments and payouts to multiple recipients.\n**For developers and platforms:** Start with your product's needs, then discuss the scope of integration with the MASAR team.\n\n## Our solutions\n**Accounts and cards:** A planned experience bringing together money tracking and payment tools.\n**Point of sale:** In-store payment acceptance connected to collection tracking.\n**Payment gateway:** Connecting payments to the purchasing experience on websites and apps.\n**Bulk payments:** Organizing payroll and other disbursements to multiple recipients.\n**Bill payments:** Making it easier to pay bills from connected service providers.\n**ATMs and cash services:** Connecting digital financial services to cash-access channels.\n\n## Trust starts with clarity\nBefore any service is activated, its provider, fees, limits and support channels should be clear. This is the foundation on which we prepare MASAR's services and information.\n\n## Let's talk about your needs\nTell us what you would like to simplify: accepting payments, collecting funds, making disbursements or connecting a system. That is where the conversation about the right solution begins.",
+    "cta": "Explore solutions → /solutions | Talk to MASAR → /contactus",
+    "publishing_gate": "Editorial and compliance review before publication",
+    "editorial_notes": "This is introductory, preparation-stage copy, not an announcement of live services. The marketing presentation itself requires compliance approval. Do not add customer numbers, transaction volumes or partner logos without evidence."
+  },
+  {
+    "slug": "/solutions",
+    "name": "Solutions",
+    "seo_title": "MASAR Solutions | Accounts, Cards, Payments and Payouts",
+    "meta_description": "Explore MASAR's six solution areas, the needs each addresses and the information to clarify before activating a service.",
+    "body": "# A solution that starts with your needs.\nMASAR brings together six areas of financial and digital solutions. Explore the relevant area, then discuss your business requirements and the scope of the service with our team.\n\n## Accounts and cards\nFor those seeking an experience that connects account management, payment tools and transaction tracking. The nature of the account and card, and the organizations providing them, are defined in the approved product details.\n\n## Point of sale and in-store payments\nFor stores, restaurants and service locations that need to accept payments at the point of sale and track their collections.\n\n## Payment gateway for websites and apps\nFor online stores and applications that want to link payments to customer orders and track transaction status within the purchasing experience.\n\n## Bulk payments\nFor companies and institutions managing payroll, supplier payments or disbursements to multiple recipients.\n\n## Bill payments and digital collections\nFor customers paying service bills and organizations that need to connect collections to their bills and track the results.\n\n## ATMs and cash services\nConnecting digital financial services to withdrawal and cash-service channels, subject to approved networks and arrangements.\n\n## How do you choose?\nStart with where the transaction takes place and who makes it: in-store payments point to point-of-sale solutions, website or app payments to the gateway, and disbursements to multiple recipients to bulk payments. Your needs may involve more than one solution; we discuss them together rather than treating them as unrelated requests.",
+    "cta": "Discuss the right solution → /contactus",
+    "publishing_gate": "Editorial and compliance review before publication",
+    "editorial_notes": "Cards on this page summarize and link to the six original solution pages; they are not duplicate service pages. Store availability centrally for each service."
+  },
+  {
+    "slug": "/solutions/accounts-cards",
+    "name": "Accounts and Cards",
+    "seo_title": "Accounts and Cards | MASAR Digital Solutions",
+    "meta_description": "Learn about MASAR's planned account and card experience, with product type, provider, fees and limits to be clarified before activation.",
+    "body": "# Your account and payment tools. A clearer experience.\nWe are building a digital experience that connects account tracking with payment tools, making transactions and their use easier to understand for individuals and businesses.\n\n## What are we focusing on?\nClear transaction records, accessible account and card information, understandable fees and limits, and access to help when a transaction needs review.\n\n## For individuals and businesses\nAn individual's everyday payment needs may differ from an organization's need to manage the use of payment tools. Product type and eligibility requirements are therefore determined by customer category and permitted use.\n\n## Details to know before choosing\nOnce approved, each product page will explain the nature of the account, its provider, the card type and issuer, supported currencies and channels, fees and usage limits, verification requirements, and how to handle a lost card or dispute a transaction.\n\n## Before getting started\nAvailability is subject to product approval and completion of service requirements. The actual scope of use will be announced before activation requests are accepted.",
+    "cta": "Ask about accounts and cards → /contactus",
+    "publishing_gate": "Introductory description only; product details and availability require approval",
+    "editorial_notes": "Do not use bank account, savings account, credit card, IBAN, Visa/Mastercard or deposit insurance without product documentation. Registering for the website portal does not mean opening a financial account."
+  },
+  {
+    "slug": "/solutions/pos",
+    "name": "Point of Sale",
+    "seo_title": "Point of Sale and In-Store Payments | MASAR",
+    "meta_description": "Planned solutions to help merchants organize in-store payment acceptance and track collections and branches using approved devices and payment methods.",
+    "body": "# The final step of a sale should be easier.\nWe design point-of-sale solutions around merchants' need to complete payments clearly and track collections after a sale, whether they operate one store or several branches.\n\n## More than a device on the counter\nThe planned service connects the payment acceptance point, transaction reference, originating branch and the information a merchant needs for follow-up or support.\n\n## A solution for your point of sale\nThe discussion starts with your business activity, the number and location of payment points, and available connectivity. Devices, payment methods, installation and support scope are then defined in the approved offer.\n\n## Clarity after payment\nA merchant's needs do not end when the transaction result appears. They also need to understand settlement timing, fees and net proceeds, and how to review an incomplete transaction or request a refund where the service allows it.\n\n## Who is it for?\nStores, restaurants, service locations and multi-branch businesses, subject to the activities accepted for the service.",
+    "cta": "Discuss your point-of-sale needs → /contactus",
+    "publishing_gate": "Editorial and compliance review before publication",
+    "editorial_notes": "SoftPOS, NFC, QR, supported cards, printing and offline operation are not confirmed features. Do not promise instant settlement or free installation. The payment gateway is a separate product for online purchases."
+  },
+  {
+    "slug": "/solutions/payment-gateway",
+    "name": "Payment Gateway",
+    "seo_title": "Payment Gateway for Websites and Apps | MASAR",
+    "meta_description": "Explore MASAR's planned payment gateway for connecting purchases to payments and tracking their status across websites, applications and platforms.",
+    "body": "# A purchase is only complete with a clear payment experience.\nWe are developing a payment gateway for websites and apps that links a customer's order to a payment and tracks its outcome, with the needs of commerce, technology and customer service teams in mind.\n\n## For online stores\nA design that connects the order to the payment outcome and transaction reference, making status tracking and inquiries a clear part of the sales process.\n\n## For apps and platforms\nThe integration discussion starts with the business model: who pays, who receives the funds, when a transaction is considered complete, and how its status is shown to the customer. The solution scope and supported methods are then defined.\n\n## After an order is completed\nService design requirements include status tracking, refunds where supported, settlements and reports. The actual scope of each is set out in approved documentation and terms.\n\n## Before connecting your system\nAsk our team to clarify business requirements, payment methods and currencies, integration options, the test environment if available, fees, settlement and the process for moving into live operation.",
+    "cta": "Discuss your integration → /contactus | Explore MASAR for developers → /developers",
+    "publishing_gate": "Editorial and compliance review before publication",
+    "editorial_notes": "Do not present API endpoints, keys, SDKs, platform plugins or payment links as available without documentation and operation. Once approved, payment links are a gateway feature, not an assumed seventh service."
+  },
+  {
+    "slug": "/solutions/payouts",
+    "name": "Bulk Payments",
+    "seo_title": "Payroll and Bulk Payments | MASAR",
+    "meta_description": "Planned solutions for organizing employee, supplier and beneficiary payments, from data preparation and review to tracking payout results.",
+    "body": "# Multiple recipients. Clearer tracking for every batch.\nWe are developing bulk payment solutions that help companies and institutions organize disbursements to multiple recipients, rather than managing each transaction separately from the rest of the batch.\n\n## From preparing data to tracking results\nThe service design focuses on clear recipient details, reviewing a batch before submission, defining approval permissions, and tracking each transaction's result and any further action required.\n\n## Payroll and other amounts due\nOrganizing salaries, bonuses, commissions and recurring disbursements through approved payout channels and funding arrangements.\n\n## Suppliers and partners\nGrouping payments to multiple parties and connecting them to clear references for financial follow-up and communication when needed.\n\n## Institutions and organizations\nDiscussing multi-recipient disbursement programs with attention to data privacy, verification and the reports required for each program.\n\n## What is agreed before execution?\nPayout channels, currencies, batch limits, recipient requirements, timing, fees and the process for handling rejected or returned transactions. Approval of a batch does not mean that every payment has reached its recipient.",
+    "cta": "Discuss your payment program → /contactus",
+    "publishing_gate": "Editorial and compliance review before publication",
+    "editorial_notes": "Batch review, approval and tracking are design requirements, not verified functions of the current financial system. Do not claim thousands of transactions or a specific payout time before testing and approval. Do not execute funds from a general contact form."
+  },
+  {
+    "slug": "/solutions/bill-payments",
+    "name": "Bill Payments and Collections",
+    "seo_title": "Bill Payments and Digital Collections | MASAR",
+    "meta_description": "Explore MASAR's planned solutions for paying service-provider bills, linking collections to invoices and tracking payment outcomes.",
+    "body": "# From the bill to payment confirmation.\nWe are developing an experience that connects bill payments with service providers and helps both the customer and the receiving organization track the payment outcome using a clear reference.\n\n## For customers\nThe aim is to reduce unnecessary steps: select the provider, verify service and bill details, review the amount and fees, then track the payment result.\n\n## For service providers\nThe solution focuses on linking collections to a bill or customer reference, clarifying transaction and settlement results, and reducing inquiries caused by missing information.\n\n## Supported providers and services\nThe provider list will be announced after integrations are completed and operations approved. Bill and service coverage, verification and update methods are determined for each provider.\n\n## Payment result and bill status\nPayment processing and the provider's bill update may happen at different stages. Each stage should therefore be clearly displayed, with a follow-up process when the results do not match.",
+    "cta": "Providers: discuss collection integration → /contactus | Individuals: ask about the service → /contactus",
+    "publishing_gate": "Editorial and compliance review before publication",
+    "editorial_notes": "This product covers service bill payments, not accounting invoicing software or supplier invoice payments. Do not name telecommunications, electricity or government providers before an approved integration exists."
+  },
+  {
+    "slug": "/solutions/atm-cash",
+    "name": "ATMs and Cash Services",
+    "seo_title": "ATMs and Cash Services | MASAR",
+    "meta_description": "Explore MASAR's plans to connect ATMs and cash services to financial systems, with channels, coverage and fees specified once approved.",
+    "body": "# Connecting digital services and cash.\nMASAR's plans include solutions for connecting ATMs and cash services to financial systems, in cooperation with organizations approved under the operating model.\n\n## For customers\nThe focus is on clear service locations, supported transaction types, fees and limits, with information that helps customers follow up on a transaction when needed.\n\n## For banks and channel operators\nWe discuss technical connectivity, transaction information exchange, reconciliation, settlement and operational case handling within the agreed scope of cooperation.\n\n## Coverage starts with accurate information\nA service point is not listed simply because it is planned. Approved locations are published with the device or point type, actual services, availability hours where applicable and a channel for inquiries.\n\n## Before using a service\nRefer to the network, card and provider details for supported transactions, limits and fees. A channel that supports withdrawals does not necessarily support deposits or all cards.",
+    "cta": "Discuss connectivity and cash services → /contactus",
+    "publishing_gate": "Scope introduction only; do not publish a location directory without a documented network",
+    "editorial_notes": "This page must not imply that MASAR owns an ATM or agent network, or that deposits are available. Show a locations link only when approved data exists."
+  },
+  {
+    "slug": "/personal",
+    "name": "MASAR for Individuals",
+    "seo_title": "MASAR for Individuals | Simpler Everyday Payments",
+    "meta_description": "Explore MASAR's solution areas for individuals, from accounts and cards to bill payments and cash services, subject to availability.",
+    "body": "# Your everyday needs, explained simply.\nWe put individual needs at the center of our planned services: how do you pay, check a transaction's status, find fees and limits, or get help when you need clarification?\n\n## Explore the solution areas\nAccounts and cards for tracking money and payment tools, bill payments for everyday needs, and cash services for access to approved channels when available.\n\n## Information before a decision\nEvery product has a scope of use, verification requirements, fees and limits. We aim to explain these clearly before you sign up, not after you start using a service.\n\n## Support is part of the experience\nThe website is organized to make frequently asked questions, security guidance and the complaints process easy to find. Product-specific user guides are added once approved.\n\n## Understand first, then choose\nThe information here introduces our solution areas. Each product's launch and eligibility requirements are announced separately.",
+    "cta": "Explore accounts and cards → /solutions/accounts-cards | Frequently asked questions → /help/faq",
+    "publishing_gate": "Editorial and compliance review before publication",
+    "editorial_notes": "Do not show Download the app or Open an account buttons unless a working, approved app or account-opening process exists."
+  },
+  {
+    "slug": "/business",
+    "name": "MASAR for Business",
+    "seo_title": "MASAR for Business | Payments, Collections and Integration",
+    "meta_description": "Planned solutions for merchants, online stores and companies, covering payment acceptance, collection tracking, settlement and system integration.",
+    "body": "# Focus on your business. Make payments clearer.\nA small store, a branch network and a digital platform have different needs. We therefore start with your business model, sales channels and collection process, then define the appropriate solution scope.\n\n## Selling in-store?\nExplore point-of-sale solutions and discuss devices, branches, payment acceptance methods and collection tracking.\n\n## Selling through a website or app?\nLearn about the payment gateway and the requirements for connecting orders to payment outcomes, customer service and settlement.\n\n## Managing employee or supplier payments?\nExplore bulk payments for organizing, reviewing and tracking payment batches under the approved model.\n\n## Need to connect your system?\nDiscuss your existing system, transaction references, data exchange needs and pre-launch testing with the integration team.\n\n## Start by describing your needs\nTell us your business activity, sales channels, number of branches where applicable and estimated transaction volume. You do not need to send customer data, card details or bank statements with your first inquiry.",
+    "cta": "Discuss your business needs → /contactus",
+    "publishing_gate": "Editorial and compliance review before publication",
+    "editorial_notes": "This is a use-case selection page, not a repetition of all six service descriptions. Do not claim a live accounting integration with a named system."
+  },
+  {
+    "slug": "/institutions",
+    "name": "Companies, Institutions and Organizations",
+    "seo_title": "Solutions for Companies and Institutions | MASAR",
+    "meta_description": "Discuss collections, bulk payments and integration with MASAR around the needs of companies, institutions and multi-recipient disbursement programs.",
+    "body": "# Multiple operations. Clear responsibility at every step.\nInstitutions need more than the ability to send money: accurate data, defined permissions, review before execution and results they can track. We build the discussion of our institutional solutions around these needs.\n\n## For companies\nPayroll, amounts due, supplier payments and collections, with clear workflows, responsible parties and the scope of integration with internal systems.\n\n## For organizations and disbursement programs\nDiscussing recipient requirements, receiving channels, data privacy and reports that support program tracking, without displaying recipient data on public pages.\n\n## For service providers\nConnecting collections to a bill or service and defining the transaction reference, settlement responsibilities and follow-up process.\n\n## How do we begin?\nWe define the use case and its scope, review service, partner and integration requirements, then clarify responsibilities, operating terms and required testing. Availability remains subject to the approvals and arrangements for each service.",
+    "cta": "Discuss an institutional solution → /contactus",
+    "publishing_gate": "Editorial and compliance review before publication",
+    "editorial_notes": "Do not promise aid or grant disbursement in a specific country, currency or channel without program approval. Do not expose the internal AML review process publicly."
+  },
+  {
+    "slug": "/developers",
+    "name": "Developers and Platforms",
+    "seo_title": "MASAR for Developers | Discuss Payment Integration",
+    "meta_description": "Start with your business model and discuss integration and testing requirements with MASAR. API references are published when approved products are available.",
+    "body": "# Build a payment experience on clear information.\nWe start by understanding what you need to connect: creating a payment, tracking its result, matching its reference to a customer order, or organizing data exchange with your systems.\n\n## From the business model to the integration scope\nDescribe your platform, participating parties, expected flow of funds and existing systems. This helps distinguish what requires technical integration from what needs an agreement or operational approval.\n\n## What will product documentation include when available?\nService scope, authentication, status definitions, event notifications, error handling, test requirements, usage limits and version management.\n\n## Testing before live operation\nIntegration testing and approval to go live are defined in the product documentation. Do not use real payment data or production keys in inquiry messages or public examples.\n\n## Access to technical references\nTechnical references are made available when integrable services are approved and their documentation has been checked against the actual service. During preparation, contact us to discuss your integration requirements and scope.",
+    "cta": "Discuss integration requirements → /contactus",
+    "publishing_gate": "Introductory page subject to review; documentation and test-environment links are conditional",
+    "editorial_notes": "No invented endpoints, fictional sandbox or non-working key-generation button. Once documentation is available, it must come from the approved technical source, not marketing copy."
+  },
+  {
+    "slug": "/about",
+    "name": "About MASAR",
+    "seo_title": "About MASAR | Digital Payment Solutions",
+    "meta_description": "Learn about the MASAR project and its vision for simplifying payment services and connecting individual, business and institutional needs to digital solutions.",
+    "body": "# Building a simpler path to digital financial services.\nMASAR is the brand being developed within the Masar Global for Financial Systems and Solutions company project. We are preparing payment solutions for individuals, merchants, businesses and institutions in the Yemeni market.\n\n## Why MASAR?\nThe value of technology is not in the number of systems, but in an experience customers can understand and information they can rely on. We focus on clear services, connected operations and knowing who is responsible for each step.\n\n## Our vision\nTo help make digital payment services more accessible and connected, supporting everyday life, business and the digital economy.\n\n## Our mission\nTo simplify access to, use of and follow-up on payment solutions by preparing products that combine an understanding of customer needs, operational discipline and technical integration.\n\n## The principles guiding our work\nClear information, responsible service provision, attention to data protection, avoiding unnecessary complexity and cooperation with relevant authorities and partners within approved frameworks.\n\n## Regulatory stage\nAccording to the Central Bank of Yemen letter dated September 13, 2026, the project received preliminary approval to provide payment services and operate/manage a payment system. The letter states that this approval does not authorize the commencement of business and that final approval is subject to fulfillment of the specified requirements.",
+    "cta": "Learn about governance → /governance | Contact us → /contactus",
+    "publishing_gate": "Confirm that no newer document has been issued and approve the corporate information wording",
+    "editorial_notes": "Regulatory-stage source: letter CBY/L/253/2026, page 1. It does not establish final licensing or live operation. The English rendering of the company name here is a working translation; the final legal Arabic and English names must be copied from registration documents, not inferred."
+  },
+  {
+    "slug": "/governance",
+    "name": "Governance",
+    "seo_title": "Governance and Corporate Oversight | MASAR",
+    "meta_description": "Explore MASAR's intended governance principles: clear responsibilities, authority, oversight, risk management and accountability.",
+    "body": "# Clear responsibilities. Oversight that supports trust.\nWe are preparing a governance framework that clarifies the relationship between shareholders, the board of directors and executive management, and defines responsibilities for making, reviewing and overseeing decisions.\n\n## Board and executive management\nThe governance framework defines the board's oversight remit and management's implementation and day-to-day responsibilities, with documented decisions, authorities and matters requiring higher approval.\n\n## Committees and oversight\nMASAR will publish committee names, remits and membership after approval. Preparatory work includes organizing review, risk management, compliance and internal control in proportion to the activity's scale and requirements.\n\n## Conflicts of interest and professional conduct\nOur policy preparation focuses on disclosing relevant interests, clarifying responsibility for decisions and establishing channels for handling concerns and misconduct.\n\n## Published documents\nApproved public versions of governance documents are made available when suitable for publication. Meeting minutes, personal data and operational control details remain subject to approved access permissions.",
+    "cta": "Leadership information → /leadership",
+    "publishing_gate": "Approval of the framework, committees and public documents",
+    "editorial_notes": "Do not present hypothetical committees as established. Do not publish names, membership terms or independence designations without appointment decisions and publication consent."
+  },
+  {
+    "slug": "/leadership",
+    "name": "Board and Executive Leadership",
+    "seo_title": "Board and Executive Leadership | MASAR",
+    "meta_description": "Information on MASAR's board and executive leadership. Profiles and responsibilities are published after appointments and publication approval.",
+    "body": "# Leadership accountable for direction and delivery.\nThis page brings together approved information about the board and executive leadership: roles, relevant experience and key responsibilities.\n\n## Board of directors\nMembers' details and designations are published after the board is formally approved and publication permissions are completed.\n\n## Executive leadership\nPublished profiles explain each leader's responsibilities and relevant industry experience, without unnecessary personal information or details of internal verification procedures.\n\n## While appointments await approval\nBoard and executive leadership information will be updated once approval is complete and the information is cleared for publication.",
+    "cta": "Learn about governance → /governance",
+    "publishing_gate": "Preferably hide from navigation until real names are approved",
+    "editorial_notes": "Profile fields: approved name, position, membership designation where approved, professional biography, remit and an authorized photo. Do not substitute shareholder names or ownership percentages for appointments."
+  },
+  {
+    "slug": "/partners",
+    "name": "Partnerships",
+    "seo_title": "Partnerships and Institutional Integration | MASAR",
+    "meta_description": "Discuss cooperation with MASAR across banking, technology, business systems and payment channels, subject to the agreed scope and approvals.",
+    "body": "# Connected services start with clear cooperation.\nWe aim to build relationships that define what each party contributes and how their roles work together for the customer, with clear technical, operational and regulatory responsibilities.\n\n## Banks and financial institutions\nDiscussing product provision, connectivity and settlement needs within the business model and arrangements under approval.\n\n## Technology and system providers\nDiscussing connections to business systems, applications and operational tools, based on defined requirements, documentation and clear testing.\n\n## Service providers and access channels\nDiscussing collections, cash services and service delivery channels, with a defined scope of cooperation and actual availability.\n\n## Start with a cooperation proposal\nIntroduce your organization, what it offers, the proposed scope of cooperation and relevant countries or channels. Proposals are assessed against their fit and the project's requirements.",
+    "cta": "Submit a partnership proposal → /contactus",
+    "publishing_gate": "Editorial and compliance review before publication",
+    "editorial_notes": "No bank, network or technology-provider logos without an existing agreement and brand-use permission. Referring to Synctera or SDK.finance in research does not establish a partnership or an implemented integration."
+  }
+]

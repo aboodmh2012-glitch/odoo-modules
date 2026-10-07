@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2026 MASAR — SPDX-License-Identifier: AGPL-3.0-or-later -->
+<odoo>
+    <record id="corporate_committee_view_form" model="ir.ui.view">
+        <field name="name">corporate.committee.form</field>
+        <field name="model">corporate.committee</field>
+        <field name="arch" type="xml">
+            <form string="Board Committee">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Committee name…"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="committee_type"/>
+                            <field name="effective_date"/>
+                            <field name="end_date"/>
+                            <field name="is_active"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="chairperson_id" readonly="1"/>
+                            <field name="secretary_id" readonly="1"/>
+                            <field name="resolution_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Members" name="members">
+                            <field name="member_ids">
+                                <list editable="bottom"
+                                      decoration-muted="not is_active">
+                                    <field name="partner_id"/>
+                                    <field name="role"/>
+                                    <field name="appointment_date"/>
+                                    <field name="end_date"/>
+                                    <field name="appointment_resolution_id" optional="hide"/>
+                                    <field name="is_active" optional="show"/>
+                                    <field name="company_id" column_invisible="1"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Charter" name="charter">
+                            <field name="charter" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="corporate_committee_view_list" model="ir.ui.view">
+        <field name="name">corporate.committee.list</field>
+        <field name="model">corporate.committee</field>
+        <field name="arch" type="xml">
+            <list string="Board Committees"
+                  decoration-muted="not is_active"
+                  decoration-success="is_active">
+                <field name="name"/>
+                <field name="committee_type"/>
+                <field name="chairperson_id"/>
+                <field name="secretary_id" optional="hide"/>
+                <field name="effective_date"/>
+                <field name="end_date" optional="hide"/>
+                <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                <field name="is_active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="corporate_committee_view_search" model="ir.ui.view">
+        <field name="name">corporate.committee.search</field>
+        <field name="model">corporate.committee</field>
+        <field name="arch" type="xml">
+            <search string="Search committees">
+                <field name="name"/>
+                <field name="committee_type"/>
+                <filter string="Active" name="active_committees"
+                        domain="[('is_active', '=', True)]"/>
+                <separator/>
+                <group>
+                    <filter string="Type" name="group_type"
+                            context="{'group_by': 'committee_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="corporate_committee_action" model="ir.actions.act_window">
+        <field name="name">Board Committees</field>
+        <field name="res_model">corporate.committee</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="corporate_committee_view_search"/>
+        <field name="context">{'search_default_active_committees': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No board committees yet
+            </p>
+            <p>
+                Create a committee only when the board has formally established it.
+                Committees are not auto-created for the organization chart.
+            </p>
+        </field>
+    </record>
+</odoo>

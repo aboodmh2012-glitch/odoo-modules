@@ -1,0 +1,79 @@
+// MASAR Pay — map brand tokens onto Odoo / Bootstrap semantics (backend).
+
+:root {
+    --o-masar-orange: #{$masar-orange};
+    --o-masar-ink: #{$masar-navy};
+    --o-color-1: #{$masar-blue};
+    --o-color-2: #{$masar-navy};
+    --o-color-3: #{$masar-light};
+    --o-color-4: #{$masar-white};
+    --o-color-5: #{$masar-cyan};
+    --o-brand-odoo: #{$masar-blue};
+    --o-brand-primary: #{$masar-blue};
+    --o-cc-btn-primary: #{$masar-blue};
+    --primary: #{$masar-blue};
+    --bs-primary: #{$masar-blue};
+    --bs-primary-rgb: 7, 31, 61;
+    --bs-link-color: #{$masar-blue};
+    --bs-link-hover-color: #{$masar-navy};
+    --bs-success: #{$masar-green};
+    --bs-success-rgb: 34, 197, 94;
+    --bs-danger: #{$masar-danger};
+    --bs-warning: #{$masar-warning};
+    --bs-body-color: #{$masar-text};
+    --bs-body-bg: #{$masar-white};
+    --bs-border-radius: #{$masar-radius-sm};
+}
+
+.o_main_navbar {
+    --o-navbar-background: #{$masar-navy};
+    --o-navbar-color: #{$masar-white};
+}
+
+// Orange actions with dark text in every interaction state.
+.btn-primary {
+    --bs-btn-bg: #{$masar-orange};
+    --bs-btn-border-color: #{$masar-orange};
+    --bs-btn-hover-bg: #{$masar-orange-deep};
+    --bs-btn-hover-border-color: #{$masar-orange-deep};
+    --bs-btn-active-bg: #{$masar-orange-deep};
+    --bs-btn-active-border-color: #{$masar-orange-deep};
+    --bs-btn-disabled-bg: #{$masar-orange};
+    --bs-btn-disabled-border-color: #{$masar-orange};
+    --bs-btn-color: #{$masar-navy};
+    --bs-btn-hover-color: #{$masar-navy};
+    --bs-btn-active-color: #{$masar-navy};
+    --bs-btn-disabled-color: #{$masar-navy};
+    --bs-btn-focus-shadow-rgb: 255, 106, 0;
+    background-color: var(--bs-btn-bg);
+    border-color: var(--bs-btn-border-color);
+    color: var(--bs-btn-color);
+}
+
+.btn-secondary {
+    --bs-btn-bg: #{$masar-white};
+    --bs-btn-color: #{$masar-navy};
+    --bs-btn-border-color: rgba(7, 31, 61, 0.22);
+    --bs-btn-hover-bg: #{$masar-light};
+    --bs-btn-hover-border-color: #{$masar-blue};
+    --bs-btn-hover-color: #{$masar-navy};
+}
+
+a {
+    --bs-link-color-rgb: 7, 31, 61;
+}
+
+// Important CTA accent (opt-in class; do not override danger/success semantics)
+.btn-masar-cta,
+.o_masar_cta {
+    background: var(--masar-accent-gradient) !important;
+    border: 0 !important;
+    color: #{$masar-navy} !important;
+    font-weight: 700;
+
+    &:hover {
+        filter: brightness(0.96);
+        color: #{$masar-navy} !important;
+    }
+}
+

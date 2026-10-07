@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="social.InteractionField">
+        <div class="o_social_interaction d-flex align-items-start gap-2 w-100 min-w-0"
+             t-att-class="{ 'o_social_interaction_needs_reply': needsReply }">
+            <div class="o_social_avatar_wrap flex-shrink-0">
+                <img t-if="avatarUrl"
+                     t-att-src="avatarUrl"
+                     class="o_social_avatar"
+                     alt=""/>
+                <span t-else="" class="o_social_avatar o_social_avatar_initials" t-esc="initials"/>
+                <img t-if="platformIcon"
+                     t-att-src="platformIcon"
+                     class="o_social_platform_badge"
+                     alt=""/>
+            </div>
+            <div class="o_social_interaction_body flex-grow-1 min-w-0">
+                <div class="o_social_customer_name text-truncate" t-esc="customerName"/>
+                <div class="o_social_preview text-muted text-truncate" t-esc="preview"/>
+                <div class="o_social_kind mt-1" t-att-class="kindMeta.css">
+                    <i t-att-class="kindMeta.icon" class="me-1"/>
+                    <span t-esc="kindMeta.label"/>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

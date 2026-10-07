@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Odoo 20: chaining_type removed from mail.activity.type -->
+    <record id="mail_act_probation_ending" model="mail.activity.type">
+        <field name="name">Probation ending</field>
+        <field name="icon">fa-hourglass-half</field>
+    </record>
+</odoo>

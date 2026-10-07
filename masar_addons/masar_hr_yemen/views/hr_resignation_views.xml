@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_resignation_form_yemen" model="ir.ui.view">
+        <field name="name">hr.resignation.form.yemen</field>
+        <field name="model">hr.resignation</field>
+        <field name="inherit_id" ref="masar_hr_resignation.view_hr_resignation_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_masar_exit_checklist" type="object"
+                        string="Exit checklist"
+                        invisible="state in ('done', 'cancelled', 'rejected')"
+                        groups="hr.group_hr_user"
+                        class="btn-secondary"/>
+                <button name="action_print_service_certificate" type="object"
+                        string="Service certificate (Art. 41)"
+                        invisible="state in ('draft', 'cancelled', 'rejected')"
+                        groups="hr.group_hr_user"
+                        class="btn-secondary"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

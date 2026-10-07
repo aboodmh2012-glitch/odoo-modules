@@ -1,0 +1,11 @@
+{'application': False,
+ 'author': 'PESOL, Odoo Community Association (OCA)',
+ 'category': 'Accounts',
+ 'data': ['views/account_move_view.xml'],
+ 'depends': ['account', 'base_tier_validation'],
+ 'installable': True,
+ 'license': 'AGPL-3',
+ 'name': 'Account Move Tier Validation',
+ 'summary': 'Extends the functionality of Account Moves to support a tier validation process.',
+ 'version': '20.0.1.0.0',
+ 'website': 'https://github.com/OCA/tier-validation'}

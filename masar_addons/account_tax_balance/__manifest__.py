@@ -1,0 +1,17 @@
+{'author': 'Agile Business Group, Therp BV, Tecnativa, ACSONE SA/NV, Odoo Community Association '
+           '(OCA)',
+ 'category': 'Invoices & Payments',
+ 'data': ['wizard/open_tax_balances_view.xml',
+          'views/account_move_view.xml',
+          'views/account_tax_view.xml',
+          'security/ir.access.csv'],
+ 'depends': ['account', 'date_range'],
+ 'development_status': 'Mature',
+ 'images': ['images/tax_balance.png'],
+ 'installable': True,
+ 'license': 'AGPL-3',
+ 'name': 'Tax Balance',
+ 'pre_init_hook': 'pre_init_hook',
+ 'summary': 'Compute tax balances based on date range',
+ 'version': '20.0.1.0.3',
+ 'website': 'https://github.com/OCA/account-financial-reporting'}

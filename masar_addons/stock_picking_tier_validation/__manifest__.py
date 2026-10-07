@@ -1,0 +1,11 @@
+{'author': 'Ecosoft, Odoo Community Association (OCA)',
+ 'category': 'Warehouse Management',
+ 'data': ['views/stock_picking_views.xml'],
+ 'depends': ['stock', 'base_tier_validation'],
+ 'development_status': 'Alpha',
+ 'installable': True,
+ 'license': 'AGPL-3',
+ 'name': 'Stock Picking Tier Validation',
+ 'summary': 'Extends the functionality of Transfers to support a tier validation process.',
+ 'version': '20.0.1.0.0',
+ 'website': 'https://github.com/OCA/tier-validation'}

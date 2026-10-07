@@ -1,0 +1,18 @@
+id,name,model_id,group_id/id,operation,domain
+access_fsm_order_portal,fieldservice.order.portal,fsm.order,base.group_portal,r,
+access_fsm_stage_portal,fieldservice.stage.portal,fsm.stage,base.group_portal,r,
+access_fsm_order_type_portal,fieldservice.order.type.portal,fsm.order.type,base.group_portal,r,
+fsm_order_rule_portal_base_group_portal,Portal Personal Orders (base.group_portal),fsm.order,base.group_portal,crud,"['|','|',
+            ('location_id.owner_id', 'child_of', [user.commercial_partner_id.id]),
+            ('location_id.contact_id', 'child_of', [user.commercial_partner_id.id]),
+            ('message_partner_ids','child_of',[user.commercial_partner_id.id])]"
+fsm_location_rule_portal_base_group_portal,Portal Personal Locations (base.group_portal),fsm.location,base.group_portal,crud,"['|','|',
+            ('owner_id', 'child_of', [user.commercial_partner_id.id]),
+            ('contact_id', 'child_of', [user.commercial_partner_id.id]),
+            ('message_partner_ids','child_of',[user.commercial_partner_id.id])]"
+res_partner_fsm_location_rule_portal_base_group_portal,Portal Personal Locations (base.group_portal),res.partner,base.group_portal,crud,"['&',
+            ('service_location_id', '!=', False),
+            '|','|',
+            ('service_location_id.owner_id', 'child_of', [user.commercial_partner_id.id]),
+            ('service_location_id.contact_id', 'child_of', [user.commercial_partner_id.id]),
+            ('service_location_id.message_partner_ids','child_of', [user.commercial_partner_id.id])]"

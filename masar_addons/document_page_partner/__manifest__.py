@@ -1,0 +1,10 @@
+{'author': 'Therp BV, Odoo Community Association (OCA)',
+ 'category': 'Knowledge Management',
+ 'data': ['views/document_page.xml'],
+ 'depends': ['document_page'],
+ 'installable': True,
+ 'license': 'AGPL-3',
+ 'name': 'Link to a partner in document pages',
+ 'summary': 'Allows to link doucment pages to a partner',
+ 'version': '20.0.1.0.0',
+ 'website': 'https://github.com/OCA/knowledge'}

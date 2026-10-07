@@ -1,0 +1,4 @@
+id,name,model_id,group_id/id,operation,domain
+ir_model_access_helpdesk_ticket_type_user,helpdesk_ticket_type_group_user,helpdesk.ticket.type,helpdesk_mgmt.group_helpdesk_user,r,
+ir_model_access_helpdesk_ticket_type_manager,helpdesk_ticket_type_group_manager,helpdesk.ticket.type,helpdesk_mgmt.group_helpdesk_manager,crud,
+ir_model_access_helpdesk_ticket_type_portal,helpdesk.ticket.type.portal,helpdesk.ticket.type,base.group_portal,r,

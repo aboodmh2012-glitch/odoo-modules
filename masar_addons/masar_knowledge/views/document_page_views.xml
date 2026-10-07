@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- Add a "Document control" page to the Knowledge form. -->
+  <record id="view_wiki_form_masar_control" model="ir.ui.view">
+    <field name="name">document.page.form.masar.control</field>
+    <field name="model">document.page</field>
+    <field name="inherit_id" ref="document_page.view_wiki_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//page[@name='info']" position="after">
+        <page name="masar_control" string="Document control">
+          <group>
+            <group string="Ownership">
+              <field name="masar_owner_dept_id"/>
+              <field name="masar_owner_uid"/>
+              <field name="masar_doc_code"/>
+            </group>
+            <group string="Lifecycle &amp; classification">
+              <field name="masar_classification"/>
+              <field name="masar_status"/>
+              <field name="masar_effective_date"/>
+              <field name="masar_review_date"/>
+            </group>
+          </group>
+          <group string="Tags">
+            <field name="masar_tag_ids" widget="many2many_tags"
+                   options="{'color_field': 'color'}" nolabel="1"/>
+          </group>
+        </page>
+      </xpath>
+    </field>
+  </record>
+
+  <!-- Search: filters + group-bys for document control. -->
+  <record id="view_wiki_filter_masar" model="ir.ui.view">
+    <field name="name">document.page.search.masar</field>
+    <field name="model">document.page</field>
+    <field name="inherit_id" ref="document_page.view_wiki_filter"/>
+    <field name="arch" type="xml">
+      <xpath expr="//search" position="inside">
+        <field name="masar_tag_ids"/>
+        <field name="masar_owner_dept_id"/>
+        <separator/>
+        <filter name="masar_active" string="Active" domain="[('masar_status','=','active')]"/>
+        <filter name="masar_under_review" string="Under review" domain="[('masar_status','=','under_review')]"/>
+        <filter name="masar_retired" string="Retired" domain="[('masar_status','=','retired')]"/>
+        <separator/>
+        <filter name="masar_confidential" string="Confidential / Restricted"
+                domain="[('masar_classification','in',['confidential','restricted'])]"/>
+        <filter name="masar_review_due" string="Review due"
+                domain="[('masar_review_date','&lt;=',context_today().strftime('%Y-%m-%d'))]"/>
+        <group>
+          <filter name="group_masar_owner_dept" string="Owner department" context="{'group_by':'masar_owner_dept_id'}"/>
+          <filter name="group_masar_classification" string="Classification" context="{'group_by':'masar_classification'}"/>
+          <filter name="group_masar_status" string="Lifecycle status" context="{'group_by':'masar_status'}"/>
+        </group>
+      </xpath>
+    </field>
+  </record>
+</odoo>

@@ -1,0 +1,12 @@
+{'author': 'ForgeFlow, Odoo Community Association (OCA)',
+ 'auto_install': True,
+ 'category': 'After-Sales',
+ 'data': ['views/product_view.xml', 'views/helpdesk_ticket_view.xml'],
+ 'demo': ['demo/helpdesk_product_demo.xml'],
+ 'depends': ['helpdesk_mgmt', 'product'],
+ 'development_status': 'Beta',
+ 'license': 'AGPL-3',
+ 'name': 'Helpdesk Product',
+ 'summary': 'Add the option to select product in the tickets.',
+ 'version': '20.0.1.1.0',
+ 'website': 'https://github.com/OCA/helpdesk'}

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_meta" model="ir.ui.view">
+        <field name="name">social.account.meta</field>
+        <field name="model">social.account</field>
+        <field name="inherit_id" ref="social.view_social_account_form"/>
+        <field name="arch" type="xml">
+            <field name="webhook_key" position="after">
+                <field name="meta_page_id"
+                         invisible="platform not in ('facebook', 'instagram')"
+                         groups="social.group_social_admin"/>
+                <field name="meta_app_secret_env"
+                         invisible="platform not in ('facebook', 'instagram')"
+                         placeholder="SOCIAL_META_APP_SECRET"/>
+            </field>
+            <xpath expr="//form/header" position="inside">
+                <button name="action_meta_check_token"
+                        type="object"
+                        string="Check Meta token"
+                        class="btn-secondary"
+                        groups="social.group_social_admin"
+                        invisible="platform not in ('facebook', 'instagram') or connection_status == 'not_connected'"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_social_meta_link_wizard" model="ir.ui.view">
+        <field name="name">social.meta.link.wizard.form</field>
+        <field name="model">social.meta.link.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Choose page">
+                <div class="oe_title">
+                    <h1 invisible="media_type != 'facebook'">Choose a Facebook Page</h1>
+                    <h1 invisible="media_type != 'instagram'">Choose an Instagram account</h1>
+                </div>
+                <p class="text-muted"><field name="hint" nolabel="1" readonly="1"/></p>
+                <field name="media_type" invisible="1"/>
+                <field name="line_ids" nolabel="1">
+                    <list create="0" delete="0" edit="0">
+                        <field name="name" string="Page / account"/>
+                        <field name="external_id" string="ID" optional="show"/>
+                        <button name="action_select" type="object" string="Select" class="btn btn-primary"/>
+                    </list>
+                </field>
+                <footer>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Shown only once when server has no Meta App credentials yet. -->
+    <record id="view_social_meta_app_config" model="ir.ui.view">
+        <field name="name">social.meta.app.config.form</field>
+        <field name="model">social.meta.app.config</field>
+        <field name="arch" type="xml">
+            <form string="Connect Facebook · one-time setup">
+                <div class="alert alert-info mb-3" role="status">
+                    <p class="mb-2"><b>One-time admin setup</b> (users will not see this again).</p>
+                    <ol class="mb-0 ps-3">
+                        <li>Open <a href="https://developers.facebook.com/apps/" target="_blank" rel="noreferrer">Meta for Developers</a> → your app → Settings → Basic.</li>
+                        <li>Copy this <b>Valid OAuth Redirect URI</b> into Facebook Login settings.</li>
+                        <li>Paste <b>App ID</b> (numbers only) and <b>App Secret</b>, then <b>Connect Facebook</b>.</li>
+                    </ol>
+                </div>
+                <group>
+                    <field name="redirect_uri" widget="CopyClipboardChar"
+                            string="Valid OAuth Redirect URI"/>
+                    <field name="app_id" string="App ID" placeholder="123456789012345"/>
+                    <field name="app_secret" string="App Secret" password="True"/>
+                    <field name="config_id" string="Configuration ID (optional)" placeholder="Optional"/>
+                    <field name="media_type" invisible="1"/>
+                </group>
+                <footer>
+                    <button name="action_save_and_link" type="object"
+                            string="Connect Facebook" class="btn-primary"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,134 @@
+// MASAR Pay — unified form / notebook / chatter styling.
+
+.o_form_view {
+    .o_form_sheet_bg {
+        background: transparent;
+    }
+
+    .o_form_sheet {
+        background: var(--masar-white);
+        border: 1px solid var(--masar-line);
+        border-radius: var(--masar-radius-lg);
+        box-shadow: var(--masar-shadow-sm);
+    }
+
+    .o_horizontal_separator,
+    .o_group .o_td_label,
+    .o_wrap_label,
+    .o_form_label {
+        color: var(--masar-navy);
+        font-weight: 600;
+    }
+
+    .o_input,
+    .form-control,
+    .o_datepicker .o_datepicker_input,
+    select.o_input,
+    textarea.o_input {
+        border-radius: var(--masar-radius-sm) !important;
+        border-color: var(--o-input-border-color, var(--masar-line));
+        background-color: var(--o-input-background-color, var(--masar-white));
+        color: inherit;
+    }
+
+    .o_input:focus,
+    .form-control:focus,
+    .o_datepicker_input:focus {
+        box-shadow: var(--masar-focus-ring);
+        outline: none;
+    }
+
+    .o_notebook {
+        .nav-tabs {
+            border-bottom: 1px solid var(--masar-line);
+
+            .nav-link {
+                color: var(--masar-text-soft);
+                border: 0;
+                border-radius: var(--masar-radius-sm) var(--masar-radius-sm) 0 0;
+                font-weight: 600;
+
+                &:hover {
+                    color: var(--masar-blue);
+                    background: rgba(7, 31, 61, 0.06);
+                }
+
+                &.active {
+                    color: var(--masar-navy);
+                    background: transparent;
+                    box-shadow: inset 0 -2px 0 var(--masar-blue);
+                }
+            }
+        }
+
+        .tab-content {
+            background: var(--masar-white);
+        }
+    }
+
+    .o_statusbar_status {
+        .o_arrow_button {
+            border-radius: var(--masar-radius-sm);
+        }
+
+        .o_arrow_button.btn-primary,
+        .o_arrow_button.o_arrow_button_current {
+            background: var(--masar-signal-gradient) !important;
+            border: 0 !important;
+            color: var(--masar-white) !important;
+        }
+    }
+
+    .o_form_statusbar {
+        background: var(--masar-white);
+        border-bottom: 1px solid var(--masar-line);
+    }
+}
+
+// Chatter
+.o-mail-Chatter,
+.o-mail-Form-chatter {
+    background: var(--masar-white);
+    border-inline-start: 1px solid var(--masar-line);
+
+    .o-mail-Chatter-top,
+    .o-mail-Chatter-topbar {
+        border-bottom: 1px solid var(--masar-line);
+    }
+
+    .btn-primary,
+    .o-mail-Composer-send {
+        border-radius: var(--masar-radius-sm);
+    }
+
+    .o-mail-Composer-input,
+    textarea {
+        border-radius: var(--masar-radius-sm);
+        border-color: var(--masar-line);
+
+        &:focus {
+            border-color: var(--masar-blue);
+            box-shadow: 0 0 0 0.2rem rgba(7, 31, 61, 0.12);
+        }
+    }
+}
+
+// Attachments / file drop
+.o_AttachmentBox,
+.o_attachment,
+.o_file_input,
+.o_AttachmentList {
+    .o_attachment_card,
+    .o-mail-AttachmentCard {
+        border: 1px solid var(--masar-line);
+        border-radius: var(--masar-radius-sm);
+        background: var(--masar-surface-alt);
+    }
+}
+
+
+// Validation and required markers are Odoo-owned, including when focused.
+.o_form_view .o_field_invalid {
+    --o-input-border-color: var(--masar-danger);
+    .o_input, .form-control { border-color: var(--masar-danger) !important; }
+}

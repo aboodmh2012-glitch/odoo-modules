@@ -1,0 +1,11 @@
+{'application': False,
+ 'author': 'MASAR',
+ 'category': 'Marketing/Social Marketing',
+ 'data': ['views/conversation.xml'],
+ 'depends': ['social', 'helpdesk_mgmt'],
+ 'installable': True,
+ 'license': 'AGPL-3',
+ 'name': 'Social · Helpdesk',
+ 'summary': 'Bridge Social conversations to Helpdesk tickets',
+ 'version': '20.0.1.0.1',
+ 'website': 'https://masar.sa'}

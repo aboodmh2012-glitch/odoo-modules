@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- The composed homepage lives in masar_homepage_content_refresh (higher priority). -->
+    <template id="masar_homepage" inherit_id="website.homepage" name="MASAR Homepage" priority="20">
+        <xpath expr="//div[@id='wrap']" position="attributes">
+            <attribute name="class" add="masar-site masar-pay" separator=" "/>
+        </xpath>
+    </template>
+
+    <template id="masar_layout_assets" inherit_id="website.layout" name="MASAR Fonts &amp; Title" priority="99">
+        <xpath expr="//head" position="inside">
+            <t t-set="copy" t-value="website.masar_public()"/>
+            <meta property="og:site_name" t-att-content="copy['brand']['name']"/>
+        </xpath>
+    </template>
+
+    <!-- After any stored head style, so MASAR Pay tokens win on the live site. -->
+    <template id="masar_brand_fix_head" inherit_id="website.layout" name="MASAR Pay brand fix" priority="999">
+        <xpath expr="//head" position="inside">
+            <link rel="stylesheet" type="text/css" href="/masar_website/static/src/css/masar_brand_fix.css?v=about-photo-20260929"/>
+            <link rel="stylesheet" href="/masar_website/static/src/css/masar_ux.css?v=cards-stack-20260927"/>
+            <script defer="defer" src="/masar_website/static/src/js/masar_ux.js?v=sticky-header-20260928"/>
+            <link t-if="request.httprequest.path in ('/', '/ar', '/en')" rel="preload" as="image" t-att-href="'/masar_website/static/src/img/hero-fintech-yemen-v2-rtl.webp?v=card-payment-20260928' if (request.env.lang or '').startswith('ar') else '/masar_website/static/src/img/hero-fintech-yemen-v2.webp?v=card-payment-20260928'" fetchpriority="high"/>
+            <link rel="stylesheet" href="/masar_website/static/src/css/masar_homepage_polish.css?v=20260928-opportunity"/>
+            <script defer="defer" src="/masar_website/static/src/js/masar_homepage_polish.js?v=20260928-1"/>
+            <link rel="stylesheet" href="/masar_website/static/src/css/masar_footer_polish.css?v=footer-social-fa-20261001"/>
+        </xpath>
+    </template>
+</odoo>
+

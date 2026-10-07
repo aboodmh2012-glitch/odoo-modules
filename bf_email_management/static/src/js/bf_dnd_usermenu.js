@@ -23,7 +23,7 @@ import { _t } from "@web/core/l10n/translation";
 import { deserializeDateTime } from "@web/core/l10n/dates";
 import { registry } from "@web/core/registry";
 import { user } from "@web/core/user";
-import { reactive, useState } from "@odoo/owl";
+import { proxy, useState } from "@odoo/owl";
 import { patch } from "@web/core/utils/patch";
 import { UserMenu } from "@web/webclient/user_menu/user_menu";
 
@@ -39,7 +39,7 @@ const DUREES = [
     { minutes: null, label: () => _t("Ne pas déranger · indéfiniment") },
 ];
 
-const state = reactive({
+const state = proxy({
     enabled: false,
     active: false,
     reason: false,

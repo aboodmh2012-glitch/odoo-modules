@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="1">
+    <!-- Optional starter definition: controlled pages in approval state.
+         Managers can refine reviewers/domain in Tier Definition settings. -->
+    <record id="tier_definition_kc_publish" model="tier.definition">
+      <field name="name">Controlled document publish</field>
+      <field name="model_id" ref="document_page.model_document_page"/>
+      <field name="review_type">group</field>
+      <field name="reviewer_group_id" ref="knowledge_control.group_knowledge_control_manager"/>
+      <field name="definition_domain">[("kc_controlled", "=", True), ("kc_state", "=", "approval")]</field>
+      <field name="sequence">100</field>
+      <field name="active" eval="False"/>
+      <field name="company_id" eval="False"/>
+    </record>
+  </data>
+</odoo>

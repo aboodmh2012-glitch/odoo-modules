@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_kc_distribution_list" model="ir.ui.view">
+    <field name="name">document.page.distribution.list</field>
+    <field name="model">document.page.distribution</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="page_name"/>
+        <field name="version_label"/>
+        <field name="partner_id"/>
+        <field name="department_id" optional="show"/>
+        <field name="state" widget="badge"
+               decoration-warning="state in ('pending', 'viewed', 'overdue')"
+               decoration-success="state == 'acknowledged'"
+               decoration-muted="state == 'cancelled'"/>
+        <field name="assigned_date"/>
+        <field name="due_date"/>
+        <field name="acknowledged_date"/>
+        <field name="reminder_count" optional="hide"/>
+      </list>
+    </field>
+  </record>
+
+  <record id="view_kc_distribution_form" model="ir.ui.view">
+    <field name="name">document.page.distribution.form</field>
+    <field name="model">document.page.distribution</field>
+    <field name="arch" type="xml">
+      <form>
+        <header>
+          <button name="action_mark_viewed" type="object" string="Mark read"
+                  invisible="state not in ('pending', 'overdue')"/>
+          <button name="action_acknowledge" type="object" string="Acknowledge"
+                  class="btn-primary"
+                  invisible="state in ('acknowledged', 'cancelled')"/>
+          <button name="action_send_reminder" type="object" string="Send reminder"
+                  invisible="state in ('acknowledged', 'cancelled')"
+                  groups="knowledge_control.group_knowledge_control_manager"/>
+          <field name="state" widget="statusbar"
+                 statusbar_visible="pending,viewed,acknowledged,overdue"/>
+        </header>
+        <sheet>
+          <group>
+            <group>
+              <field name="page_id"/>
+              <field name="history_id"/>
+              <field name="version_label"/>
+            </group>
+            <group>
+              <field name="partner_id"/>
+              <field name="user_id"/>
+              <field name="employee_id"/>
+              <field name="department_id"/>
+              <field name="company_id" groups="base.group_multi_company"/>
+            </group>
+          </group>
+          <group>
+            <field name="assigned_date"/>
+            <field name="due_date"/>
+            <field name="viewed_date"/>
+            <field name="acknowledged_date"/>
+            <field name="acknowledgment_method"/>
+            <field name="acknowledgment_text"/>
+            <field name="reminder_count"/>
+          </group>
+        </sheet>
+        <chatter/>
+      </form>
+    </field>
+  </record>
+
+  <record id="view_kc_distribution_search" model="ir.ui.view">
+    <field name="name">document.page.distribution.search</field>
+    <field name="model">document.page.distribution</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="page_id"/>
+        <field name="partner_id"/>
+        <field name="version_label"/>
+        <filter name="pending" string="Pending" domain="[('state', 'in', ('pending', 'viewed', 'overdue'))]"/>
+        <filter name="acked" string="Acknowledged" domain="[('state', '=', 'acknowledged')]"/>
+        <filter name="overdue" string="Overdue" domain="[('state', '=', 'overdue')]"/>
+        <group>
+          <filter name="group_page" string="Document" context="{'group_by': 'page_id'}"/>
+          <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+          <filter name="group_version" string="Version" context="{'group_by': 'history_id'}"/>
+        </group>
+      </search>
+    </field>
+  </record>
+
+  <record id="action_kc_acknowledgments" model="ir.actions.act_window">
+    <field name="name">Acknowledgments</field>
+    <field name="res_model">document.page.distribution</field>
+    <field name="view_mode">list,form</field>
+    <field name="context">{'search_default_pending': 1}</field>
+  </record>
+</odoo>

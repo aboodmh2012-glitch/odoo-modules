@@ -1,0 +1,6 @@
+// MASAR: hide only the web_responsive color/preferences quick action.
+// Keep OCA Tier Validation reviewer systray (fa-pencil-square-o) visible.
+.o_menu_systray .o-dropdown:has(> button i.fa-tint),
+.o_menu_systray .o-dropdown:has(i.fa-tint) {
+    display: none !important;
+}

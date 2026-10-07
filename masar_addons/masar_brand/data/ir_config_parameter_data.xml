@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Odoo 20: prefer <value> children over eval= on <function> -->
+        <function model="ir.config_parameter" name="set_param">
+            <value>masar.brand</value>
+            <value>MASAR</value>
+        </function>
+
+        <function model="ir.config_parameter" name="set_param">
+            <value>masar.company_name_ar</value>
+            <value>شركة مسار العالمية للأنظمة والحلول المالية</value>
+        </function>
+
+        <function model="ir.config_parameter" name="set_param">
+            <value>masar.company_name_en</value>
+            <value>MASAR Global for Financial Systems &amp; Solutions</value>
+        </function>
+
+    </data>
+</odoo>

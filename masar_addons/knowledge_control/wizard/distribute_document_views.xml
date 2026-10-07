@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_kc_distribute_wizard" model="ir.ui.view">
+    <field name="name">document.page.distribute.wizard.form</field>
+    <field name="model">document.page.distribute.wizard</field>
+    <field name="arch" type="xml">
+      <form string="Distribute controlled document">
+        <group>
+          <field name="page_id" readonly="1"/>
+          <field name="history_id" readonly="1"/>
+          <field name="due_date"/>
+          <field name="create_activity"/>
+        </group>
+        <group string="Recipients">
+          <field name="department_ids" widget="many2many_tags"/>
+          <field name="employee_ids" widget="many2many_tags"/>
+          <field name="user_ids" widget="many2many_tags"/>
+          <field name="partner_ids" widget="many2many_tags"/>
+        </group>
+        <footer>
+          <button name="action_distribute" type="object" string="Distribute" class="btn-primary"/>
+          <button string="Cancel" special="cancel"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+</odoo>

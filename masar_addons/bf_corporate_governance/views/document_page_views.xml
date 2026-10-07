@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (c) 2026 Les services de consultation Blue Fox, Inc.
+  Copyright 2026 MASAR — Minute Book section on document.page
+  License LGPL-3.0 or later
+-->
+<odoo>
+  <record id="view_wiki_form_minute_book" model="ir.ui.view">
+    <field name="name">document.page.form.minute.book</field>
+    <field name="model">document.page</field>
+    <field name="inherit_id" ref="document_page.view_wiki_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//page[@name='masar_control']" position="after">
+        <page name="minute_book" string="Minute Book" invisible="type == 'category'">
+          <group>
+            <field name="minute_book_section"/>
+          </group>
+        </page>
+      </xpath>
+    </field>
+  </record>
+
+  <record id="view_wiki_list_minute_book" model="ir.ui.view">
+    <field name="name">document.page.list.minute.book</field>
+    <field name="model">document.page</field>
+    <field name="inherit_id" ref="document_page.view_wiki_tree"/>
+    <field name="arch" type="xml">
+      <xpath expr="//list" position="inside">
+        <field name="minute_book_section" optional="hide"/>
+      </xpath>
+    </field>
+  </record>
+</odoo>

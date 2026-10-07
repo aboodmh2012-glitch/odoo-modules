@@ -1,0 +1,13 @@
+{'author': 'Agile Business Group, Camptocamp SA, Odoo Community Association (OCA)',
+ 'category': 'Accounting',
+ 'data': ['security/ir.access.csv',
+          'views/account_fiscal_year_views.xml',
+          'views/res_company_views.xml'],
+ 'depends': ['account'],
+ 'development_status': 'Production/Stable',
+ 'license': 'AGPL-3',
+ 'maintainers': ['eLBati'],
+ 'name': 'Account Fiscal Year',
+ 'summary': 'Create Account Fiscal Year',
+ 'version': '20.0.1.0.0',
+ 'website': 'https://github.com/OCA/account-financial-tools'}

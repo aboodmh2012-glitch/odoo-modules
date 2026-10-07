@@ -1,0 +1,13 @@
+{'author': 'Brian McMaster, Odoo Community Association (OCA)',
+ 'auto_install': True,
+ 'category': 'Field Service',
+ 'data': [],
+ 'depends': ['fieldservice_sale', 'fieldservice_stock', 'sale_stock'],
+ 'development_status': 'Beta',
+ 'installable': True,
+ 'license': 'AGPL-3',
+ 'maintainers': ['wolfhall', 'max3903', 'brian10048'],
+ 'name': 'Field Service - Sale Stock',
+ 'summary': 'Sell stockable items linked to field service orders.',
+ 'version': '20.0.1.0.0',
+ 'website': 'https://github.com/OCA/field-service'}

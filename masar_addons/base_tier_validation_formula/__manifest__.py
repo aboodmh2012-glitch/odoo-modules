@@ -1,0 +1,11 @@
+{'author': 'Creu Blanca,Odoo Community Association (OCA)',
+ 'category': 'Tools',
+ 'data': ['views/tier_definition_view.xml'],
+ 'demo': [],
+ 'depends': ['base_tier_validation'],
+ 'development_status': 'Mature',
+ 'license': 'AGPL-3',
+ 'name': 'Base Tier Validation Formula',
+ 'summary': '\n        Formulas for Base tier validation',
+ 'version': '20.0.1.1.0',
+ 'website': 'https://github.com/OCA/tier-validation'}

@@ -1,0 +1,4 @@
+id,name,model_id,group_id/id,operation,domain
+rule_change_request_global_document_knowledge_group_document_user,Change Request Global (document_knowledge.group_document_user),document.page.history,document_knowledge.group_document_user,crud,"['|',('state','=','approved'),('create_uid','=',user.id)]"
+rule_change_request_approver_group_document_approver_user,Change Request Approver (group_document_approver_user),document.page.history,document_page_approval.group_document_approver_user,crud,"[('state','!=','draft')]"
+rule_change_request_manager_document_page_group_document_manager,Change Request Manager (document_page.group_document_manager),document.page.history,document_page.group_document_manager,crud,

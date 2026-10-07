@@ -1,0 +1,4 @@
+id,name,model_id,group_id/id,operation,domain
+access_social_linkedin_oauth_admin,social.linkedin.oauth admin,social.linkedin.oauth,social.group_social_admin,crud,
+access_social_linkedin_link_wizard_admin,social.linkedin.link.wizard admin,social.linkedin.link.wizard,social.group_social_admin,crud,
+access_social_linkedin_link_wizard_line_admin,social.linkedin.link.wizard.line admin,social.linkedin.link.wizard.line,social.group_social_admin,crud,

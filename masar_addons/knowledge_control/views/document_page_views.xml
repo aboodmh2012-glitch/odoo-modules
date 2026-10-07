@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_wiki_form_kc" model="ir.ui.view">
+    <field name="name">document.page.form.knowledge.control</field>
+    <field name="model">document.page</field>
+    <field name="inherit_id" ref="document_page.view_wiki_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//sheet" position="before">
+        <header>
+          <button name="action_kc_submit_review" type="object" string="Submit review"
+                  invisible="not kc_controlled or kc_state not in ('draft', 'review_due')"
+                  groups="knowledge_control.group_knowledge_control_user"/>
+          <button name="action_kc_request_approval" type="object" string="Request approval"
+                  class="btn-primary"
+                  invisible="not kc_controlled or kc_state not in ('draft', 'review')"
+                  groups="knowledge_control.group_knowledge_control_user"/>
+          <button name="action_kc_publish" type="object" string="Publish"
+                  class="btn-primary"
+                  invisible="not kc_controlled or kc_state not in ('approval', 'review', 'draft')"
+                  groups="knowledge_control.group_knowledge_control_manager"/>
+          <button name="action_kc_start_revision" type="object" string="Start revision"
+                  invisible="not kc_controlled or kc_state not in ('published', 'review_due')"
+                  groups="knowledge_control.group_knowledge_control_manager"/>
+          <button name="action_kc_distribute_wizard" type="object" string="Distribute"
+                  invisible="not kc_controlled or kc_state != 'published'"
+                  groups="knowledge_control.group_knowledge_control_manager"/>
+          <button name="action_kc_archive_controlled" type="object" string="Archive"
+                  invisible="not kc_controlled or kc_state not in ('published', 'review_due', 'superseded')"
+                  groups="knowledge_control.group_knowledge_control_manager"/>
+          <button name="action_kc_fork_page" type="object" string="Fork to new page"
+                  invisible="1"
+                  groups="knowledge_control.group_knowledge_control_manager"/>
+          <field name="kc_state" widget="statusbar"
+                 statusbar_visible="draft,review,approval,published,review_due,superseded,archived"
+                 invisible="not kc_controlled"/>
+        </header>
+      </xpath>
+      <xpath expr="//div[@name='button_box']" position="inside">
+        <button name="action_kc_open_distributions" type="object"
+                class="oe_stat_button" icon="fa-check-square-o"
+                invisible="not kc_controlled">
+          <div class="o_stat_info">
+            <span class="o_stat_value">
+              <field name="kc_ack_count"/> / <field name="kc_distribution_count"/>
+            </span>
+            <span class="o_stat_text">Acknowledged</span>
+          </div>
+        </button>
+      </xpath>
+      <xpath expr="//page[@name='masar_control']" position="after">
+        <page name="kc_control" string="Controlled document" invisible="type == 'category'">
+          <group>
+            <group string="Control">
+              <field name="kc_controlled"/>
+              <field name="kc_document_type" invisible="not kc_controlled"/>
+              <field name="kc_version_type" invisible="not kc_controlled"/>
+              <field name="kc_published_version" invisible="not kc_controlled"/>
+              <field name="kc_published_history_id" invisible="not kc_controlled"/>
+              <field name="kc_published_date" invisible="not kc_controlled"/>
+              <field name="kc_published_uid" invisible="not kc_controlled"/>
+              <field name="kc_baseline_kind" invisible="not kc_controlled"/>
+            </group>
+            <group string="Version lineage" invisible="not kc_controlled">
+              <field name="kc_previous_page_id" groups="base.group_no_one"/>
+              <field name="kc_superseded_by_id" groups="base.group_no_one"/>
+              <field name="kc_ack_rate" widget="progressbar"/>
+              <field name="kc_ack_pending_count"/>
+              <field name="kc_ack_confirmation_text" invisible="not kc_controlled"/>
+            </group>
+          </group>
+          <group string="Policies &amp; procedures" invisible="not kc_controlled">
+            <field name="kc_policy_ids" widget="many2many_tags"
+                   invisible="kc_document_type == 'policy'"/>
+            <field name="kc_procedure_ids" widget="many2many_tags"
+                   invisible="kc_document_type not in ('policy', 'manual', 'guideline')"/>
+          </group>
+        </page>
+      </xpath>
+    </field>
+  </record>
+
+  <record id="view_wiki_tree_kc" model="ir.ui.view">
+    <field name="name">document.page.list.knowledge.control</field>
+    <field name="model">document.page</field>
+    <field name="inherit_id" ref="document_page.view_wiki_tree"/>
+    <field name="arch" type="xml">
+      <xpath expr="//list" position="inside">
+        <field name="kc_document_type" optional="show"/>
+        <field name="kc_state" optional="show" widget="badge"
+               decoration-info="kc_state == 'draft'"
+               decoration-warning="kc_state in ('review', 'approval', 'review_due')"
+               decoration-success="kc_state == 'published'"
+               decoration-muted="kc_state in ('superseded', 'archived')"/>
+        <field name="kc_published_version" optional="show"/>
+        <field name="kc_ack_rate" optional="hide" widget="progressbar"/>
+      </xpath>
+    </field>
+  </record>
+
+  <record id="view_wiki_filter_kc" model="ir.ui.view">
+    <field name="name">document.page.search.knowledge.control</field>
+    <field name="model">document.page</field>
+    <field name="inherit_id" ref="document_page.view_wiki_filter"/>
+    <field name="arch" type="xml">
+      <xpath expr="//search" position="inside">
+        <field name="kc_document_type"/>
+        <field name="kc_state"/>
+        <separator/>
+        <filter name="kc_controlled" string="Controlled" domain="[('kc_controlled', '=', True)]"/>
+        <filter name="kc_policies" string="Policies" domain="[('kc_document_type', '=', 'policy')]"/>
+        <filter name="kc_procedures" string="Procedures" domain="[('kc_document_type', '=', 'procedure')]"/>
+        <filter name="kc_published" string="Published" domain="[('kc_state', '=', 'published')]"/>
+        <filter name="kc_review_due_state" string="Review due" domain="[('kc_state', '=', 'review_due')]"/>
+        <group>
+          <filter name="group_kc_type" string="Document type" context="{'group_by': 'kc_document_type'}"/>
+          <filter name="group_kc_state" string="Control status" context="{'group_by': 'kc_state'}"/>
+        </group>
+      </xpath>
+    </field>
+  </record>
+
+  <record id="action_kc_policies" model="ir.actions.act_window">
+    <field name="name">Policies &amp; Procedures</field>
+    <field name="res_model">document.page</field>
+    <field name="view_mode">list,form</field>
+    <field name="domain">[('kc_document_type', 'in', ('policy', 'procedure', 'work_instruction', 'guideline', 'manual')), ('type', '=', 'content')]</field>
+    <field name="context">{'search_default_kc_controlled': 1, 'default_kc_controlled': True, 'default_kc_document_type': 'policy', 'default_type': 'content'}</field>
+  </record>
+  <record id="action_kc_controlled" model="ir.actions.act_window">
+    <field name="name">Controlled Documents</field>
+    <field name="res_model">document.page</field>
+    <field name="view_mode">list,form</field>
+    <field name="domain">[('kc_controlled', '=', True), ('type', '=', 'content')]</field>
+    <field name="context">{'default_kc_controlled': True, 'default_type': 'content'}</field>
+  </record>
+  <record id="action_kc_forms" model="ir.actions.act_window">
+    <field name="name">Forms &amp; Templates</field>
+    <field name="res_model">document.page</field>
+    <field name="view_mode">list,form</field>
+    <field name="domain">[('kc_document_type', 'in', ('form', 'template')), ('type', '=', 'content')]</field>
+    <field name="context">{'default_kc_controlled': True, 'default_kc_document_type': 'form', 'default_type': 'content'}</field>
+  </record>
+  <record id="action_kc_reviews" model="ir.actions.act_window">
+    <field name="name">Reviews &amp; Expirations</field>
+    <field name="res_model">document.page</field>
+    <field name="view_mode">list,form</field>
+    <field name="domain">[('kc_controlled', '=', True), ('kc_state', 'in', ('review', 'review_due', 'approval'))]</field>
+  </record>
+</odoo>

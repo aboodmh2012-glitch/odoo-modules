@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="masar_brand_promotion_message" inherit_id="web.brand_promotion_message" name="MASAR Brand Promotion Message" priority="99">
+        <xpath expr="//t[@t-out]" position="replace">
+            <span class="masar-brand-promotion__label" t-out="request.env['website'].get_current_website().masar_public()['brand']['promotion']"/>
+        </xpath>
+    </template>
+
+    <template id="masar_brand_promotion" inherit_id="web.brand_promotion" name="MASAR Brand Promotion" priority="99">
+        <xpath expr="//div[hasclass('o_brand_promotion')]" position="replace">
+            <div class="o_brand_promotion masar-brand-promotion">
+                <span class="masar-brand-promotion__label" t-out="request.env['website'].get_current_website().masar_public()['brand']['promotion']"/>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="masar_footer_copyright" inherit_id="web.frontend_layout" name="MASAR Footer Copyright" priority="99">
+        <xpath expr="//span[hasclass('o_footer_copyright_name')]" position="replace">
+            <span class="o_footer_copyright_name me-2 small masar-legacy-copyright"/>
+        </xpath>
+    </template>
+
+    <template id="masar_hide_generator_meta" inherit_id="website.layout" name="MASAR Public Branding Meta" priority="99">
+        <xpath expr="//meta[@name='generator']" position="attributes">
+            <attribute name="content">MASAR</attribute>
+        </xpath>
+        <xpath expr="//a[hasclass('o_frontend_to_backend_apps_btn')]" position="attributes">
+            <attribute name="title">Go to your Masar Apps</attribute>
+        </xpath>
+    </template>
+
+    <template id="masar_website_info" inherit_id="website.show_website_info" name="MASAR Website Info" priority="99">
+        <xpath expr="//h1" position="replace">
+            <h1 class="masar-info__title">
+                <t t-out="res_company.name"/>
+                <small class="masar-info__note" groups="base.group_no_one">Masar platform</small>
+            </h1>
+        </xpath>
+        <xpath expr="//p[1]" position="replace">
+            <p class="masar-info__lead">
+                <span t-out="request.env['website'].get_current_website().masar_public()['brand']['meta_description']"/>
+            </p>
+        </xpath>
+    </template>
+</odoo>

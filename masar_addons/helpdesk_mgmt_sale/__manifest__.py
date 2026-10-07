@@ -1,0 +1,11 @@
+{'author': 'Tecnativa,Odoo Community Association (OCA)',
+ 'auto_install': True,
+ 'category': 'Sales Management',
+ 'data': ['views/helpdesk_ticket_views.xml', 'views/sale_order_views.xml'],
+ 'depends': ['helpdesk_mgmt', 'sale'],
+ 'development_status': 'Production/Stable',
+ 'license': 'AGPL-3',
+ 'name': 'Helpdesk Sale Order',
+ 'summary': 'Add the option to select project in the sale orders.',
+ 'version': '20.0.1.0.0',
+ 'website': 'https://github.com/OCA/helpdesk'}

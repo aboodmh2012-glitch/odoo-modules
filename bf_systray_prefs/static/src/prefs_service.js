@@ -1,6 +1,6 @@
 /** @odoo-module **/
 import { registry } from "@web/core/registry";
-import { reactive } from "@odoo/owl";
+import { proxy } from "@odoo/owl";
 import { user } from "@web/core/user";
 
 // Per-browser, per-uid cache so the navbar paints the right set on first frame,
@@ -10,7 +10,7 @@ const cacheKey = () => `bf_systray_hidden_${user.userId}`;
 export const bfSystrayPrefsService = {
     dependencies: ["orm"],
     start(env, { orm }) {
-        const state = reactive({ hidden: [] });
+        const state = proxy({ hidden: [] });
 
         try {
             const cached = JSON.parse(localStorage.getItem(cacheKey()) || "null");

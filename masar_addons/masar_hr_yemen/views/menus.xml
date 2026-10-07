@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_masar_hr_yemen_root"
+              name="HR Yemen"
+              parent="hr.menu_hr_root"
+              sequence="90"
+              groups="hr.group_hr_user"/>
+    <menuitem id="menu_masar_leave_alloc_preview"
+              name="Leave allocation preview"
+              parent="menu_masar_hr_yemen_root"
+              action="action_masar_leave_allocation_preview"
+              sequence="10"/>
+</odoo>
